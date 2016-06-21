@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_info_window" translatable="false">InfoWindowActivity</string>
+    <string name="title_activity_welcome_screen" translatable="false">WelcomeScreen</string>
+    <string name="title_activity_splash" translatable="false">Splash</string>
+    <string name="title_activity_my_sqlite_helper" translatable="false">MySQLiteHelper</string>
+    <string name="preferences" translatable="false">ped_pref</string>
+    <string name="title_activity_directions" translatable="false">Directions</string>
+    <string name="title_activity_create_route" translatable="false">CreateRouteActivity</string>
+    <string name="offline" translatable="false">OFFLINE</string>
+
+    <string-array name="menu_array">
+        <item>Permanent lanes</item>
+        <item>Recreational lanes</item>
+        <item>Preferential streets</item>
+        <item>Bike Sampa</item>
+        <item>Ciclo Sampa</item>
+        <item>Parks</item>
+        <item>Parking</item>
+        <item>Wifi Livre SP</item>
+        <item>Alerts</item>
+    </string-array>
+    <string-array name="menu_array_descriptions">
+        <item>Permanent bike lanes</item>
+        <item>Works on Sundays and national holidays</item>
+        <item>Sinalized preferential streets</item>
+        <item>Itaú bike sharing system</item>
+        <item>Bradesco bike sharing system</item>
+        <item>Parks with bike lanes</item>
+        <item>Outdoor (P) and indoor (B) bike racks</item>
+        <item>Free wifi spots</item>
+        <item>Alerts sent by users</item>
+    </string-array>
+    <string-array name="menu_array_quantidades">
+        <item/>
+        <item>120,8km</item>
+        <item>67,5km</item>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+    </string-array>
+
+    <string name="app_name">Pedala SP</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_bikepoint">Add a Bike Point</string>
+    <string name="alerta">Alert</string>
+    <string name="avisar_erro">Report error</string>
+    <string name="bem_vindo">Welcome to Pedala SP</string>
+    <string name="beta_route_mode_title">Beta warning</string>
+    <string name="beta_route_mode_warning">ATTENTION: The route function is being tested and the route loaded can be improper and dangerous for cycling</string>
+    <string name="buraco">POTHOLE</string>
+    <string name="buscar_novamente">Search again</string>
+    <string name="carregando_rotas">Loading routes</string>
+    <string name="chegada">End</string>
+    <string name="create_route">Create route</string>
+    <string name="current_place_for_origin">Use your current location as route start?</string>
+    <string name="de">From: </string>
+    <string name="delete_last_point">Delete</string>
+    <string name="destino">Destination</string>
+    <string name="detalhes">give more details…</string>
+    <string name="drawer_close">Closed</string>
+    <string name="drawer_open">Open</string>
+    <string name="empty_address_dialog_message">You have to type both addresses to load a route</string>
+    <string name="empty_address_dialog_title">Empty address field</string>
+    <string name="end_destino_nao_encontrado_titulo">Destination address not found</string>
+    <string name="end_nao_encontrado_mensagem">The address could not be found in São Paulo. To make searching more effective, avoid abreviations. </string>
+    <string name="end_nao_encontrado_titulo">Address not found</string>
+    <string name="end_origem_nao_encontrado_titulo">Origin address not found</string>
+    <string name="endereco">Address</string>
+    <string name="entendi">Understood</string>
+    <string name="enviar_email">Send</string>
+    <string name="envie_sugestao">Send us a suggestion</string>
+    <string name="escolha_no_mapa">What\'s the exact location of the Bike Point?</string>
+    <string name="fechar">Close</string>
+    <string name="from_my_location">From my current location</string>
+    <string name="from_other_location">Choose another address</string>
+    <string name="localizacao">location (click on the map)</string>
+    <string name="mais">MORE</string>
+    <string name="marcador_inserido">(inserted marker)</string>
+    <string name="network_alert_dialog">Check your connection.</string>
+    <string name="network_alert_dialog_splash">You need an active network to start the app on the first time. Check you connection</string>
+    <string name="network_alert_title">No network connection</string>
+    <string name="network_settings">Network settings</string>
+    <string name="network_update_alert_dialog">We couldn\'t refresh. Check you network.</string>
+    <string name="notifySolved">Click if this problem is solved</string>
+    <string name="obrigado_feedback">Thanks for the feedback!</string>
+    <string name="ok">OK</string>
+    <string name="origem">Origin</string>
+    <string name="para">To: </string>
+    <string name="partida">Origin</string>
+    <string name="preencha_campos">Please, complete all the fields.</string>
+    <string name="refresh">Refresh</string>
+    <string name="report_description">Alert problem on your way</string>
+    <string name="route_header_hint">type in or touch and hold on map</string>
+    <string name="runkeeper_login">Connect to Runkeeper</string>
+    <string name="sem_conexao">We coudn\'t download the data. Check you connection.</string>
+    <string name="seu_email">Email</string>
+    <string name="seu_nome">Name</string>
+    <string name="splash">Loading…</string>
+    <string name="splash_info">This screen has to load only on the first access ;)</string>
+    <string name="splash_nenhuma_camada">We coudn\'t load any data. Check you network.</string>
+    <string name="splash_nenhuma_estacao">Oops… We coudn\'t load the shared bike stations. That\'s not common!</string>
+    <string name="splash_sem_bikesampa">Oops… We coudn\'t load Bike Sampa shared bike stations. That\'s not common!</string>
+    <string name="splash_sem_ciclosampa">Oops… We coudn\'t load Ciclo Sampa shared bike stations. That\'s not common!</string>
+    <string name="splash_somente_bikesampa">Oops… We coud just load Bike Sampa shared bike stations. That\'s not common!</string>
+    <string name="splash_somente_ciclosampa">Oops… We coud just load Ciclo Sampa shared bike stations. That\'s not common!</string>
+    <string name="splash_somente_estacao">Oops… We coud just load the shared bike stations. That\'s not common!</string>
+    <string name="start_network_ad">We couldn\'t load updated data. The app will show data from you last access.</string>
+    <string name="texto_do_email">Write you message</string>
+    <string name="title_activity_drawer_exp_splash">Choose what you want to visualize</string>
+    <string name="title_activity_report">Send alert</string>
+    <string name="title_activity_route_detail_splash">Understand the route</string>
+    <string name="title_activity_rss">News</string>
+    <string name="title_activity_sugestao">Suggestion</string>
+    <string name="which_address">Looking for:</string>
+    <string name="which_destination">Confirm the destination:</string>
+    <string name="which_origin">Confirm the origin:</string>
+    <string name="outro">OTHER</string>
+    <string name="sinalizacao">SIGNALLING</string>
+    <string name="loc_verifique_gps">Check your GPS</string>
+    <string name="null_map">Error loading map</string>
+    <string name="loc_no_location_permission">No permission to access location</string>
+    <string name="loc_location_unavailable">Current location unavalable. Check you GPS.</string>
+    <string name="distancia_total">Total distance: </string>
+    <string name="open">OPEN NOW</string>
+    <string name="closed">CLOSED NOW</string>
+    <string name="obrigado_por_avisar">Thanks for letting us know!</string>
+    <string name="nenhum_alerta_selecionado">No alert selected</string>
+    <string name="extensao_ciclovia">Size of bike lane:</string>
+    <string name="tem_wifi">Has Wifi? Yes</string>
+    <string name="tem_wifi_nao">Has Wifi? No</string>
+    <string name="estacao_ciclo_sampa">Ciclo Sampa Station</string>
+    <string name="em_operacao">NORMAL OPERATION</string>
+    <string name="bikes_disponiveis">Available bikes: </string>
+    <string name="vagas_livres">Free parking spots: </string>
+    <string name="atualizado_as">Last update: </string>
+    <string name="em_manutencao_implantacao">MAINTENANCE / IMPLEMENTATION</string>
+    <string name="estacao_bike_sampa">Bike Sampa Station</string>
+    <string name="vagas">Parking spots: </string>
+    <string name="possui_emprestimo_bicicleta">Has bikes to lend</string>
+    <string name="possui_emprestimo_bicicleta_nao">Doesn\'t have bikes to lend</string>
+    <string name="funcionamento">Opening hours: </string>
+    <string name="details">Details: </string>
+    <string name="alerta_em">Alert on: </string>
+    <string name="acesso_ciclovia_marginal">Access to Marginal Pinheiros bike lane</string>
+    <string name="loc_selecione_manualmente">Error getting current location. Please select manually the address.</string>
+    <string name="posicao">Position: </string>
+    <string name="problema_sinalizacao">Signalling problem</string>
+    <string name="route_error_check_connection">Error creating route. Check you connection.</string>
+    <string name="via_esburacada">Bumpy street</string>
+    <string name="inclinacao">Inclination: </string>
+    <string name="loc_selecione_localizacao">Please, select location</string>
+    <string name="obrigado">Thanks!</string>
+    <string name="rede_nao_disponivel">Network not available</string>
+    <string name="inclinacao_maxima">Max inclination</string>
+    <string name="route_nenhuma_rota_criada">No route created</string>
+    <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
+    <string name="drawerexp_explanation2">(On the future you can change the visualization on the side tab)</string>
+    <string name="cancelar">Cancel</string>
+    <string name="enviar_alerta">Send alert</string>
+    <string name="route_explanation">Click on top of the elevation profile line to see, on the map, the elevation of a specific point.</string>
+    <string name="route_tab_explanation">On the route mode, the bottom tab shows details of the selected route, with it\'s elevation profile.</string>
+    <string name="curta_no_facebook">Like us on Facebook!</string>
+    <string name="feed_not_loaded">Error loading feed =/</string>
+    <string name="elevacao_indisponivel">Elevation data unavailable</string>
+    <string name="pesquisar_no_mapa">Search on map</string>
+    <string name="seu_local">Your location</string>
+    <string name="ir_para_mapa">Go to map</string>
+    <string name="loc_no_loc_permission_exp">Without this permission, some functions of the app, like routing, won\'t work.</string>
+    <string name="loc_buscando_localizacao">Requesting your location…</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <item type="xml" name="Permanentes">
+        <titulo>Ciclovias Permanentes</titulo>
+        <descricao></descricao>
+        <thumb></thumb>
+        <bg>#F00</bg>
+    </item>
+    <item type="xml" name="Temporarias">
+        <titulo>Ciclofaixas</titulo>
+        <descricao>Abertas de Domingos e Feriados.</descricao>
+        <thumb></thumb>
+        <bg>#F85</bg>
+    </item>
+    <item type="xml" name="Preferenciais">
+        <titulo>Ruas preferenciais</titulo>
+        <descricao></descricao>
+        <thumb></thumb>
+        <bg>#6BD</bg>
+    </item>
+</resources>

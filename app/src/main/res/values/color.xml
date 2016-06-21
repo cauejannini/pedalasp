@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pressed">#EEE</color>
+    <color name="ciclovia_off">#CCC</color>
+    <color name="ciclofaixa_off">#CCC</color>
+    <color name="ciclorrota_off">#CCC</color>
+    <color name="ciclovia">#900</color>
+    <color name="ciclofaixa">#F22</color>
+    <color name="ciclofaixaLazer">#14ba02</color>
+    <color name="ciclorrota">#1688b5</color>
+    <color name="actionbar_text">#000</color>
+    <color name="white">#ffffff</color>
+    <color name="translucent_custom">#55000000</color>
+    <color name="alwhite">#fafafa</color>
+    <color name="app_blue">#05194D</color>
+    <color name="route_blue">#FF0000FF</color>
+    <color name="selected_route_blue">#AA0000FF</color>
+    <color name="not_selected_route_blue">#440000FF</color>
+    <color name="water_blue">#5aF</color>
+    <color name="water_blue_light">#CCF</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_text">#666</color>
+    <color name="grey_bg">#2A2A2A</color>
+    <color name="location_blue">#1766c6</color>
+</resources>

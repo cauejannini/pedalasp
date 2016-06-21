@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RouteDetailSplashScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#CF001133"
+            android:layout_weight="1"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="#00000000"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:text="@string/route_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+
+        android:text="@string/route_tab_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#fff"
+        android:textSize="17sp"
+        android:layout_above="@id/tv1"
+        android:layout_alignParentLeft="true"/>
+
+    <Button
+        android:id="@+id/bt_entendi"
+        android:text="@string/entendi"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:layout_marginRight="60dp"
+        android:textColor="#000"
+        android:background="#EEE"
+        android:layout_alignParentRight="true"
+        android:onClick="finishExplanation"/>
+
+</RelativeLayout>

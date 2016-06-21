@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_bg">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/curta_no_facebook"
+        android:layout_gravity="top"
+        android:background="@drawable/bt_blue"
+        android:textColor="#fff"
+        android:onClick="likeOnFacebook">
+
+    </Button>
+
+    <ProgressBar
+        android:id="@+id/pb_rss"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:id="@+id/rss_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_bg"
+        android:divider="#5FFF"
+        android:dividerHeight="0dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/damn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:text="@string/feed_not_loaded"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:dividerHeight="0dp"
+        android:visibility="gone">
+
+    </TextView>
+
+</LinearLayout>

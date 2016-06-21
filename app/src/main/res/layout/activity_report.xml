@@ -1,0 +1,194 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jannini.android.ciclosp.ReportActivity" >
+
+    <fragment
+		android:id="@+id/report_map"
+		class="com.google.android.gms.maps.SupportMapFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+    
+    <TextView
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_alignParentTop="true"
+		android:layout_margin="11dp"
+		android:textSize="16sp"
+		android:padding="9dp"
+		android:gravity="center"
+		android:background="@drawable/locationblue_box_corner"
+		android:textStyle="bold"
+		android:textColor="#fff"
+		android:text="@string/report_description" />
+    
+    <LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_marginTop="11dp"
+		android:layout_marginLeft="11dp"
+		android:layout_marginBottom="28dp"
+		android:layout_marginRight="5dp"
+		android:gravity="top|center_horizontal"
+		android:layout_alignParentBottom="true"
+		android:orientation="vertical"
+		android:background="@drawable/blue_shadow_box"
+		>
+
+	    <RadioGroup 
+			android:id="@+id/radiogroup"
+			android:layout_width="match_parent"
+			android:layout_height="37dp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="11dp"
+			android:layout_marginRight="6dp"
+			android:layout_marginLeft="6dp"
+			android:paddingRight="5dp"
+			android:paddingLeft="5dp"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:weightSum="3">
+	            
+		        <RadioButton
+		            android:id="@+id/report_buraco"
+		    		android:layout_width="0dp"
+		    		android:layout_weight="1"
+		    		android:layout_height="match_parent"
+		    		android:layout_marginRight="3dp"
+	 			   	android:layout_marginLeft="0dp"
+	 			   	android:textSize="12sp"
+	 			   	android:textStyle="bold"
+	 			   	android:gravity="center"
+		    		android:background="@drawable/radio_report"
+		    		android:button="@android:color/transparent"
+		    		android:text="@string/buraco"
+		            />
+		        
+		        <RadioButton 
+		            android:id="@+id/report_sinalização"
+		    		android:layout_width="0dp"
+		    		android:layout_weight="1"
+		    		android:layout_height="match_parent"
+		    		android:layout_marginRight="3dp"
+	 			   	android:layout_marginLeft="3dp"
+		    		android:textSize="12sp"
+		    		android:textStyle="bold"
+		    		android:gravity="center"
+		    		android:background="@drawable/radio_report"
+		    		android:button="@android:color/transparent"
+		    		android:text="@string/sinalizacao"
+		            />
+		        
+		        <RadioButton 
+		            android:id="@+id/report_outro"
+		    		android:layout_width="0dp"
+		    		android:layout_weight="1"
+		    		android:layout_height="match_parent"
+		    		android:layout_marginRight="0dp"
+	 			   	android:layout_marginLeft="3dp"
+		    		android:textSize="12sp"
+		    		android:textStyle="bold"
+		    		android:gravity="center"
+		    		android:background="@drawable/radio_report"
+		    		android:button="@android:color/transparent"
+		    		android:text="@string/outro"
+		            />
+		         
+		</RadioGroup>
+	        
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:gravity="top|center_horizontal"
+			android:layout_marginBottom="3dp"
+			android:layout_marginRight="11dp"
+			android:layout_marginLeft="11dp"
+			android:orientation="horizontal"
+			android:weightSum="1">
+
+			<EditText
+				android:id="@+id/report_insert_address"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="wrap_content"
+				android:hint="@string/localizacao"
+				android:textColorHint="#FFFFFF"
+				android:textColor="#FFFFFF"
+				android:textSize="14sp"
+				android:inputType="textPostalAddress" />
+
+			<Button
+				android:id="@+id/report_search_button"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_margin="5dp"
+				android:background="@drawable/lupa"
+				android:onClick="findAddress"/>
+
+			<ProgressBar
+				android:id="@+id/report_search_progress"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_margin="5dp"
+				android:visibility="gone"/>
+	        
+	    </LinearLayout>
+	        
+		<EditText
+	            android:id="@+id/report_mensagem"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="2dp"
+	            android:layout_marginRight="11dp"
+		        android:layout_marginLeft="11dp"
+		        android:textColorHint="#FFFFFF"
+		        android:textColor="#FFFFFF"
+		        android:textSize="14sp"
+	            android:hint="@string/detalhes" />
+		
+		<View
+	            android:layout_height="1dp"
+	            android:layout_width="match_parent"
+	            android:background="#55FFFFFF"/>
+		
+		<LinearLayout
+	        android:layout_height="50dp"
+	        android:layout_width="match_parent"
+	        android:orientation="horizontal"
+	        android:weightSum="2">
+		    
+	        <Button
+	            android:id="@+id/report_cancel_button"
+		        android:layout_width="0dp"
+		        android:layout_weight=".6"
+		        android:layout_height="match_parent"
+				android:background="@drawable/bt_blue_bottom_border"
+				android:text="@string/cancelar"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:textColor="#FFFFFF"
+				android:onClick="Cancel"/>
+	        
+	        <View
+	            android:layout_height="match_parent"
+	            android:layout_width="1dp"
+	            android:background="#55FFFFFF"/>
+		    
+	        <Button
+	            android:id="@+id/report_ok_button"
+		        android:layout_width="0dp"
+		        android:layout_weight="1.4"
+		        android:layout_height="match_parent"
+				android:background="@drawable/bt_blue_bottom_border"
+				android:text="@string/enviar_alerta"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:textColor="#FFFFFF"
+		        android:onClick="Report"/>
+	
+	    </LinearLayout>
+	        	
+	</LinearLayout>
+
+</RelativeLayout>
