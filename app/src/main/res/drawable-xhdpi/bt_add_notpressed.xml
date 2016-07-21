@@ -30,18 +30,18 @@
 
 	<item android:bottom="3dp" android:right="3dp">
 		<shape xmlns:android="http://schemas.android.com/apk/res/android"
-			android:shape="oval"
-			android:padding="10dp">
+		       android:shape="oval"
+		       android:padding="10dp">
 		   <solid
-		      android:color="#FF87CBF4"/>
+		      android:color="#FFFFFFFF"/>
 		</shape>
-	</item>       	
-	
-    <item android:bottom="3dp" android:right="3dp">
+	</item>
+
+	<item android:bottom="3dp" android:right="3dp">
 		<bitmap
-		   	android:src="@drawable/route_button_pin"
-		   	android:gravity="center_vertical|center_horizontal"
-		   />
-	</item>   
-      
+			android:src="@drawable/ic_add"
+			android:gravity="center_vertical|center_horizontal"
+			/>
+	</item>
+
 </layer-list>

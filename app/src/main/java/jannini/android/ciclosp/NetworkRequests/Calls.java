@@ -17,25 +17,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class ReportRequest {
+public class Calls {
 
-	String endereco, latS, lngS, tipo, mensagem, timestamp;
-	
-	String response;
-	
-
-	public void sendReport (String address, String lat, String lng, String type, String message){
-		
-		endereco = address;
-		latS = lat;
-		lngS = lng;
-		tipo = type;
-		mensagem = message;
+	public static void sendReport (final String address, final String lat, final String lng, final String type, final String message){
 		
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		Date currentLocalTime = cal.getTime();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
-		timestamp = date.format(currentLocalTime); 
+		final String timestamp = date.format(currentLocalTime);
 		
 		new AsyncTask<String, String, String>() {
 			
@@ -55,11 +44,11 @@ public class ReportRequest {
 					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 					buffWriter.write("name="+""+"&"+
 									"email="+""+"&"+
-									"address="+endereco+"&"+
-									"lat="+latS+"&"+
-									"lng="+lngS+"&"+
-									"type="+tipo+"&"+
-									"message="+mensagem+"&"+
+									"address="+address+"&"+
+									"lat="+lat+"&"+
+									"lng="+lng+"&"+
+									"type="+type+"&"+
+									"message="+message+"&"+
 									"timestamp="+timestamp
 					);
 					buffWriter.flush();
