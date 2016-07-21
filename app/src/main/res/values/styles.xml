@@ -1,4 +1,4 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -12,25 +12,33 @@
         -->
     </style>
 
+    <style name="SplashTheme" parent="@style/NoActionBarTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>\
+        <item name="android:buttonStyleToggle">@style/RobotoToggleButtonStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-    <style name="MainActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="MainActionBarTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/MainActionBar</item>
-        <item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>
-    </style>
+        <!--<item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item> -->
+        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:textViewStyle">@style/RobotoDarkTextViewStyle</item>
 
-    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-         <item name="android:actionBarStyle">@style/ActionBar</item>
-         <item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>
     </style>
     
-     <style name="CustomActionBarThemeNoActionBar" parent="@android:style/Theme.Holo.Light">
+     <style name="NoActionBarTheme" parent="AppTheme">
     	<item name="android:windowActionBar">false</item>
 		<item name="android:windowTitleSize">0dp</item>
-
     </style>
 
     <style name="ThemeTransparent" parent="android:Theme">
@@ -45,27 +53,21 @@
 
     <!-- ActionBar Styles -->
 
-    <style name="MainActionBar"
-        parent="@android:style/Widget.Holo.Light.ActionBar">
+    <style name="MainActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/app_blue</item>
         <item name="android:logo">@drawable/actionbar_logo_completo</item>
-        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/RobotoTextTitleStyle</item>
     </style>
 
-  	<style name="ActionBar"
-           parent="@android:style/Widget.Holo.Light.ActionBar">
+  	<style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
     	<item name="android:background">@color/app_blue</item>
-    	<item name="android:logo">@drawable/actionbar_logo</item>
-        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+    	<item name="android:logo">@android:color/transparent</item>
+        <item name="android:titleTextStyle">@style/RobotoTextTitleStyle</item>
     </style>
 
-    <style name="OverflowStyle" parent="@android:style/Widget.ActionButton.Overflow">
+    <!--<style name="OverflowStyle" parent="@android:style/Widget.ActionButton.Overflow">
         <item name="android:src">@drawable/actionbar_three_dots</item>
-    </style>
-
-    <style name="TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/white</item>
-    </style>
+    </style> -->
     
   	<style name="TranslucentCustom"	parent="android:Theme.Translucent">
   	    <item name="android:windowIsTranslucent">true</item>
@@ -76,6 +78,39 @@
     	<item name="android:backgroundDimEnabled">false</item>
   	    
   	</style>
+
+    <!-- Font-family -->
+
+    <style name="RobotoTextTitleStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="RobotoDarkTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/dark_text</item>
+    </style>
+
+    <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/white</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="RobotoToggleButtonStyle" parent="android:Widget.Holo.Button.Toggle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
   	
 </resources>

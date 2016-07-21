@@ -12,14 +12,15 @@
     <color name="white">#ffffff</color>
     <color name="translucent_custom">#55000000</color>
     <color name="alwhite">#fafafa</color>
-    <color name="app_blue">#05194D</color>
+    <color name="app_blue">#001f4c</color>
     <color name="route_blue">#FF0000FF</color>
     <color name="selected_route_blue">#AA0000FF</color>
     <color name="not_selected_route_blue">#440000FF</color>
-    <color name="water_blue">#5aF</color>
-    <color name="water_blue_light">#CCF</color>
+    <color name="water_blue">#0bbee0</color>
+    <color name="water_blue_light">#acf0f9</color>
     <color name="transparent">#00000000</color>
-    <color name="light_text">#666</color>
+    <color name="light_text">#a0a0a0</color>
+    <color name="dark_text">#2a2a2a</color>
     <color name="grey_bg">#2A2A2A</color>
     <color name="location_blue">#1766c6</color>
 </resources>

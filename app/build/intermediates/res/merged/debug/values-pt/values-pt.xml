@@ -4,6 +4,7 @@
             <item>Vias permanentes</item>
             <item>Ciclofaixas de Lazer</item>
             <item>Ruas Preferenciais</item>
+            <item>Lojas e serviços</item>
             <item>Bike Sampa</item>
             <item>Ciclo Sampa</item>
             <item>Parques</item>
@@ -15,6 +16,7 @@
             <item>Ciclovias e ciclofaixas permanentes</item>
             <item>Operam de Dom e Feriados nacionais</item>
             <item>Ciclorrotas sinalizadas</item>
+            <item>Estabelecimentos comerciais</item>
             <item>Estações de bicicleta do Itaú</item>
             <item>Estações de bicicleta do Bradesco</item>
             <item>Parques com ciclovia</item>
@@ -26,6 +28,7 @@
             <item/>
             <item>120,8km</item>
             <item>67,5km</item>
+            <item/>
             <item/>
             <item/>
             <item/>
@@ -179,6 +182,7 @@
     <string name="tem_wifi">Tem Wifi? Sim</string>
     <string name="tem_wifi_nao">Tem Wifi? Não</string>
     <string name="texto_do_email">Escreva sua mensagem</string>
+    <string name="title_activity_addestabelecimento">Nova loja ou serviço</string>
     <string name="title_activity_drawer_exp_splash">Escolha o que visualizar</string>
     <string name="title_activity_report">Enviar alerta</string>
     <string name="title_activity_route_detail_splash">Entenda a rota</string>

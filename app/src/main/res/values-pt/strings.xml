@@ -9,6 +9,7 @@
             <item>Vias permanentes</item>
             <item>Ciclofaixas de Lazer</item>
             <item>Ruas Preferenciais</item>
+            <item>Lojas e serviços</item>
             <item>Bike Sampa</item>
             <item>Ciclo Sampa</item>
             <item>Parques</item>
@@ -20,6 +21,7 @@
             <item>Ciclovias e ciclofaixas permanentes</item>
             <item>Operam de Dom e Feriados nacionais</item>
             <item>Ciclorrotas sinalizadas</item>
+            <item>Estabelecimentos comerciais</item>
             <item>Estações de bicicleta do Itaú</item>
             <item>Estações de bicicleta do Bradesco</item>
             <item>Parques com ciclovia</item>
@@ -31,6 +33,7 @@
             <item/>
             <item>120,8km</item>
             <item>67,5km</item>
+            <item/>
             <item/>
             <item/>
             <item/>
@@ -163,5 +166,6 @@
         <string name="ir_para_mapa">Ir para o mapa</string>
         <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
         <string name="loc_buscando_localizacao">Buscando sua localização…</string>
+        <string name="title_activity_addestabelecimento">Nova loja ou serviço</string>
 
 </resources>

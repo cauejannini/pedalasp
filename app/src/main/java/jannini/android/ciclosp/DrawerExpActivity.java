@@ -3,6 +3,7 @@ package jannini.android.ciclosp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +23,7 @@ public class DrawerExpActivity extends Activity {
     public static ListView mDrawerList;
     MyListAdapterSemQuantidades myAdapter;
 
-    public static boolean[] states = {false, false, false, false, false, false, false, false, false};
+    public static boolean[] states = {false, false, false, false, false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,22 +84,23 @@ public class DrawerExpActivity extends Activity {
 
     public void finishExp (View view) {
 
-        MainActivity.pref = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
-        MainActivity.editor = MainActivity.pref.edit();
-        MainActivity.editor.putBoolean("states0", states[0]);
-        MainActivity.editor.putBoolean("states1", states[1]);
-        MainActivity.editor.putBoolean("states2", states[2]);
-        MainActivity.editor.putBoolean("states3", states[3]);
-        MainActivity.editor.putBoolean("states4", states[4]);
-        MainActivity.editor.putBoolean("states5", states[5]);
-        MainActivity.editor.putBoolean("states6", states[6]);
-        MainActivity.editor.putBoolean("states7", states[7]);
-        MainActivity.editor.putBoolean("states8", states[8]);
-        MainActivity.editor.apply();
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("states0", states[0]);
+        editor.putBoolean("states1", states[1]);
+        editor.putBoolean("states2", states[2]);
+        editor.putBoolean("states3", states[3]);
+        editor.putBoolean("states4", states[4]);
+        editor.putBoolean("states5", states[5]);
+        editor.putBoolean("states6", states[6]);
+        editor.putBoolean("states7", states[7]);
+        editor.putBoolean("states8", states[8]);
+        editor.putBoolean("states9", states[9]);
+        editor.apply();
 
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("WasSplashInitialized", true);
         startActivity(i);
+        finish();
     }
 
     @Override

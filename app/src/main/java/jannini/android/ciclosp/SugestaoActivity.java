@@ -89,7 +89,7 @@ public class SugestaoActivity extends Activity {
 
             try {
 
-                URL url = new URL("http://pedalasp.org/dbaccess/send_email.php");
+                URL url = new URL(Constant.url_send_email);
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);

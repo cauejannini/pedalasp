@@ -22,9 +22,9 @@
 	        android:layout_width="match_parent"
 	        android:gravity="top|center_horizontal"
 	        android:paddingTop="3dp"
-			android:paddingLeft="3dp"
+			android:paddingStart="3dp"
 			android:paddingBottom="5dp"
-			android:paddingRight="5dp"
+			android:paddingEnd="5dp"
 	        android:layout_margin="11dp"
 	        android:layout_alignParentTop="true"
 	        android:orientation="horizontal"
@@ -42,31 +42,16 @@
 		          	android:id="@+id/bottom_buttons"
 		            android:layout_height="220dp"
 			        android:layout_width="match_parent">
-				    
-					<Button
-						android:id="@+id/push_drawer"
-						android:layout_alignParentLeft="true"
-						android:layout_alignParentBottom="true"
-						android:layout_width="45dp"
-						android:layout_height="50dp"
-						android:background="@drawable/pull_tab"
-						android:translationX="-20dp"
-						android:textColor="#666666"
-						android:paddingRight="10dp"
-						android:elevation="3dp"
-						android:layout_marginBottom="56dp"
-						android:onClick="openDrawer"
-						/>
 
 					<ToggleButton
 						android:id="@+id/route_bt"
-						android:layout_alignParentRight="true"
+						android:layout_alignParentEnd="true"
 						android:layout_alignParentBottom="true"
-						android:layout_marginRight="11dp"
-						android:layout_marginBottom="164dp"
+						android:layout_marginEnd="11dp"
+						android:layout_marginBottom="149dp"
 						android:layout_width="55dp"
 						android:layout_height="55dp"
-						android:background="@drawable/route_button"
+						android:background="@drawable/bt_route"
 						android:textOff=""
 						android:textOn=""
 						android:onClick="onRouteButtonClick"
@@ -74,26 +59,26 @@
 						/>
 
 					<Button
-						 android:id="@+id/report"
-						 android:layout_alignParentRight="true"
+						 android:id="@+id/bt_add"
+						 android:layout_alignParentEnd="true"
 						 android:layout_alignParentBottom="true"
-						 android:layout_marginRight="11dp"
-						 android:layout_marginBottom="95dp"
+						 android:layout_marginEnd="11dp"
+						 android:layout_marginBottom="80dp"
 						 android:layout_width="55dp"
 						 android:layout_height="55dp"
-						 android:background="@drawable/report_button"
-						 android:onClick="openReport"
+						 android:background="@drawable/bt_add"
+						 android:onClick="addFunction"
 						/>
 			            
 				    <Button
 			            android:id="@+id/my_location"
-			            android:layout_alignRight="@id/report"
-			            android:layout_alignLeft="@id/report"
+			            android:layout_alignEnd="@id/bt_add"
+			            android:layout_alignStart="@id/bt_add"
 			            android:layout_alignParentBottom="true"
-			            android:layout_marginBottom="26dp"
+			            android:layout_marginBottom="11dp"
 			            android:layout_width="55dp"
 			            android:layout_height="55dp"
-			            android:background="@drawable/set_my_location"
+			            android:background="@drawable/bt_my_location"
 			            android:onClick="findMe"
 			            />
 				    

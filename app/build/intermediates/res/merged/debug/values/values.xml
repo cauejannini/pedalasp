@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
     <string-array name="menu_array">
         <item>Permanent lanes</item>
         <item>Recreational lanes</item>
         <item>Preferential streets</item>
+        <item>Stores and services</item>
         <item>Bike Sampa</item>
         <item>Ciclo Sampa</item>
         <item>Parks</item>
@@ -15,23 +16,13 @@
         <item>Permanent bike lanes</item>
         <item>Works on Sundays and national holidays</item>
         <item>Sinalized preferential streets</item>
+        <item>Stores and services</item>
         <item>Itaú bike sharing system</item>
         <item>Bradesco bike sharing system</item>
         <item>Parks with bike lanes</item>
         <item>Outdoor (P) and indoor (B) bike racks</item>
         <item>Free wifi spots</item>
         <item>Alerts sent by users</item>
-    </string-array>
-    <string-array name="menu_array_quantidades">
-        <item/>
-        <item>120,8km</item>
-        <item>67,5km</item>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
     </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -62,7 +53,7 @@
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="actionbar_text">#000</color>
     <color name="alwhite">#fafafa</color>
-    <color name="app_blue">#05194D</color>
+    <color name="app_blue">#001f4c</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
@@ -99,6 +90,7 @@
     <color name="common_plus_signin_btn_text_light_disabled">#FFAAAAAA</color>
     <color name="common_plus_signin_btn_text_light_focused">#FF737373</color>
     <color name="common_plus_signin_btn_text_light_pressed">#DE000000</color>
+    <color name="dark_text">#2a2a2a</color>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
@@ -110,7 +102,7 @@
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
-    <color name="light_text">#666</color>
+    <color name="light_text">#a0a0a0</color>
     <color name="location_blue">#1766c6</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
@@ -167,8 +159,8 @@
     <color name="wallet_hint_foreground_holo_light">#808080</color>
     <color name="wallet_holo_blue_light">#ff33b5e5</color>
     <color name="wallet_link_text_light">#0000ee</color>
-    <color name="water_blue">#5aF</color>
-    <color name="water_blue_light">#CCF</color>
+    <color name="water_blue">#0bbee0</color>
+    <color name="water_blue_light">#acf0f9</color>
     <color name="white">#ffffff</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
@@ -427,6 +419,7 @@
     <string name="from_other_location">Choose another address</string>
     <string name="funcionamento">Opening hours: </string>
     <string name="ga_trackingId" translatable="false">UA-54096754-1</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="inclinacao">Inclination: </string>
     <string name="inclinacao_maxima">Max inclination</string>
     <string name="ir_para_mapa">Go to map</string>
@@ -511,6 +504,7 @@
     <string name="tem_wifi">Has Wifi? Yes</string>
     <string name="tem_wifi_nao">Has Wifi? No</string>
     <string name="texto_do_email">Write you message</string>
+    <string name="title_activity_addestabelecimento"/>
     <string name="title_activity_create_route" translatable="false">CreateRouteActivity</string>
     <string name="title_activity_directions" translatable="false">Directions</string>
     <string name="title_activity_drawer_exp_splash">Choose what you want to visualize</string>
@@ -531,8 +525,8 @@
     <string name="which_origin">Confirm the origin:</string>
     <style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
     	<item name="android:background">@color/app_blue</item>
-    	<item name="android:logo">@drawable/actionbar_logo</item>
-        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+    	<item name="android:logo">@android:color/transparent</item>
+        <item name="android:titleTextStyle">@style/RobotoTextTitleStyle</item>
     </style>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
@@ -545,7 +539,13 @@
             backward-compatibility can go here.
         -->
     </style>
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>\
+        <item name="android:buttonStyleToggle">@style/RobotoToggleButtonStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
@@ -1461,26 +1461,22 @@
         <item name="android:minWidth">56dp</item>
         <item name="android:scaleType">center</item>
     </style>
-    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-         <item name="android:actionBarStyle">@style/ActionBar</item>
-         <item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>
-    </style>
-    <style name="CustomActionBarThemeNoActionBar" parent="@android:style/Theme.Holo.Light">
-    	<item name="android:windowActionBar">false</item>
-		<item name="android:windowTitleSize">0dp</item>
-
-    </style>
     <style name="MainActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/app_blue</item>
         <item name="android:logo">@drawable/actionbar_logo_completo</item>
-        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/RobotoTextTitleStyle</item>
     </style>
-    <style name="MainActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="MainActionBarTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/MainActionBar</item>
-        <item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>
+        <!--<item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item> -->
+        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:textViewStyle">@style/RobotoDarkTextViewStyle</item>
+
     </style>
-    <style name="OverflowStyle" parent="@android:style/Widget.ActionButton.Overflow">
-        <item name="android:src">@drawable/actionbar_three_dots</item>
+    <style name="NoActionBarTheme" parent="AppTheme">
+    	<item name="android:windowActionBar">false</item>
+		<item name="android:windowTitleSize">0dp</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -1580,6 +1576,31 @@
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
     <style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Spinner"/>
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="RobotoDarkTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/dark_text</item>
+    </style>
+    <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint" ns2:targetApi="lollipop">@color/white</item>
+    </style>
+    <style name="RobotoTextTitleStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="RobotoToggleButtonStyle" parent="android:Widget.Holo.Button.Toggle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
     </style>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
@@ -1621,6 +1642,9 @@
     </style>
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
+    </style>
+    <style name="SplashTheme" parent="@style/NoActionBarTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
@@ -1759,9 +1783,6 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
-    </style>
-    <style name="TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/white</item>
     </style>
     <style name="TranslucentCustom" parent="android:Theme.Translucent">
   	    <item name="android:windowIsTranslucent">true</item>

@@ -1,11 +1,14 @@
 package jannini.android.ciclosp.Fragments;
 
 import android.app.Fragment;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.R;
 
@@ -13,42 +16,64 @@ import jannini.android.ciclosp.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link EstabelecimentoCategoryF.OnFragmentInteractionListener} interface
+ * {@link EstabelecimentoCategoryF.OnECFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link EstabelecimentoCategoryF#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class EstabelecimentoCategoryF extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private String mParam1;
 
-    private OnFragmentInteractionListener mListener;
+    private OnECFragmentInteractionListener mListener;
+
+    Button btAdd;
+    ToggleButton tbStore, tbWorkshop, tbShower, tbCoffee;
+    EditText etOther;
 
     public EstabelecimentoCategoryF() {
-        // Required empty public constructor
     }
 
     public static EstabelecimentoCategoryF newInstance() {
         EstabelecimentoCategoryF fragment = new EstabelecimentoCategoryF();
-        /*Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);*/
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_estabelecimento_fragment2, container, false);
+        View fragment = inflater.inflate(R.layout.fragment_estabelecimento_category, container, false);
+
+        btAdd = (Button) fragment.findViewById(R.id.bt_add);
+        tbStore = (ToggleButton) fragment.findViewById(R.id.tb_store);
+        tbWorkshop = (ToggleButton) fragment.findViewById(R.id.tb_workshop);
+        tbShower = (ToggleButton) fragment.findViewById(R.id.tb_shower);
+        tbCoffee = (ToggleButton) fragment.findViewById(R.id.tb_coffee);
+        etOther = (EditText) fragment.findViewById(R.id.et_other);
+
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onECFragmentInteraction(tbStore.isChecked(), tbWorkshop.isChecked(), tbShower.isChecked(), tbCoffee.isChecked(), etOther.getText().toString());
+            }
+        });
+
+        return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mListener = (OnECFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
     }
 
     /**
@@ -61,8 +86,8 @@ public class EstabelecimentoCategoryF extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnECFragmentInteractionListener {
+
+        void onECFragmentInteraction(boolean store, boolean workshop, boolean shower, boolean coffee, String other);
     }
 }

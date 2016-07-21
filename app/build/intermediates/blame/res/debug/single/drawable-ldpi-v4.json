@@ -1,59 +1,35 @@
 [
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_action_refresh.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/ic_action_refresh.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/route_button_pin.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/route_button_pin.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/lupa_img.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/lupa_img.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/switch_address_img.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/switch_address_img.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bikesampa.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_bikesampa.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_action_refresh_dark.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_action_refresh_dark.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_chegada.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_chegada.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_buraco.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_buraco.png"
-    },
-    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_vazia.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_vazia.png"
+    },
+    {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_operando.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_operando.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_bg.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/actionbar_bg.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_wifi.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_wifi.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_offline.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_bikesampa_offline.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/cor_ciclofaixa.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/cor_ciclofaixa.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/cor_ciclovia.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/cor_ciclovia.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_manutencao.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_manutencao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_offline.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_ciclosampa_offline.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/cor_ciclorrota.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/cor_ciclorrota.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_outro.png",
@@ -68,16 +44,24 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_wifi.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_bg.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/actionbar_bg.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bg_splash.jpg",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/bg_splash.jpg"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_three_dots.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/actionbar_three_dots.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/blue_ball.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/blue_ball.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/tree_150.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/tree_150.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_alertas.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_alertas.png"
+    },
+    {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/drawer_shadow.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/drawer_shadow.png"
+    },
+    {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_buraco.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_buraco.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_three_dots.png",
@@ -88,24 +72,12 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/mylocation.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/x_img.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/x_img.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_cheia.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_bikesampa_cheia.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_logo.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/actionbar_logo.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_drawer.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/ic_drawer.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_logo_completo.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/actionbar_logo_completo.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_ciclosampa.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/icon_ciclosampa.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/tree_150.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/tree_150.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_ciclosampa.png",
@@ -124,166 +96,6 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/actionbar_logo.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_sinalizacao.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_sinalizacao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_operando.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_ciclosampa_operando.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_operando.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_bikesampa_operando.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/blue_ball.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/blue_ball.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_wifi.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/icon_wifi.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bicicletarios.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_bicicletarios.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/tree.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/tree.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_drawer.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_drawer.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_manutencao.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_bikesampa_manutencao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bicicletario.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/bicicletario.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_acesso.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_acesso.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/exclamacao.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/exclamacao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/drawer_shadow.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/drawer_shadow.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_launcher.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_action_refresh.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_action_refresh.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_offline.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_offline.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_launcher.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_launcher.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_chegada.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_chegada.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_cheia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_ciclosampa_cheia.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/actionbar_logo_completo.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/actionbar_logo_completo.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/paraciclo.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/paraciclo.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bikesampa.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_bikesampa.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/route_button_pin.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/route_button_pin.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_operando.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_operando.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/route_button_pin.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/route_button_pin.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/cor_ciclovia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/cor_ciclovia.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bicicletario.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/bicicletario.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_alertas.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/icon_alertas.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bg_splash.jpg",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/bg_splash.jpg"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bg_splash.jpg",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/bg_splash.jpg"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/blue_ball.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/blue_ball.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_alertas.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_alertas.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_manutencao.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_ciclosampa_manutencao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/drawer_shadow.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/drawer_shadow.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_buraco.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_buraco.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/mylocation.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/mylocation.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_vazia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_ciclosampa_vazia.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/cor_ciclovia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/cor_ciclovia.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_cheia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_bikesampa_cheia.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/tree_150.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/tree_150.png"
-    },
-    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_wifi.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_wifi.png"
     },
@@ -292,16 +104,12 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/lupa_img.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bikesampa.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/icon_bikesampa.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bicicletarios.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/icon_bicicletarios.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/exclamacao.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/exclamacao.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_cheia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_bikesampa_cheia.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_offline.png",
@@ -316,16 +124,8 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_acesso.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon_bicicletarios.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/icon_bicicletarios.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/logo_512.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/logo_512.png"
-    },
-    {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_bikesampa_vazia.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_bikesampa_vazia.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/bicicletario.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/bicicletario.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/x_img.png",
@@ -336,6 +136,10 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.2/res/drawable-ldpi-v4/common_ic_googleplayservices.png"
     },
     {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_action_refresh.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_action_refresh.png"
+    },
+    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_cheia.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_cheia.png"
     },
@@ -344,20 +148,20 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/cor_ciclofaixa.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/common_ic_googleplayservices.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.2/res/drawable-ldpi-v4/common_ic_googleplayservices.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_ciclosampa_offline.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_ciclosampa_offline.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_action_refresh_dark.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/ic_action_refresh_dark.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_launcher.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_launcher.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/logo_512.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/logo_512.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_outro.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/AndroidStudio/PedalaSP-v26/app/src/main/res/drawable-ldpi/pin_outro.png"
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/pin_chegada.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/pin_chegada.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/switch_address_img.png",

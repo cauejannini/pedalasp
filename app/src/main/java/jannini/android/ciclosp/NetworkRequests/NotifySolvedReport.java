@@ -13,6 +13,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import jannini.android.ciclosp.Constant;
+
 public class NotifySolvedReport {
 
 	public void sendReport (final String timestamp){
@@ -23,7 +25,7 @@ public class NotifySolvedReport {
 
 				try {
 
-					URL url = new URL("http://pedalasp.org/dbaccess/notify_solved_report.php");
+					URL url = new URL(Constant.url_notify_solved);
 
 					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 					connection.setDoOutput(true);

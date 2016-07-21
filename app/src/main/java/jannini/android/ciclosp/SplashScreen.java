@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -23,11 +24,6 @@ public class SplashScreen extends Activity {
 	// Creating JSON Parser object
     JSONParser jParser = new JSONParser();
 
-    // url to get all items lists    
-    String url_obter_dados = "http://pedalasp.org/dbaccess/obter_dados.php";
-    String url_obter_bikesampa = "http://pedalasp.org/dbaccess/obter_bikesampa.php";
-    String url_obter_ciclosampa = "http://pedalasp.org/dbaccess/obter_ciclosampa.php";
-
     // String to store jSON Object on device storage
     String jsonObjString;
     String jsonObjBSString;
@@ -42,10 +38,20 @@ public class SplashScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 
-		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-		progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+        jsonObjString = sharedPreferences.getString(Constant.spJobGeral, null);
+        jsonObjBSString = sharedPreferences.getString(Constant.spJobBS, null);
+        jsonObjCSString = sharedPreferences.getString(Constant.spJobCS, null);
 
-		new CarregarDB().execute();
+        if (jsonObjString == null && jsonObjBSString == null && jsonObjCSString == null) {
+            progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+            progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
+            new CarregarDB().execute();
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 	}
 
 	 // Background Async Task to Load all estacoes by making HTTP Request
@@ -84,12 +90,12 @@ public class SplashScreen extends Activity {
 
                 // Building Parameters
 
-                JSONObject jObjGeral = jParser.makeHttpRequest(url_obter_dados);
-                JSONObject jObjBikeSampa = jParser.makeHttpRequest(url_obter_bikesampa);
-                JSONObject jObjCicloSampa = jParser.makeHttpRequest(url_obter_ciclosampa);
+                JSONObject jObjGeral = jParser.makeHttpRequest(Constant.url_obter_dados);
+                JSONObject jObjBikeSampa = jParser.makeHttpRequest(Constant.url_obter_bikesampa);
+                JSONObject jObjCicloSampa = jParser.makeHttpRequest(Constant.url_obter_ciclosampa);
 
-                MainActivity.pref = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
-                MainActivity.editor = MainActivity.pref.edit();
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
                 try {
 
@@ -101,7 +107,7 @@ public class SplashScreen extends Activity {
 
                             jsonObjString = jObjGeral.toString();
 
-                            MainActivity.editor.putString("jsonObjString", jsonObjString);
+                            editor.putString(Constant.spJobGeral, jsonObjString);
 
                             result_code[0] = true;
 
@@ -116,7 +122,7 @@ public class SplashScreen extends Activity {
 
                             jsonObjBSString = jObjBikeSampa.toString();
 
-                            MainActivity.editor.putString("jsonObjBSString", jsonObjBSString);
+                            editor.putString(Constant.spJobBS, jsonObjBSString);
 
                             Calendar now = Calendar.getInstance();
                             String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
@@ -126,7 +132,7 @@ public class SplashScreen extends Activity {
                             }
                             String updateTimeBS = hours + ":" + minutes;
 
-                            MainActivity.editor.putString("updateTimeBS", updateTimeBS);
+                            editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
 
                             result_code[1] = true;
 
@@ -141,7 +147,7 @@ public class SplashScreen extends Activity {
 
                             jsonObjCSString = jObjCicloSampa.toString();
 
-                            MainActivity.editor.putString("jsonObjCSString", jsonObjCSString);
+                            editor.putString(Constant.spJobCS, jsonObjCSString);
 
                             Calendar now = Calendar.getInstance();
                             String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
@@ -151,14 +157,14 @@ public class SplashScreen extends Activity {
                             }
                             String updateTimeCS = hours + ":" + minutes;
 
-                            MainActivity.editor.putString("updateTimeCS", updateTimeCS);
+                            editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
 
                             result_code[2] = true;
 
                         }
                     }
 
-                    MainActivity.editor.commit();
+                    editor.apply();
 
                 } catch (JSONException e1) {
                     // TODO Auto-generated catch block
@@ -175,7 +181,6 @@ public class SplashScreen extends Activity {
 
 			Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
             startActivity(i);
-
 			finish();
 		}
 

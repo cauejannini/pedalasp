@@ -7,18 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import jannini.android.ciclosp.DrawerExpActivity;
-import jannini.android.ciclosp.MainActivity.ViewHolder;
 import jannini.android.ciclosp.R;
 
 public class MyListAdapterSemQuantidades extends ArrayAdapter<String> {
   private final Context context;
   private final String[] values, values2;
   View splashListView;
-  final static ViewHolder holder = new ViewHolder();
+  final ViewHolder holder = new ViewHolder();
 
   public MyListAdapterSemQuantidades(Context context, String[] values, String[] values2) {
     super(context, R.layout.splash_list_item, values);
@@ -96,5 +96,15 @@ public class MyListAdapterSemQuantidades extends ArrayAdapter<String> {
 
       return splashListView;
   }
-  
+
+    public class ViewHolder {
+        public TextView text;
+        public TextView description;
+        public Button btSettings;
+        public ImageView image;
+        public View background;
+        public int position;
+    }
+
+
 } 
