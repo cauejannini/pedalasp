@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
     <string-array name="menu_array">
-        <item>Permanent lanes</item>
-        <item>Recreational lanes</item>
-        <item>Preferential streets</item>
+        <item>Bike lanes</item>
+        <item>Bike sharing</item>
         <item>Stores and services</item>
-        <item>Bike Sampa</item>
-        <item>Ciclo Sampa</item>
         <item>Parks</item>
         <item>Parking</item>
-        <item>Wifi Livre SP</item>
+        <item>Free Wifi SP</item>
         <item>Alerts</item>
     </string-array>
     <string-array name="menu_array_descriptions">
-        <item>Permanent bike lanes</item>
-        <item>Works on Sundays and national holidays</item>
-        <item>Sinalized preferential streets</item>
-        <item>Stores and services</item>
-        <item>Itaú bike sharing system</item>
-        <item>Bradesco bike sharing system</item>
+        <item>Permanent, recreational and preferential</item>
+        <item>stations</item>
+        <item>Stores, workshops, shower and more</item>
         <item>Parks with bike lanes</item>
-        <item>Outdoor (P) and indoor (B) bike racks</item>
-        <item>Free wifi spots</item>
-        <item>Alerts sent by users</item>
+        <item>Outdoor and indoor bike racks</item>
+        <item>Free city wifi</item>
+        <item>sent by users</item>
     </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -95,6 +89,7 @@
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
+    <color name="drawer_blue">#88000022</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="grey_bg">#2A2A2A</color>
@@ -139,6 +134,7 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
+    <color name="selected_dark">#66000000</color>
     <color name="selected_route_blue">#AA0000FF</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
@@ -394,7 +390,7 @@
     <string name="drawer_close">Closed</string>
     <string name="drawer_open">Open</string>
     <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
-    <string name="drawerexp_explanation2">(On the future you can change the visualization on the side tab)</string>
+    <string name="drawerexp_explanation2">(You\'ll be able to change this after)</string>
     <string name="elevacao_indisponivel">Elevation data unavailable</string>
     <string name="em_manutencao_implantacao">MAINTENANCE / IMPLEMENTATION</string>
     <string name="em_operacao">NORMAL OPERATION</string>

@@ -87,7 +87,7 @@
         <activity
             android:name="jannini.android.ciclosp.DrawerExpActivity"
             android:label="@string/title_activity_drawer_exp_splash"
-            android:theme="@style/MainActionBarTheme" />
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name="jannini.android.ciclosp.AddEstabelecimentoActivity"
             android:label="@string/title_activity_addestabelecimento"

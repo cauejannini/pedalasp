@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import jannini.android.ciclosp.Adapters.MyListAdapterSemQuantidades;
+import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
 
 
 public class DrawerExpActivity extends Activity {
@@ -21,9 +21,9 @@ public class DrawerExpActivity extends Activity {
     public static String[] mMenuTitles;
     public static String[] mMenuDescriptions;
     public static ListView mDrawerList;
-    MyListAdapterSemQuantidades myAdapter;
+    ListAdapterDrawerExp myAdapter;
 
-    public static boolean[] states = {false, false, false, false, false, false, false, false, false, false};
+    public static boolean[] states = {false, false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class DrawerExpActivity extends Activity {
         mMenuTitles = getResources().getStringArray(R.array.menu_array);
         mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
         // Set up the drawer's list view with items and click listener.
-        myAdapter = new MyListAdapterSemQuantidades(this, mMenuTitles, mMenuDescriptions);
+        myAdapter = new ListAdapterDrawerExp(this, mMenuTitles, mMenuDescriptions);
         mDrawerList = (ListView) findViewById(R.id.list_drawer_exp);
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -93,9 +93,6 @@ public class DrawerExpActivity extends Activity {
         editor.putBoolean("states4", states[4]);
         editor.putBoolean("states5", states[5]);
         editor.putBoolean("states6", states[6]);
-        editor.putBoolean("states7", states[7]);
-        editor.putBoolean("states8", states[8]);
-        editor.putBoolean("states9", states[9]);
         editor.apply();
 
         Intent i = new Intent(this, MainActivity.class);

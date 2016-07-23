@@ -11,6 +11,25 @@
     <string name="offline" translatable="false">OFFLINE</string>
 
     <string-array name="menu_array">
+        <item>Bike lanes</item>
+        <item>Bike sharing</item>
+        <item>Stores and services</item>
+        <item>Parks</item>
+        <item>Parking</item>
+        <item>Free Wifi SP</item>
+        <item>Alerts</item>
+    </string-array>
+    <string-array name="menu_array_descriptions">
+        <item>Permanent, recreational and preferential</item>
+        <item>stations</item>
+        <item>Stores, workshops, shower and more</item>
+        <item>Parks with bike lanes</item>
+        <item>Outdoor and indoor bike racks</item>
+        <item>Free city wifi</item>
+        <item>sent by users</item>
+    </string-array>
+
+    <!--<string-array name="menu_array">
         <item>Permanent lanes</item>
         <item>Recreational lanes</item>
         <item>Preferential streets</item>
@@ -33,7 +52,7 @@
         <item>Outdoor (P) and indoor (B) bike racks</item>
         <item>Free wifi spots</item>
         <item>Alerts sent by users</item>
-    </string-array>
+    </string-array>-->
 
     <string name="app_name">Pedala SP</string>
     <string name="action_settings">Settings</string>
@@ -150,7 +169,7 @@
     <string name="inclinacao_maxima">Max inclination</string>
     <string name="route_nenhuma_rota_criada">No route created</string>
     <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
-    <string name="drawerexp_explanation2">(On the future you can change the visualization on the side tab)</string>
+    <string name="drawerexp_explanation2">(You\'ll be able to change this after)</string>
     <string name="cancelar">Cancel</string>
     <string name="enviar_alerta">Send alert</string>
     <string name="route_explanation">Click on top of the elevation profile line to see, on the map, the elevation of a specific point.</string>

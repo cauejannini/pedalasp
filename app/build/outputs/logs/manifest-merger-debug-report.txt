@@ -1694,11 +1694,11 @@ ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/A
 	android:name
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:68:13-52
 activity#jannini.android.ciclosp.DrawerExpActivity
-ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:72:9-75:56
+ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:72:9-75:54
 	android:label
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:74:13-69
 	android:theme
-		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:75:13-54
+		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:75:13-52
 	android:name
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:73:13-46
 activity#jannini.android.ciclosp.AddEstabelecimentoActivity

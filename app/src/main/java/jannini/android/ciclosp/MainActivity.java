@@ -50,6 +50,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -173,7 +174,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	public static ArrayList<Ciclovia> ListCiclovias = new ArrayList<>();
 	public static ArrayList<Ciclovia> ListCiclofaixas = new ArrayList<>();
 	public static ArrayList<MarkerOptions> ListWifi = new ArrayList<>();
-	public static ArrayList<Report> ListReports = new ArrayList<>();
+	public static ArrayList<Report> ListAlerts = new ArrayList<>();
+    public static ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
     public static ArrayList<Estabelecimento> ListEstabelecimentos = new ArrayList<>();
 
 	//Criando listas dos marcadores de mapa para os itens de cada tabela da DB
@@ -183,9 +185,10 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	ArrayList<Marker> ListMarkersParques = new ArrayList<>();
 	ArrayList<Marker> ListMarkersBicicletarios = new ArrayList<>();
 	ArrayList<Marker> ListMarkersWifi = new ArrayList<>();
-	ArrayList<Marker> ListMarkersReports = new ArrayList<>();
-	ArrayList<String> ListMarkersReportsIds = new ArrayList<>();
+	ArrayList<Marker> ListMarkersAlerts = new ArrayList<>();
+    ArrayList<Marker> ListMarkersAcessos = new ArrayList<>();
 
+    ArrayList<String> ListMarkersAlertsIds = new ArrayList<>();
 	List<Marker> listMarker = new ArrayList<>();
 
 	//Navigation Drawer
@@ -240,7 +243,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	public SharedPreferences sharedPreferences;
 
-	public static boolean[] states = {true, true, true, true, true, true, true, true, true, true};
+	public static boolean[] states = {true, true, true, true, true, true, true};
+	public static boolean[] bikeLanesStates = {true, true, true};
+    public static boolean[] sharingSystemsStates = {true, true};
 
 	static ArrayList<Polyline> polylineRoutesList = new ArrayList<>();
 
@@ -255,7 +260,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	String clickedMarkerId;
 	Marker clickedMarker;
 
-	Map<String, String> reportMap = new HashMap<>();
+	Map<String, String> alertMap = new HashMap<>();
 
 	// ROUTE variables
 	static ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
@@ -360,9 +365,13 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		states[4] = sharedPreferences.getBoolean("states4", true);
 		states[5] = sharedPreferences.getBoolean("states5", true);
 		states[6] = sharedPreferences.getBoolean("states6", true);
-		states[7] = sharedPreferences.getBoolean("states7", true);
-		states[8] = sharedPreferences.getBoolean("states8", true);
-        states[9] = sharedPreferences.getBoolean("states9", true);
+
+        bikeLanesStates[0] = sharedPreferences.getBoolean("bikeLanesStates0", true);
+        bikeLanesStates[1] = sharedPreferences.getBoolean("bikeLanesStates1", true);
+        bikeLanesStates[2] = sharedPreferences.getBoolean("bikeLanesStates2", true);
+
+        sharingSystemsStates[0] = sharedPreferences.getBoolean("sharingSystemsStates0", true);
+        sharingSystemsStates[1] = sharedPreferences.getBoolean("sharingSystemsStates1", true);
 
         header = (LinearLayout) findViewById(R.id.header);
 
@@ -595,259 +604,352 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		int n = mDrawerList.getFirstVisiblePosition();
 
 		switch (position) {
+            // Bike Lanes
 			case 0:
-				// Verificar se as ciclovias já estão desenhadas
-				if (!cicloviasLineList.isEmpty()) {
-					if (!cicloviasLineList.get(0).isVisible()) {
-						mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						// Set Polylines and Markers visible
-						for (int i = 0; i < cicloviasLineList.size(); i++) {
-							cicloviasLineList.get(i).setVisible(true);
-						}
-						pinheiros1marker.setVisible(true);
-						pinheiros2marker.setVisible(true);
-						pinheiros3marker.setVisible(true);
-						pinheiros4marker.setVisible(true);
-						pinheiros5marker.setVisible(true);
-						states[0] = true;
-					} else {
-						mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						// Set Ciclovias not visible
-						for (int i = 0; i < cicloviasLineList.size(); i++) {
-							cicloviasLineList.get(i).setVisible(false);
-						}
-						pinheiros1marker.setVisible(false);
-						pinheiros2marker.setVisible(false);
-						pinheiros3marker.setVisible(false);
-						pinheiros4marker.setVisible(false);
-						pinheiros5marker.setVisible(false);
-						states[0] = false;
-					}
-				} // Caso não estejam desenhadas, desenhar!
-				else {
-					mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawPermanentes(true);
-					states[0] = true;
-				}
+                if (!states[0]) {
+
+                    mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    states[0] = true;
+                    displayBikeLanes();
+
+                } else {
+                    mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    states[0] = false;
+
+                    // Set Ciclovias not visible
+                    for (int i = 0; i < cicloviasLineList.size(); i++) {
+                        cicloviasLineList.get(i).setVisible(false);
+                    }
+
+                    for (Marker marker : ListMarkersAcessos) {
+                        marker.setVisible(false);
+                    }
+
+                    // Set ciclofaixas not visible
+                    for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+                        ciclofaixasLineList.get(i).setVisible(false);
+                    }
+
+                    // Set Ciclorrotas not visible
+                    for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+                        ciclorrotasLineList.get(i).setVisible(false);
+                    }
+
+                }
 				break;
 
+            // Sharing Systems
 			case 1:
-				// Verificar se as ciclofaixas de lazer já estão desenhadas
-				if (!ciclofaixasLineList.isEmpty()) {
-					if (!ciclofaixasLineList.get(0).isVisible()) {
-						mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						// Set Ciclofaixas visible
-						for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-							ciclofaixasLineList.get(i).setVisible(true);
-						}
-						states[1] = true;
-					} else {
-						mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						// Set Ciclofaixas not visible
-						for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-							ciclofaixasLineList.get(i).setVisible(false);
-						}
-						states[1] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawTemporarias(true);
-					states[1] = true;
-				}
+                if (!states[1]) {
+
+                    mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    states[1] = true;
+                    displaySharingSystems();
+
+                } else {
+                    mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    states[1] = false;
+
+                    // Set BikeSampa not visible
+                    for (int i = 0; i < ListMarkersITAU.size(); i++) {
+                        ListMarkersITAU.get(i).setVisible(false);
+                    }
+
+                    // Set CicloSampa not visible
+                    for (int i = 0; i < ListMarkersBRA.size(); i++) {
+                        ListMarkersBRA.get(i).setVisible(false);
+                    }
+                }
 				break;
 
+            // Stores and services
 			case 2:
-				if (!ciclorrotasLineList.isEmpty()) {
-					if (!ciclorrotasLineList.get(0).isVisible()) {
-						mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						// Set Ciclorrotas visible
-						for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-							ciclorrotasLineList.get(i).setVisible(true);
-						}
-						states[2] = true;
-					} else {
-						mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						// Set Ciclorrotas not visible
-						for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-							ciclorrotasLineList.get(i).setVisible(false);
-						}
-						states[2] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawPreferenciais(true);
-					states[2] = true;
-				}
-				break;
-
-            case 3:
                 if (!ListMarkersEstabelecimentos.isEmpty()) {
                     if (!ListMarkersEstabelecimentos.get(0).isVisible()) {
-                        mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                        mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                         for (int i = 0; i < ListMarkersEstabelecimentos.size(); i++) {
                             ListMarkersEstabelecimentos.get(i).setVisible(true);
                         }
 
-                        states[3] = true;
+                        states[2] = true;
                     } else {
-                        mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                        mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 
                         for (int i = 0; i < ListMarkersEstabelecimentos.size(); i++) {
                             ListMarkersEstabelecimentos.get(i).setVisible(false);
                         }
 
+                        states[2] = false;
+                    }
+                } else {
+                    mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    drawEstabelecimentos(true);
+                    states[2] = true;
+                }
+				break;
+
+            // Parking
+            case 3:
+                if (!ListMarkersBicicletarios.isEmpty()) {
+                    if (!ListMarkersBicicletarios.get(0).isVisible()) {
+                        mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                        for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
+                            ListMarkersBicicletarios.get(i).setVisible(true);
+                        }
+                        states[3] = true;
+                    } else {
+                        mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                        for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
+                            ListMarkersBicicletarios.get(i).setVisible(false);
+                        }
                         states[3] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    drawEstabelecimentos(true);
+                    drawBicicletarios(true);
                     states[3] = true;
                 }
                 break;
 
+            // Parks
 			case 4:
-				if (!ListMarkersITAU.isEmpty()) {
-					if (!ListMarkersITAU.get(0).isVisible()) {
-						mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                if (!ListMarkersParques.isEmpty()) {
+                    if (!ListMarkersParques.get(0).isVisible()) {
+                        mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                        for (int i = 0; i < ListMarkersParques.size(); i++) {
+                            ListMarkersParques.get(i).setVisible(true);
+                        }
+                        states[4] = true;
+                    } else {
+                        mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                        for (int i = 0; i < ListMarkersParques.size(); i++) {
+                            ListMarkersParques.get(i).setVisible(false);
+                        }
+                        states[4] = false;
+                    }
+                } else {
+                    mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    drawParques(true);
+                    states[4] = true;
+                }
+                break;
 
-						for (int i = 0; i < ListMarkersITAU.size(); i++) {
-							ListMarkersITAU.get(i).setVisible(true);
-						}
-
-						states[4] = true;
-					} else {
-						mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-
-						for (int i = 0; i < ListMarkersITAU.size(); i++) {
-							ListMarkersITAU.get(i).setVisible(false);
-						}
-
-						states[4] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawBikeSampa(true);
-					states[4] = true;
-				}
-				break;
-
+            // Wifi
 			case 5:
-				if (!ListMarkersBRA.isEmpty()) {
-					if (!ListMarkersBRA.get(0).isVisible()) {
-						mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						for (int i = 0; i < ListMarkersBRA.size(); i++) {
-							ListMarkersBRA.get(i).setVisible(true);
-						}
-						states[5] = true;
-					} else {
-						mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						for (int i = 0; i < ListMarkersBRA.size(); i++) {
-							ListMarkersBRA.get(i).setVisible(false);
-						}
-						states[5] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawCicloSampa(true);
-					states[5] = true;
-				}
-				break;
+                if (!ListMarkersWifi.isEmpty()) {
+                    if (!ListMarkersWifi.get(0).isVisible()) {
+                        mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                        for (int i = 0; i < ListMarkersWifi.size(); i++) {
+                            ListMarkersWifi.get(i).setVisible(true);
+                        }
+                        states[5] = true;
+                    } else {
+                        mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                        for (int i = 0; i < ListMarkersWifi.size(); i++) {
+                            ListMarkersWifi.get(i).setVisible(false);
+                        }
+                        states[5] = false;
+                    }
+                } else {
+                    mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    drawWifi(true);
+                    states[5] = true;
+                }
+                break;
 
+            // Alerts
 			case 6:
-				if (!ListMarkersParques.isEmpty()) {
-					if (!ListMarkersParques.get(0).isVisible()) {
-						mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						for (int i = 0; i < ListMarkersParques.size(); i++) {
-							ListMarkersParques.get(i).setVisible(true);
-						}
-						states[6] = true;
-					} else {
-						mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						for (int i = 0; i < ListMarkersParques.size(); i++) {
-							ListMarkersParques.get(i).setVisible(false);
-						}
-						states[6] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawParques(true);
-					states[6] = true;
-				}
-				break;
-
-			case 7:
-				if (!ListMarkersBicicletarios.isEmpty()) {
-					if (!ListMarkersBicicletarios.get(0).isVisible()) {
-						mDrawerList.getChildAt(7 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
-							ListMarkersBicicletarios.get(i).setVisible(true);
-						}
-						states[7] = true;
-					} else {
-						mDrawerList.getChildAt(7 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
-							ListMarkersBicicletarios.get(i).setVisible(false);
-						}
-						states[7] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(7 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawBicicletarios(true);
-					states[7] = true;
-				}
-				break;
-			case 8:
-				if (!ListMarkersWifi.isEmpty()) {
-					if (!ListMarkersWifi.get(0).isVisible()) {
-						mDrawerList.getChildAt(8 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						for (int i = 0; i < ListMarkersWifi.size(); i++) {
-							ListMarkersWifi.get(i).setVisible(true);
-						}
-						states[8] = true;
-					} else {
-						mDrawerList.getChildAt(8 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						for (int i = 0; i < ListMarkersWifi.size(); i++) {
-							ListMarkersWifi.get(i).setVisible(false);
-						}
-						states[8] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(8 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawWifi(true);
-					states[8] = true;
-				}
-				break;
-			case 9:
-				if (!ListMarkersReports.isEmpty()) {
-					if (!ListMarkersReports.get(0).isVisible()) {
-						mDrawerList.getChildAt(9 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-						for (int i = 0; i < ListMarkersReports.size(); i++) {
-							ListMarkersReports.get(i).setVisible(true);
-						}
-						states[9] = true;
-					} else {
-						mDrawerList.getChildAt(9 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-						for (int i = 0; i < ListMarkersReports.size(); i++) {
-							ListMarkersReports.get(i).setVisible(false);
-						}
-						states[9] = false;
-					}
-				} else {
-					mDrawerList.getChildAt(9 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-					drawReports(true);
-					states[9] = true;
-				}
-				break;
+                if (!ListMarkersAlerts.isEmpty()) {
+                    if (!ListMarkersAlerts.get(0).isVisible()) {
+                        mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                        for (int i = 0; i < ListMarkersAlerts.size(); i++) {
+                            ListMarkersAlerts.get(i).setVisible(true);
+                        }
+                        states[6] = true;
+                    } else {
+                        mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                        for (int i = 0; i < ListMarkersAlerts.size(); i++) {
+                            ListMarkersAlerts.get(i).setVisible(false);
+                        }
+                        states[6] = false;
+                    }
+                } else {
+                    mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                    drawAlerts(true);
+                    states[6] = true;
+                }
+                break;
 		}
 	}
 
-	static View.OnClickListener listener0 = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			
+	public void selectBikeLaneTypes() {
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+		final AlertDialog alert = alertBuilder.create();
+		View alertView = getLayoutInflater().inflate(R.layout.ad_selectbikelanes, null);
+		alert.setView(alertView);
+        alert.setCancelable(false);
+		ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_permanentes);
+        tbPermanentes.setChecked(bikeLanesStates[0]);
+		tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				bikeLanesStates[0] = isChecked;
+			}
+		});
+		ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_lazer);
+        tbLazer.setChecked(bikeLanesStates[1]);
+		tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				bikeLanesStates[1] = isChecked;
+			}
+		});
+		ToggleButton tbPreferenciais = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_preferenciais);
+        tbPreferenciais.setChecked(bikeLanesStates[2]);
+		tbPreferenciais.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				bikeLanesStates[2] = isChecked;
+			}
+		});
+		Button btOk = (Button) alertView.findViewById(R.id.bt_bikelanes_ok);
+		btOk.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+				if (states[0]) {
+					displayBikeLanes();
+				}
+			}
+		});
+
+		alert.show();
+	}
+
+	public void displayBikeLanes() {
+
+		// Verificar se as ciclovias já estão desenhadas
+		if (!cicloviasLineList.isEmpty()) {
+			// Verifica se estão ligadas
+			if (bikeLanesStates[0]) {
+				// Set Polylines and Markers visible
+				for (int i = 0; i < cicloviasLineList.size(); i++) {
+					cicloviasLineList.get(i).setVisible(true);
+				}
+                for (Marker marker : ListMarkersAcessos) {
+                    marker.setVisible(true);
+                }
+			} else {
+				// Set Ciclovias not visible
+				for (int i = 0; i < cicloviasLineList.size(); i++) {
+					cicloviasLineList.get(i).setVisible(false);
+				}
+                for (Marker marker : ListMarkersAcessos) {
+                    marker.setVisible(false);
+                }
+			}
+		} // Caso não estejam desenhadas, desenhar!
+		else {
+			drawPermanentes(true);
 		}
-	};
+
+		// Verificar se as ciclofaixas de lazer já estão desenhadas
+		if (!ciclofaixasLineList.isEmpty()) {
+			if (bikeLanesStates[1]) {
+				for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+					ciclofaixasLineList.get(i).setVisible(true);
+				}
+			} else {
+				for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+					ciclofaixasLineList.get(i).setVisible(false);
+				}
+			}
+		} else {
+			drawTemporarias(true);
+		}
+
+		if (!ciclorrotasLineList.isEmpty()) {
+			if (bikeLanesStates[2]) {
+				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+					ciclorrotasLineList.get(i).setVisible(true);
+				}
+			} else {
+				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+					ciclorrotasLineList.get(i).setVisible(false);
+				}
+			}
+		} else {
+			drawPreferenciais(true);
+		}
+	}
+
+    public void selectSharingSystems() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alert = alertBuilder.create();
+        View alertView = getLayoutInflater().inflate(R.layout.ad_selectsharingsystems, null);
+        alert.setView(alertView);
+        alert.setCancelable(false);
+        ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_bs);
+        tbPermanentes.setChecked(sharingSystemsStates[0]);
+        tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sharingSystemsStates[0] = isChecked;
+            }
+        });
+        ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_cs);
+        tbLazer.setChecked(sharingSystemsStates[1]);
+        tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sharingSystemsStates[1] = isChecked;
+            }
+        });
+        Button btOk = (Button) alertView.findViewById(R.id.bt_sharingsystems_ok);
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+                if (states[1]) {
+                    displaySharingSystems();
+                }
+            }
+        });
+
+        alert.show();
+    }
+
+    public void displaySharingSystems() {
+
+        if (!ListMarkersITAU.isEmpty()) {
+            if (sharingSystemsStates[0]) {
+                for (int i = 0; i < ListMarkersITAU.size(); i++) {
+                    ListMarkersITAU.get(i).setVisible(true);
+                }
+            } else {
+                for (int i = 0; i < ListMarkersITAU.size(); i++) {
+                    ListMarkersITAU.get(i).setVisible(false);
+                }
+            }
+        } else {
+            drawBikeSampa(true);
+        }
+
+        if (!ListMarkersBRA.isEmpty()) {
+            if (sharingSystemsStates[1]) {
+                for (int i = 0; i < ListMarkersBRA.size(); i++) {
+                    ListMarkersBRA.get(i).setVisible(true);
+                }
+            } else {
+                for (int i = 0; i < ListMarkersBRA.size(); i++) {
+                    ListMarkersBRA.get(i).setVisible(false);
+                }
+            }
+        } else {
+            drawCicloSampa(true);
+        }
+    }
 
 	public void openDrawer(View view) {
 		mDrawerLayout.openDrawer(Gravity.LEFT);
@@ -907,7 +1009,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			double lng = user_latlng.longitude;
 
 			if (lat > -23.778678 && lat < -23.400375 && lng > -46.773075 && lng < -46.355934) {
-				cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 14);
+				cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
 			} else {
 				cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng_sp, 12);
 			}
@@ -922,7 +1024,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		if (user_latlng != null) {
 
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 14);
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
 			googleMap.animateCamera(cameraUpdate);
 
 		} else {
@@ -945,7 +1047,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 						public void onLocationChanged(Location location) {
 
 							user_latlng = new LatLng(location.getLatitude(), location.getLongitude());
-							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 14);
+							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
 							googleMap.animateCamera(cameraUpdate);
 						}
 
@@ -1106,9 +1208,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 				boolean b = false;
 
-				for (int i = 0; i < ListMarkersReportsIds.size(); i++) {
+				for (int i = 0; i < ListMarkersAlertsIds.size(); i++) {
 
-					if (clickedMarkerId.equals(ListMarkersReportsIds.get(i))) {
+					if (clickedMarkerId.equals(ListMarkersAlertsIds.get(i))) {
 
 						hideNotifyButton.end();
 
@@ -1534,10 +1636,10 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		boolean b = false;
 
 		if (isNetworkAvailable()) {
-			for (int i = 0; i < ListMarkersReports.size(); i++) {
+			for (int i = 0; i < ListMarkersAlerts.size(); i++) {
 
-				if (ListMarkersReports.get(i).isInfoWindowShown()) {
-					String timestamp = reportMap.get(ListMarkersReports.get(i).getId());
+				if (ListMarkersAlerts.get(i).isInfoWindowShown()) {
+					String timestamp = alertMap.get(ListMarkersAlerts.get(i).getId());
 
 					NotifySolvedReport notifyObj = new NotifySolvedReport();
 					try {
@@ -1546,7 +1648,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 						e.printStackTrace();
 					}
 
-					ListMarkersReports.get(i).hideInfoWindow();
+					ListMarkersAlerts.get(i).hideInfoWindow();
 					hideNotifyButton.start();
 
 					b = true;
@@ -1774,7 +1876,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				JSONArray ReportsJSArray = job.getJSONArray("REPORTS");
 
 				//Clear list before adding updated items
-				ListReports.clear();
+				ListAlerts.clear();
 
 				// looping por todos os Estacionamentos
 				for (int i = 0; i < ReportsJSArray.length(); i++) {
@@ -1793,7 +1895,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					Report report = new Report(tipo, endereco, latitude, longitude, desc, timestamp);
 
-					ListReports.add(report);
+					ListAlerts.add(report);
 
 				}
 			} catch (JSONException e) {
@@ -1970,23 +2072,57 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				e.printStackTrace();
 			}
 
+            try {
+
+                JSONArray AccessJSArray = job.getJSONArray("ACESSOS");
+
+                //Clear list before adding updated items
+                ListAcesso.clear();
+
+                // looping por todos os Estacionamentos
+                for (int i = 0; i < AccessJSArray.length(); i++) {
+                    JSONObject c = AccessJSArray.getJSONObject(i);
+
+                    // Storing each json item in variable
+                    String nome = c.getString("name");
+                    String lat = c.getString("lat");
+                    String lng = c.getString("lng");
+                    String details = c.getString("details");
+
+                    double latitude = Double.parseDouble(lat);
+                    double longitude = Double.parseDouble(lng);
+
+                    MarkerOptions item_acesso = new MarkerOptions()
+                            .title(R.string.acesso_ciclovia_marginal + newline + nome)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
+                            .snippet(details)
+                            .anchor(0.5f, 0.5f)
+                            .position(new LatLng(latitude, longitude));
+
+                    ListAcesso.add(item_acesso);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
 			myAdapter.notifyDataSetChanged();
 
-			drawPermanentes(states[0]);
+			drawPermanentes((states[0] && bikeLanesStates[0]));
 
-			drawTemporarias(states[1]);
+			drawTemporarias((states[0] && bikeLanesStates[1]));
 
-			drawPreferenciais(states[2]);
+			drawPreferenciais((states[0] && bikeLanesStates[2]));
 
-            drawEstabelecimentos(states[3]);
+            drawEstabelecimentos(states[2]);
 
-			drawParques(states[6]);
+            drawBicicletarios(states[3]);
 
-			drawBicicletarios(states[7]);
+			drawParques(states[4]);
 
-			drawWifi(states[8]);
+			drawWifi(states[5]);
 
-			drawReports(states[9]);
+			drawAlerts(states[6]);
 
             resetUpdating();
 		}
@@ -2036,7 +2172,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					myAdapter.notifyDataSetChanged();
 
-					drawBikeSampa(states[4]);
+					drawBikeSampa((states[1] && sharingSystemsStates[0]));
 				}
 
 			} catch (JSONException e) {
@@ -2089,7 +2225,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					myAdapter.notifyDataSetChanged();
 
-					drawCicloSampa(states[5]);
+					drawCicloSampa((states[1] && sharingSystemsStates[1]));
 				}
 
 			} catch (JSONException e) {
@@ -2111,7 +2247,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			Marker marker = googleMap.addMarker(new MarkerOptions()
 					.position(ll)
 					.title(ListParques.get(i).Nome)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.tree))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_park))
 					.visible(visibility)
 					.anchor(0.5f, 0.5f));
 			if (ListParques.get(i).Wifi == 0) {
@@ -2283,8 +2419,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 			if (ListBicicletarios.get(i).Tipo.equals("b")) {
 
-                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.bicicletario));
-				marker.setAnchor(0.5f, 0.5f);
+                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_b));
+				marker.setAnchor(0.5f, 1.0f);
 				if (ListBicicletarios.get(i).hasEmprestimo()) {
 					marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
 							+ newline + newline + getString(R.string.possui_emprestimo_bicicleta)
@@ -2296,7 +2432,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				}
 			} else {
 
-				marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.paraciclo_new));
+				marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
 				marker.setAnchor(0.5f, 1.0f);
 				marker.setSnippet(getString(R.string.endereco)+": " + ListBicicletarios.get(i).address
                         + newline + getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas);
@@ -2317,7 +2453,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			ListMarkersWifi.add
 					(googleMap.addMarker(new MarkerOptions()
 							.position(ListWifi.get(i).getPosition())
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_wifi))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_wifi))
 							.title(ListWifi.get(i).getTitle())
 							.snippet(ListWifi.get(i).getSnippet())
 							.visible(visibility)
@@ -2325,87 +2461,89 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		}
 	}
 
-	public void drawReports(Boolean visibility) {
+	public void drawAlerts(Boolean visibility) {
 
-		if (ListMarkersReports != null) {
-			for (Marker marker : ListMarkersReports) marker.remove();
+		if (ListMarkersAlerts != null) {
+			for (Marker marker : ListMarkersAlerts) marker.remove();
 		}
 
-		if (ListMarkersReportsIds != null) {
-			ListMarkersReportsIds.clear();
+		if (ListMarkersAlertsIds != null) {
+			ListMarkersAlertsIds.clear();
 		}
 
-		if (reportMap != null) {
-			reportMap.clear();
+		if (alertMap != null) {
+			alertMap.clear();
 		}
 
 		hideNotifyButton.start();
 
-		for (int i = 0; i < ListReports.size(); i++) {
+		for (int i = 0; i < ListAlerts.size(); i++) {
 			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper. 
 			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
 
 			MarkerOptions mOptions = new MarkerOptions()
-					.snippet(ListReports.get(i).Endereco + newline + getString(R.string.details) + " " + ListReports.get(i).Descricao + newline + getString(R.string.alerta_em) + " " + ListReports.get(i).timestamp)
-					.position(new LatLng(ListReports.get(i).Lat, ListReports.get(i).Lng))
+					.snippet(ListAlerts.get(i).Endereco + newline + getString(R.string.details) + " " + ListAlerts.get(i).Descricao + newline + getString(R.string.alerta_em) + " " + ListAlerts.get(i).timestamp)
+					.position(new LatLng(ListAlerts.get(i).Lat, ListAlerts.get(i).Lng))
 					.visible(visibility)
 					.anchor(0.5f, 1.0f);
 
-			if (ListReports.get(i).Tipo.equals("bu")) {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_buraco));
+			if (ListAlerts.get(i).Tipo.equals("bu")) {
+				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_pothole));
 				mOptions.title(getString(R.string.via_esburacada));
-			} else if (ListReports.get(i).Tipo.equals("si")) {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_sinalizacao));
+			} else if (ListAlerts.get(i).Tipo.equals("si")) {
+				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_signalling));
 				mOptions.title(getString(R.string.problema_sinalizacao));
 			} else {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_outro));
+				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert));
 				mOptions.title(getString(R.string.alerta));
 			}
 
 			Marker marker = googleMap.addMarker(mOptions);
-			reportMap.put(marker.getId(), ListReports.get(i).timestamp);
-			ListMarkersReports.add(marker);
-			ListMarkersReportsIds.add(marker.getId());
+			alertMap.put(marker.getId(), ListAlerts.get(i).timestamp);
+			ListMarkersAlerts.add(marker);
+			ListMarkersAlertsIds.add(marker.getId());
 		}
 	}
 
 	public void drawPermanentes(Boolean visibility) {
 
 		if (!ListCiclovias.isEmpty()) {
-			pinheiros1marker = googleMap.addMarker(new MarkerOptions()
+			/*pinheiros1marker = googleMap.addMarker(new MarkerOptions()
 					.position(new LatLng(-23.69560, -46.68497))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_acesso))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
 					.title(getString(R.string.acesso_ciclovia_marginal))
 					.anchor(0.5f, 0.5f)
 					.visible(visibility));
 
 			pinheiros2marker = googleMap.addMarker(new MarkerOptions()
 					.position(new LatLng(-23.677504, -46.702454))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_acesso))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
 					.title(getString(R.string.acesso_ciclovia_marginal))
 					.anchor(0.5f, 0.5f)
 					.visible(visibility));
 
 			pinheiros3marker = googleMap.addMarker(new MarkerOptions()
 					.position(new LatLng(-23.655609, -46.719791))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_acesso))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
 					.title(getString(R.string.acesso_ciclovia_marginal))
 					.anchor(0.5f, 0.5f)
 					.visible(visibility));
 
 			pinheiros4marker = googleMap.addMarker(new MarkerOptions()
 					.position(new LatLng(-23.593094, -46.692753))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_acesso))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
 					.title(getString(R.string.acesso_ciclovia_marginal))
 					.anchor(0.5f, 0.5f)
 					.visible(visibility));
 
 			pinheiros5marker = googleMap.addMarker(new MarkerOptions()
 					.position(new LatLng(-23.558264, -46.711334))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_acesso))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
 					.title(getString(R.string.acesso_ciclovia_marginal))
 					.anchor(0.5f, 0.5f)
-					.visible(visibility));
+					.visible(visibility));*/
+
+            drawAcessos(visibility);
 
 			if (!cicloviasLineList.isEmpty()) {
 				for (Polyline polyline : cicloviasLineList) polyline.remove();
@@ -2474,6 +2612,19 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			}
 		}
 	}
+
+    public void drawAcessos(Boolean visibility) {
+
+        if (ListMarkersAcessos != null) {
+            for (Marker marker : ListMarkersAcessos) marker.remove();
+        }
+
+        for (int i = 0; i < ListAcesso.size(); i++) {
+            // Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper.
+            // Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
+            ListMarkersAcessos.add(googleMap.addMarker(ListAcesso.get(i).visible(visibility)));
+        }
+    }
 
     public void drawEstabelecimentos(Boolean visibility) {
         if (ListMarkersEstabelecimentos != null) {
@@ -3860,10 +4011,15 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		editor.putBoolean("states4", states[4]);
 		editor.putBoolean("states5", states[5]);
 		editor.putBoolean("states6", states[6]);
-		editor.putBoolean("states7", states[7]);
-		editor.putBoolean("states8", states[8]);
-        editor.putBoolean("states9", states[9]);
-		editor.apply();
+
+        editor.putBoolean("bikeLanesStates0", bikeLanesStates[0]);
+        editor.putBoolean("bikeLanesStates1", bikeLanesStates[1]);
+        editor.putBoolean("bikeLanesStates2", bikeLanesStates[2]);
+
+        editor.putBoolean("sharingSystemsStates0", sharingSystemsStates[0]);
+        editor.putBoolean("sharingSystemsStates1", sharingSystemsStates[1]);
+
+        editor.apply();
 
         Log.e("ONPAUSE", "SHOT");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -3880,7 +4036,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		//long start = System.currentTimeMillis();
 
-		states = savedInstanceState.getBooleanArray("BUTTONSTATE");
+		states = savedInstanceState.getBooleanArray("STATES");
+        bikeLanesStates = savedInstanceState.getBooleanArray("BIKELANESSTATES");
+        sharingSystemsStates = savedInstanceState.getBooleanArray("SHARINGSYSTEMSSTATES");
 		current_latlng = savedInstanceState.getDoubleArray("LATLNG");
 		LatLng position = new LatLng(current_latlng[0], current_latlng[1]);
 		zoom = savedInstanceState.getFloat("ZOOM");
@@ -3888,8 +4046,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		googleMap.moveCamera(cameraUpdate);
 		if (savedInstanceState.getBoolean("isDrawerOpen")) {
 			mDrawerLayout.openDrawer(Gravity.LEFT); }
-
-
 
 		ListCiclovias = savedInstanceState.getParcelableArrayList("CICLOVIAS_LIST");
 
@@ -3909,30 +4065,19 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		ListWifi = savedInstanceState.getParcelableArrayList("WIFI_LIST");
 
-		ListReports = savedInstanceState.getParcelableArrayList("REPORTS_LIST");
+		ListAlerts = savedInstanceState.getParcelableArrayList("REPORTS_LIST");
 
-		if (states[0]) {drawPermanentes(true);}
-		if (states[1]) {drawTemporarias(true);}
-		if (states[2]) {drawPreferenciais(true);}
-        if (states[3]) {drawEstabelecimentos(true);}
-		if (states[4]) {drawBikeSampa(true);}
-		if (states[5]) {drawCicloSampa(true);}
-		if (states[6]) {drawParques(true);}
-		if (states[7]) {drawBicicletarios(true);}
-		if (states[8]) {drawWifi(true);}
-		if (states[9]) {drawReports(true);}
-
-		// Demorava 3 segs pra desenhar todos os arrays
-		/*
-		drawPermanentes(states[0]);
-		drawTemporarias(states[1]);
-		drawPreferenciais(states[2]);
-		drawBikeSampa(states[3]);
-		drawCicloSampa(states[4]);
-		drawParques(states[5]);
-		drawBicicletarios(states[6]);
-		drawWifi(states[7]);
-		drawReports(states[8]);*/
+		if (states[0] && bikeLanesStates[0]) {drawPermanentes(true);}
+		if (states[0] && bikeLanesStates[1]) {drawTemporarias(true);}
+		if (states[0] && bikeLanesStates[2]) {drawPreferenciais(true);}
+		if (states[1] && sharingSystemsStates[0]) {drawBikeSampa(true);}
+		if (states[1] && sharingSystemsStates[1]) {drawCicloSampa(true);}
+        if (states[2]) {drawEstabelecimentos(true);}
+        if (states[3]) {drawBicicletarios(true);}
+		if (states[4]) {drawParques(true);}
+		if (states[5]) {drawWifi(true);}
+		if (states[6]) {
+            drawAlerts(true);}
 
 		isRouteModeOn = savedInstanceState.getBoolean("isRouteModeOn");
 
@@ -3993,18 +4138,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	public void onSaveInstanceState (Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
 
-        boolean ciclovias_bool;
-        boolean ciclofaixas_bool;
-        boolean ciclorrotas_bool;
-        boolean estabelecimentos_bool;
-		boolean itau_bool;
-        boolean bra_bool;
-        boolean parques_bool;
-		boolean bicicletarios_bool;
-		boolean wifi_bool;
-		boolean reports_bool;
-
-
 		double[] latlng = {googleMap.getCameraPosition().target.latitude, googleMap.getCameraPosition().target.longitude};
 		savedInstanceState.putDoubleArray("LATLNG", latlng);
 		savedInstanceState.putFloat("ZOOM", googleMap.getCameraPosition().zoom);
@@ -4017,26 +4150,13 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		savedInstanceState.putParcelableArrayList("PARQUES_LIST", ListParques);
 		savedInstanceState.putParcelableArrayList("BICICLETARIOS_LIST", ListBicicletarios);
 		savedInstanceState.putParcelableArrayList("WIFI_LIST", ListWifi);
-		savedInstanceState.putParcelableArrayList("REPORTS_LIST", ListReports);
+		savedInstanceState.putParcelableArrayList("REPORTS_LIST", ListAlerts);
 
 		savedInstanceState.putBoolean("isDrawerOpen", mDrawerLayout.isDrawerOpen(Gravity.LEFT));
 
-		// Save visibility of each item
-        if (!cicloviasLineList.isEmpty()) {ciclovias_bool = cicloviasLineList.get(0).isVisible();} else {ciclovias_bool = false;}
-        if (!ciclofaixasLineList.isEmpty()) {ciclofaixas_bool = ciclofaixasLineList.get(0).isVisible();} else {ciclofaixas_bool = false;}
-        if (!ciclorrotasLineList.isEmpty()) {ciclorrotas_bool = ciclorrotasLineList.get(0).isVisible();} else {ciclorrotas_bool = false;}
-        if (!ListMarkersEstabelecimentos.isEmpty()) {estabelecimentos_bool = ListMarkersEstabelecimentos.get(0).isVisible();} else {estabelecimentos_bool = false;};
-		if (!ListMarkersITAU.isEmpty()) {itau_bool = ListMarkersITAU.get(0).isVisible();} else {itau_bool = false;}
-        if (!ListMarkersBRA.isEmpty()) {bra_bool = ListMarkersBRA.get(0).isVisible();} else {bra_bool = false;}
-        if (!ListMarkersParques.isEmpty()) {parques_bool = ListMarkersParques.get(0).isVisible();} else {parques_bool = false;}
-		if (!ListMarkersBicicletarios.isEmpty()) {bicicletarios_bool = ListMarkersBicicletarios.get(0).isVisible();} else {bicicletarios_bool = false;}
-		if (!ListMarkersWifi.isEmpty()) {wifi_bool = ListMarkersWifi.get(0).isVisible();} else {wifi_bool = false;}
-		if (!ListMarkersReports.isEmpty()) {reports_bool = ListMarkersReports.get(0).isVisible();} else {reports_bool = false;}
-
-		boolean[] buttonsState = {ciclovias_bool, ciclofaixas_bool,
-				ciclorrotas_bool, estabelecimentos_bool, itau_bool, bra_bool, parques_bool, bicicletarios_bool, wifi_bool, reports_bool};
-
-		savedInstanceState.putBooleanArray("BUTTONSTATE", buttonsState);
+        savedInstanceState.putBooleanArray("STATES", states);
+        savedInstanceState.putBooleanArray("BIKELANESSTATES", bikeLanesStates);
+        savedInstanceState.putBooleanArray("SHARINGSYSTEMSSTATES", sharingSystemsStates);
 
 		// ROUTEMODE
 		savedInstanceState.putBoolean("isRouteModeOn", isRouteModeOn);

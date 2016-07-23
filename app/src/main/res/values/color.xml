@@ -13,6 +13,8 @@
     <color name="translucent_custom">#55000000</color>
     <color name="alwhite">#fafafa</color>
     <color name="app_blue">#001f4c</color>
+    <color name="drawer_blue">#88000022</color>
+    <color name="selected_dark">#66000000</color>
     <color name="route_blue">#FF0000FF</color>
     <color name="selected_route_blue">#AA0000FF</color>
     <color name="not_selected_route_blue">#440000FF</color>

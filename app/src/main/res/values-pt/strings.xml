@@ -6,33 +6,24 @@
         <string name="drawer_close">Closed</string>
 
         <string-array name="menu_array">
-            <item>Vias permanentes</item>
-            <item>Ciclofaixas de Lazer</item>
-            <item>Ruas Preferenciais</item>
-            <item>Lojas e serviços</item>
-            <item>Bike Sampa</item>
-            <item>Ciclo Sampa</item>
+            <item>Vias para bicicleta</item>
+            <item>Estações</item>
+            <item>Estabelecimentos</item>
+            <item>Pontos para estacionar</item>
             <item>Parques</item>
-            <item>Pontos de parada</item>
             <item>Pontos Wifi Livre SP</item>
             <item>Alertas</item>
         </string-array>
         <string-array name="menu_array_descriptions">
-            <item>Ciclovias e ciclofaixas permanentes</item>
-            <item>Operam de Dom e Feriados nacionais</item>
-            <item>Ciclorrotas sinalizadas</item>
-            <item>Estabelecimentos comerciais</item>
-            <item>Estações de bicicleta do Itaú</item>
-            <item>Estações de bicicleta do Bradesco</item>
+            <item>Ciclovias, ciclofaixas e ciclorrotas</item>
+            <item>de compartilhamento de bikes</item>
+            <item>Lojas, oficinas, banho e mais</item>
+            <item>Bicicletários e paraciclos</item>
             <item>Parques com ciclovia</item>
-            <item>Bicicletários ou Paraciclos</item>
-            <item>Wifi municipal aberto ao uso</item>
-            <item>Alertas enviados pelos usuários</item>
+            <item>Wifi municipal aberto</item>
+            <item>enviados pelos usuários</item>
         </string-array>
         <string-array name="menu_array_quantidades">
-            <item/>
-            <item>120,8km</item>
-            <item>67,5km</item>
             <item/>
             <item/>
             <item/>
@@ -153,7 +144,7 @@
         <string name="inclinacao_maxima">Inclinação máxima</string>
         <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
         <string name="drawerexp_explanation1">Escolha quais itens visualizar no mapa:</string>
-        <string name="drawerexp_explanation2">(Você poderá mudar futuramente a visualização na aba lateral do app)</string>
+        <string name="drawerexp_explanation2">(Você poderá mudar isso depois!)</string>
         <string name="cancelar">Cancelar</string>
         <string name="enviar_alerta">Enviar alerta</string>
         <string name="route_explanation">Clique em cima da linha do perfil de elevação para visualizar, no mapa, a elevação de um ponto específico.</string>

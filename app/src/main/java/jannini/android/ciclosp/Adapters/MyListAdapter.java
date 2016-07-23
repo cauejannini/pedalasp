@@ -58,71 +58,58 @@ public class MyListAdapter extends ArrayAdapter<String> {
             holder.btSettings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (context instanceof MainActivity) {
+                        ((MainActivity) context).selectBikeLaneTypes();
+                    }
                 }
             });
             break;
         case 1:
             if (MainActivity.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.cor_ciclofaixa);
+            holder.image.setBackgroundResource(R.drawable.icon_bikesampa);
+            holder.btSettings.setVisibility(View.VISIBLE);
+            holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (context instanceof MainActivity) {
+                        ((MainActivity) context).selectSharingSystems();
+                    }
+                }
+            });
             break;
         case 2:
             if (MainActivity.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.cor_ciclorrota);
+            holder.image.setBackgroundResource(R.drawable.ic_estabelecimento);
+            holder.btSettings.setVisibility(View.VISIBLE);
+            holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (context instanceof MainActivity) {
+                    }
+                }
+            });
             break;
         case 3:
             if (MainActivity.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_estabelecimento);
+            holder.image.setBackgroundResource(R.drawable.ic_parking);
             break;
         case 4:
             if (MainActivity.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_bikesampa);
-
+            holder.image.setBackgroundResource(R.drawable.ic_park);
             break;
         case 5:
             if (MainActivity.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_ciclosampa);
-
+            holder.image.setBackgroundResource(R.drawable.ic_wifi);
             break;
         case 6:
             if (MainActivity.states[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.tree_150);
-
-            break;
-
-        case 7:
-            if (MainActivity.states[7]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_bicicletarios);
-
-            break;
-
-        case 8:
-            if (MainActivity.states[8]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_wifi);
-
-            break;
-
-        case 9:
-            if (MainActivity.states[9]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_alertas);
-            /*if (activeNetworkInfo != null){
-                if (!activeNetworkInfo.isConnected()){
-                    holder.text.setTextColor(Color.parseColor("#888888"));
-                    holder.description.setTextColor(Color.parseColor("#888888"));
-                } else {}
-            } else {
-                holder.text.setTextColor(Color.parseColor("#888888"));
-                holder.description.setTextColor(Color.parseColor("#888888"));
-            }*/
+            holder.image.setBackgroundResource(R.drawable.ic_alert);
             break;
         }
 

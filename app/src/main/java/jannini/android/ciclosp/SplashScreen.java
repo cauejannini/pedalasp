@@ -48,7 +48,7 @@ public class SplashScreen extends Activity {
             progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
             new CarregarDB().execute();
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, DrawerExpActivity.class);
             startActivity(intent);
             finish();
         }

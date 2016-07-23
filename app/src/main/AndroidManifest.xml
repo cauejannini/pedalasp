@@ -72,7 +72,7 @@
         <activity
             android:name=".DrawerExpActivity"
             android:label="@string/title_activity_drawer_exp_splash"
-            android:theme="@style/MainActionBarTheme"/>
+            android:theme="@style/NoActionBarTheme"/>
 
         <activity
             android:name=".AddEstabelecimentoActivity"
