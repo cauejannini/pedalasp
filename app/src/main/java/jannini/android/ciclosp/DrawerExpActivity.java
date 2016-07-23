@@ -73,7 +73,7 @@ public class DrawerExpActivity extends Activity {
         int n = mDrawerList.getFirstVisiblePosition();
 
         if (!states[position]) {
-            mDrawerList.getChildAt(position-n).setBackgroundResource(R.drawable.splash_list_item_bg_on);
+            mDrawerList.getChildAt(position-n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             states[position] = true;
         } else {
             mDrawerList.getChildAt(position-n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);

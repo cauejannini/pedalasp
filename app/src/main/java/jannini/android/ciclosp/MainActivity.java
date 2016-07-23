@@ -243,10 +243,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	public SharedPreferences sharedPreferences;
 
-	public static boolean[] states = {true, true, true, true, true, true, true};
-	public static boolean[] bikeLanesStates = {true, true, true};
-    public static boolean[] sharingSystemsStates = {true, true};
-
 	static ArrayList<Polyline> polylineRoutesList = new ArrayList<>();
 
 	Criteria criteria = new Criteria();
@@ -358,20 +354,20 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
 		// Get States from sharedPreferences
-		states[0] = sharedPreferences.getBoolean("states0", true);
-		states[1] = sharedPreferences.getBoolean("states1", true);
-		states[2] = sharedPreferences.getBoolean("states2", true);
-		states[3] = sharedPreferences.getBoolean("states3", true);
-		states[4] = sharedPreferences.getBoolean("states4", true);
-		states[5] = sharedPreferences.getBoolean("states5", true);
-		states[6] = sharedPreferences.getBoolean("states6", true);
+		Constant.states[0] = sharedPreferences.getBoolean("states0", true);
+        Constant.states[1] = sharedPreferences.getBoolean("states1", true);
+        Constant.states[2] = sharedPreferences.getBoolean("states2", true);
+        Constant.states[3] = sharedPreferences.getBoolean("states3", true);
+        Constant.states[4] = sharedPreferences.getBoolean("states4", true);
+        Constant.states[5] = sharedPreferences.getBoolean("states5", true);
+		Constant.states[6] = sharedPreferences.getBoolean("states6", true);
 
-        bikeLanesStates[0] = sharedPreferences.getBoolean("bikeLanesStates0", true);
-        bikeLanesStates[1] = sharedPreferences.getBoolean("bikeLanesStates1", true);
-        bikeLanesStates[2] = sharedPreferences.getBoolean("bikeLanesStates2", true);
+        Constant.bikeLanesStates[0] = sharedPreferences.getBoolean("bikeLanesStates0", true);
+        Constant.bikeLanesStates[1] = sharedPreferences.getBoolean("bikeLanesStates1", true);
+        Constant.bikeLanesStates[2] = sharedPreferences.getBoolean("bikeLanesStates2", true);
 
-        sharingSystemsStates[0] = sharedPreferences.getBoolean("sharingSystemsStates0", true);
-        sharingSystemsStates[1] = sharedPreferences.getBoolean("sharingSystemsStates1", true);
+        Constant.sharingSystemsStates[0] = sharedPreferences.getBoolean("sharingSystemsStates0", true);
+        Constant.sharingSystemsStates[1] = sharedPreferences.getBoolean("sharingSystemsStates1", true);
 
         header = (LinearLayout) findViewById(R.id.header);
 
@@ -606,15 +602,15 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		switch (position) {
             // Bike Lanes
 			case 0:
-                if (!states[0]) {
+                if (!Constant.states[0]) {
 
                     mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    states[0] = true;
+                    Constant.states[0] = true;
                     displayBikeLanes();
 
                 } else {
                     mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    states[0] = false;
+                    Constant.states[0] = false;
 
                     // Set Ciclovias not visible
                     for (int i = 0; i < cicloviasLineList.size(); i++) {
@@ -640,15 +636,15 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
             // Sharing Systems
 			case 1:
-                if (!states[1]) {
+                if (!Constant.states[1]) {
 
                     mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    states[1] = true;
+                    Constant.states[1] = true;
                     displaySharingSystems();
 
                 } else {
                     mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    states[1] = false;
+                    Constant.states[1] = false;
 
                     // Set BikeSampa not visible
                     for (int i = 0; i < ListMarkersITAU.size(); i++) {
@@ -672,7 +668,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                             ListMarkersEstabelecimentos.get(i).setVisible(true);
                         }
 
-                        states[2] = true;
+                        Constant.states[2] = true;
                     } else {
                         mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 
@@ -680,104 +676,104 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                             ListMarkersEstabelecimentos.get(i).setVisible(false);
                         }
 
-                        states[2] = false;
+                        Constant.states[2] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                     drawEstabelecimentos(true);
-                    states[2] = true;
+                    Constant.states[2] = true;
                 }
 				break;
 
             // Parking
             case 3:
                 if (!ListMarkersBicicletarios.isEmpty()) {
-                    if (!ListMarkersBicicletarios.get(0).isVisible()) {
+                    if (!Constant.states[3]) {
                         mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                         for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
                             ListMarkersBicicletarios.get(i).setVisible(true);
                         }
-                        states[3] = true;
+                        Constant.states[3] = true;
                     } else {
                         mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                         for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
                             ListMarkersBicicletarios.get(i).setVisible(false);
                         }
-                        states[3] = false;
+                        Constant.states[3] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                     drawBicicletarios(true);
-                    states[3] = true;
+                    Constant.states[3] = true;
                 }
                 break;
 
             // Parks
 			case 4:
                 if (!ListMarkersParques.isEmpty()) {
-                    if (!ListMarkersParques.get(0).isVisible()) {
+                    if (!Constant.states[4]) {
                         mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                         for (int i = 0; i < ListMarkersParques.size(); i++) {
                             ListMarkersParques.get(i).setVisible(true);
                         }
-                        states[4] = true;
+                        Constant.states[4] = true;
                     } else {
                         mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                         for (int i = 0; i < ListMarkersParques.size(); i++) {
                             ListMarkersParques.get(i).setVisible(false);
                         }
-                        states[4] = false;
+                        Constant.states[4] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                     drawParques(true);
-                    states[4] = true;
+                    Constant.states[4] = true;
                 }
                 break;
 
             // Wifi
 			case 5:
                 if (!ListMarkersWifi.isEmpty()) {
-                    if (!ListMarkersWifi.get(0).isVisible()) {
+                    if (!Constant.states[5]) {
                         mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                         for (int i = 0; i < ListMarkersWifi.size(); i++) {
                             ListMarkersWifi.get(i).setVisible(true);
                         }
-                        states[5] = true;
+                        Constant.states[5] = true;
                     } else {
                         mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                         for (int i = 0; i < ListMarkersWifi.size(); i++) {
                             ListMarkersWifi.get(i).setVisible(false);
                         }
-                        states[5] = false;
+                        Constant.states[5] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                     drawWifi(true);
-                    states[5] = true;
+                    Constant.states[5] = true;
                 }
                 break;
 
             // Alerts
 			case 6:
                 if (!ListMarkersAlerts.isEmpty()) {
-                    if (!ListMarkersAlerts.get(0).isVisible()) {
+                    if (!Constant.states[6]) {
                         mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                         for (int i = 0; i < ListMarkersAlerts.size(); i++) {
                             ListMarkersAlerts.get(i).setVisible(true);
                         }
-                        states[6] = true;
+                        Constant.states[6] = true;
                     } else {
                         mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                         for (int i = 0; i < ListMarkersAlerts.size(); i++) {
                             ListMarkersAlerts.get(i).setVisible(false);
                         }
-                        states[6] = false;
+                        Constant.states[6] = false;
                     }
                 } else {
                     mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                     drawAlerts(true);
-                    states[6] = true;
+                    Constant.states[6] = true;
                 }
                 break;
 		}
@@ -790,27 +786,27 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		alert.setView(alertView);
         alert.setCancelable(false);
 		ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_permanentes);
-        tbPermanentes.setChecked(bikeLanesStates[0]);
+        tbPermanentes.setChecked(Constant.bikeLanesStates[0]);
 		tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				bikeLanesStates[0] = isChecked;
+                Constant.bikeLanesStates[0] = isChecked;
 			}
 		});
 		ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_lazer);
-        tbLazer.setChecked(bikeLanesStates[1]);
+        tbLazer.setChecked(Constant.bikeLanesStates[1]);
 		tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				bikeLanesStates[1] = isChecked;
+                Constant.bikeLanesStates[1] = isChecked;
 			}
 		});
 		ToggleButton tbPreferenciais = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_preferenciais);
-        tbPreferenciais.setChecked(bikeLanesStates[2]);
+        tbPreferenciais.setChecked(Constant.bikeLanesStates[2]);
 		tbPreferenciais.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				bikeLanesStates[2] = isChecked;
+                Constant.bikeLanesStates[2] = isChecked;
 			}
 		});
 		Button btOk = (Button) alertView.findViewById(R.id.bt_bikelanes_ok);
@@ -818,7 +814,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			@Override
 			public void onClick(View v) {
 				alert.dismiss();
-				if (states[0]) {
+				if (Constant.states[0]) {
 					displayBikeLanes();
 				}
 			}
@@ -832,7 +828,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		// Verificar se as ciclovias já estão desenhadas
 		if (!cicloviasLineList.isEmpty()) {
 			// Verifica se estão ligadas
-			if (bikeLanesStates[0]) {
+			if (Constant.bikeLanesStates[0]) {
 				// Set Polylines and Markers visible
 				for (int i = 0; i < cicloviasLineList.size(); i++) {
 					cicloviasLineList.get(i).setVisible(true);
@@ -856,7 +852,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		// Verificar se as ciclofaixas de lazer já estão desenhadas
 		if (!ciclofaixasLineList.isEmpty()) {
-			if (bikeLanesStates[1]) {
+			if (Constant.bikeLanesStates[1]) {
 				for (int i = 0; i < ciclofaixasLineList.size(); i++) {
 					ciclofaixasLineList.get(i).setVisible(true);
 				}
@@ -870,7 +866,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		}
 
 		if (!ciclorrotasLineList.isEmpty()) {
-			if (bikeLanesStates[2]) {
+			if (Constant.bikeLanesStates[2]) {
 				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
 					ciclorrotasLineList.get(i).setVisible(true);
 				}
@@ -891,19 +887,19 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         alert.setView(alertView);
         alert.setCancelable(false);
         ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_bs);
-        tbPermanentes.setChecked(sharingSystemsStates[0]);
+        tbPermanentes.setChecked(Constant.sharingSystemsStates[0]);
         tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                sharingSystemsStates[0] = isChecked;
+                Constant.sharingSystemsStates[0] = isChecked;
             }
         });
         ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_cs);
-        tbLazer.setChecked(sharingSystemsStates[1]);
+        tbLazer.setChecked(Constant.sharingSystemsStates[1]);
         tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                sharingSystemsStates[1] = isChecked;
+                Constant.sharingSystemsStates[1] = isChecked;
             }
         });
         Button btOk = (Button) alertView.findViewById(R.id.bt_sharingsystems_ok);
@@ -911,7 +907,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
             @Override
             public void onClick(View v) {
                 alert.dismiss();
-                if (states[1]) {
+                if (Constant.states[1]) {
                     displaySharingSystems();
                 }
             }
@@ -923,7 +919,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     public void displaySharingSystems() {
 
         if (!ListMarkersITAU.isEmpty()) {
-            if (sharingSystemsStates[0]) {
+            if (Constant.sharingSystemsStates[0]) {
                 for (int i = 0; i < ListMarkersITAU.size(); i++) {
                     ListMarkersITAU.get(i).setVisible(true);
                 }
@@ -937,7 +933,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         }
 
         if (!ListMarkersBRA.isEmpty()) {
-            if (sharingSystemsStates[1]) {
+            if (Constant.sharingSystemsStates[1]) {
                 for (int i = 0; i < ListMarkersBRA.size(); i++) {
                     ListMarkersBRA.get(i).setVisible(true);
                 }
@@ -968,7 +964,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 				// GET LOCATION MANAGER
 				locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
-				//Get Best Location Provider
+
+                Location userLoc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (userLoc != null) {
+                    user_latlng = new LatLng(userLoc.getLatitude(), userLoc.getLongitude());
+                }
+                //Get Best Location Provider
 				bestAvailableProvider = locationManager.getBestProvider(criteria, false);
 				if (bestAvailableProvider != null) {
 					if (locationManager.isProviderEnabled(bestAvailableProvider)) {
@@ -2093,7 +2094,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                     double longitude = Double.parseDouble(lng);
 
                     MarkerOptions item_acesso = new MarkerOptions()
-                            .title(R.string.acesso_ciclovia_marginal + newline + nome)
+                            .title(getResources().getString(R.string.acesso_ciclovia_marginal) + newline + nome)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
                             .snippet(details)
                             .anchor(0.5f, 0.5f)
@@ -2108,21 +2109,21 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 			myAdapter.notifyDataSetChanged();
 
-			drawPermanentes((states[0] && bikeLanesStates[0]));
+			drawPermanentes((Constant.states[0] && Constant.bikeLanesStates[0]));
 
-			drawTemporarias((states[0] && bikeLanesStates[1]));
+			drawTemporarias((Constant.states[0] && Constant.bikeLanesStates[1]));
 
-			drawPreferenciais((states[0] && bikeLanesStates[2]));
+			drawPreferenciais((Constant.states[0] && Constant.bikeLanesStates[2]));
 
-            drawEstabelecimentos(states[2]);
+            drawEstabelecimentos(Constant.states[2]);
 
-            drawBicicletarios(states[3]);
+            drawBicicletarios(Constant.states[3]);
 
-			drawParques(states[4]);
+			drawParques(Constant.states[4]);
 
-			drawWifi(states[5]);
+			drawWifi(Constant.states[5]);
 
-			drawAlerts(states[6]);
+			drawAlerts(Constant.states[6]);
 
             resetUpdating();
 		}
@@ -2172,7 +2173,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					myAdapter.notifyDataSetChanged();
 
-					drawBikeSampa((states[1] && sharingSystemsStates[0]));
+					drawBikeSampa((Constant.states[1] && Constant.sharingSystemsStates[0]));
 				}
 
 			} catch (JSONException e) {
@@ -2225,7 +2226,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					myAdapter.notifyDataSetChanged();
 
-					drawCicloSampa((states[1] && sharingSystemsStates[1]));
+					drawCicloSampa((Constant.states[1] && Constant.sharingSystemsStates[1]));
 				}
 
 			} catch (JSONException e) {
@@ -4004,20 +4005,20 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		MyApplication.activityPaused();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-		editor.putBoolean("states0", states[0]);
-		editor.putBoolean("states1", states[1]);
-		editor.putBoolean("states2", states[2]);
-		editor.putBoolean("states3", states[3]);
-		editor.putBoolean("states4", states[4]);
-		editor.putBoolean("states5", states[5]);
-		editor.putBoolean("states6", states[6]);
+		editor.putBoolean("states0", Constant.states[0]);
+		editor.putBoolean("states1", Constant.states[1]);
+		editor.putBoolean("states2", Constant.states[2]);
+		editor.putBoolean("states3", Constant.states[3]);
+		editor.putBoolean("states4", Constant.states[4]);
+		editor.putBoolean("states5", Constant.states[5]);
+		editor.putBoolean("states6", Constant.states[6]);
 
-        editor.putBoolean("bikeLanesStates0", bikeLanesStates[0]);
-        editor.putBoolean("bikeLanesStates1", bikeLanesStates[1]);
-        editor.putBoolean("bikeLanesStates2", bikeLanesStates[2]);
+        editor.putBoolean("bikeLanesStates0", Constant.bikeLanesStates[0]);
+        editor.putBoolean("bikeLanesStates1", Constant.bikeLanesStates[1]);
+        editor.putBoolean("bikeLanesStates2", Constant.bikeLanesStates[2]);
 
-        editor.putBoolean("sharingSystemsStates0", sharingSystemsStates[0]);
-        editor.putBoolean("sharingSystemsStates1", sharingSystemsStates[1]);
+        editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
+        editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
 
         editor.apply();
 
@@ -4036,9 +4037,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		//long start = System.currentTimeMillis();
 
-		states = savedInstanceState.getBooleanArray("STATES");
-        bikeLanesStates = savedInstanceState.getBooleanArray("BIKELANESSTATES");
-        sharingSystemsStates = savedInstanceState.getBooleanArray("SHARINGSYSTEMSSTATES");
+        Constant.states = savedInstanceState.getBooleanArray("STATES");
+        Constant.bikeLanesStates = savedInstanceState.getBooleanArray("BIKELANESSTATES");
+        Constant.sharingSystemsStates = savedInstanceState.getBooleanArray("SHARINGSYSTEMSSTATES");
 		current_latlng = savedInstanceState.getDoubleArray("LATLNG");
 		LatLng position = new LatLng(current_latlng[0], current_latlng[1]);
 		zoom = savedInstanceState.getFloat("ZOOM");
@@ -4067,16 +4068,16 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		ListAlerts = savedInstanceState.getParcelableArrayList("REPORTS_LIST");
 
-		if (states[0] && bikeLanesStates[0]) {drawPermanentes(true);}
-		if (states[0] && bikeLanesStates[1]) {drawTemporarias(true);}
-		if (states[0] && bikeLanesStates[2]) {drawPreferenciais(true);}
-		if (states[1] && sharingSystemsStates[0]) {drawBikeSampa(true);}
-		if (states[1] && sharingSystemsStates[1]) {drawCicloSampa(true);}
-        if (states[2]) {drawEstabelecimentos(true);}
-        if (states[3]) {drawBicicletarios(true);}
-		if (states[4]) {drawParques(true);}
-		if (states[5]) {drawWifi(true);}
-		if (states[6]) {
+		if (Constant.states[0] && Constant.bikeLanesStates[0]) {drawPermanentes(true);}
+		if (Constant.states[0] && Constant.bikeLanesStates[1]) {drawTemporarias(true);}
+		if (Constant.states[0] && Constant.bikeLanesStates[2]) {drawPreferenciais(true);}
+		if (Constant.states[1] && Constant.sharingSystemsStates[0]) {drawBikeSampa(true);}
+		if (Constant.states[1] && Constant.sharingSystemsStates[1]) {drawCicloSampa(true);}
+        if (Constant.states[2]) {drawEstabelecimentos(true);}
+        if (Constant.states[3]) {drawBicicletarios(true);}
+		if (Constant.states[4]) {drawParques(true);}
+		if (Constant.states[5]) {drawWifi(true);}
+		if (Constant.states[6]) {
             drawAlerts(true);}
 
 		isRouteModeOn = savedInstanceState.getBoolean("isRouteModeOn");
@@ -4154,9 +4155,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		savedInstanceState.putBoolean("isDrawerOpen", mDrawerLayout.isDrawerOpen(Gravity.LEFT));
 
-        savedInstanceState.putBooleanArray("STATES", states);
-        savedInstanceState.putBooleanArray("BIKELANESSTATES", bikeLanesStates);
-        savedInstanceState.putBooleanArray("SHARINGSYSTEMSSTATES", sharingSystemsStates);
+        savedInstanceState.putBooleanArray("STATES", Constant.states);
+        savedInstanceState.putBooleanArray("BIKELANESSTATES", Constant.bikeLanesStates);
+        savedInstanceState.putBooleanArray("SHARINGSYSTEMSSTATES", Constant.sharingSystemsStates);
 
 		// ROUTEMODE
 		savedInstanceState.putBoolean("isRouteModeOn", isRouteModeOn);

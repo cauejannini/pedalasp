@@ -79,7 +79,7 @@
         <activity
             android:name="jannini.android.ciclosp.ReportActivity"
             android:label="@string/title_activity_report"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name="jannini.android.ciclosp.RouteDetailSplashScreen"
             android:label="@string/title_activity_route_detail_splash"

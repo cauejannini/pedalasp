@@ -92,6 +92,7 @@
     <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
     <string name="estacao_bike_sampa">Estação Bike Sampa</string>
     <string name="estacao_ciclo_sampa">Estação Ciclo Sampa</string>
+    <string name="etReportDetailsError">Campo obrigatório</string>
     <string name="extensao_ciclovia">Extensão da Ciclovia:</string>
     <string name="fechar">Fechar</string>
     <string name="feed_not_loaded">Não foi possível carregar o feed =/</string>
@@ -145,6 +146,7 @@
     <string name="possui_emprestimo_bicicleta_nao">Não possui empréstimo de bicicletas</string>
     <string name="preencha_campos">Por favor, preencha todos os campos.</string>
     <string name="problema_sinalizacao">Problema de sinalização</string>
+    <string name="rbReportError">Escolha o tipo de alerta</string>
     <string name="rede_nao_disponivel">Rede não disponível</string>
     <string name="refresh">Refresh</string>
     <string name="report_description">Alertar problema no trajeto</string>
@@ -179,6 +181,7 @@
     <string name="title_activity_route_detail_splash">Entenda a rota</string>
     <string name="title_activity_rss">Novidades</string>
     <string name="title_activity_sugestao">Sugestão</string>
+    <string name="type_of_alert">TIPO DE ALERTA</string>
     <string name="vagas">Vagas: </string>
     <string name="vagas_livres">Vagas livres:</string>
     <string name="via_esburacada">Via esburacada</string>

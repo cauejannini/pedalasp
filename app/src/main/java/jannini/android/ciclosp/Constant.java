@@ -28,4 +28,8 @@ public class Constant {
     public static String spUpdateTimeBS = "jannini.android.ciclosp.updateTimeBS";
     public static String spUpdateTimeCS = "jannini.android.ciclosp.updateTimeCS";
 
+    public static boolean[] states = {true, true, true, true, true, true, true};
+    public static boolean[] bikeLanesStates = {true, true, true};
+    public static boolean[] sharingSystemsStates = {true, true};
+
 }

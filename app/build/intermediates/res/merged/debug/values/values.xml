@@ -408,6 +408,7 @@
     <string name="escolha_no_mapa">What\'s the exact location of the Bike Point?</string>
     <string name="estacao_bike_sampa">Bike Sampa Station</string>
     <string name="estacao_ciclo_sampa">Ciclo Sampa Station</string>
+    <string name="etReportDetailsError">Mandatory field</string>
     <string name="extensao_ciclovia">Size of bike lane:</string>
     <string name="fechar">Close</string>
     <string name="feed_not_loaded">Error loading feed =/</string>
@@ -467,6 +468,7 @@
     <string name="preencha_campos">Please, complete all the fields.</string>
     <string name="preferences" translatable="false">ped_pref</string>
     <string name="problema_sinalizacao">Signalling problem</string>
+    <string name="rbReportError">Please choose the alert type</string>
     <string name="rede_nao_disponivel">Network not available</string>
     <string name="refresh">Refresh</string>
     <string name="report_description">Alert problem on your way</string>
@@ -512,6 +514,7 @@
     <string name="title_activity_splash" translatable="false">Splash</string>
     <string name="title_activity_sugestao">Suggestion</string>
     <string name="title_activity_welcome_screen" translatable="false">WelcomeScreen</string>
+    <string name="type_of_alert">TYPE OF ALERT</string>
     <string name="vagas">Parking spots: </string>
     <string name="vagas_livres">Free parking spots: </string>
     <string name="via_esburacada">Bumpy street</string>

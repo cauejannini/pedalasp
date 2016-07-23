@@ -179,6 +179,7 @@ public class EstabelecimentoInfoF extends Fragment implements OnMapReadyCallback
 
                 new AsyncTask<String, Void, String>() {
                     protected void onPreExecute() {
+                        btClearAddress.setVisibility(View.GONE);
                         pBarSearch.setVisibility(View.VISIBLE);
 
                     }
@@ -245,6 +246,7 @@ public class EstabelecimentoInfoF extends Fragment implements OnMapReadyCallback
                     markerShop = null;
                 }
 
+                btClearAddress.setVisibility(View.GONE);
                 pBarSearch.setVisibility(View.VISIBLE);
 
                 if (!isNetworkAvailable()) {
