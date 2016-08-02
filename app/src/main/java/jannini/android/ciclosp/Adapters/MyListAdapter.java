@@ -95,7 +95,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
         case 3:
             if (Constant.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
             } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_bicicletarios);
+            holder.image.setBackgroundResource(R.drawable.ic_parking);
             break;
         case 4:
             if (Constant.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);

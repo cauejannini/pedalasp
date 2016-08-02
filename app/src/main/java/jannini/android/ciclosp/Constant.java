@@ -18,12 +18,19 @@ public class Constant {
     public static String url_obter_ciclosampa = "http://pedalaspapp.com.br/dbaccess/obter_ciclosampa.php";
     public static String url_report = "http://pedalaspapp.com.br/dbaccess/report_bikelane_problem.php";
     public static String url_add_estabelecimento = "http://pedalaspapp.com.br/dbaccess/add_estabelecimento.php";
+    public static String url_send_parkedHere = "http://pedalaspapp.com.br/dbaccess/send_parkedHere.php";
     public static String url_send_email = "http://pedalaspapp.com.br/dbaccess/send_email.php";
     public static String url_notify_solved = "http://pedalaspapp.com.br/dbaccess/notify_solved_report.php";
 
     public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
     public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
     public static String spJobCS = "jannini.android.ciclosp.jsonCSString";
+    public static String spParkedHereListSize = "jannini.android.ciclosp.spParkedHereListSize";
+    public static String spParkedHereLat = "jannini.android.ciclosp.parkedHereLat";
+    public static String spParkedHereLng = "jannini.android.ciclosp.parkedHereLng";
+    public static String spFavoritePlaceListSize = "jannini.android.ciclosp.spFavoritePlaceListSize";
+    public static String spFavoritePlaceLat = "jannini.android.ciclosp.spFavoritePlaceLat";
+    public static String spFavoritePlaceLng = "jannini.android.ciclosp.spFavoritePlaceLng";
 
     public static String spUpdateTimeBS = "jannini.android.ciclosp.updateTimeBS";
     public static String spUpdateTimeCS = "jannini.android.ciclosp.updateTimeCS";

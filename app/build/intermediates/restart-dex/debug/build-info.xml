@@ -4,32 +4,37 @@
     api-level="23"
     density="xhdpi"
     format="7"
-    timestamp="1014265631085557"
+    timestamp="175435926934427"
     token="4115961687095843942" >
 
     <task
         name="javac"
-        duration="3131" />
+        duration="1704" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="594" />
+        duration="104" />
     <task
         name="verifier"
-        duration="261" />
+        duration="9" />
 
     <artifact
         location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
         type="DEX" />
 
-    <build timestamp="1010408214391023" >
+    <build timestamp="174059947253452" >
         <artifact
             location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="1014265631085557" >
+    <build timestamp="175093630853840" >
+        <artifact
+            location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
+    </build>
+    <build timestamp="175435926934427" >
         <artifact
             location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
             type="DEX" />

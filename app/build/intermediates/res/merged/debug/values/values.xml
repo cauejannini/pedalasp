@@ -48,6 +48,7 @@
     <color name="actionbar_text">#000</color>
     <color name="alwhite">#fafafa</color>
     <color name="app_blue">#001f4c</color>
+    <color name="app_yellow">#f4aa33</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
@@ -98,7 +99,7 @@
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
     <color name="light_text">#a0a0a0</color>
-    <color name="location_blue">#1766c6</color>
+    <color name="location_blue">#0080ff</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -417,6 +418,7 @@
     <string name="funcionamento">Opening hours: </string>
     <string name="ga_trackingId" translatable="false">UA-54096754-1</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="i_parked_here">I PARKED HERE</string>
     <string name="inclinacao">Inclination: </string>
     <string name="inclinacao_maxima">Max inclination</string>
     <string name="ir_para_mapa">Go to map</string>
@@ -471,6 +473,7 @@
     <string name="rbReportError">Please choose the alert type</string>
     <string name="rede_nao_disponivel">Network not available</string>
     <string name="refresh">Refresh</string>
+    <string name="remove">REMOVE</string>
     <string name="report_description">Alert problem on your way</string>
     <string name="route_error_check_connection">Error creating route. Check you connection.</string>
     <string name="route_explanation">Click on top of the elevation profile line to see, on the map, the elevation of a specific point.</string>
@@ -478,6 +481,7 @@
     <string name="route_nenhuma_rota_criada">No route created</string>
     <string name="route_tab_explanation">On the route mode, the bottom tab shows details of the selected route, with it\'s elevation profile.</string>
     <string name="runkeeper_login">Connect to Runkeeper</string>
+    <string name="saved_place">Saved place</string>
     <string name="sem_conexao">We coudn\'t download the data. Check you connection.</string>
     <string name="seu_email">Email</string>
     <string name="seu_local">Your location</string>
@@ -522,6 +526,7 @@
     <string name="which_address">Looking for:</string>
     <string name="which_destination">Confirm the destination:</string>
     <string name="which_origin">Confirm the origin:</string>
+    <string name="your_bike_is_here">Your bike is here</string>
     <style name="ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
     	<item name="android:background">@color/app_blue</item>
     	<item name="android:logo">@android:color/transparent</item>

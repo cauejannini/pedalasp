@@ -251,10 +251,11 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	// Notify solved variables
 
-	Button notifyButton;
-	ObjectAnimator hideNotifyButton;
-	String clickedMarkerId;
-	Marker clickedMarker;
+    LinearLayout llPlaceOptions;
+	Button notifyButton, btParkedHere, btRemovePlace, btParkedHereSmall, btPlaceFavorite;
+	Marker activeMarker;
+    ArrayList<Marker> parkedHereMarkerList = new ArrayList<>();
+    ArrayList<Marker> favoritePlacesMarkerList = new ArrayList<>();
 
 	Map<String, String> alertMap = new HashMap<>();
 
@@ -428,27 +429,11 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		// Define NotifyButton Animation and Animation listener
 		notifyButton = (Button) findViewById(R.id.notify_solved);
-
-		hideNotifyButton = ObjectAnimator.ofFloat(notifyButton, "translationY", 0, 600);
-		hideNotifyButton.addListener(new AnimatorListener() {
-
-			@Override
-			public void onAnimationEnd(Animator animation) {
-				notifyButton.setVisibility(View.GONE);
-			}
-
-			@Override
-			public void onAnimationStart(Animator animation) {
-			}
-
-			@Override
-			public void onAnimationCancel(Animator animation) {
-			}
-
-			@Override
-			public void onAnimationRepeat(Animator animation) {
-			}
-		});
+        btParkedHere = (Button) findViewById(R.id.bt_parked_here);
+        btRemovePlace = (Button) findViewById(R.id.bt_remove_parked_here);
+        llPlaceOptions = (LinearLayout) findViewById(R.id.ll_place_options);
+        btParkedHereSmall = (Button) findViewById(R.id.bt_parked_here_small);
+        btPlaceFavorite = (Button) findViewById(R.id.bt_place_favorite);
 
 		iv = (ImageView) findViewById(R.id.iv_action_refresh);
 
@@ -987,6 +972,36 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 			googleMap.getUiSettings().setCompassEnabled(true);
 
+            int parkedHereSize = Integer.valueOf(sharedPreferences.getString(Constant.spParkedHereListSize, "0"));
+            Log.e("Parked SIZE", String.valueOf(parkedHereSize));
+            for (int i = 0; i < parkedHereSize; i++) {
+                Log.e("Parked I", String.valueOf(i));
+                double lat = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLat+i, ""));
+                double lng = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLng+i, ""));
+                if (lat != 0 && lng != 0) {
+                    parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
+                            .title(getString(R.string.your_bike_is_here))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
+                            .anchor(0.5f, 1f)
+                            .position(new LatLng(lat, lng))));
+                }
+            }
+
+            int favoritePlacesSize = Integer.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceListSize, "0"));
+            Log.e("Favorite SIZE", String.valueOf(favoritePlacesSize));
+            for (int i = 0; i < favoritePlacesSize; i++) {
+                Log.e("Favorite I", String.valueOf(i));
+                double lat = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLat+i, ""));
+                double lng = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLng+i, ""));
+                if (lat != 0 && lng != 0) {
+                    favoritePlacesMarkerList.add(googleMap.addMarker(new MarkerOptions()
+                            .title(getString(R.string.saved_place))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_favorite_place))
+                            .anchor(0.5f, 0.5f)
+                            .position(new LatLng(lat, lng))));
+                }
+            }
+
 			// check if map is created successfully or not
 			if (googleMap == null) {
 				Toast.makeText(getApplicationContext(),
@@ -1073,7 +1088,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 			public void onMapClick(LatLng point) {
 
-				hideNotifyButton.start();
+                hideAllBottomButtons();
 
 				for (Marker marker : listMarker) {
 					marker.remove();
@@ -1187,6 +1202,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			@Override
 			public boolean onMarkerClick(Marker marker) {
 
+				activeMarker = marker;
+
 				String markerTitle = marker.getTitle();
 				t.send(new HitBuilders.EventBuilder()
 						.setCategory("markerClick")
@@ -1204,29 +1221,25 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 					graph_point_marker.remove();
 				}
 
-				// Check if clicked on notifyButton
-				clickedMarkerId = marker.getId();
+                if (ListMarkersAlerts.contains(marker)) {
+                    showBottomButton(notifyButton);
+                } else {
+                    hideBottomButton(notifyButton);
+                }
 
-				boolean b = false;
+				if (ListMarkersBicicletarios.contains(marker)) {
+                    showBottomButton(btParkedHere);
+				} else {
+                    hideBottomButton(btParkedHere);
+                    hideBottomButton(llPlaceOptions);
+                }
 
-				for (int i = 0; i < ListMarkersAlertsIds.size(); i++) {
-
-					if (clickedMarkerId.equals(ListMarkersAlertsIds.get(i))) {
-
-						hideNotifyButton.end();
-
-						ObjectAnimator objAnim = ObjectAnimator.ofFloat(notifyButton, "translationY", 0);
-						notifyButton.setVisibility(View.VISIBLE);
-						objAnim.start();
-						b = true;
-						clickedMarker = marker;
-
-					}
-
-				}
-				if (!b) {
-					hideNotifyButton.start();
-				}
+                if (marker.getTitle().equals(getString(R.string.your_bike_is_here)) || marker.getTitle().equals(getString(R.string.saved_place))) {
+                    showBottomButton(btRemovePlace);
+                } else {
+                    hideBottomButton(btRemovePlace);
+                    hideBottomButton(llPlaceOptions);
+                }
 
 				// Funcionalidades padrões para quando se clica em qualquer marcador
 				marker.showInfoWindow();
@@ -1240,8 +1253,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			@Override
 			public void onMapLongClick(LatLng latLng) {
 
-				// Hide notifyButton
-				hideNotifyButton.start();
+                hideAllBottomButtons();
 
 				// Remove graph_point_marker
 				if (graph_point_marker != null) {
@@ -1337,7 +1349,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 								if (markerDestination != null) {
 									markerDestination.remove();
 								}
-								markerDestination = googleMap.addMarker(new MarkerOptions()
+                                markerDestination = googleMap.addMarker(new MarkerOptions()
 										.position(ll)
 										.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
 										.title(getString(R.string.chegada)));
@@ -1363,8 +1375,10 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 								markerSearch.remove();
 								markerSearch = null;
 							}
-							markerSearch = googleMap.addMarker(new MarkerOptions()
+                            activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
 									.position(ll));
+
+                            showBottomButton(llPlaceOptions);
 						}
 					}
 				}.execute();
@@ -1375,7 +1389,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			@Override
 			public void onInfoWindowClick(Marker marker) {
 				marker.hideInfoWindow();
-				hideNotifyButton.start();
+                hideAllBottomButtons();
 			}
 		});
 	}
@@ -1492,7 +1506,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 							CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
 							googleMap.moveCamera(center);
 							googleMap.animateCamera(zoom);
-							markerSearch = googleMap.addMarker(new MarkerOptions()
+                            activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
 									.position(new LatLng(lat, lng))
 									.title(address.getAddressLine(0)));
 
@@ -1506,6 +1520,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 							}
 							etSearch.setText(finalStringAddress);
 							btClearSearch.setVisibility(View.VISIBLE);
+                            showBottomButton(llPlaceOptions);
 						}
 
 					} else {
@@ -1523,7 +1538,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 											CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
 											googleMap.moveCamera(center);
 											googleMap.animateCamera(zoom);
-											markerSearch = googleMap.addMarker(new MarkerOptions()
+                                            activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
 													.position(new LatLng(lat, lng))
 													.title(address.getAddressLine(0)));
 
@@ -1534,6 +1549,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 											}
 											etSearch.setText(finalStringAddress);
 											btClearSearch.setVisibility(View.VISIBLE);
+                                            showBottomButton(llPlaceOptions);
 										}
 									}
 								});
@@ -1632,7 +1648,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
     /* REPORT MANAGING */
 
-	public void notifySolved(View view) {
+	public void notifySolved (View view) {
 
 		boolean b = false;
 
@@ -1650,7 +1666,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 					}
 
 					ListMarkersAlerts.get(i).hideInfoWindow();
-					hideNotifyButton.start();
+					hideBottomButton(notifyButton);
 
 					b = true;
 				}
@@ -1681,6 +1697,53 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		}
 
 	}
+
+	public void setParkedHere (View view) {
+        if (activeMarker != null) {
+            parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
+                    .position(activeMarker.getPosition())
+                    .title(getString(R.string.your_bike_is_here))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
+                    .anchor(0.5f, 1f)));
+            Calls.sendParkedHere(String.valueOf(activeMarker.getPosition().latitude), String.valueOf(activeMarker.getPosition().longitude), null);
+            if (view.getId() == R.id.bt_parked_here_small) {
+                hideBottomButton(llPlaceOptions);
+            } else {
+                hideBottomButton(view);
+            }
+        }
+    }
+
+    public void removePlace(View view) {
+        if (activeMarker != null) { activeMarker.remove();}
+        // Remove marker from list
+        for (int i = 0 ; i < favoritePlacesMarkerList.size() ; i++) {
+            if (favoritePlacesMarkerList.get(i).getId().equals(activeMarker.getId())) {
+                favoritePlacesMarkerList.remove(i);
+            }
+        }
+        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
+            if (parkedHereMarkerList.get(i).getId().equals(activeMarker.getId())) {
+                parkedHereMarkerList.remove(i);
+            }
+        }
+        hideBottomButton(view);
+    }
+
+    public void setFavoritePlace (View view) {
+        if (activeMarker != null) {
+            favoritePlacesMarkerList.add(googleMap.addMarker(new MarkerOptions()
+                    .position(activeMarker.getPosition())
+                    .title(getString(R.string.saved_place))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_favorite_place))
+                    .anchor(0.5f, 0.5f)));
+            if (view.getId() == R.id.bt_place_favorite) {
+                hideBottomButton(llPlaceOptions);
+            } else {
+                hideBottomButton(view);
+            }
+        }
+    }
 
     /* END REPORT MANAGING */
     /* SETTING UP INFO FROM DB */
@@ -2435,8 +2498,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 				marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
 				marker.setAnchor(0.5f, 1.0f);
-				marker.setSnippet(getString(R.string.endereco)+": " + ListBicicletarios.get(i).address
-                        + newline + getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas);
+				marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
+                        + newline + getString(R.string.endereco)+": " + ListBicicletarios.get(i).address);
 			}
 			ListMarkersBicicletarios.add(marker);
 		}
@@ -2476,7 +2539,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			alertMap.clear();
 		}
 
-		hideNotifyButton.start();
+		hideBottomButton(notifyButton);
 
 		for (int i = 0; i < ListAlerts.size(); i++) {
 			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper. 
@@ -3877,6 +3940,44 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     /* END ROUTING */
     /* MISCELLANEOUS */
 
+    public void showBottomButton (final View viewToAnimate) {
+        ObjectAnimator showAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0);
+        viewToAnimate.setVisibility(View.VISIBLE);
+        showAnimation.start();
+
+    }
+
+    public void hideBottomButton(final View viewToAnimate) {
+        ObjectAnimator hideAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0, 600);
+        hideAnimation.addListener(new AnimatorListener() {
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                viewToAnimate.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
+        });
+        hideAnimation.start();
+    }
+
+    public void hideAllBottomButtons () {
+        hideBottomButton(notifyButton);
+        hideBottomButton(btParkedHere);
+        hideBottomButton(btRemovePlace);
+        hideBottomButton(llPlaceOptions);
+    }
+
 	private boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -4019,6 +4120,18 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
         editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
         editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
+
+        editor.putString(Constant.spFavoritePlaceListSize, String.valueOf(favoritePlacesMarkerList.size()));
+        for (int i = 0 ; i < favoritePlacesMarkerList.size() ; i++) {
+            editor.putString(Constant.spFavoritePlaceLat + i, String.valueOf(favoritePlacesMarkerList.get(i).getPosition().latitude))
+                    .putString(Constant.spFavoritePlaceLng + i, String.valueOf(favoritePlacesMarkerList.get(i).getPosition().longitude));
+        }
+
+        sharedPreferences.edit().putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size())).apply();
+        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
+            editor.putString(Constant.spParkedHereLat + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().latitude))
+                    .putString(Constant.spParkedHereLng + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().longitude));
+        }
 
         editor.apply();
 

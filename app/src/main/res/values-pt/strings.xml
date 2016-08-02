@@ -161,4 +161,8 @@
         <string name="type_of_alert">TIPO DE ALERTA</string>
         <string name="etReportDetailsError">Campo obrigatório</string>
         <string name="rbReportError">Escolha o tipo de alerta</string>
+        <string name="your_bike_is_here">Sua bike está aqui</string>
+        <string name="i_parked_here">ESTACIONEI AQUI</string>
+        <string name="remove">REMOVER</string>
+        <string name="saved_place">Local salvo</string>
 </resources>

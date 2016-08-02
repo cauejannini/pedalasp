@@ -189,4 +189,8 @@
     <string name="type_of_alert">TYPE OF ALERT</string>
     <string name="etReportDetailsError">Mandatory field</string>
     <string name="rbReportError">Please choose the alert type</string>
+    <string name="your_bike_is_here">Your bike is here</string>
+    <string name="i_parked_here">I PARKED HERE</string>
+    <string name="remove">REMOVE</string>
+    <string name="saved_place">Saved place</string>
 </resources>

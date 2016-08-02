@@ -99,6 +99,7 @@
     <string name="from_my_location">Partir da minha localização</string>
     <string name="from_other_location">Escolher outro endereço</string>
     <string name="funcionamento">Funcionamento:</string>
+    <string name="i_parked_here">ESTACIONEI AQUI</string>
     <string name="inclinacao">Inclinação:</string>
     <string name="inclinacao_maxima">Inclinação máxima</string>
     <string name="ir_para_mapa">Ir para o mapa</string>
@@ -149,6 +150,7 @@
     <string name="rbReportError">Escolha o tipo de alerta</string>
     <string name="rede_nao_disponivel">Rede não disponível</string>
     <string name="refresh">Refresh</string>
+    <string name="remove">REMOVER</string>
     <string name="report_description">Alertar problema no trajeto</string>
     <string name="route_error_check_connection">Erro ao criar a rota. Verifique sua conexão.</string>
     <string name="route_explanation">Clique em cima da linha do perfil de elevação para visualizar, no mapa, a elevação de um ponto específico.</string>
@@ -156,6 +158,7 @@
     <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
     <string name="route_tab_explanation">No modo rota, a aba inferior mostra detalhes da rota selecionada, como o perfil de elevação.</string>
     <string name="runkeeper_login">Conectar com Runkeeper</string>
+    <string name="saved_place">Local salvo</string>
     <string name="sem_conexao">Não foi possível carregar as informações. Verifique sua conexão.</string>
     <string name="seu_email">Email de contato</string>
     <string name="seu_local">Seu local</string>
@@ -188,4 +191,5 @@
     <string name="which_address">Você está procurando:</string>
     <string name="which_destination">Confirme o endereço de destino:</string>
     <string name="which_origin">Confirme o endereço de origem:</string>
+    <string name="your_bike_is_here">Sua bike está aqui</string>
 </resources>

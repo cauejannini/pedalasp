@@ -216,4 +216,74 @@ public class Calls {
 
 
 	}
+
+	public static void sendParkedHere (
+			final String lat,
+			final String lng,
+			final CallHandler handler) {
+
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		Date currentLocalTime = cal.getTime();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		final String timestamp = date.format(currentLocalTime);
+
+		new AsyncTask<String, String, ResponseWrapper>() {
+
+			protected ResponseWrapper doInBackground(String... args) {
+
+				try {
+
+					URL url = new URL(Constant.url_send_parkedHere);
+
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					connection.setDoOutput(true);
+					connection.setDoInput(true);
+					connection.setRequestMethod("POST");
+
+					// Criar o OutputStream para carregar a mensagem
+					OutputStream os = connection.getOutputStream();
+					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+					buffWriter.write(
+							"lat="+lat+"&"+
+							"lng="+lng+"&"+
+							"timestamp="+timestamp
+					);
+					buffWriter.flush();
+					buffWriter.close();
+					os.close();
+
+					connection.connect();
+
+					InputStream is = connection.getInputStream();
+					int responseCode = connection.getResponseCode();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
+					StringBuilder sb = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						sb.append(line).append("\n");
+					}
+					is.close();
+					String response = sb.toString();
+
+					Log.i("sendParkedHere response", response);
+
+					return new ResponseWrapper(responseCode, response);
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(ResponseWrapper wrapper) {
+				if (handler != null) {
+					handler.onResponse(wrapper.responseCode, wrapper.response);
+				}
+			}
+		}.execute();
+
+
+	}
 }
