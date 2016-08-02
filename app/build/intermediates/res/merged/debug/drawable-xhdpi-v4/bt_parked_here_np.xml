@@ -33,7 +33,7 @@
 		</shape>
 	</item>       	
 	
-	<item android:bottom="3dp" android:left="7dp">
+	<item android:bottom="3dp" android:left="12dp">
 		<bitmap
 		   	android:src="@drawable/ic_parked_here"
 		   	android:gravity="center_vertical|start"
