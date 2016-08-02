@@ -3134,7 +3134,7 @@ containing a value of this type.
         public static final int network_update_alert_dialog=0x7f060088;
         public static final int notifySolved=0x7f060089;
         public static final int null_map=0x7f06008a;
-        public static final int obrigado=0x7f06008b;
+        public static final int toast_thanks =0x7f06008b;
         public static final int obrigado_feedback=0x7f06008c;
         public static final int obrigado_por_avisar=0x7f06008d;
         public static final int offline=0x7f0600cf;

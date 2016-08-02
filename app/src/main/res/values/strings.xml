@@ -163,8 +163,8 @@
     <string name="route_error_check_connection">Error creating route. Check you connection.</string>
     <string name="via_esburacada">Bumpy street</string>
     <string name="inclinacao">Inclination: </string>
-    <string name="loc_selecione_localizacao">Please, select location</string>
-    <string name="obrigado">Thanks!</string>
+    <string name="loc_selecione_localizacao">Please select location</string>
+    <string name="toast_thanks">Thanks!</string>
     <string name="rede_nao_disponivel">Network not available</string>
     <string name="inclinacao_maxima">Max inclination</string>
     <string name="route_nenhuma_rota_criada">No route created</string>
@@ -193,4 +193,6 @@
     <string name="i_parked_here">I PARKED HERE</string>
     <string name="remove">REMOVE</string>
     <string name="saved_place">Saved place</string>
+    <string name="mandatory_field">Mandatory field</string>
+    <string name="toast_error">Oops, there was an error...</string>
 </resources>

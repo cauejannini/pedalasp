@@ -33,353 +33,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bed5f731-92a1-4262-9c1c-ffb0235b9cb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$36.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$37.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$37.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$38.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$38.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SplashScreen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SugestaoActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SugestaoActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/appcompat/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/mediarouter/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/android/support/v7/mediarouter/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/google/android/gms/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/google/android/gms/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$15$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$15$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$34$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$34$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$36.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$37.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$37.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$38.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$38.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$SwipeFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$SwipeFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/ReportActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/ReportActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/SplashScreen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/SugestaoActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/jannini/android/ciclosp/SugestaoActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/classes.zip" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/classes.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/resources.zip" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/resources.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/appcompat/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/mediarouter/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/android/support/v7/mediarouter/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/google/android/gms/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/google/android/gms/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/MyListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Adapters/MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$15$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$15$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$34$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$34$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$36.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$37.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$37.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$38.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$38.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$CustomComparator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$CustomComparator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$SwipeFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$SwipeFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/ReportActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/ReportActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/SplashScreen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/SugestaoActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/jannini/android/ciclosp/SugestaoActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/android/support/v7/appcompat/R$id$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/android/support/v7/appcompat/R$id$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/android/support/v7/mediarouter/R$id$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/android/support/v7/mediarouter/R$id$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/google/android/gms/R$id$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/com/google/android/gms/R$id$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/InfoWindowActivity$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/InfoWindowActivity$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/MyListAdapter$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Adapters/MyListAdapter$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$12$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$12$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$13$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$13$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$14$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$14$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$15$1$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$15$1$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$15$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$15$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$16$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$16$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$1$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$1$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$2$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$2$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$17$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$18$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$18$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$19$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$19$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$20$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$20$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$21$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$21$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$22$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$22$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$23$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$23$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$24$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$24$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$25$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$25$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$26$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$26$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$27$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$27$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$28$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$28$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$29$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$29$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$1$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$1$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$2$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$2$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$3$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$3$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$4$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$4$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$30$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$31$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$31$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$1$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$1$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$2$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$2$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$3$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$3$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$4$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$4$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$32$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$33$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$33$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$34$1$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$34$1$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$34$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$34$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$35$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$35$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$36$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$36$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$37$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$37$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$38$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$38$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$CustomComparator$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$CustomComparator$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$SwipeFragment$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$SwipeFragment$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/MainActivity$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/R$id$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/R$id$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/R$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/R$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/ReportActivity$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/ReportActivity$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/SplashScreen$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/SplashScreen$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/SugestaoActivity$override.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/4000/5/enhanced/jannini/android/ciclosp/SugestaoActivity$override.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/android/support/v7/appcompat/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/google/android/gms/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/google/android/gms/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/android/support/v7/mediarouter/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/android/support/v7/mediarouter/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$15$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$15$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$34$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$34$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$36.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$37.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$37.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$38.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$38.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$CustomComparator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$CustomComparator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$SwipeFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$SwipeFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/ReportActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/ReportActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/SplashScreen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/SugestaoActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/jannini/android/ciclosp/SugestaoActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/InfoWindowActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/MyListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/jannini/android/ciclosp/Adapters/MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/jannini/android/ciclosp/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/jannini/android/ciclosp/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/bt_parked_here_np.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/bt_parked_here_np.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/bt_parked_here_p.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4/bt_parked_here_p.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_main_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/buildId.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/buildId.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/buildId.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/buildId.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_np.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_np.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_p.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_p.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="PedalaSP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -399,322 +60,7 @@
     <favorites_list name="PedalaSP" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45920303">
-              <caret line="363" column="30" selection-start-line="363" selection-start-column="30" selection-end-line="363" selection-end-column="30" />
-              <folding>
-                <element signature="e#10260#10281#0" expanded="false" />
-                <element signature="e#11779#11798#0" expanded="false" />
-                <element signature="e#12037#12068#0" expanded="true" />
-                <element signature="e#18303#18323#0" expanded="true" />
-                <element signature="e#18377#18398#0" expanded="true" />
-                <element signature="class#18247:18782" expanded="false" />
-                <element signature="method#onDrawerClosed#0;class#18247:18782" expanded="false" />
-                <element signature="method#onDrawerOpened#0;class#18247:18782" expanded="false" />
-                <element signature="class#19022:19377" expanded="false" />
-                <element signature="method#onAnimationStart#0;class#19022:19377" expanded="false" />
-                <element signature="method#onAnimationCancel#0;class#19022:19377" expanded="false" />
-                <element signature="method#onAnimationRepeat#0;class#19022:19377" expanded="false" />
-                <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#20198#20263#0" expanded="false" />
-                <element signature="class#DrawerItemClickListener#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onItemClick#0;class#DrawerItemClickListener#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#selectItem#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#selectBikeLaneTypes#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#displayBikeLanes#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#selectSharingSystems#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#displaySharingSystems#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#36621#36658#0" expanded="true" />
-                <element signature="e#36734#36771#0" expanded="true" />
-                <element signature="e#37714#37751#0" expanded="true" />
-                <element signature="e#39110#39138#0" expanded="true" />
-                <element signature="method#setUserLocation#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#findMe#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#40712#40745#0" expanded="true" />
-                <element signature="class#40843:41410" expanded="false" />
-                <element signature="method#onLocationChanged#0;class#40843:41410" expanded="false" />
-                <element signature="e#41459#41496#0" expanded="true" />
-                <element signature="method#setMapEvents#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#43367#43402#0" expanded="true" />
-                <element signature="e#44420#44444#0" expanded="true" />
-                <element signature="e#44529#44564#0" expanded="true" />
-                <element signature="e#44655#44681#0" expanded="true" />
-                <element signature="e#44766#44801#0" expanded="true" />
-                <element signature="e#45794#47372#0" expanded="true" />
-                <element signature="e#46828#46865#0" expanded="true" />
-                <element signature="e#47371#47372#0" expanded="true" />
-                <element signature="method#onPreExecute#0;class#47741:51426" expanded="false" />
-                <element signature="method#doInBackground#0;class#47741:51426" expanded="false" />
-                <element signature="e#49385#49422#0" expanded="true" />
-                <element signature="e#49594#49621#0" expanded="true" />
-                <element signature="e#50052#50089#0" expanded="true" />
-                <element signature="e#50529#50556#0" expanded="true" />
-                <element signature="e#50953#50990#0" expanded="true" />
-                <element signature="e#51112#51149#0" expanded="true" />
-                <element signature="e#51491#51675#0" expanded="true" />
-                <element signature="e#51674#51675#0" expanded="true" />
-                <element signature="method#findAddress#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#52052:57931" expanded="false" />
-                <element signature="method#onPreExecute#0;class#52052:57931" expanded="false" />
-                <element signature="method#doInBackground#0;class#52052:57931" expanded="false" />
-                <element signature="method#onPostExecute#0;class#52052:57931" expanded="false" />
-                <element signature="e#55225#55247#0" expanded="false" />
-                <element signature="e#55865#55898#0" expanded="true" />
-                <element signature="e#57405#57450#0" expanded="true" />
-                <element signature="e#57471#57518#0" expanded="true" />
-                <element signature="e#57546#57568#0" expanded="true" />
-                <element signature="class#57574:57690" expanded="false" />
-                <element signature="method#onClick#0;class#57574:57690" expanded="false" />
-                <element signature="method#onCancelled#0;class#52052:57931" expanded="false" />
-                <element signature="method#showNetworkAlertDialog#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#58095#58134#0" expanded="true" />
-                <element signature="e#58152#58192#0" expanded="true" />
-                <element signature="e#58217#58239#0" expanded="true" />
-                <element signature="class#58245:58352" expanded="false" />
-                <element signature="method#onClick#0;class#58245:58352" expanded="false" />
-                <element signature="e#58377#58413#0" expanded="true" />
-                <element signature="method#clearSearch#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#addFunction#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#notifySolved#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#60821#60860#0" expanded="true" />
-                <element signature="e#60937#60982#0" expanded="true" />
-                <element signature="e#61185#61224#0" expanded="true" />
-                <element signature="e#61243#61283#0" expanded="true" />
-                <element signature="e#61309#61331#0" expanded="true" />
-                <element signature="class#61337:61447" expanded="false" />
-                <element signature="method#onClick#0;class#61337:61447" expanded="false" />
-                <element signature="e#61473#61509#0" expanded="true" />
-                <element signature="e#61987#62024#0" expanded="true" />
-                <element signature="method#getDataFromDB#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createBaseArrays#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#76702#76761#0" expanded="true" />
-                <element signature="method#createBikeSampaArray#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#createCicloSampaArray#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#drawParques#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#81307#81344#0" expanded="true" />
-                <element signature="e#81454#81486#0" expanded="true" />
-                <element signature="e#81677#81714#0" expanded="true" />
-                <element signature="e#81824#81852#0" expanded="true" />
-                <element signature="method#drawCicloSampa#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#82360#82399#0" expanded="true" />
-                <element signature="e#82685#82716#0" expanded="true" />
-                <element signature="e#82783#82820#0" expanded="true" />
-                <element signature="e#82862#82894#0" expanded="true" />
-                <element signature="e#82944#82977#0" expanded="true" />
-                <element signature="e#83145#83176#0" expanded="true" />
-                <element signature="e#83243#83280#0" expanded="true" />
-                <element signature="e#83322#83354#0" expanded="true" />
-                <element signature="e#83404#83437#0" expanded="true" />
-                <element signature="e#83583#83614#0" expanded="true" />
-                <element signature="e#83681#83718#0" expanded="true" />
-                <element signature="e#83760#83792#0" expanded="true" />
-                <element signature="e#83842#83875#0" expanded="true" />
-                <element signature="e#84094#84121#0" expanded="true" />
-                <element signature="e#84186#84223#0" expanded="true" />
-                <element signature="e#84264#84296#0" expanded="true" />
-                <element signature="e#84345#84378#0" expanded="true" />
-                <element signature="e#84523#84568#0" expanded="true" />
-                <element signature="e#84633#84670#0" expanded="true" />
-                <element signature="e#84711#84743#0" expanded="true" />
-                <element signature="e#84792#84825#0" expanded="true" />
-                <element signature="method#drawBikeSampa#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#85469#85507#0" expanded="true" />
-                <element signature="e#85793#85824#0" expanded="true" />
-                <element signature="e#85891#85928#0" expanded="true" />
-                <element signature="e#85970#86002#0" expanded="true" />
-                <element signature="e#86052#86085#0" expanded="true" />
-                <element signature="e#86252#86283#0" expanded="true" />
-                <element signature="e#86350#86387#0" expanded="true" />
-                <element signature="e#86429#86461#0" expanded="true" />
-                <element signature="e#86511#86544#0" expanded="true" />
-                <element signature="e#86689#86720#0" expanded="true" />
-                <element signature="e#86787#86824#0" expanded="true" />
-                <element signature="e#86866#86898#0" expanded="true" />
-                <element signature="e#86948#86981#0" expanded="true" />
-                <element signature="e#87199#87226#0" expanded="true" />
-                <element signature="e#87291#87328#0" expanded="true" />
-                <element signature="e#87369#87401#0" expanded="true" />
-                <element signature="e#87450#87483#0" expanded="true" />
-                <element signature="e#87627#87672#0" expanded="true" />
-                <element signature="e#87737#87774#0" expanded="true" />
-                <element signature="e#87815#87847#0" expanded="true" />
-                <element signature="e#87896#87929#0" expanded="true" />
-                <element signature="method#drawBicicletarios#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#88800#88825#0" expanded="true" />
-                <element signature="e#88894#88941#0" expanded="true" />
-                <element signature="e#88971#89004#0" expanded="true" />
-                <element signature="e#89084#89109#0" expanded="true" />
-                <element signature="e#89178#89229#0" expanded="true" />
-                <element signature="e#89259#89292#0" expanded="true" />
-                <element signature="e#89497#89522#0" expanded="true" />
-                <element signature="e#89598#89626#0" expanded="true" />
-                <element signature="method#drawWifi#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#89913#90020#0" expanded="false" />
-                <element signature="method#drawAlerts#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#90845#90952#0" expanded="false" />
-                <element signature="e#91173#91200#0" expanded="true" />
-                <element signature="e#91249#91278#0" expanded="true" />
-                <element signature="e#91596#91630#0" expanded="true" />
-                <element signature="e#91797#91837#0" expanded="true" />
-                <element signature="e#91952#91978#0" expanded="true" />
-                <element signature="method#drawPermanentes#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#94514#94554#0" expanded="false" />
-                <element signature="method#drawTemporarias#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#95503#95545#0" expanded="false" />
-                <element signature="method#drawPreferenciais#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#drawAcessos#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#96427#96533#0" expanded="false" />
-                <element signature="method#drawEstabelecimentos#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#refreshData#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#97565#97586#0" expanded="false" />
-                <element signature="method#setUpdating#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#resetUpdating#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onRouteButtonClick#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#98325#98368#0" expanded="true" />
-                <element signature="e#98386#98427#0" expanded="true" />
-                <element signature="e#98454#98481#0" expanded="true" />
-                <element signature="method#turnOnRouteMode#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#99604#99631#0" expanded="true" />
-                <element signature="e#100452#100479#0" expanded="true" />
-                <element signature="e#100530#100559#0" expanded="true" />
-                <element signature="e#100643#100688#0" expanded="true" />
-                <element signature="e#101627#101654#0" expanded="true" />
-                <element signature="e#101761#101790#0" expanded="true" />
-                <element signature="e#101850#101895#0" expanded="true" />
-                <element signature="method#cancelRouteMode#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#102485#102504#0" expanded="false" />
-                <element signature="method#editDestination#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#editOrigin#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getDirections#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#geocodeOrigin#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#104243:110239" expanded="false" />
-                <element signature="method#onPreExecute#0;class#104243:110239" expanded="false" />
-                <element signature="method#doInBackground#0;class#104243:110239" expanded="false" />
-                <element signature="method#onPostExecute#0;class#104243:110239" expanded="false" />
-                <element signature="e#105216#105268#0" expanded="false" />
-                <element signature="e#106700#106727#0" expanded="true" />
-                <element signature="e#107531#107563#0" expanded="true" />
-                <element signature="e#108147#108174#0" expanded="true" />
-                <element signature="e#109074#109126#0" expanded="true" />
-                <element signature="e#109148#109195#0" expanded="true" />
-                <element signature="e#109224#109246#0" expanded="true" />
-                <element signature="class#109252:109371" expanded="false" />
-                <element signature="method#onClick#0;class#109252:109371" expanded="false" />
-                <element signature="method#onCancelled#0;class#104243:110239" expanded="false" />
-                <element signature="e#109664#109703#0" expanded="true" />
-                <element signature="e#109724#109764#0" expanded="true" />
-                <element signature="e#109792#109803#0" expanded="true" />
-                <element signature="class#109809:109925" expanded="false" />
-                <element signature="method#onClick#0;class#109809:109925" expanded="false" />
-                <element signature="e#109953#109989#0" expanded="true" />
-                <element signature="e#110404#110450#0" expanded="true" />
-                <element signature="e#110469#110517#0" expanded="true" />
-                <element signature="e#110543#110565#0" expanded="true" />
-                <element signature="class#110571:110681" expanded="false" />
-                <element signature="method#onClick#0;class#110571:110681" expanded="false" />
-                <element signature="method#geocodeDestination#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#111025:117065" expanded="false" />
-                <element signature="method#onPreExecute#0;class#111025:117065" expanded="false" />
-                <element signature="method#doInBackground#0;class#111025:117065" expanded="false" />
-                <element signature="method#onPostExecute#0;class#111025:117065" expanded="false" />
-                <element signature="e#111998#112050#0" expanded="false" />
-                <element signature="e#113575#113602#0" expanded="true" />
-                <element signature="e#114142#114179#0" expanded="true" />
-                <element signature="e#114984#115011#0" expanded="true" />
-                <element signature="e#115888#115941#0" expanded="true" />
-                <element signature="e#115963#116010#0" expanded="true" />
-                <element signature="e#116039#116061#0" expanded="true" />
-                <element signature="class#116067:116186" expanded="false" />
-                <element signature="method#onClick#0;class#116067:116186" expanded="false" />
-                <element signature="method#onCancelled#0;class#111025:117065" expanded="false" />
-                <element signature="e#116479#116518#0" expanded="true" />
-                <element signature="e#116539#116579#0" expanded="true" />
-                <element signature="e#116607#116629#0" expanded="true" />
-                <element signature="class#116635:116751" expanded="false" />
-                <element signature="method#onClick#0;class#116635:116751" expanded="false" />
-                <element signature="e#116779#116815#0" expanded="true" />
-                <element signature="e#117235#117281#0" expanded="true" />
-                <element signature="e#117300#117348#0" expanded="true" />
-                <element signature="e#117374#117396#0" expanded="true" />
-                <element signature="class#117402:117512" expanded="false" />
-                <element signature="method#onClick#0;class#117402:117512" expanded="false" />
-                <element signature="method#getRoutes#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#118608:122447" expanded="false" />
-                <element signature="method#onPreExecute#0;class#118608:122447" expanded="false" />
-                <element signature="e#119277#119316#0" expanded="true" />
-                <element signature="e#119337#119385#0" expanded="true" />
-                <element signature="e#119413#119435#0" expanded="true" />
-                <element signature="class#119441:119557" expanded="false" />
-                <element signature="method#onClick#0;class#119441:119557" expanded="false" />
-                <element signature="method#doInBackground#0;class#118608:122447" expanded="false" />
-                <element signature="e#120159#120247#0" expanded="false" />
-                <element signature="method#onPostExecute#0;class#118608:122447" expanded="false" />
-                <element signature="method#onCancelled#0;class#118608:122447" expanded="false" />
-                <element signature="method#cancelLoadingRoute#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#122764#122801#0" expanded="false" />
-                <element signature="method#getCompleteCyclingPath#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#124626#124657#0" expanded="false" />
-                <element signature="e#125003#125049#0" expanded="false" />
-                <element signature="class#CustomComparator#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#126201#126239#0" expanded="false" />
-                <element signature="method#compare#0;class#CustomComparator#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#drawRoutes#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#128791#128821#0" expanded="true" />
-                <element signature="e#128948#128975#0" expanded="true" />
-                <element signature="class#130679:131383" expanded="false" />
-                <element signature="method#onPageSelected#0;class#130679:131383" expanded="false" />
-                <element signature="method#onPageScrollStateChanged#0;class#130679:131383" expanded="false" />
-                <element signature="method#onPageScrolled#0;class#130679:131383" expanded="false" />
-                <element signature="class#SwipeFragmentPagerAdapter#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#getItem#0;class#SwipeFragmentPagerAdapter#0;class#MainActivity#0" expanded="false" />
-                <element signature="class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onCreateView#0;class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#133292#133354#0" expanded="false" />
-                <element signature="method#newInstance#0;class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#switchAddresses#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#135671#135698#0" expanded="true" />
-                <element signature="e#136401#136428#0" expanded="true" />
-                <element signature="method#onAnimationStart#0;class#136938:137424" expanded="false" />
-                <element signature="method#onAnimationCancel#0;class#136938:137424" expanded="false" />
-                <element signature="method#onAnimationRepeat#0;class#136938:137424" expanded="false" />
-                <element signature="method#isNetworkAvailable#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onLocationChanged#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onProviderDisabled#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onProviderEnabled#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onRequestPermissionsResult#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#140251#140288#0" expanded="true" />
-                <element signature="e#140418#140455#0" expanded="true" />
-                <element signature="e#140600#140646#0" expanded="true" />
-                <element signature="e#140668#140713#0" expanded="true" />
-                <element signature="e#140742#140764#0" expanded="true" />
-                <element signature="class#140770:140899" expanded="false" />
-                <element signature="method#onClick#0;class#140770:140899" expanded="false" />
-                <element signature="method#onStatusChanged#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#142178#142215#0" expanded="true" />
-                <element signature="method#onRestoreInstanceState#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.416666">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2799,7 +2145,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/NetworkRequests/CallHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SugestaoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/NetworkRequests/NotifySolvedReport.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/CustomItemClasses/Estabelecimento.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_my_location.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_listitem_settins_pr.xml" />
@@ -2822,11 +2167,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_estabelecimento_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/radio_report_checked.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/radio_report_pressed.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/radio_report_notpressed.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/splash.xml" />
@@ -2836,8 +2179,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_small.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_place_favorite.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/color.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_small_np.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_small_p.xml" />
@@ -2846,7 +2187,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_np.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_p.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java" />
       </list>
     </option>
   </component>
@@ -2893,6 +2239,46 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Gradle Scripts" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PedalaSP" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PedalaSP" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strings.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2971,6 +2357,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="ciclosp" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PedalaSP" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ciclosp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fragments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -3300,7 +2708,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3321,7 +2729,7 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23319027" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23319027" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -3350,36 +2758,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9626335">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/drawer_list_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45535713">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/ad_selectsharingsystems.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70414203">
-          <caret line="113" column="32" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/ad_selectbikelanes.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -3510,13 +2888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3939394">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.121212125">
@@ -3529,13 +2900,6 @@
         <state vertical-scroll-proportion="0.22292994">
           <caret line="7" column="46" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.060606">
-          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -3555,27 +2919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6066176">
-          <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="116" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44117647">
-          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6518375">
-          <caret line="385" column="52" selection-start-line="385" selection-start-column="52" selection-end-line="385" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_blue_border.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3588,14 +2931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2772074">
           <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50097847">
-          <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -3638,43 +2973,6 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/mapic_parked_here.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/NetworkRequests/Calls.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.444445">
-          <caret line="281" column="47" selection-start-line="281" selection-start-column="47" selection-end-line="281" selection-end-column="47" />
-          <folding>
-            <element signature="method#jsonRequest#0;class#Calls#0" expanded="false" />
-            <element signature="class#679:1857" expanded="false" />
-            <element signature="method#doInBackground#0;class#679:1857" expanded="false" />
-            <element signature="method#onPostExecute#0;class#679:1857" expanded="false" />
-            <element signature="method#sendReport#0;class#Calls#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#4232:5963" expanded="false" />
-            <element signature="method#onPostExecute#0;class#4232:5963" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="android-dummy:///Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7368421">
-          <caret line="164" column="52" selection-start-line="164" selection-start-column="52" selection-end-line="164" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83040935">
-          <caret line="192" column="46" selection-start-line="192" selection-start-column="46" selection-end-line="192" selection-end-column="46" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/bt_parked_here_small.xml">
@@ -3749,25 +3047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.72507554">
-          <caret line="105" column="47" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.416666">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.697074">
@@ -3776,10 +3055,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.025817556">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/ReportActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54873645">
+          <caret line="124" column="14" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+          <folding>
+            <element signature="e#3924#3959#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/RouteDetailSplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12908778">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91477275">
+          <caret line="105" column="47" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5679862">
+          <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45920303">
-          <caret line="363" column="30" selection-start-line="363" selection-start-column="30" selection-end-line="363" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.44592032">
+          <caret line="539" column="9" selection-start-line="539" selection-start-column="9" selection-end-line="539" selection-end-column="9" />
           <folding>
             <element signature="e#10260#10281#0" expanded="false" />
             <element signature="e#11779#11798#0" expanded="false" />
@@ -3794,7 +3118,7 @@
             <element signature="method#onAnimationCancel#0;class#19022:19377" expanded="false" />
             <element signature="method#onAnimationRepeat#0;class#19022:19377" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#20198#20263#0" expanded="false" />
+            <element signature="e#20196#20261#0" expanded="false" />
             <element signature="class#DrawerItemClickListener#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onItemClick#0;class#DrawerItemClickListener#0;class#MainActivity#0" expanded="false" />
             <element signature="method#selectItem#0;class#MainActivity#0" expanded="false" />
@@ -3802,259 +3126,226 @@
             <element signature="method#displayBikeLanes#0;class#MainActivity#0" expanded="false" />
             <element signature="method#selectSharingSystems#0;class#MainActivity#0" expanded="false" />
             <element signature="method#displaySharingSystems#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#36621#36658#0" expanded="true" />
-            <element signature="e#36734#36771#0" expanded="true" />
-            <element signature="e#37714#37751#0" expanded="true" />
-            <element signature="e#39110#39138#0" expanded="true" />
+            <element signature="e#36619#36656#0" expanded="true" />
+            <element signature="e#36732#36769#0" expanded="true" />
+            <element signature="e#37712#37749#0" expanded="true" />
+            <element signature="e#39108#39136#0" expanded="true" />
             <element signature="method#setUserLocation#0;class#MainActivity#0" expanded="false" />
             <element signature="method#findMe#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#40712#40745#0" expanded="true" />
-            <element signature="class#40843:41410" expanded="false" />
-            <element signature="method#onLocationChanged#0;class#40843:41410" expanded="false" />
-            <element signature="e#41459#41496#0" expanded="true" />
-            <element signature="method#setMapEvents#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#43367#43402#0" expanded="true" />
-            <element signature="e#44420#44444#0" expanded="true" />
-            <element signature="e#44529#44564#0" expanded="true" />
-            <element signature="e#44655#44681#0" expanded="true" />
-            <element signature="e#44766#44801#0" expanded="true" />
-            <element signature="e#45794#47372#0" expanded="true" />
-            <element signature="e#46828#46865#0" expanded="true" />
-            <element signature="e#47371#47372#0" expanded="true" />
-            <element signature="method#onPreExecute#0;class#47741:51426" expanded="false" />
-            <element signature="method#doInBackground#0;class#47741:51426" expanded="false" />
-            <element signature="e#49385#49422#0" expanded="true" />
-            <element signature="e#49594#49621#0" expanded="true" />
-            <element signature="e#50052#50089#0" expanded="true" />
-            <element signature="e#50529#50556#0" expanded="true" />
-            <element signature="e#50953#50990#0" expanded="true" />
-            <element signature="e#51112#51149#0" expanded="true" />
-            <element signature="e#51491#51675#0" expanded="true" />
-            <element signature="e#51674#51675#0" expanded="true" />
-            <element signature="method#findAddress#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#52052:57931" expanded="false" />
-            <element signature="method#onPreExecute#0;class#52052:57931" expanded="false" />
-            <element signature="method#doInBackground#0;class#52052:57931" expanded="false" />
-            <element signature="method#onPostExecute#0;class#52052:57931" expanded="false" />
-            <element signature="e#55225#55247#0" expanded="false" />
-            <element signature="e#55865#55898#0" expanded="true" />
-            <element signature="e#57405#57450#0" expanded="true" />
-            <element signature="e#57471#57518#0" expanded="true" />
-            <element signature="e#57546#57568#0" expanded="true" />
-            <element signature="class#57574:57690" expanded="false" />
-            <element signature="method#onClick#0;class#57574:57690" expanded="false" />
-            <element signature="method#onCancelled#0;class#52052:57931" expanded="false" />
+            <element signature="e#40710#40743#0" expanded="true" />
+            <element signature="class#40841:41408" expanded="false" />
+            <element signature="method#onLocationChanged#0;class#40841:41408" expanded="false" />
+            <element signature="e#41457#41494#0" expanded="true" />
+            <element signature="e#43365#43400#0" expanded="true" />
+            <element signature="e#44418#44442#0" expanded="true" />
+            <element signature="e#44527#44562#0" expanded="true" />
+            <element signature="e#44653#44679#0" expanded="true" />
+            <element signature="e#44764#44799#0" expanded="true" />
+            <element signature="e#45792#47370#0" expanded="true" />
+            <element signature="e#46826#46863#0" expanded="true" />
+            <element signature="e#47369#47370#0" expanded="true" />
+            <element signature="method#onPreExecute#0;class#47739:51424" expanded="false" />
+            <element signature="e#49383#49420#0" expanded="true" />
+            <element signature="e#49592#49619#0" expanded="true" />
+            <element signature="e#50050#50087#0" expanded="true" />
+            <element signature="e#50527#50554#0" expanded="true" />
+            <element signature="e#50951#50988#0" expanded="true" />
+            <element signature="e#51110#51147#0" expanded="true" />
+            <element signature="e#51489#51673#0" expanded="true" />
+            <element signature="e#51672#51673#0" expanded="true" />
+            <element signature="method#onPreExecute#0;class#52050:57929" expanded="false" />
+            <element signature="e#55223#55245#0" expanded="false" />
+            <element signature="e#55863#55896#0" expanded="true" />
+            <element signature="e#57403#57448#0" expanded="true" />
+            <element signature="e#57469#57516#0" expanded="true" />
+            <element signature="e#57544#57566#0" expanded="true" />
+            <element signature="class#57572:57688" expanded="false" />
+            <element signature="method#onClick#0;class#57572:57688" expanded="false" />
+            <element signature="method#onCancelled#0;class#52050:57929" expanded="false" />
             <element signature="method#showNetworkAlertDialog#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#58095#58134#0" expanded="true" />
-            <element signature="e#58152#58192#0" expanded="true" />
-            <element signature="e#58217#58239#0" expanded="true" />
-            <element signature="class#58245:58352" expanded="false" />
-            <element signature="method#onClick#0;class#58245:58352" expanded="false" />
-            <element signature="e#58377#58413#0" expanded="true" />
-            <element signature="method#clearSearch#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#addFunction#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#58093#58132#0" expanded="true" />
+            <element signature="e#58150#58190#0" expanded="true" />
+            <element signature="e#58215#58237#0" expanded="true" />
+            <element signature="class#58243:58350" expanded="false" />
+            <element signature="method#onClick#0;class#58243:58350" expanded="false" />
+            <element signature="e#58375#58411#0" expanded="true" />
             <element signature="method#notifySolved#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#60821#60860#0" expanded="true" />
-            <element signature="e#60937#60982#0" expanded="true" />
-            <element signature="e#61185#61224#0" expanded="true" />
-            <element signature="e#61243#61283#0" expanded="true" />
-            <element signature="e#61309#61331#0" expanded="true" />
-            <element signature="class#61337:61447" expanded="false" />
-            <element signature="method#onClick#0;class#61337:61447" expanded="false" />
-            <element signature="e#61473#61509#0" expanded="true" />
-            <element signature="e#61987#62024#0" expanded="true" />
+            <element signature="e#60819#60858#0" expanded="true" />
+            <element signature="e#60935#60980#0" expanded="true" />
+            <element signature="e#61183#61222#0" expanded="true" />
+            <element signature="e#61241#61281#0" expanded="true" />
+            <element signature="e#61307#61329#0" expanded="true" />
+            <element signature="class#61335:61445" expanded="false" />
+            <element signature="method#onClick#0;class#61335:61445" expanded="false" />
+            <element signature="e#61471#61507#0" expanded="true" />
+            <element signature="e#61985#62022#0" expanded="true" />
             <element signature="method#getDataFromDB#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createBaseArrays#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#76702#76761#0" expanded="true" />
-            <element signature="method#createBikeSampaArray#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#createCicloSampaArray#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#drawParques#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#81307#81344#0" expanded="true" />
-            <element signature="e#81454#81486#0" expanded="true" />
-            <element signature="e#81677#81714#0" expanded="true" />
-            <element signature="e#81824#81852#0" expanded="true" />
-            <element signature="method#drawCicloSampa#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#82360#82399#0" expanded="true" />
-            <element signature="e#82685#82716#0" expanded="true" />
-            <element signature="e#82783#82820#0" expanded="true" />
-            <element signature="e#82862#82894#0" expanded="true" />
-            <element signature="e#82944#82977#0" expanded="true" />
-            <element signature="e#83145#83176#0" expanded="true" />
-            <element signature="e#83243#83280#0" expanded="true" />
-            <element signature="e#83322#83354#0" expanded="true" />
-            <element signature="e#83404#83437#0" expanded="true" />
-            <element signature="e#83583#83614#0" expanded="true" />
-            <element signature="e#83681#83718#0" expanded="true" />
-            <element signature="e#83760#83792#0" expanded="true" />
-            <element signature="e#83842#83875#0" expanded="true" />
-            <element signature="e#84094#84121#0" expanded="true" />
-            <element signature="e#84186#84223#0" expanded="true" />
-            <element signature="e#84264#84296#0" expanded="true" />
-            <element signature="e#84345#84378#0" expanded="true" />
-            <element signature="e#84523#84568#0" expanded="true" />
-            <element signature="e#84633#84670#0" expanded="true" />
-            <element signature="e#84711#84743#0" expanded="true" />
-            <element signature="e#84792#84825#0" expanded="true" />
-            <element signature="method#drawBikeSampa#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#85469#85507#0" expanded="true" />
-            <element signature="e#85793#85824#0" expanded="true" />
-            <element signature="e#85891#85928#0" expanded="true" />
-            <element signature="e#85970#86002#0" expanded="true" />
-            <element signature="e#86052#86085#0" expanded="true" />
-            <element signature="e#86252#86283#0" expanded="true" />
-            <element signature="e#86350#86387#0" expanded="true" />
-            <element signature="e#86429#86461#0" expanded="true" />
-            <element signature="e#86511#86544#0" expanded="true" />
-            <element signature="e#86689#86720#0" expanded="true" />
-            <element signature="e#86787#86824#0" expanded="true" />
-            <element signature="e#86866#86898#0" expanded="true" />
-            <element signature="e#86948#86981#0" expanded="true" />
-            <element signature="e#87199#87226#0" expanded="true" />
-            <element signature="e#87291#87328#0" expanded="true" />
-            <element signature="e#87369#87401#0" expanded="true" />
-            <element signature="e#87450#87483#0" expanded="true" />
-            <element signature="e#87627#87672#0" expanded="true" />
-            <element signature="e#87737#87774#0" expanded="true" />
-            <element signature="e#87815#87847#0" expanded="true" />
-            <element signature="e#87896#87929#0" expanded="true" />
-            <element signature="method#drawBicicletarios#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#88800#88825#0" expanded="true" />
-            <element signature="e#88894#88941#0" expanded="true" />
-            <element signature="e#88971#89004#0" expanded="true" />
-            <element signature="e#89084#89109#0" expanded="true" />
-            <element signature="e#89178#89229#0" expanded="true" />
-            <element signature="e#89259#89292#0" expanded="true" />
-            <element signature="e#89497#89522#0" expanded="true" />
-            <element signature="e#89598#89626#0" expanded="true" />
+            <element signature="e#76700#76759#0" expanded="true" />
+            <element signature="e#81305#81342#0" expanded="true" />
+            <element signature="e#81452#81484#0" expanded="true" />
+            <element signature="e#81675#81712#0" expanded="true" />
+            <element signature="e#81822#81850#0" expanded="true" />
+            <element signature="e#82358#82397#0" expanded="true" />
+            <element signature="e#82683#82714#0" expanded="true" />
+            <element signature="e#82781#82818#0" expanded="true" />
+            <element signature="e#82860#82892#0" expanded="true" />
+            <element signature="e#82942#82975#0" expanded="true" />
+            <element signature="e#83143#83174#0" expanded="true" />
+            <element signature="e#83241#83278#0" expanded="true" />
+            <element signature="e#83320#83352#0" expanded="true" />
+            <element signature="e#83402#83435#0" expanded="true" />
+            <element signature="e#83581#83612#0" expanded="true" />
+            <element signature="e#83679#83716#0" expanded="true" />
+            <element signature="e#83758#83790#0" expanded="true" />
+            <element signature="e#83840#83873#0" expanded="true" />
+            <element signature="e#84092#84119#0" expanded="true" />
+            <element signature="e#84184#84221#0" expanded="true" />
+            <element signature="e#84262#84294#0" expanded="true" />
+            <element signature="e#84343#84376#0" expanded="true" />
+            <element signature="e#84521#84566#0" expanded="true" />
+            <element signature="e#84631#84668#0" expanded="true" />
+            <element signature="e#84709#84741#0" expanded="true" />
+            <element signature="e#84790#84823#0" expanded="true" />
+            <element signature="e#85467#85505#0" expanded="true" />
+            <element signature="e#85791#85822#0" expanded="true" />
+            <element signature="e#85889#85926#0" expanded="true" />
+            <element signature="e#85968#86000#0" expanded="true" />
+            <element signature="e#86050#86083#0" expanded="true" />
+            <element signature="e#86250#86281#0" expanded="true" />
+            <element signature="e#86348#86385#0" expanded="true" />
+            <element signature="e#86427#86459#0" expanded="true" />
+            <element signature="e#86509#86542#0" expanded="true" />
+            <element signature="e#86687#86718#0" expanded="true" />
+            <element signature="e#86785#86822#0" expanded="true" />
+            <element signature="e#86864#86896#0" expanded="true" />
+            <element signature="e#86946#86979#0" expanded="true" />
+            <element signature="e#87197#87224#0" expanded="true" />
+            <element signature="e#87289#87326#0" expanded="true" />
+            <element signature="e#87367#87399#0" expanded="true" />
+            <element signature="e#87448#87481#0" expanded="true" />
+            <element signature="e#87625#87670#0" expanded="true" />
+            <element signature="e#87735#87772#0" expanded="true" />
+            <element signature="e#87813#87845#0" expanded="true" />
+            <element signature="e#87894#87927#0" expanded="true" />
+            <element signature="e#88798#88823#0" expanded="true" />
+            <element signature="e#88892#88939#0" expanded="true" />
+            <element signature="e#88969#89002#0" expanded="true" />
+            <element signature="e#89082#89107#0" expanded="true" />
+            <element signature="e#89176#89227#0" expanded="true" />
+            <element signature="e#89257#89290#0" expanded="true" />
+            <element signature="e#89495#89520#0" expanded="true" />
+            <element signature="e#89596#89624#0" expanded="true" />
             <element signature="method#drawWifi#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#89913#90020#0" expanded="false" />
-            <element signature="method#drawAlerts#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#90845#90952#0" expanded="false" />
-            <element signature="e#91173#91200#0" expanded="true" />
-            <element signature="e#91249#91278#0" expanded="true" />
-            <element signature="e#91596#91630#0" expanded="true" />
-            <element signature="e#91797#91837#0" expanded="true" />
-            <element signature="e#91952#91978#0" expanded="true" />
+            <element signature="e#89911#90018#0" expanded="false" />
+            <element signature="e#90843#90950#0" expanded="false" />
+            <element signature="e#91171#91198#0" expanded="true" />
+            <element signature="e#91247#91276#0" expanded="true" />
+            <element signature="e#91594#91628#0" expanded="true" />
+            <element signature="e#91795#91835#0" expanded="true" />
+            <element signature="e#91950#91976#0" expanded="true" />
             <element signature="method#drawPermanentes#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#94514#94554#0" expanded="false" />
+            <element signature="e#94512#94552#0" expanded="false" />
             <element signature="method#drawTemporarias#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#95503#95545#0" expanded="false" />
+            <element signature="e#95501#95543#0" expanded="false" />
             <element signature="method#drawPreferenciais#0;class#MainActivity#0" expanded="false" />
             <element signature="method#drawAcessos#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#96427#96533#0" expanded="false" />
+            <element signature="e#96425#96531#0" expanded="false" />
             <element signature="method#drawEstabelecimentos#0;class#MainActivity#0" expanded="false" />
             <element signature="method#refreshData#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#97565#97586#0" expanded="false" />
+            <element signature="e#97563#97584#0" expanded="false" />
             <element signature="method#setUpdating#0;class#MainActivity#0" expanded="false" />
             <element signature="method#resetUpdating#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onRouteButtonClick#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#98325#98368#0" expanded="true" />
-            <element signature="e#98386#98427#0" expanded="true" />
-            <element signature="e#98454#98481#0" expanded="true" />
+            <element signature="e#98323#98366#0" expanded="true" />
+            <element signature="e#98384#98425#0" expanded="true" />
+            <element signature="e#98452#98479#0" expanded="true" />
             <element signature="method#turnOnRouteMode#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#99604#99631#0" expanded="true" />
-            <element signature="e#100452#100479#0" expanded="true" />
-            <element signature="e#100530#100559#0" expanded="true" />
-            <element signature="e#100643#100688#0" expanded="true" />
-            <element signature="e#101627#101654#0" expanded="true" />
-            <element signature="e#101761#101790#0" expanded="true" />
-            <element signature="e#101850#101895#0" expanded="true" />
-            <element signature="method#cancelRouteMode#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#102485#102504#0" expanded="false" />
+            <element signature="e#99602#99629#0" expanded="true" />
+            <element signature="e#100450#100477#0" expanded="true" />
+            <element signature="e#100528#100557#0" expanded="true" />
+            <element signature="e#100641#100686#0" expanded="true" />
+            <element signature="e#101625#101652#0" expanded="true" />
+            <element signature="e#101759#101788#0" expanded="true" />
+            <element signature="e#101848#101893#0" expanded="true" />
+            <element signature="e#102483#102502#0" expanded="false" />
             <element signature="method#editDestination#0;class#MainActivity#0" expanded="false" />
             <element signature="method#editOrigin#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getDirections#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#geocodeOrigin#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#104243:110239" expanded="false" />
-            <element signature="method#onPreExecute#0;class#104243:110239" expanded="false" />
-            <element signature="method#doInBackground#0;class#104243:110239" expanded="false" />
-            <element signature="method#onPostExecute#0;class#104243:110239" expanded="false" />
-            <element signature="e#105216#105268#0" expanded="false" />
-            <element signature="e#106700#106727#0" expanded="true" />
-            <element signature="e#107531#107563#0" expanded="true" />
-            <element signature="e#108147#108174#0" expanded="true" />
-            <element signature="e#109074#109126#0" expanded="true" />
-            <element signature="e#109148#109195#0" expanded="true" />
-            <element signature="e#109224#109246#0" expanded="true" />
-            <element signature="class#109252:109371" expanded="false" />
-            <element signature="method#onClick#0;class#109252:109371" expanded="false" />
-            <element signature="method#onCancelled#0;class#104243:110239" expanded="false" />
-            <element signature="e#109664#109703#0" expanded="true" />
-            <element signature="e#109724#109764#0" expanded="true" />
-            <element signature="e#109792#109803#0" expanded="true" />
-            <element signature="class#109809:109925" expanded="false" />
-            <element signature="method#onClick#0;class#109809:109925" expanded="false" />
-            <element signature="e#109953#109989#0" expanded="true" />
-            <element signature="e#110404#110450#0" expanded="true" />
-            <element signature="e#110469#110517#0" expanded="true" />
-            <element signature="e#110543#110565#0" expanded="true" />
-            <element signature="class#110571:110681" expanded="false" />
-            <element signature="method#onClick#0;class#110571:110681" expanded="false" />
-            <element signature="method#geocodeDestination#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#111025:117065" expanded="false" />
-            <element signature="method#onPreExecute#0;class#111025:117065" expanded="false" />
-            <element signature="method#doInBackground#0;class#111025:117065" expanded="false" />
-            <element signature="method#onPostExecute#0;class#111025:117065" expanded="false" />
-            <element signature="e#111998#112050#0" expanded="false" />
-            <element signature="e#113575#113602#0" expanded="true" />
-            <element signature="e#114142#114179#0" expanded="true" />
-            <element signature="e#114984#115011#0" expanded="true" />
-            <element signature="e#115888#115941#0" expanded="true" />
-            <element signature="e#115963#116010#0" expanded="true" />
-            <element signature="e#116039#116061#0" expanded="true" />
-            <element signature="class#116067:116186" expanded="false" />
-            <element signature="method#onClick#0;class#116067:116186" expanded="false" />
-            <element signature="method#onCancelled#0;class#111025:117065" expanded="false" />
-            <element signature="e#116479#116518#0" expanded="true" />
-            <element signature="e#116539#116579#0" expanded="true" />
-            <element signature="e#116607#116629#0" expanded="true" />
-            <element signature="class#116635:116751" expanded="false" />
-            <element signature="method#onClick#0;class#116635:116751" expanded="false" />
-            <element signature="e#116779#116815#0" expanded="true" />
-            <element signature="e#117235#117281#0" expanded="true" />
-            <element signature="e#117300#117348#0" expanded="true" />
-            <element signature="e#117374#117396#0" expanded="true" />
-            <element signature="class#117402:117512" expanded="false" />
-            <element signature="method#onClick#0;class#117402:117512" expanded="false" />
-            <element signature="method#getRoutes#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#118608:122447" expanded="false" />
-            <element signature="method#onPreExecute#0;class#118608:122447" expanded="false" />
-            <element signature="e#119277#119316#0" expanded="true" />
-            <element signature="e#119337#119385#0" expanded="true" />
-            <element signature="e#119413#119435#0" expanded="true" />
-            <element signature="class#119441:119557" expanded="false" />
-            <element signature="method#onClick#0;class#119441:119557" expanded="false" />
-            <element signature="method#doInBackground#0;class#118608:122447" expanded="false" />
-            <element signature="e#120159#120247#0" expanded="false" />
-            <element signature="method#onPostExecute#0;class#118608:122447" expanded="false" />
-            <element signature="method#onCancelled#0;class#118608:122447" expanded="false" />
+            <element signature="method#onPreExecute#0;class#104241:110237" expanded="false" />
+            <element signature="method#doInBackground#0;class#104241:110237" expanded="false" />
+            <element signature="e#105214#105266#0" expanded="false" />
+            <element signature="e#106698#106725#0" expanded="true" />
+            <element signature="e#107529#107561#0" expanded="true" />
+            <element signature="e#108145#108172#0" expanded="true" />
+            <element signature="e#109072#109124#0" expanded="true" />
+            <element signature="e#109146#109193#0" expanded="true" />
+            <element signature="e#109222#109244#0" expanded="true" />
+            <element signature="class#109250:109369" expanded="false" />
+            <element signature="method#onClick#0;class#109250:109369" expanded="false" />
+            <element signature="method#onCancelled#0;class#104241:110237" expanded="false" />
+            <element signature="e#109662#109701#0" expanded="true" />
+            <element signature="e#109722#109762#0" expanded="true" />
+            <element signature="e#109790#109801#0" expanded="true" />
+            <element signature="class#109807:109923" expanded="false" />
+            <element signature="method#onClick#0;class#109807:109923" expanded="false" />
+            <element signature="e#109951#109987#0" expanded="true" />
+            <element signature="e#110402#110448#0" expanded="true" />
+            <element signature="e#110467#110515#0" expanded="true" />
+            <element signature="e#110541#110563#0" expanded="true" />
+            <element signature="class#110569:110679" expanded="false" />
+            <element signature="method#onClick#0;class#110569:110679" expanded="false" />
+            <element signature="method#onPreExecute#0;class#111023:117063" expanded="false" />
+            <element signature="method#doInBackground#0;class#111023:117063" expanded="false" />
+            <element signature="e#111996#112048#0" expanded="false" />
+            <element signature="e#113573#113600#0" expanded="true" />
+            <element signature="e#114140#114177#0" expanded="true" />
+            <element signature="e#114982#115009#0" expanded="true" />
+            <element signature="e#115886#115939#0" expanded="true" />
+            <element signature="e#115961#116008#0" expanded="true" />
+            <element signature="e#116037#116059#0" expanded="true" />
+            <element signature="class#116065:116184" expanded="false" />
+            <element signature="method#onClick#0;class#116065:116184" expanded="false" />
+            <element signature="method#onCancelled#0;class#111023:117063" expanded="false" />
+            <element signature="e#116477#116516#0" expanded="true" />
+            <element signature="e#116537#116577#0" expanded="true" />
+            <element signature="e#116605#116627#0" expanded="true" />
+            <element signature="class#116633:116749" expanded="false" />
+            <element signature="method#onClick#0;class#116633:116749" expanded="false" />
+            <element signature="e#116777#116813#0" expanded="true" />
+            <element signature="e#117233#117279#0" expanded="true" />
+            <element signature="e#117298#117346#0" expanded="true" />
+            <element signature="e#117372#117394#0" expanded="true" />
+            <element signature="class#117400:117510" expanded="false" />
+            <element signature="method#onClick#0;class#117400:117510" expanded="false" />
+            <element signature="method#onPreExecute#0;class#118606:122445" expanded="false" />
+            <element signature="e#119275#119314#0" expanded="true" />
+            <element signature="e#119335#119383#0" expanded="true" />
+            <element signature="e#119411#119433#0" expanded="true" />
+            <element signature="class#119439:119555" expanded="false" />
+            <element signature="method#onClick#0;class#119439:119555" expanded="false" />
+            <element signature="method#doInBackground#0;class#118606:122445" expanded="false" />
+            <element signature="e#120157#120245#0" expanded="false" />
+            <element signature="method#onCancelled#0;class#118606:122445" expanded="false" />
             <element signature="method#cancelLoadingRoute#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#122764#122801#0" expanded="false" />
-            <element signature="method#getCompleteCyclingPath#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#124626#124657#0" expanded="false" />
-            <element signature="e#125003#125049#0" expanded="false" />
+            <element signature="e#122762#122799#0" expanded="false" />
+            <element signature="e#124624#124655#0" expanded="false" />
+            <element signature="e#125001#125047#0" expanded="false" />
             <element signature="class#CustomComparator#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#126201#126239#0" expanded="false" />
+            <element signature="e#126199#126237#0" expanded="false" />
             <element signature="method#compare#0;class#CustomComparator#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#drawRoutes#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#128791#128821#0" expanded="true" />
-            <element signature="e#128948#128975#0" expanded="true" />
-            <element signature="class#130679:131383" expanded="false" />
-            <element signature="method#onPageSelected#0;class#130679:131383" expanded="false" />
-            <element signature="method#onPageScrollStateChanged#0;class#130679:131383" expanded="false" />
-            <element signature="method#onPageScrolled#0;class#130679:131383" expanded="false" />
+            <element signature="e#128789#128819#0" expanded="true" />
+            <element signature="e#128946#128973#0" expanded="true" />
+            <element signature="class#130677:131381" expanded="false" />
+            <element signature="method#onPageSelected#0;class#130677:131381" expanded="false" />
+            <element signature="method#onPageScrollStateChanged#0;class#130677:131381" expanded="false" />
+            <element signature="method#onPageScrolled#0;class#130677:131381" expanded="false" />
             <element signature="class#SwipeFragmentPagerAdapter#0;class#MainActivity#0" expanded="false" />
             <element signature="method#getItem#0;class#SwipeFragmentPagerAdapter#0;class#MainActivity#0" expanded="false" />
-            <element signature="class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#133292#133354#0" expanded="false" />
-            <element signature="method#newInstance#0;class#SwipeFragment#0;class#MainActivity#0" expanded="false" />
             <element signature="method#switchAddresses#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#135671#135698#0" expanded="true" />
-            <element signature="e#136401#136428#0" expanded="true" />
-            <element signature="method#onAnimationStart#0;class#136938:137424" expanded="false" />
-            <element signature="method#onAnimationCancel#0;class#136938:137424" expanded="false" />
-            <element signature="method#onAnimationRepeat#0;class#136938:137424" expanded="false" />
+            <element signature="e#135669#135696#0" expanded="true" />
+            <element signature="e#136399#136426#0" expanded="true" />
+            <element signature="method#onAnimationStart#0;class#136936:137422" expanded="false" />
+            <element signature="method#onAnimationCancel#0;class#136936:137422" expanded="false" />
+            <element signature="method#onAnimationRepeat#0;class#136936:137422" expanded="false" />
             <element signature="method#isNetworkAvailable#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="false" />
@@ -4062,19 +3353,113 @@
             <element signature="method#onProviderDisabled#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onProviderEnabled#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onRequestPermissionsResult#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#140251#140288#0" expanded="true" />
-            <element signature="e#140418#140455#0" expanded="true" />
-            <element signature="e#140600#140646#0" expanded="true" />
-            <element signature="e#140668#140713#0" expanded="true" />
-            <element signature="e#140742#140764#0" expanded="true" />
-            <element signature="class#140770:140899" expanded="false" />
-            <element signature="method#onClick#0;class#140770:140899" expanded="false" />
+            <element signature="e#140249#140286#0" expanded="true" />
+            <element signature="e#140416#140453#0" expanded="true" />
+            <element signature="e#140598#140644#0" expanded="true" />
+            <element signature="e#140666#140711#0" expanded="true" />
+            <element signature="e#140740#140762#0" expanded="true" />
+            <element signature="class#140768:140897" expanded="false" />
+            <element signature="method#onClick#0;class#140768:140897" expanded="false" />
             <element signature="method#onStatusChanged#0;class#MainActivity#0" expanded="false" />
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#142178#142215#0" expanded="true" />
-            <element signature="method#onRestoreInstanceState#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onSaveInstanceState#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#142176#142213#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75763017">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4130809">
+          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoInfoF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.738267">
+          <caret line="420" column="87" selection-start-line="420" selection-start-column="87" selection-end-line="420" selection-end-column="87" />
+          <folding>
+            <element signature="e#3610#3645#0" expanded="true" />
+            <element signature="e#3797#4355#0" expanded="true" />
+            <element signature="e#4156#4191#0" expanded="true" />
+            <element signature="e#4354#4355#0" expanded="true" />
+            <element signature="e#17934#17969#0" expanded="true" />
+            <element signature="e#18055#18100#0" expanded="true" />
+            <element signature="e#18253#18288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33207548">
+          <caret line="141" column="41" selection-start-line="141" selection-start-column="41" selection-end-line="141" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/AddEstabelecimentoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14802065">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+          <folding>
+            <element signature="e#1704#1736#0" expanded="true" />
+            <element signature="e#2025#2056#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34339622">
+          <caret line="164" column="52" selection-start-line="164" selection-start-column="52" selection-end-line="164" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Fragments/EstabelecimentoCategoryF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6523236">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/NetworkRequests/Calls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.736661">
+          <caret line="281" column="47" selection-start-line="281" selection-start-column="47" selection-end-line="281" selection-end-column="47" />
+          <folding>
+            <element signature="method#jsonRequest#0;class#Calls#0" expanded="false" />
+            <element signature="class#679:1857" expanded="false" />
+            <element signature="method#doInBackground#0;class#679:1857" expanded="false" />
+            <element signature="method#onPostExecute#0;class#679:1857" expanded="false" />
+            <element signature="method#sendReport#0;class#Calls#0" expanded="false" />
+            <element signature="method#doInBackground#0;class#4232:5963" expanded="false" />
+            <element signature="method#onPostExecute#0;class#4232:5963" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="android-dummy:///Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/Translations Editor">
+      <provider selected="true" editor-type-id="string-resource-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SugestaoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.103270225">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

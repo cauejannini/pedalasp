@@ -113,7 +113,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
                     if (etReportAddress.getText().toString().trim().length() == 0) {
-                        etReportAddress.setError("Digite um endereço");
+                        etReportAddress.setError(getString(R.string.mandatory_field));
                     } else {
                         findAddress(etReportAddress);
                     }
@@ -393,7 +393,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
                     try {
                         Calls.sendReport(address, String.valueOf(reportLatLng.latitude), String.valueOf(reportLatLng.longitude), type, messageString);
-                        Toast toast = Toast.makeText(ReportActivity.this, R.string.obrigado, Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(ReportActivity.this, R.string.toast_thanks, Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
                         finish();

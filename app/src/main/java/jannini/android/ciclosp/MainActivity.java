@@ -534,9 +534,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 					e.printStackTrace();
 				}
 			} else {
-
 				showNetworkAlertDialog();
-
 			}
 
 		}

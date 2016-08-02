@@ -138,8 +138,8 @@
         <string name="route_error_check_connection">Erro ao criar a rota. Verifique sua conexão.</string>
         <string name="inclinacao">Inclinação:</string>
         <string name="posicao">Posição:</string>
-        <string name="loc_selecione_localizacao">Por favor, selecione uma localização</string>
-        <string name="obrigado">Obrigado!</string>
+        <string name="loc_selecione_localizacao">Selecione uma localização</string>
+        <string name="toast_thanks">Obrigado!</string>
         <string name="rede_nao_disponivel">Rede não disponível</string>
         <string name="inclinacao_maxima">Inclinação máxima</string>
         <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
@@ -165,4 +165,6 @@
         <string name="i_parked_here">ESTACIONEI AQUI</string>
         <string name="remove">REMOVER</string>
         <string name="saved_place">Local salvo</string>
+        <string name="mandatory_field">Campo obrigatório</string>
+        <string name="toast_error">Ocorreu algum erro...</string>
 </resources>

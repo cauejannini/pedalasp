@@ -45,14 +45,14 @@ public class AddEstabelecimentoActivity extends Activity
         @Override
         public void onSuccess (int responseCode, String response) {
             Log.e("addEstabHandler", "SUCCESS" + ": " + response);
-            Toast.makeText(AddEstabelecimentoActivity.this, "Estabelecimento enviado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddEstabelecimentoActivity.this, getString(R.string.toast_thanks), Toast.LENGTH_SHORT).show();
             finish();
         }
 
         @Override
         public void onFailure (int responseCode, String response) {
             Log.e("addEstabHandler", "FAIL: " + responseCode + " " + response);
-            Toast.makeText(AddEstabelecimentoActivity.this, "Erro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddEstabelecimentoActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
         }
 
     };

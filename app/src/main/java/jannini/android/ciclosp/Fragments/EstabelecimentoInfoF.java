@@ -96,7 +96,7 @@ public class EstabelecimentoInfoF extends Fragment implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (etAddress.getText().toString().trim().length() == 0) {
-                    etAddress.setError("Digite um endereço");
+                    etAddress.setError(getString(R.string.mandatory_field));
                 } else {
                     findAddress();
                 }
@@ -108,7 +108,7 @@ public class EstabelecimentoInfoF extends Fragment implements OnMapReadyCallback
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
                     if (etAddress.getText().toString().trim().length() == 0) {
-                        etAddress.setError("Digite um endereço");
+                        etAddress.setError(getString(R.string.mandatory_field));
                     } else {
                         findAddress();
                     }
@@ -416,12 +416,12 @@ public class EstabelecimentoInfoF extends Fragment implements OnMapReadyCallback
         String strAddress = etAddress.getText().toString();
 
         if (strName.trim().length() == 0) {
-            etName.setError("Campo obrigatório");
+            etName.setError(getString(R.string.mandatory_field));
         } else if (markerShop == null) {
-            Toast.makeText(getActivity(), "Selecione uma localização no mapa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.loc_selecione_localizacao), Toast.LENGTH_SHORT).show();
             etAddress.requestFocus();
         } else if (strAddress.trim().length() == 0) {
-            etAddress.setError("Campo obrigatório");
+            etAddress.setError(getString(R.string.mandatory_field));
             etAddress.requestFocus();
         } else {
             mListener.onEIFragmentInteraction(strName, strPhone, strAddress, markerShop.getPosition());
