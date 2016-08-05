@@ -19,7 +19,6 @@ public class Constant {
     public static String url_obter_bikesampa = "http://pedalaspapp.com.br/dbaccess/obter_bikesampa.php";
     public static String url_obter_ciclosampa = "http://pedalaspapp.com.br/dbaccess/obter_ciclosampa.php";
     public static String url_report = "http://pedalaspapp.com.br/dbaccess/report_bikelane_problem.php";
-    public static String url_add_estabelecimento = "http://pedalaspapp.com.br/dbaccess/add_estabelecimento.php";
     public static String url_send_parkedHere = "http://pedalaspapp.com.br/dbaccess/send_parkedHere.php";
     public static String url_send_email = "http://pedalaspapp.com.br/dbaccess/send_email.php";
     public static String url_notify_solved = "http://pedalaspapp.com.br/dbaccess/notify_solved_report.php";
@@ -39,7 +38,7 @@ public class Constant {
 
     public static String dontWarnAgainTooMuchMarkers = "jannini.android.ciclosp.dontWarnAgainTooMuchMarkers";
 
-    public static boolean[] states = {true, true, true, true, true, true, true};
+    public static boolean[] states = {true, true, true, true, true, true};
     public static boolean[] bikeLanesStates = {true, true, true};
     public static boolean[] sharingSystemsStates = {true, true};
 

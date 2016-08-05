@@ -13,7 +13,6 @@
     <string-array name="menu_array">
         <item>Bike lanes</item>
         <item>Bike sharing</item>
-        <item>Stores and services</item>
         <item>Parks</item>
         <item>Parking</item>
         <item>Free Wifi SP</item>
@@ -23,38 +22,12 @@
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
         <item>stations</item>
-        <item>Stores, workshops, shower and more</item>
         <item>Parks with bike lanes</item>
         <item>Outdoor and indoor bike racks</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
         <item />
     </string-array>
-
-    <!--<string-array name="menu_array">
-        <item>Permanent lanes</item>
-        <item>Recreational lanes</item>
-        <item>Preferential streets</item>
-        <item>Stores and services</item>
-        <item>Bike Sampa</item>
-        <item>Ciclo Sampa</item>
-        <item>Parks</item>
-        <item>Parking</item>
-        <item>Wifi Livre SP</item>
-        <item>Alerts</item>
-    </string-array>
-    <string-array name="menu_array_descriptions">
-        <item>Permanent bike lanes</item>
-        <item>Works on Sundays and national holidays</item>
-        <item>Sinalized preferential streets</item>
-        <item>Stores and services</item>
-        <item>Itaú bike sharing system</item>
-        <item>Bradesco bike sharing system</item>
-        <item>Parks with bike lanes</item>
-        <item>Outdoor (P) and indoor (B) bike racks</item>
-        <item>Free wifi spots</item>
-        <item>Alerts sent by users</item>
-    </string-array>-->
 
     <string name="app_name">Pedala SP</string>
     <string name="action_settings">Settings</string>
@@ -187,7 +160,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_addestabelecimento"></string>
     <string name="type_of_alert">TYPE OF ALERT</string>
     <string name="etReportDetailsError">Mandatory field</string>
     <string name="rbReportError">Please choose the alert type</string>

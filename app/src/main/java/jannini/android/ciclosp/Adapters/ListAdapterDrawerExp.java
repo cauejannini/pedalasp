@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,25 +59,20 @@ public class ListAdapterDrawerExp extends ArrayAdapter<String> {
           case 2:
               if (DrawerExpActivity.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_estabelecimento);
+              holder.image.setBackgroundResource(R.drawable.ic_parking);
               break;
           case 3:
               if (DrawerExpActivity.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_parking);
+              holder.image.setBackgroundResource(R.drawable.ic_park);
               break;
           case 4:
               if (DrawerExpActivity.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_park);
+              holder.image.setBackgroundResource(R.drawable.ic_wifi);
               break;
           case 5:
               if (DrawerExpActivity.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-              } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_wifi);
-              break;
-          case 6:
-              if (DrawerExpActivity.states[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
               holder.image.setBackgroundResource(R.drawable.ic_alert);
               break;
@@ -90,10 +84,8 @@ public class ListAdapterDrawerExp extends ArrayAdapter<String> {
     public class ViewHolder {
         public TextView text;
         public TextView description;
-        public Button btSettings;
         public ImageView image;
         public View background;
-        public int position;
     }
 
 

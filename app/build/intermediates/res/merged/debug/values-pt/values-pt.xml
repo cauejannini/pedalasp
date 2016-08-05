@@ -3,7 +3,6 @@
     <string-array name="menu_array">
                 <item>Vias para bicicleta</item>
                 <item>Estações</item>
-                <item>Estabelecimentos</item>
                 <item>Pontos para estacionar</item>
                 <item>Parques</item>
                 <item>Pontos Wifi Livre SP</item>
@@ -13,7 +12,6 @@
     <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
                 <item>de compartilhamento de bikes</item>
-                <item>Lojas, oficinas, banho e mais</item>
                 <item>Bicicletários e paraciclos</item>
                 <item>Parques com ciclovia</item>
                 <item>Wifi municipal aberto</item>
@@ -21,7 +19,6 @@
                 <item/>
         </string-array>
     <string-array name="menu_array_quantidades">
-                <item/>
                 <item/>
                 <item/>
                 <item/>
@@ -182,7 +179,6 @@
     <string name="tem_wifi">Tem Wifi? Sim</string>
     <string name="tem_wifi_nao">Tem Wifi? Não</string>
     <string name="texto_do_email">Escreva sua mensagem</string>
-    <string name="title_activity_addestabelecimento">Nova loja ou serviço</string>
     <string name="title_activity_drawer_exp_splash">Escolha o que visualizar</string>
     <string name="title_activity_report">Enviar alerta</string>
     <string name="title_activity_route_detail_splash">Entenda a rota</string>

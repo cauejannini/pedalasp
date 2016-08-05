@@ -39,7 +39,7 @@
 	
 	<item android:bottom="3dp" android:right="3dp">
 		<bitmap
-		   	android:src="@drawable/ic_mylocation"
+		   	android:src="@drawable/btic_mylocation"
 		   	android:gravity="center_vertical|center_horizontal"
 		   />
 	</item>

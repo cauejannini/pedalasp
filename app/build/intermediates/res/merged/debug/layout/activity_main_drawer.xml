@@ -59,21 +59,21 @@
 					/>
 
 				<Button
-					 android:id="@+id/bt_add"
+					 android:id="@+id/bt_send_alert"
 					 android:layout_alignParentEnd="true"
 					 android:layout_alignParentBottom="true"
 					 android:layout_marginEnd="11dp"
 					 android:layout_marginBottom="80dp"
 					 android:layout_width="55dp"
 					 android:layout_height="55dp"
-					 android:background="@drawable/bt_add"
+					 android:background="@drawable/bt_send_alert"
 					 android:onClick="addFunction"
 					/>
 
 				<Button
 					android:id="@+id/my_location"
-					android:layout_alignEnd="@id/bt_add"
-					android:layout_alignStart="@id/bt_add"
+					android:layout_alignEnd="@id/bt_send_alert"
+					android:layout_alignStart="@id/bt_send_alert"
 					android:layout_alignParentBottom="true"
 					android:layout_marginBottom="11dp"
 					android:layout_width="55dp"

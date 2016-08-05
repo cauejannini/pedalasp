@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:2:1-84:12
+ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:2:1-79:12
 	package
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:3:5-38
 		INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml
@@ -120,7 +120,7 @@ ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/A
 	android:name
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:14:22-72
 application
-ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:16:5-82:19
+ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:16:5-77:19
 MERGED from [com.google.firebase:firebase-core:9.0.0] /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-core/9.0.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-analytics:9.0.0] /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.0.0/AndroidManifest.xml:26:5-41:19
 MERGED from [com.google.android.gms:play-services-basement:9.0.0] /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.0/AndroidManifest.xml:20:5-24:19
@@ -1716,14 +1716,6 @@ ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/A
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:75:13-52
 	android:name
 		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:73:13-46
-activity#jannini.android.ciclosp.AddEstabelecimentoActivity
-ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:77:9-80:54
-	android:label
-		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:79:13-70
-	android:theme
-		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:80:13-52
-	android:name
-		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:78:13-55
 uses-sdk
 INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.google.firebase:firebase-core:9.0.0] /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-core/9.0.0/AndroidManifest.xml:4:5-42

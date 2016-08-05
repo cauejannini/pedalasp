@@ -8,7 +8,6 @@
         <string-array name="menu_array">
                 <item>Vias para bicicleta</item>
                 <item>Estações</item>
-                <item>Estabelecimentos</item>
                 <item>Pontos para estacionar</item>
                 <item>Parques</item>
                 <item>Pontos Wifi Livre SP</item>
@@ -18,7 +17,6 @@
         <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
                 <item>de compartilhamento de bikes</item>
-                <item>Lojas, oficinas, banho e mais</item>
                 <item>Bicicletários e paraciclos</item>
                 <item>Parques com ciclovia</item>
                 <item>Wifi municipal aberto</item>
@@ -26,7 +24,6 @@
                 <item/>
         </string-array>
         <string-array name="menu_array_quantidades">
-                <item/>
                 <item/>
                 <item/>
                 <item/>
@@ -159,7 +156,6 @@
         <string name="ir_para_mapa">Ir para o mapa</string>
         <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
         <string name="loc_buscando_localizacao">Buscando sua localização…</string>
-        <string name="title_activity_addestabelecimento">Nova loja ou serviço</string>
         <string name="type_of_alert">TIPO DE ALERTA</string>
         <string name="etReportDetailsError">Campo obrigatório</string>
         <string name="rbReportError">Escolha o tipo de alerta</string>

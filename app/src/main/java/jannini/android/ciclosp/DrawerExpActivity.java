@@ -28,7 +28,7 @@ public class DrawerExpActivity extends Activity {
 
     SharedPreferences sharedPreferences;
 
-    public static boolean[] states = {false, false, false, false, false, false, false};
+    public static boolean[] states = {false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,6 @@ public class DrawerExpActivity extends Activity {
         editor.putBoolean("states3", states[3]);
         editor.putBoolean("states4", states[4]);
         editor.putBoolean("states5", states[5]);
-        editor.putBoolean("states6", states[6]);
         editor.apply();
 
         Intent i = new Intent(this, MainActivity.class);

@@ -3,7 +3,6 @@
     <string-array name="menu_array">
         <item>Bike lanes</item>
         <item>Bike sharing</item>
-        <item>Stores and services</item>
         <item>Parks</item>
         <item>Parking</item>
         <item>Free Wifi SP</item>
@@ -13,7 +12,6 @@
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
         <item>stations</item>
-        <item>Stores, workshops, shower and more</item>
         <item>Parks with bike lanes</item>
         <item>Outdoor and indoor bike racks</item>
         <item>Free city wifi</item>
@@ -514,7 +512,6 @@
     <string name="tem_wifi">Has Wifi? Yes</string>
     <string name="tem_wifi_nao">Has Wifi? No</string>
     <string name="texto_do_email">Write you message</string>
-    <string name="title_activity_addestabelecimento"/>
     <string name="title_activity_create_route" translatable="false">CreateRouteActivity</string>
     <string name="title_activity_directions" translatable="false">Directions</string>
     <string name="title_activity_drawer_exp_splash">Choose what you want to visualize</string>
@@ -1947,22 +1944,4 @@
         <item name="android:contentDescription">@string/mr_media_route_button_content_description</item>
         <item name="externalRouteEnabledDrawable">@drawable/mr_ic_media_route_mono_dark</item>
     </style>
-    <item name="Permanentes" type="xml">
-        <titulo>Ciclovias Permanentes</titulo>
-        <descricao/>
-        <thumb/>
-        <bg>#F00</bg>
-    </item>
-    <item name="Preferenciais" type="xml">
-        <titulo>Ruas preferenciais</titulo>
-        <descricao/>
-        <thumb/>
-        <bg>#6BD</bg>
-    </item>
-    <item name="Temporarias" type="xml">
-        <titulo>Ciclofaixas</titulo>
-        <descricao>Abertas de Domingos e Feriados.</descricao>
-        <thumb/>
-        <bg>#F85</bg>
-    </item>
 </resources>
