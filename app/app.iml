@@ -65,14 +65,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
@@ -81,9 +73,16 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
@@ -161,13 +160,13 @@
     <orderEntry type="library" exported="" name="play-services-base-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-drive-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-9.0.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-ads-lite-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-crash-9.0.0" level="project" />
+    <orderEntry type="library" exported="" name="play-services-ads-lite-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-base-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="achartengine-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-location-9.0.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-vision-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-24.1.1" level="project" />
+    <orderEntry type="library" exported="" name="play-services-vision-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-module-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-common-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-common-9.0.0" level="project" />
@@ -182,11 +181,9 @@
     <orderEntry type="library" exported="" name="play-services-games-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appinvite-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-tagmanager-api-9.0.0" level="project" />
-    <orderEntry type="library" exported="" name="GraphView-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-wearable-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-panorama-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-24.1.1" level="project" />
-    <orderEntry type="library" exported="" name="acra-4.5.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-nearby-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-9.0.0" level="project" />
@@ -204,6 +201,7 @@
     <orderEntry type="library" exported="" name="mediarouter-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-impl-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-auth-9.0.0" level="project" />
+    <orderEntry type="library" exported="" name="acra-4.9.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-identity-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-9.0.0" level="project" />

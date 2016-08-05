@@ -6,7 +6,7 @@ ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/A
 		INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml
 	android:versionName
-		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:5:5-31
+		ADDED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml:5:5-30
 		INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/AndroidManifest.xml
 	android:versionCode

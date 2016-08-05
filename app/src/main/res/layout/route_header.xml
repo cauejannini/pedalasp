@@ -137,8 +137,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
-            android:background="@drawable/bt_lupa_transparent"
-            android:onClick=""/>
+            android:background="@drawable/bt_lupa_transparent"/>
 
     </LinearLayout>
 </LinearLayout>

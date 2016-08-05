@@ -5,12 +5,12 @@ import android.app.Application;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
+import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 
 import java.util.HashMap;
 
 @ReportsCrashes(
-		formKey="",
 		httpMethod = org.acra.sender.HttpSender.Method.PUT,
 	    reportType = org.acra.sender.HttpSender.Type.JSON,
 	    formUri = "https://cauej.cloudant.com/acra-ciclosp/_design/acra-storage/_update/report",
@@ -23,11 +23,11 @@ public class MyApplication extends Application {
 	private static boolean activityVisible;
 	
 	@Override
-	  public void onCreate() {
+	public void onCreate() {
 	    // The following line triggers the initialization of ACRA
 	    super.onCreate();
-	    //ACRA.init(this);
-	  }
+	    ACRA.init(this);
+	}
 
 	public static boolean isActivityVisible() {
 		return activityVisible;

@@ -423,7 +423,6 @@
     <string name="google_api_key" translatable="false">AIzaSyCKv3D8FEuVyWsl7NPz9Qxv4CKSPA3rctI</string>
     <string name="google_app_id" translatable="false">1:569029686107:android:e034d4897900e4c0</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCKv3D8FEuVyWsl7NPz9Qxv4CKSPA3rctI</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="i_parked_here">I PARKED HERE</string>
     <string name="inclinacao">Inclination: </string>
     <string name="inclinacao_maxima">Max inclination</string>

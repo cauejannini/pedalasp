@@ -124,12 +124,12 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/actionbar_logo_completo.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_parked_here.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_parked_here.png"
-    },
-    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/btic_route.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/btic_route.png"
+    },
+    {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_parked_here.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_parked_here.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_info.png",
@@ -140,12 +140,12 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/mapic_bs_offline.png"
     },
     {
-        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/mapic_parking_p.png",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/mapic_parking_p.png"
-    },
-    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_location.png",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/ic_location.png"
+    },
+    {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/mapic_parking_p.png",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/drawable-ldpi/mapic_parking_p.png"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/ic_lanes_permanent.png",

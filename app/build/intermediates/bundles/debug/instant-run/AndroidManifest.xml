@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jannini.android.ciclosp"
     android:versionCode="27"
-    android:versionName="1.93" >
+    android:versionName="2.0" >
 
     <uses-sdk
         android:minSdkVersion="17"

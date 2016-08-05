@@ -159,7 +159,6 @@
     <string name="loc_buscando_localizacao">Requesting your location…</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_of_alert">TYPE OF ALERT</string>
     <string name="etReportDetailsError">Mandatory field</string>
     <string name="rbReportError">Please choose the alert type</string>

@@ -199,7 +199,7 @@
         android:layout_height="60dp"
         android:background="@drawable/bt_water_blue"
         android:text="@string/enviar_alerta"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:onClick="Report"/>
 	        	
 
