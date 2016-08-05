@@ -18,6 +18,7 @@
         <item>Parking</item>
         <item>Free Wifi SP</item>
         <item>Alerts</item>
+        <item>Write for us</item>
     </string-array>
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
@@ -27,6 +28,7 @@
         <item>Outdoor and indoor bike racks</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
+        <item />
     </string-array>
 
     <!--<string-array name="menu_array">
@@ -83,7 +85,7 @@
     <string name="endereco">Address</string>
     <string name="entendi">Understood</string>
     <string name="enviar_email">Send</string>
-    <string name="envie_sugestao">Send us a suggestion</string>
+    <string name="envie_sugestao">Write for us</string>
     <string name="escolha_no_mapa">What\'s the exact location of the Bike Point?</string>
     <string name="fechar">Close</string>
     <string name="from_my_location">From my current location</string>
@@ -111,7 +113,7 @@
     <string name="seu_email">Email</string>
     <string name="seu_nome">Name</string>
     <string name="splash">Loading…</string>
-    <string name="splash_info">This screen has to load only on the first access ;)</string>
+    <string name="splash_info">Loading data…</string>
     <string name="splash_nenhuma_camada">We coudn\'t load any data. Check you network.</string>
     <string name="splash_nenhuma_estacao">Oops… We coudn\'t load the shared bike stations. That\'s not common!</string>
     <string name="splash_sem_bikesampa">Oops… We coudn\'t load Bike Sampa shared bike stations. That\'s not common!</string>
@@ -195,4 +197,7 @@
     <string name="saved_place">Saved place</string>
     <string name="mandatory_field">Mandatory field</string>
     <string name="toast_error">Oops, there was an error...</string>
+    <string name="atencao">Warning</string>
+    <string name="toomuchmarkers">Visualizing too much items in a broad area can make the app run slow</string>
+    <string name="dont_show_again">Don\'t show again</string>
 </resources>

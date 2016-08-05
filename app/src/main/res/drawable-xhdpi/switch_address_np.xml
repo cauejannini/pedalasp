@@ -15,7 +15,7 @@
 	
 	<item>
 		<bitmap
-		   	android:src="@drawable/switch_address_img"
+		   	android:src="@drawable/ic_switch_address"
 		   	android:gravity="center_vertical|center_horizontal"
 		   />
 	</item>

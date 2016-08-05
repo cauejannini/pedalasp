@@ -10,7 +10,7 @@
         android:layout_height="50dp"
         android:text="@string/curta_no_facebook"
         android:layout_gravity="top"
-        android:background="@drawable/bt_blue"
+        android:background="@color/water_blue"
         android:textColor="#fff"
         android:onClick="likeOnFacebook">
 

@@ -3,6 +3,7 @@ package jannini.android.ciclosp.Adapters;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,72 +47,80 @@ public class MyListAdapter extends ArrayAdapter<String> {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         holder.text.setText(values[position]);
-        holder.description.setText
-        (values2[position]);
+        holder.description.setText(values2[position]);
         holder.btSettings.setVisibility(View.GONE);
 
         switch (position) {
-        case 0:
-            if (Constant.states[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.cor_ciclovia);
-            holder.btSettings.setVisibility(View.VISIBLE);
-            holder.btSettings.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (context instanceof MainActivity) {
-                        ((MainActivity) context).selectBikeLaneTypes();
+            case 0:
+                if (Constant.states[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_lanes_permanent);
+                holder.btSettings.setVisibility(View.VISIBLE);
+                holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (context instanceof MainActivity) {
+                            ((MainActivity) context).selectBikeLaneTypes();
+                        }
                     }
-                }
-            });
-            break;
-        case 1:
-            if (Constant.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.icon_bikesampa);
-            holder.btSettings.setVisibility(View.VISIBLE);
-            holder.btSettings.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (context instanceof MainActivity) {
-                        ((MainActivity) context).selectSharingSystems();
+                });
+                break;
+            case 1:
+                if (Constant.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
+                holder.btSettings.setVisibility(View.VISIBLE);
+                holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (context instanceof MainActivity) {
+                            ((MainActivity) context).selectSharingSystems();
+                        }
                     }
-                }
-            });
-            break;
-        case 2:
-            if (Constant.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_estabelecimento);
-            holder.btSettings.setVisibility(View.VISIBLE);
-            holder.btSettings.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (context instanceof MainActivity) {
+                });
+                break;
+            case 2:
+                if (Constant.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_estabelecimento);
+                holder.btSettings.setVisibility(View.VISIBLE);
+                holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (context instanceof MainActivity) {
+                        }
                     }
+                });
+                break;
+            case 3:
+                if (Constant.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_parking);
+                break;
+            case 4:
+                if (Constant.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_park);
+                break;
+            case 5:
+                if (Constant.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_wifi);
+                break;
+            case 6:
+                if (Constant.states[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.ic_alert);
+                break;
+            case 7:
+                drawListView.setPadding(18, 25, 18, 25);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    holder.text.setTextColor(context.getColor(R.color.water_blue));
                 }
-            });
-            break;
-        case 3:
-            if (Constant.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_parking);
-            break;
-        case 4:
-            if (Constant.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_park);
-            break;
-        case 5:
-            if (Constant.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_wifi);
-            break;
-        case 6:
-            if (Constant.states[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-            } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-            holder.image.setBackgroundResource(R.drawable.ic_alert);
-            break;
+                holder.image.setVisibility(View.GONE);
+                holder.description.setVisibility(View.GONE);
+                break;
+
         }
 
         return drawListView;

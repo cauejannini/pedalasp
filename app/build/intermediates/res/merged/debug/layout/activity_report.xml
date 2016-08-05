@@ -21,20 +21,13 @@
             android:text="Enviar Alerta"
             android:textSize="18sp"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <View
             android:layout_width="80dp"
             android:layout_height="1dp"
             android:background="@color/water_blue"
             android:layout_marginBottom="20dp"/>
-
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/type_of_alert"
-            android:gravity="center_horizontal"
-            android:textSize="12sp"/>-->
 
         <RadioGroup
             android:id="@+id/radiogroup"
@@ -116,7 +109,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:scaleType="centerCrop"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="12.5dp"
+                android:layout_marginStart="2.5dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_info"/>
 
@@ -143,8 +137,8 @@
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:scaleType="centerCrop"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_location"/>
@@ -168,7 +162,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="10dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/x"
+                android:background="@drawable/bt_x"
                 android:visibility="gone"/>
 
             <ProgressBar
@@ -185,7 +179,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bt_lupa"
+                android:background="@drawable/bt_lupa_roundblue"
                 android:onClick="findAddress"/>
 
         </LinearLayout>
@@ -203,7 +197,7 @@
         android:id="@+id/report_ok_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bt_lightblue"
+        android:background="@drawable/bt_water_blue"
         android:text="@string/enviar_alerta"
         android:textColor="#FFFFFF"
         android:onClick="Report"/>

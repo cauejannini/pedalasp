@@ -33,9 +33,10 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -48,7 +49,7 @@ import jannini.android.ciclosp.Adapters.InfoWindowActivity;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 
-public class ReportActivity extends FragmentActivity implements LocationListener {
+public class ReportActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 
 	private GoogleMap googleMap;
 
@@ -102,11 +103,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
 		user_latlng = new LatLng(lat, lng);
 
-		try {
-			initializeMap();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.report_map)).getMapAsync(this);
 
 		etReportAddress.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
@@ -122,20 +119,15 @@ public class ReportActivity extends FragmentActivity implements LocationListener
             }
 		});
 
-		googleMap.setOnMapClickListener(new OnMapClickListener() {
-			public void onMapClick(LatLng point) {
-
-                geocodeLatLng(point);
-			}
-		});
-
 	}
 
 	public void geocodeLatLng(final LatLng latlng) {
 
         if (marker_address != null) { marker_address.remove(); }
 
-        marker_address = googleMap.addMarker(new MarkerOptions().position(latlng));
+        marker_address = googleMap.addMarker(new MarkerOptions()
+                .position(latlng)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location)));
 
 		// Create a geocoder object
 		final Geocoder geoCoder = new Geocoder(this);
@@ -182,42 +174,48 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 					}
 
 					etReportAddress.setText(address);
-				} else {
 				}
 			}
 		}.execute();
 	}
 
-	// Function to load map
-	private void initializeMap() {
-		if (googleMap == null) {
-			googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.report_map)).getMap();
-			googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-			googleMap.getUiSettings().setZoomControlsEnabled(false);
-			if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-			} else {
-				googleMap.setMyLocationEnabled(true);
-			}
-			googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
-			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+	@Override
+	public void onMapReady(GoogleMap gMap) {
 
-			// check if map is created successfully or not
-			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
-						R.string.null_map, Toast.LENGTH_SHORT)
-						.show();
-			}
-
-			// Bloco abaixo foi adicionado pra evitar o erro de null em CameraUpdateFactory
-			try {
-				MapsInitializer.initialize(this);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			setUserLocation();
+		googleMap = gMap;
+		googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+		googleMap.getUiSettings().setZoomControlsEnabled(false);
+		if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+		} else {
+			googleMap.setMyLocationEnabled(true);
 		}
+		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
+		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+		// check if map is created successfully or not
+		if (googleMap == null) {
+			Toast.makeText(getApplicationContext(),
+					R.string.null_map, Toast.LENGTH_SHORT)
+					.show();
+		}
+
+		// Bloco abaixo foi adicionado pra evitar o erro de null em CameraUpdateFactory
+		try {
+			MapsInitializer.initialize(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+		googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+			public void onMapClick(LatLng point) {
+
+				geocodeLatLng(point);
+			}
+		});
+
+		setUserLocation();
 	}
 
 	public void findAddress(View view) {
@@ -308,6 +306,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 							googleMap.animateCamera(zoom);
 							marker_address = googleMap.addMarker(new MarkerOptions()
 									.position(new LatLng(lat, lng))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location))
 									.title(address.getAddressLine(0)));
                             geocodeLatLng(marker_address.getPosition());
 						}
@@ -328,6 +327,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 											googleMap.animateCamera(zoom);
 											marker_address = googleMap.addMarker(new MarkerOptions()
 													.position(new LatLng(lat, lng))
+                                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location))
 													.title(address.getAddressLine(0)));
                                             geocodeLatLng(marker_address.getPosition());
 										}
@@ -521,5 +521,4 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 		// TODO Auto-generated method stub
 		
 	}
-
 }

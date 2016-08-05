@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
@@ -41,11 +40,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -68,6 +65,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -78,14 +76,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
-import org.achartengine.chart.PointStyle;
-import org.achartengine.model.SeriesSelection;
-import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -112,6 +103,7 @@ import jannini.android.ciclosp.CustomItemClasses.Estabelecimento;
 import jannini.android.ciclosp.CustomItemClasses.Estacao;
 import jannini.android.ciclosp.CustomItemClasses.Parque;
 import jannini.android.ciclosp.CustomItemClasses.Report;
+import jannini.android.ciclosp.Fragments.SwipeFragment;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
@@ -120,7 +112,11 @@ import jannini.android.ciclosp.NetworkRequests.JSONParser;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
 
 
-public class MainActivity extends FragmentActivity implements LocationListener {
+public class MainActivity extends FragmentActivity
+        implements
+        LocationListener,
+        OnMapReadyCallback,
+        SwipeFragment.SwipeFragmentInteractionListener {
 
 	// Location Manager and Provider
 	private LocationManager locationManager;
@@ -135,6 +131,11 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	// Analytics tracker
 	Tracker t;
 
+    static boolean savedInstanceStateHasRun = false;
+    boolean isViewPagerVisible = false;
+    String[] stringGraphPointMarkerInfo;
+    LatLng latLngGraphPointMarker;
+
 	// Calendars
 	public Calendar rightNow;
 	public Calendar sundaySeven;
@@ -147,13 +148,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	public static ArrayList<PolylineOptions> ciclorrotasOptionsList = new ArrayList<>();
 	public ArrayList<Polyline> ciclorrotasLineList = new ArrayList<>();
-
-	// Markers for entrance in Marg. Pinheiros
-	Marker pinheiros1marker;
-	Marker pinheiros2marker;
-	Marker pinheiros3marker;
-	Marker pinheiros4marker;
-	Marker pinheiros5marker;
 
 	public static String newline = System.getProperty("line.separator");
 
@@ -192,14 +186,10 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	List<Marker> listMarker = new ArrayList<>();
 
 	//Navigation Drawer
-	public static String[] mMenuTitles;
-	public static String[] mMenuDescriptions;
-	private DrawerLayout mDrawerLayout;
-	public static ListView mDrawerList;
-	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence mDrawerTitle;
-	private CharSequence mTitle;
-	private MyListAdapter myAdapter;
+	public DrawerLayout mDrawerLayout;
+	public ListView mDrawerList;
+	public ActionBarDrawerToggle mDrawerToggle;
+	public MyListAdapter myAdapter;
 
 	// Header for Search and Route
 	LinearLayout header;
@@ -230,9 +220,10 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	List<Address> addressList = new ArrayList<>();
 	List<Address> addressListBase = new ArrayList<>();
-	Marker markerDestination = null;
-	Marker markerOrigin = null;
-	Marker markerSearch = null;
+	Marker markerDestination, markerOrigin, markerSearch;
+
+    LatLng latLngMarkerOrigin;
+    LatLng latLngMarkerDestination;
 
 	ImageView iv;
 	Menu mymenu;
@@ -249,8 +240,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	LatLng user_latlng = null;
 
-	// Notify solved variables
-
     //LinearLayout llPlaceOptions;
 	Button notifyButton, btParkedHere, btRemovePlace;//, btParkedHereSmall, btPlaceFavorite;
 	Marker activeMarker;
@@ -260,7 +249,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	Map<String, String> alertMap = new HashMap<>();
 
 	// ROUTE variables
-	static ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
+	public static ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
 
 	// Auxiliar list that only stores the selected cyclingPath
 	ArrayList<CyclingPath> selectedCyclingPath = new ArrayList<>();
@@ -273,19 +262,15 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	AsyncTask<String, String, String> geocodeDestinationASY;
 	AsyncTask<String, Integer, ArrayList<CyclingPath>> getRoutesASY;
 
-	// ViewPager for Route Details
-	SwipeFragmentPagerAdapter swipeFragmentPagerAdapter;
 	ViewPager viewPager;
-	Integer viewPagerPosition = null;
+	Integer viewPagerPosition;
 	ObjectAnimator hideViewPager;
 
 	ToggleButton btRouteMode;
 
 	//aChartEngine
-	static LinearLayout aChartParentView;
-	static ArrayList<GraphicalView> graphViewArray = new ArrayList<>();
-	XYSeriesRenderer renderer = new XYSeriesRenderer();
-	XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
+    static ArrayList<LinearLayout> aChartLinearLayoutList = new ArrayList<>();
+    static ArrayList<GraphicalView> graphViewArray = new ArrayList<>();
 
 	AlertDialog adLoadingRoute;
 	ProgressBar pbLoadingRoute;
@@ -310,31 +295,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		sundaySixteen.set(Calendar.HOUR_OF_DAY, 16);
 		sundaySixteen.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 
-		//aChartEngine
-		renderer.setLineWidth(30);
-		renderer.setColor(Color.BLUE);
-		renderer.setDisplayBoundingPoints(true);
-		renderer.setPointStyle(PointStyle.CIRCLE);
-		renderer.setPointStrokeWidth(22);
-		XYSeriesRenderer.FillOutsideLine fill = new XYSeriesRenderer.FillOutsideLine(XYSeriesRenderer.FillOutsideLine.Type.BELOW);
-		fill.setColor(Color.BLUE);
-		renderer.addFillOutsideLine(fill);
 
-		mRenderer.addSeriesRenderer(renderer);
-		mRenderer.setMarginsColor(Color.argb(0x00, 0xff, 0x00, 0x00));
-		mRenderer.setMargins(new int[]{15, 0, 0, 0});
-		mRenderer.setBackgroundColor(Color.YELLOW);
-		mRenderer.setGridColor(Color.GREEN);
-		mRenderer.setPanEnabled(false, false);
-		mRenderer.setZoomEnabled(false, false);
-		mRenderer.setShowGrid(false);
-		mRenderer.setShowAxes(false);
-		mRenderer.setShowLabels(false);
-		mRenderer.setShowLegend(false);
-		mRenderer.setDisplayValues(false);
-		mRenderer.setClickEnabled(true);
-		mRenderer.setXLabelsPadding(100);
-		mRenderer.setYLabelsPadding(100);
 
 		// Get tracker
 		t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
@@ -446,24 +407,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		Button btCancelCalculatingRoute = (Button) calculatingRouteAV.findViewById(R.id.cancel_loading_routes);
 		pbLoadingRoute = (ProgressBar) calculatingRouteAV.findViewById(R.id.pb_loading_route);
 
-		// INITIALIZE MAP
-		try {
-			initializeMap();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		// DRAWER VARIABLES
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-		mTitle = mDrawerTitle = getTitle();
-
-		// DRAWER LIST VARIABLES
-		mMenuTitles = getResources().getStringArray(R.array.menu_array);
-		mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
 
 		// Set up the drawer's list view with items and click listener.
-		myAdapter = new MyListAdapter(this, mMenuTitles, mMenuDescriptions);
+		myAdapter = new MyListAdapter(this,
+				getResources().getStringArray(R.array.menu_array),
+				getResources().getStringArray(R.array.menu_array_descriptions));
 		mDrawerList.setAdapter(myAdapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -477,12 +428,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				R.string.drawer_close  // "close drawer" description for accessibility
 		) {
 			public void onDrawerClosed(View view) {
-				getActionBar().setTitle(mTitle);
+				getActionBar().setTitle(getTitle());
 				invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
 			}
 
 			public void onDrawerOpened(View drawerView) {
-				getActionBar().setTitle(mDrawerTitle);
+				getActionBar().setTitle(getTitle());
 				invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
 			}
 		};
@@ -511,33 +462,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			}
 		});
 
-		// Check savedInstanceState
-		if (savedInstanceState == null) {
-
-			try {
-				setUserLocation();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				createBaseArrays();
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
-
-			if (isNetworkAvailable()) {
-				try {
-					getDataFromDB();
-					//new CarregarDB().execute();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
-				showNetworkAlertDialog();
-			}
-
-		}
+        // INITIALIZE MAP
+        try {
+            ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 		// Bloco abaixo foi adicionado pra evitar o erro de null em CameraUpdateFactory e IBitMapDescriptorFactory
 		try {
@@ -546,26 +476,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			e.printStackTrace();
 		}
 
-		if (googleMap != null) {
-			setMapEvents();
-		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// The action bar home/up action should open or close the drawer.
-		// ActionBarDrawerToggle will take care of this.
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		} // Else, handle action buttons, if are ther any...
-		else {
-			switch (item.getItemId()) {
-				case R.id.action_refresh:
-					refreshData(item);
-					return true;
-			}
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
     /* DRAWER FUNCTIONALITY */
@@ -759,7 +669,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
                     Constant.states[6] = true;
                 }
                 break;
+			case 7:
+				startActivity(new Intent(MainActivity.this, SugestaoActivity.class));
+				break;
 		}
+
+        if (!sharedPreferences.getBoolean(Constant.dontWarnAgainTooMuchMarkers, false)) {
+            checkNumberOfOptionsDisplayed();
+        }
 	}
 
 	public void selectBikeLaneTypes() {
@@ -930,83 +847,104 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         }
     }
 
-	public void openDrawer(View view) {
-		mDrawerLayout.openDrawer(Gravity.LEFT);
-	}
-
     /* END DRAWER FUNCTIONALITY */
     /* LOAD MAP AND BASIC LOCATION FUNCTIONALITY */
 
-	private void initializeMap() {
-		if (googleMap == null) {
-			googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
-			} else {
-				googleMap.setMyLocationEnabled(true);
+	@Override
+	public void onMapReady(GoogleMap gMap) {
+		googleMap = gMap;
+		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+		} else {
+			googleMap.setMyLocationEnabled(true);
 
-				// GET LOCATION MANAGER
-				locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
+			// GET LOCATION MANAGER
+			locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
 
-                Location userLoc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (userLoc != null) {
-                    user_latlng = new LatLng(userLoc.getLatitude(), userLoc.getLongitude());
-                }
-                //Get Best Location Provider
-				bestAvailableProvider = locationManager.getBestProvider(criteria, false);
-				if (bestAvailableProvider != null) {
-					if (locationManager.isProviderEnabled(bestAvailableProvider)) {
-						locationManager.requestLocationUpdates(bestAvailableProvider, 0, 0, this);
-					}  else {
-						Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
-					}
-				} else {
+			Location userLoc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			if (userLoc != null) {
+				user_latlng = new LatLng(userLoc.getLatitude(), userLoc.getLongitude());
+			}
+			//Get Best Location Provider
+			bestAvailableProvider = locationManager.getBestProvider(criteria, false);
+			if (bestAvailableProvider != null) {
+				if (locationManager.isProviderEnabled(bestAvailableProvider)) {
+					locationManager.requestLocationUpdates(bestAvailableProvider, 0, 0, this);
+				}  else {
 					Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
 				}
+			} else {
+				Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
 			}
-			googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-			googleMap.getUiSettings().setZoomControlsEnabled(false);
-			googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
-			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-			googleMap.getUiSettings().setCompassEnabled(true);
+		}
+		googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+		googleMap.getUiSettings().setZoomControlsEnabled(false);
+		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
+		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		googleMap.getUiSettings().setCompassEnabled(true);
 
-            int parkedHereSize = Integer.valueOf(sharedPreferences.getString(Constant.spParkedHereListSize, "0"));
-			parkedHereMarkerList = new ArrayList<>();
-            for (int i = 0; i < parkedHereSize; i++) {
-                double lat = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLat+i, ""));
-                double lng = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLng+i, ""));
-                if (lat != 0 && lng != 0) {
-                    parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
-                            .title(getString(R.string.your_bike_is_here))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
-                            .anchor(0.5f, 1f)
-                            .position(new LatLng(lat, lng))));
-                }
+        setMapEvents();
+        if (!savedInstanceStateHasRun) {
+
+            Log.e("SIShasRun", "FALSE");
+
+            setUserLocation();
+
+            try {
+                createBaseArrays();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-			/*
-            int favoritePlacesSize = Integer.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceListSize, "0"));
-            Log.e("Favorite SIZE", String.valueOf(favoritePlacesSize));
-            for (int i = 0; i < favoritePlacesSize; i++) {
-                Log.e("Favorite I", String.valueOf(i));
-                double lat = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLat+i, ""));
-                double lng = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLng+i, ""));
-                if (lat != 0 && lng != 0) {
-                    favoritePlacesMarkerList.add(googleMap.addMarker(new MarkerOptions()
-                            .title(getString(R.string.saved_place))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_favorite_place))
-                            .anchor(0.5f, 0.5f)
-                            .position(new LatLng(lat, lng))));
-                }
-            }*/
+            if (isNetworkAvailable()) {
+                getDataFromDB();
+            } else {
+                showNetworkAlertDialog();
+            }
 
-			// check if map is created successfully or not
-			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
-						getString(R.string.null_map), Toast.LENGTH_SHORT)
-						.show();
+        } else {
+
+            Log.e("SIShasRun", "TRUE");
+
+            redrawOnMapAfterSavedInstance();
+
+        }
+
+		int parkedHereSize = Integer.valueOf(sharedPreferences.getString(Constant.spParkedHereListSize, "0"));
+		parkedHereMarkerList = new ArrayList<>();
+		for (int i = 0; i < parkedHereSize; i++) {
+			double lat = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLat+i, ""));
+			double lng = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLng+i, ""));
+			if (lat != 0 && lng != 0) {
+				parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
+						.title(getString(R.string.your_bike_is_here))
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
+						.anchor(0.5f, 1f)
+						.position(new LatLng(lat, lng))));
 			}
+		}
 
+		/*
+		int favoritePlacesSize = Integer.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceListSize, "0"));
+		Log.e("Favorite SIZE", String.valueOf(favoritePlacesSize));
+		for (int i = 0; i < favoritePlacesSize; i++) {
+			Log.e("Favorite I", String.valueOf(i));
+			double lat = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLat+i, ""));
+			double lng = Double.valueOf(sharedPreferences.getString(Constant.spFavoritePlaceLng+i, ""));
+			if (lat != 0 && lng != 0) {
+				favoritePlacesMarkerList.add(googleMap.addMarker(new MarkerOptions()
+						.title(getString(R.string.saved_place))
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_favorite_place))
+						.anchor(0.5f, 0.5f)
+						.position(new LatLng(lat, lng))));
+			}
+		}*/
+
+		// check if map is created successfully or not
+		if (googleMap == null) {
+			Toast.makeText(getApplicationContext(),
+					getString(R.string.null_map), Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
 
@@ -1351,7 +1289,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 								}
                                 markerDestination = googleMap.addMarker(new MarkerOptions()
 										.position(ll)
-										.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
+										.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+										.anchor(0.0f, 1.0f)
 										.title(getString(R.string.chegada)));
 
 								if (tvOrigin.getVisibility() == View.VISIBLE) {
@@ -1932,7 +1871,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 					MarkerOptions item_wifi = new MarkerOptions()
 							.title(nome)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_wifi))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_wifi))
 							.snippet(end)
 							.position(new LatLng(latitude, longitude));
 
@@ -2369,21 +2308,21 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_ciclosampa_vazia));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_vazia));
 				} else if (vagasLivres == 0) {
 					estacaoMOpt.snippet(getString(R.string.em_operacao)
 							+ newline + newline + estacao.Descricao
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_ciclosampa_cheia));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_cheia));
 				} else {
 					estacaoMOpt.snippet(getString(R.string.em_operacao)
 							+ newline + newline + estacao.Descricao
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_ciclosampa_operando));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_operando));
 				}
 
 			} else if (estacao.status1.equals("I") && estacao.status2.equals("EO")) {
@@ -2392,14 +2331,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_ciclosampa_offline));
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_offline));
 			} else {
 				estacaoMOpt.snippet(getString(R.string.em_manutencao_implantacao)
 						+ newline + newline + estacao.Descricao
 						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_ciclosampa_manutencao));
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_manutencao));
 			}
 
 			ListMarkersBRA.add(googleMap.addMarker(estacaoMOpt));
@@ -2436,21 +2375,21 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_bikesampa_vazia));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_vazia));
 				} else if (vagasLivres == 0) {
 					estacaoMOpt.snippet(getString(R.string.em_operacao)
 							+ newline + newline + estacao.Descricao
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_bikesampa_cheia));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_cheia));
 				} else {
 					estacaoMOpt.snippet(getString(R.string.em_operacao)
 							+ newline + newline + estacao.Descricao
 							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_bikesampa_operando));
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_operando));
 				}
 
 			} else if (estacao.status1.equals("I") && estacao.status2.equals("EO")) {
@@ -2459,14 +2398,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_bikesampa_offline));
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_offline));
 			} else {
 				estacaoMOpt.snippet(getString(R.string.em_manutencao_implantacao)
 						+ newline + newline + estacao.Descricao
 						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
 						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
 						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_bikesampa_manutencao));
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_manutencao));
 			}
 
 			ListMarkersITAU.add(googleMap.addMarker(estacaoMOpt));
@@ -2579,40 +2518,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	public void drawPermanentes(Boolean visibility) {
 
 		if (!ListCiclovias.isEmpty()) {
-			/*pinheiros1marker = googleMap.addMarker(new MarkerOptions()
-					.position(new LatLng(-23.69560, -46.68497))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-					.title(getString(R.string.acesso_ciclovia_marginal))
-					.anchor(0.5f, 0.5f)
-					.visible(visibility));
-
-			pinheiros2marker = googleMap.addMarker(new MarkerOptions()
-					.position(new LatLng(-23.677504, -46.702454))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-					.title(getString(R.string.acesso_ciclovia_marginal))
-					.anchor(0.5f, 0.5f)
-					.visible(visibility));
-
-			pinheiros3marker = googleMap.addMarker(new MarkerOptions()
-					.position(new LatLng(-23.655609, -46.719791))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-					.title(getString(R.string.acesso_ciclovia_marginal))
-					.anchor(0.5f, 0.5f)
-					.visible(visibility));
-
-			pinheiros4marker = googleMap.addMarker(new MarkerOptions()
-					.position(new LatLng(-23.593094, -46.692753))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-					.title(getString(R.string.acesso_ciclovia_marginal))
-					.anchor(0.5f, 0.5f)
-					.visible(visibility));
-
-			pinheiros5marker = googleMap.addMarker(new MarkerOptions()
-					.position(new LatLng(-23.558264, -46.711334))
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-					.title(getString(R.string.acesso_ciclovia_marginal))
-					.anchor(0.5f, 0.5f)
-					.visible(visibility));*/
 
             drawAcessos(visibility);
 
@@ -2768,13 +2673,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				turnOnRouteMode();
 			}
 		} else {
-			cancelRouteMode();
+			turnOffRouteMode();
 		}
 	}
 
 	public void turnOnRouteMode() {
 
 		isRouteModeOn = true;
+        hideAllBottomButtons();
 
 		if (markerSearch != null) {
 			String destination_string = etSearch.getText().toString();
@@ -2795,7 +2701,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 			markerDestination = googleMap.addMarker(new MarkerOptions()
 					.position(destination_latlng)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+					.anchor(0.0f, 1.0f)
 					.title(getString(R.string.chegada)));
 
 			AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -2874,7 +2781,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	}
 
-	public void cancelRouteMode() {
+	public void turnOffRouteMode() {
 
 		isRouteModeOn = false;
 
@@ -2898,6 +2805,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		etSearch.setText("");
 		btClearSearch.setVisibility(View.GONE);
+
+        viewPager.setAdapter(null);
 
 		hideViewPager.start();
 
@@ -3244,7 +3153,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 								}
 								markerDestination = googleMap.addMarker(new MarkerOptions()
 										.position(new LatLng(lat, lng))
-										.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
+										.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+										.anchor(0.0f, 1.0f)
 										.title(getString(R.string.chegada)));
 							}
 							String finalStringAddress = address.getAddressLine(0);
@@ -3275,7 +3185,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 												}
 												markerDestination = googleMap.addMarker(new MarkerOptions()
 														.position(new LatLng(lat, lng))
-														.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
+														.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+														.anchor(0.0f, 1.0f)
 														.title(getString(R.string.chegada)));
 											}
 											String finalStringAddress = address.getAddressLine(0);
@@ -3516,6 +3427,12 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				}
 				selectedCyclingPath.add(cyclingPathList.get(0));
 
+                String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+                if (!deviceID.equals("")){
+                    Calls.sendOriginDestination(deviceID, markerOrigin.getPosition(), markerDestination.getPosition(),
+                            selectedCyclingPath.get(0).totalDistance, selectedCyclingPath.get(0).maxInclination, null);
+                }
+
 				drawRoutes();
 
 			}
@@ -3671,77 +3588,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		if (!graphViewArray.isEmpty()) {
 			graphViewArray.clear();
 		}
-		;
-
+        Log.e("CYCLINGPATHSIZE", String.valueOf(cyclingPathList.size()));
 		// For each other cycling path stored on cyclingPathList
 		for (int i = 0; i < cyclingPathList.size(); i++) {
-
-			CyclingPath cp = cyclingPathList.get(i);
-
-			/** Create line graph series to the current cyclingPath, if there's. Add to list. */
-
-			if (!cp.referenceDistances.isEmpty() && !cp.pathElevation.isEmpty()) {
-
-				// aChartEngine
-				XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
-				XYSeries xySeries = new XYSeries("Minha série");
-
-				// Get cyclingPath's elevations list
-				ArrayList<Double> elevations = cp.pathElevation;
-
-				// Get cyclingPath's reference distances list
-				ArrayList<Double> referenceDistances = cp.referenceDistances;
-				// Add each elevation point to the elevationSeries1 variable
-				for (int y = 0; y < elevations.size(); y++) {
-
-					//aChartEngine
-					xySeries.add(referenceDistances.get(y), elevations.get(y));
-
-				}
-
-				//aChartEngine
-				mDataset.addSeries(xySeries);
-
-				final GraphicalView gView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
-				gView.setClickable(true);
-				gView.setPadding(0, 0, 0, 0);
-
-				gView.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						// handle the click event on the chart
-						SeriesSelection seriesSelection = gView.getCurrentSeriesAndPoint();
-						if (seriesSelection == null) {
-							//Toast.makeText(getApplicationContext(), "Nenhum ponto clicado", Toast.LENGTH_SHORT).show();
-						} else {
-
-							if (graph_point_marker != null) {
-								graph_point_marker.remove();
-							}
-
-							Double clickedRefDistance = seriesSelection.getXValue();
-
-							graph_point_marker = googleMap.addMarker(new MarkerOptions()
-											.position(selectedCyclingPath.get(0).getLatLngFromRefDistance(clickedRefDistance))
-											.anchor(0.5f, 0.5f)
-											.icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_ball))
-											.title(getString(R.string.inclinacao) + " " + String.valueOf(selectedCyclingPath.get(0).getElevationFromRefDistance(clickedRefDistance)) + "°")
-											.snippet(getString(R.string.posicao) + " " + Double.valueOf(String.format(Locale.US, "%.2f", clickedRefDistance)) + " km")
-							);
-
-							graph_point_marker.showInfoWindow();
-
-
-							// display information of the clicked point
-							/** "Chart element in series index " + seriesSelection.getSeriesIndex()
-							 + " data point index " + seriesSelection.getPointIndex() + " was clicked"
-							 + " closest point value X=" + seriesSelection.getXValue() + ", Y="
-							 + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();*/
-						}
-					}
-				});
-
-				graphViewArray.add(gView);
-			}
 
 			// Create PolylineOptions to the current cyclingPath. Add to list.
 
@@ -3770,12 +3619,14 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		ObjectAnimator objAnim = ObjectAnimator.ofFloat(viewPager, "translationY", 0);
 		objAnim.start();
 
-		swipeFragmentPagerAdapter = new SwipeFragmentPagerAdapter(getSupportFragmentManager());
+        SwipeFragmentPagerAdapter swipeFragmentPagerAdapter = new SwipeFragmentPagerAdapter(this, getSupportFragmentManager());
 
-		viewPager.setOffscreenPageLimit(3);
 		viewPager.setAdapter(swipeFragmentPagerAdapter);
-		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			public void onPageSelected(int position) {
+
+                Log.e("onPageSelected", "RAN, position: " + String.valueOf(position));
 				for (Polyline polyline : polylineRoutesList) {
 					polyline.setColor(getResources().getColor(R.color.not_selected_route_blue));
 				}
@@ -3817,9 +3668,13 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	}
 
-	public static class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
-		public SwipeFragmentPagerAdapter(FragmentManager fm) {
+	public class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
+
+        Context context;
+
+		public SwipeFragmentPagerAdapter(Context c, FragmentManager fm) {
 			super(fm);
+            context = c;
 		}
 
 		@Override
@@ -3830,52 +3685,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		@Override
 		public Fragment getItem(int position) {
 			//SwipeFragment fragment = new SwipeFragment();
-			return SwipeFragment.newInstance(position);
-		}
-	}
-
-	public static class SwipeFragment extends Fragment {
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-			// Get views
-			View swipeView = inflater.inflate(R.layout.route_detail_fragment, container, false);
-			TextView timeTV = (TextView) swipeView.findViewById(R.id.route_line_time);
-			TextView distanceTV = (TextView) swipeView.findViewById(R.id.route_line_distance);
-			TextView inclinationTV = (TextView) swipeView.findViewById(R.id.route_line_inclination);
-
-			// Get current position
-			Bundle args = getArguments();
-			int position = args.getInt("position");
-
-			aChartParentView = (LinearLayout) swipeView.findViewById(R.id.aChart);
-			aChartParentView.removeView(graphViewArray.get(position));
-
-			if (!graphViewArray.isEmpty()) {
-				aChartParentView.addView(graphViewArray.get(position), 0);
-				// Aqui tava dando o problema de "Child already has a parent".
-				// Tentei resolver tornando aChartParentView uma variável única (declarada no início do app).
-				// Antes, um novo Linear Layout era sempre criado nesse método.
-			} else {
-				TextView textView = (TextView) swipeView.findViewById(R.id.textViewChartWarn);
-				textView.setVisibility(View.VISIBLE);
-			}
-
-			timeTV.setText(cyclingPathList.get(position).getEstimatedTime() + " min");
-			distanceTV.setText(cyclingPathList.get(position).totalDistance + " km");
-			inclinationTV.setText(cyclingPathList.get(position).maxInclination + "°");
-			// cyclingPathList.get(position).referenceDistanceForMaxInclination + " km");
-
-			return swipeView;
+			return SwipeFragment.newInstance(context, position);
 		}
 
-		static SwipeFragment newInstance(int position) {
-			SwipeFragment swipeFragment = new SwipeFragment();
-			Bundle args = new Bundle();
-			args.putInt("position", position);
-			swipeFragment.setArguments(args);
-			return swipeFragment;
-		}
 	}
 
 	public void switchAddresses(View view) {
@@ -3938,7 +3750,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 			markerDestination = googleMap.addMarker(new MarkerOptions()
 					.position(oLatLng)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_chegada))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+					.anchor(0.0f, 1.0f)
 					.title(getString(R.string.chegada)));
 
 		}
@@ -3983,6 +3796,36 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         hideBottomButton(btParkedHere);
         hideBottomButton(btRemovePlace);
         //hideBottomButton(llPlaceOptions);
+    }
+
+    public void checkNumberOfOptionsDisplayed() {
+
+        int numberOfTrues = 0;
+
+        for (int i = 1; i < Constant.states.length; i++) {
+            if (Constant.states[i]) numberOfTrues++;
+        }
+
+        if (numberOfTrues > 2) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+            final AlertDialog alert = alertBuilder.create();
+            View alertView = getLayoutInflater().inflate(R.layout.ad_toomuchmarkers, null);
+            alert.setView(alertView);
+            alert.setCancelable(false);
+            Button btOk = (Button) alertView.findViewById(R.id.bt_toomuchmarkers_ok);
+            final ToggleButton tbDonotWarnAgain = (ToggleButton) alertView.findViewById(R.id.tb_toomuchmarkers_donotdisplay);
+            btOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    sharedPreferences.edit().putBoolean(Constant.dontWarnAgainTooMuchMarkers, tbDonotWarnAgain.isChecked()).apply();
+
+                    alert.dismiss();
+
+                }
+            });
+            alert.show();
+        }
     }
 
 	private boolean isNetworkAvailable() {
@@ -4154,20 +3997,68 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 	}
 
+    public void redrawOnMapAfterSavedInstance () {
+        if (Constant.states[0] && Constant.bikeLanesStates[0]) {drawPermanentes(true);}
+        if (Constant.states[0] && Constant.bikeLanesStates[1]) {drawTemporarias(true);}
+        if (Constant.states[0] && Constant.bikeLanesStates[2]) {drawPreferenciais(true);}
+        if (Constant.states[1] && Constant.sharingSystemsStates[0]) {drawBikeSampa(true);}
+        if (Constant.states[1] && Constant.sharingSystemsStates[1]) {drawCicloSampa(true);}
+        if (Constant.states[2]) {drawEstabelecimentos(true);}
+        if (Constant.states[3]) {drawBicicletarios(true);}
+        if (Constant.states[4]) {drawParques(true);}
+        if (Constant.states[5]) {drawWifi(true);}
+        if (Constant.states[6]) {drawAlerts(true);}
+
+        if (current_latlng != null) {
+            LatLng position = new LatLng(current_latlng[0], current_latlng[1]);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, zoom);
+            googleMap.moveCamera(cameraUpdate);
+        }
+
+        if (latLngMarkerOrigin != null) {
+            markerOrigin = googleMap.addMarker(new MarkerOptions()
+                    .position(latLngMarkerOrigin)
+                    .title(getString(R.string.partida)));
+        }
+
+        if (latLngMarkerDestination != null) {
+            markerDestination = googleMap.addMarker(new MarkerOptions()
+                    .position(latLngMarkerDestination)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
+                    .anchor(0.0f, 1.0f)
+                    .title(getString(R.string.chegada)));
+        }
+
+        if (isViewPagerVisible) {
+
+            drawRoutes();
+
+            if (stringGraphPointMarkerInfo != null && latLngGraphPointMarker != null) {
+                graph_point_marker = googleMap.addMarker(new MarkerOptions()
+                        .position(latLngGraphPointMarker)
+                        .anchor(0.5f, 0.5f)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
+                        .title(stringGraphPointMarkerInfo[0])
+                        .snippet(stringGraphPointMarkerInfo[1])
+                );
+            }
+        }
+    }
+
 	protected void onRestoreInstanceState (@NonNull Bundle savedInstanceState) {
 
-		//long start = System.currentTimeMillis();
+        savedInstanceStateHasRun = true;
 
         Constant.states = savedInstanceState.getBooleanArray("STATES");
         Constant.bikeLanesStates = savedInstanceState.getBooleanArray("BIKELANESSTATES");
         Constant.sharingSystemsStates = savedInstanceState.getBooleanArray("SHARINGSYSTEMSSTATES");
 		current_latlng = savedInstanceState.getDoubleArray("LATLNG");
-		LatLng position = new LatLng(current_latlng[0], current_latlng[1]);
-		zoom = savedInstanceState.getFloat("ZOOM");
-		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, zoom);
-		googleMap.moveCamera(cameraUpdate);
+
+        zoom = savedInstanceState.getFloat("ZOOM");
 		if (savedInstanceState.getBoolean("isDrawerOpen")) {
-			mDrawerLayout.openDrawer(Gravity.LEFT); }
+			mDrawerLayout.openDrawer(Gravity.LEFT);
+            etSearch.clearFocus();
+        }
 
 		ListCiclovias = savedInstanceState.getParcelableArrayList("CICLOVIAS_LIST");
 
@@ -4189,32 +4080,17 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 
 		ListAlerts = savedInstanceState.getParcelableArrayList("REPORTS_LIST");
 
-		if (Constant.states[0] && Constant.bikeLanesStates[0]) {drawPermanentes(true);}
-		if (Constant.states[0] && Constant.bikeLanesStates[1]) {drawTemporarias(true);}
-		if (Constant.states[0] && Constant.bikeLanesStates[2]) {drawPreferenciais(true);}
-		if (Constant.states[1] && Constant.sharingSystemsStates[0]) {drawBikeSampa(true);}
-		if (Constant.states[1] && Constant.sharingSystemsStates[1]) {drawCicloSampa(true);}
-        if (Constant.states[2]) {drawEstabelecimentos(true);}
-        if (Constant.states[3]) {drawBicicletarios(true);}
-		if (Constant.states[4]) {drawParques(true);}
-		if (Constant.states[5]) {drawWifi(true);}
-		if (Constant.states[6]) {
-            drawAlerts(true);}
-
 		isRouteModeOn = savedInstanceState.getBoolean("isRouteModeOn");
 
 		if (isRouteModeOn) {
+            btRouteMode.setChecked(true);
 			header.removeAllViews();
 			header.addView(routeHeaderView);
-
-			Log.d("ROUTEMODE:", isRouteModeOn.toString());
 
 			if (savedInstanceState.getBoolean("tvOriginVIS")) {
 				etOrigin.setVisibility(View.GONE);
 				tvOrigin.setVisibility(View.VISIBLE);
 				tvOrigin.setText(savedInstanceState.getString("tvOriginSTRING"));
-
-				Log.d("TVORIGIN", String.valueOf(savedInstanceState.getBoolean("tvOriginVIS")));
 
 			} else {
 				tvOrigin.setVisibility(View.GONE);
@@ -4226,34 +4102,36 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 				tvDestination.setVisibility(View.VISIBLE);
 				tvDestination.setText(savedInstanceState.getString("tvDestinationSTRING"));
 
-				Log.d("TVDESTINATION:", String.valueOf(savedInstanceState.getBoolean("tvDestinationVIS")));
-
 			} else {
 				tvDestination.setVisibility(View.GONE);
 				etDestination.setVisibility(View.VISIBLE);
 				etDestination.setText(savedInstanceState.getString("etDestinationSTRING"));}
 
+            if (savedInstanceState.getParcelable("markerOriginLatLng") != null) {
+                latLngMarkerOrigin = savedInstanceState.getParcelable("markerOriginLatLng");
+            }
+            if (savedInstanceState.getParcelable("markerDestinationLatLng") != null) {
+                latLngMarkerDestination = savedInstanceState.getParcelable("markerDestinationLatLng");
+            }
+
 			if (savedInstanceState.getBoolean("viewPagerVIS")) {
+
+                for (LinearLayout ll : aChartLinearLayoutList) {
+                    ll.removeAllViews();
+                }
+                aChartLinearLayoutList.clear();
+
 				cyclingPathList = savedInstanceState.getParcelableArrayList("cyclingPathList");
 				selectedCyclingPath = savedInstanceState.getParcelableArrayList("selectedCyclingPath");
 				viewPagerPosition = savedInstanceState.getInt("viewPagerPOSITION");
-				drawRoutes();
+				isViewPagerVisible = true;
 				if (savedInstanceState.getBoolean("graph_point_markerVIS")) {
-					String[] s = savedInstanceState.getStringArray("graph_point_markerINFO");
-					graph_point_marker = googleMap.addMarker(new MarkerOptions()
-									.position((LatLng) savedInstanceState.getParcelable("graph_point_markerLATLNG"))
-									.anchor(0.5f, 0.5f)
-									.icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_ball))
-									.title(s[0])
-									.snippet(s[1])
-					);
+					stringGraphPointMarkerInfo = savedInstanceState.getStringArray("graph_point_markerINFO");
+                    latLngGraphPointMarker = savedInstanceState.getParcelable("graph_point_markerLATLNG");
 				}
 			}
 		}
-
-		/*long end = System.currentTimeMillis();
-		long elapsed = end - start;
-		Log.d("onRestoreInstanceState", String.valueOf(elapsed));*/
+        etSearch.clearFocus();
 
 	}
 
@@ -4302,6 +4180,13 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			savedInstanceState.putParcelableArrayList("cyclingPathList", cyclingPathList);
 			savedInstanceState.putParcelableArrayList("selectedCyclingPath", selectedCyclingPath);
 
+            if (markerOrigin != null) {
+                savedInstanceState.putParcelable("markerOriginLatLng", markerOrigin.getPosition());
+            }
+            if (markerDestination != null) {
+                savedInstanceState.putParcelable("markerDestinationLatLng", markerDestination.getPosition());
+            }
+
 			// Save ViewPager State
 			if (viewPager.getVisibility() == View.VISIBLE) {
 				savedInstanceState.putBoolean("viewPagerVIS", true);
@@ -4321,11 +4206,50 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			} else {
 				savedInstanceState.putBoolean("viewPagerVIS", false);
 			}
-
-
-
 		}
-
 	}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        // ActionBarDrawerToggle will take care of this.
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        } // Else, handle action buttons, if are ther any...
+        else {
+            switch (item.getItemId()) {
+                case R.id.action_refresh:
+                    refreshData(item);
+                    return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSwipeFragmentInteraction(Double clickedRefDistance) {
+
+        Log.e("onMainActivity", "HERE");
+
+        if (graph_point_marker != null) {
+            graph_point_marker.remove();
+        }
+
+        graph_point_marker = googleMap.addMarker(new MarkerOptions()
+                .position(selectedCyclingPath.get(0).getLatLngFromRefDistance(clickedRefDistance))
+                .anchor(0.5f, 0.5f)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
+                .title(getString(R.string.inclinacao) + " " + String.valueOf(selectedCyclingPath.get(0).getElevationFromRefDistance(clickedRefDistance)) + "°")
+                .snippet(getString(R.string.posicao) + " " + Double.valueOf(String.format(Locale.US, "%.2f", clickedRefDistance)) + " km")
+        );
+
+        graph_point_marker.showInfoWindow();
+
+        // display information of the clicked point
+        /** "Chart element in series index " + seriesSelection.getSeriesIndex()
+         + " data point index " + seriesSelection.getPointIndex() + " was clicked"
+         + " closest point value X=" + seriesSelection.getXValue() + ", Y="
+         + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();*/
+    }
 
 }

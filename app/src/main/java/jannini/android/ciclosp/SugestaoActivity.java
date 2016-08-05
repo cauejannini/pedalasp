@@ -1,7 +1,6 @@
 package jannini.android.ciclosp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +29,6 @@ public class SugestaoActivity extends Activity {
 	String nome;
 	String email;
 	String mensagem;
-	String assunto;
-	String end_errado;
 	
 	EditText et_nome;
 	EditText et_email;
@@ -54,10 +51,6 @@ public class SugestaoActivity extends Activity {
         // Send a screen view.
         t.send(new HitBuilders.AppViewBuilder().build());
 		
-		Intent i = getIntent();
-		assunto = i.getStringExtra("EXTRA");
-		end_errado = i.getStringExtra("ENDERECO");
-		
 	}
 	
 	public void sendEmail (View v){
@@ -68,13 +61,9 @@ public class SugestaoActivity extends Activity {
 		
 		nome = et_nome.getText().toString();
 		email = et_email.getText().toString();
-		
-		// Se for apenas uma Sugestão pelo EXTRA do Intent, o corpo do email não deve conter o início com "Endereço Errado: "
-		if (assunto.equals("Erro Reportado")) {
-		mensagem = ("Endereço errado: " + end_errado + newline + newline + et_mensagem.getText().toString());
-		} else {
-			mensagem = et_mensagem.getText().toString();
-		}
+
+		mensagem = et_mensagem.getText().toString();
+
 		new postData().execute();
 		
 		Toast.makeText(getApplicationContext(), R.string.obrigado_feedback, Toast.LENGTH_LONG).show();
@@ -99,7 +88,7 @@ public class SugestaoActivity extends Activity {
                 // Criar o OutputStream para carregar a mensagem
                 OutputStream os = connection.getOutputStream();
                 BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                buffWriter.write("subject="+assunto+"&"+
+                buffWriter.write("subject="+"Sugestão Pedala SP"+"&"+
                                 "body="+mensagem+"&"+
                                 "from="+email+"&"+
                                 "name="+nome

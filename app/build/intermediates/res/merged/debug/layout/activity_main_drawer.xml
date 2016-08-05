@@ -28,7 +28,7 @@
 	        android:layout_margin="11dp"
 	        android:layout_alignParentTop="true"
 	        android:orientation="horizontal"
-	        android:background="@drawable/box_border_corner"
+	        android:background="@drawable/bg_box_shadow"
 			android:layout_gravity="center_vertical"
 	        android:weightSum="1"/>
 
@@ -92,7 +92,7 @@
 					android:layout_height="45dp"
 					android:textColor="#FFFFFF"
 					android:text="@string/notifySolved"
-					android:background="@drawable/bt_blue_border"
+					android:background="@drawable/bt_water_blue"
 					android:onClick="notifySolved"
 					android:translationY="600dp"
 					android:visibility="gone"

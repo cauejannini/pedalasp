@@ -8,6 +8,7 @@
         <item>Parking</item>
         <item>Free Wifi SP</item>
         <item>Alerts</item>
+        <item>Write for us</item>
     </string-array>
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
@@ -17,6 +18,7 @@
         <item>Outdoor and indoor bike racks</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
+        <item/>
     </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -61,10 +63,10 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <color name="ciclofaixa">#F22</color>
-    <color name="ciclofaixaLazer">#14ba02</color>
+    <color name="ciclofaixa">#F00</color>
+    <color name="ciclofaixaLazer">#61bc10</color>
     <color name="ciclofaixa_off">#CCC</color>
-    <color name="ciclorrota">#1688b5</color>
+    <color name="ciclorrota">#0093f7</color>
     <color name="ciclorrota_off">#CCC</color>
     <color name="ciclovia">#900</color>
     <color name="ciclovia_off">#CCC</color>
@@ -330,6 +332,7 @@
     <string name="alerta">Alert</string>
     <string name="alerta_em">Alert on: </string>
     <string name="app_name">Pedala SP</string>
+    <string name="atencao">Warning</string>
     <string name="atualizado_as">Last update: </string>
     <string name="avisar_erro">Report error</string>
     <string name="bem_vindo">Welcome to Pedala SP</string>
@@ -388,6 +391,7 @@
     <string name="details">Details: </string>
     <string name="detalhes">give more details…</string>
     <string name="distancia_total">Total distance: </string>
+    <string name="dont_show_again">Don\'t show again</string>
     <string name="drawer_close">Closed</string>
     <string name="drawer_open">Open</string>
     <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
@@ -405,7 +409,7 @@
     <string name="entendi">Understood</string>
     <string name="enviar_alerta">Send alert</string>
     <string name="enviar_email">Send</string>
-    <string name="envie_sugestao">Send us a suggestion</string>
+    <string name="envie_sugestao">Write for us</string>
     <string name="escolha_no_mapa">What\'s the exact location of the Bike Point?</string>
     <string name="estacao_bike_sampa">Bike Sampa Station</string>
     <string name="estacao_ciclo_sampa">Ciclo Sampa Station</string>
@@ -417,6 +421,10 @@
     <string name="from_other_location">Choose another address</string>
     <string name="funcionamento">Opening hours: </string>
     <string name="ga_trackingId" translatable="false">UA-54096754-1</string>
+    <string name="gcm_defaultSenderId" translatable="false">569029686107</string>
+    <string name="google_api_key" translatable="false">AIzaSyCKv3D8FEuVyWsl7NPz9Qxv4CKSPA3rctI</string>
+    <string name="google_app_id" translatable="false">1:569029686107:android:e034d4897900e4c0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCKv3D8FEuVyWsl7NPz9Qxv4CKSPA3rctI</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="i_parked_here">I PARKED HERE</string>
     <string name="inclinacao">Inclination: </string>
@@ -426,11 +434,12 @@
     <string name="loc_location_unavailable">Current location unavalable. Check you GPS.</string>
     <string name="loc_no_loc_permission_exp">Without this permission, some functions of the app, like routing, won\'t work.</string>
     <string name="loc_no_location_permission">No permission to access location</string>
-    <string name="loc_selecione_localizacao">Please, select location</string>
+    <string name="loc_selecione_localizacao">Please select location</string>
     <string name="loc_selecione_manualmente">Error getting current location. Please select manually the address.</string>
     <string name="loc_verifique_gps">Check your GPS</string>
     <string name="localizacao">location (click on the map)</string>
     <string name="mais">MORE</string>
+    <string name="mandatory_field">Mandatory field</string>
     <string name="marcador_inserido">(inserted marker)</string>
     <string name="mr_media_route_button_content_description">Cast</string>
     <string name="mr_media_route_chooser_searching">Searching for devices\u2026</string>
@@ -451,7 +460,6 @@
     <string name="network_update_alert_dialog">We couldn\'t refresh. Check you network.</string>
     <string name="notifySolved">Click if this problem is solved</string>
     <string name="null_map">Error loading map</string>
-    <string name="obrigado">Thanks!</string>
     <string name="obrigado_feedback">Thanks for the feedback!</string>
     <string name="obrigado_por_avisar">Thanks for letting us know!</string>
     <string name="offline" translatable="false">OFFLINE</string>
@@ -488,7 +496,7 @@
     <string name="seu_nome">Name</string>
     <string name="sinalizacao">SIGNALLING</string>
     <string name="splash">Loading…</string>
-    <string name="splash_info">This screen has to load only on the first access ;)</string>
+    <string name="splash_info">Loading data…</string>
     <string name="splash_nenhuma_camada">We coudn\'t load any data. Check you network.</string>
     <string name="splash_nenhuma_estacao">Oops… We coudn\'t load the shared bike stations. That\'s not common!</string>
     <string name="splash_sem_bikesampa">Oops… We coudn\'t load Bike Sampa shared bike stations. That\'s not common!</string>
@@ -518,6 +526,9 @@
     <string name="title_activity_splash" translatable="false">Splash</string>
     <string name="title_activity_sugestao">Suggestion</string>
     <string name="title_activity_welcome_screen" translatable="false">WelcomeScreen</string>
+    <string name="toast_error">Oops, there was an error...</string>
+    <string name="toast_thanks">Thanks!</string>
+    <string name="toomuchmarkers">Visualizing too much items in a broad area can make the app run slow</string>
     <string name="type_of_alert">TYPE OF ALERT</string>
     <string name="vagas">Parking spots: </string>
     <string name="vagas_livres">Free parking spots: </string>

@@ -106,7 +106,7 @@
         android:id="@+id/bt_add"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bt_lightblue"
+        android:background="@drawable/bt_water_blue"
         android:text="ADICIONAR"/>
 
 </LinearLayout>

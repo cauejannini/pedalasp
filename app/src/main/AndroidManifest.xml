@@ -48,7 +48,7 @@
         <activity
             android:name=".SugestaoActivity"
             android:label="@string/title_activity_sugestao"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/NoActionBarTheme" >
         </activity>
 
         <receiver

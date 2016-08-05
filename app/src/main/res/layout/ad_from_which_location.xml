@@ -13,7 +13,7 @@
         android:paddingBottom="40dp"
         android:textColor="#FFF"
         android:text="@string/from_my_location"
-        android:background="@drawable/bt_lightblue"/>
+        android:background="@drawable/bt_water_blue"/>
     
     <Button
         android:id="@+id/from_another_location"

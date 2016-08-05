@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_array">
-            <item>Vias para bicicleta</item>
-            <item>Estações</item>
-            <item>Estabelecimentos</item>
-            <item>Pontos para estacionar</item>
-            <item>Parques</item>
-            <item>Pontos Wifi Livre SP</item>
-            <item>Alertas</item>
+                <item>Vias para bicicleta</item>
+                <item>Estações</item>
+                <item>Estabelecimentos</item>
+                <item>Pontos para estacionar</item>
+                <item>Parques</item>
+                <item>Pontos Wifi Livre SP</item>
+                <item>Alertas</item>
+                <item>Escreva para nós</item>
         </string-array>
     <string-array name="menu_array_descriptions">
-            <item>Ciclovias, ciclofaixas e ciclorrotas</item>
-            <item>de compartilhamento de bikes</item>
-            <item>Lojas, oficinas, banho e mais</item>
-            <item>Bicicletários e paraciclos</item>
-            <item>Parques com ciclovia</item>
-            <item>Wifi municipal aberto</item>
-            <item>enviados pelos usuários</item>
+                <item>Ciclovias, ciclofaixas e ciclorrotas</item>
+                <item>de compartilhamento de bikes</item>
+                <item>Lojas, oficinas, banho e mais</item>
+                <item>Bicicletários e paraciclos</item>
+                <item>Parques com ciclovia</item>
+                <item>Wifi municipal aberto</item>
+                <item>enviados pelos usuários</item>
+                <item/>
         </string-array>
     <string-array name="menu_array_quantidades">
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
         </string-array>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navegar para a página inicial"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -50,6 +52,7 @@
     <string name="alerta">Alerta</string>
     <string name="alerta_em">Alerta em:</string>
     <string name="app_name">Pedala SP</string>
+    <string name="atencao">Atenção</string>
     <string name="atualizado_as">Atualizado às</string>
     <string name="avisar_erro">Reportar erro</string>
     <string name="bem_vindo">Bem vindo ao Pedala SP</string>
@@ -71,6 +74,7 @@
     <string name="details">Detalhes:</string>
     <string name="detalhes">dê mais detalhes…</string>
     <string name="distancia_total">Distância total:</string>
+    <string name="dont_show_again">Não mostrar novamente</string>
     <string name="drawer_close">Closed</string>
     <string name="drawer_open">Open</string>
     <string name="drawerexp_explanation1">Escolha quais itens visualizar no mapa:</string>
@@ -88,7 +92,7 @@
     <string name="entendi">Entendi</string>
     <string name="enviar_alerta">Enviar alerta</string>
     <string name="enviar_email">Enviar</string>
-    <string name="envie_sugestao">Envie-nos uma sugestão</string>
+    <string name="envie_sugestao">Escreva para nós</string>
     <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
     <string name="estacao_bike_sampa">Estação Bike Sampa</string>
     <string name="estacao_ciclo_sampa">Estação Ciclo Sampa</string>
@@ -107,11 +111,12 @@
     <string name="loc_location_unavailable">Localização atual indisponível. Verifique seu GPS.</string>
     <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
     <string name="loc_no_location_permission">Sem permissão para acessar localização</string>
-    <string name="loc_selecione_localizacao">Por favor, selecione uma localização</string>
+    <string name="loc_selecione_localizacao">Selecione uma localização</string>
     <string name="loc_selecione_manualmente">Não foi possível obter sua localização. Por favor, selecione manualmente o endereço.</string>
     <string name="loc_verifique_gps">Verifique seu GPS</string>
     <string name="localizacao">localização (clique no mapa)</string>
     <string name="mais">MAIS</string>
+    <string name="mandatory_field">Campo obrigatório</string>
     <string name="marcador_inserido">(marcador inserido)</string>
     <string msgid="8327680881775995150" name="mr_media_route_button_content_description">"Transmitir"</string>
     <string msgid="7553005460920830010" name="mr_media_route_chooser_searching">"Procurando dispositivos…"</string>
@@ -132,7 +137,6 @@
     <string name="network_update_alert_dialog">Não foi possível atualizar. Verifique sua conexão.</string>
     <string name="notifySolved">Clique se este problema já foi resolvido!</string>
     <string name="null_map">Não foi possível carregar o mapa</string>
-    <string name="obrigado">Obrigado!</string>
     <string name="obrigado_feedback">Obrigado pelo feedback!</string>
     <string name="obrigado_por_avisar">Obrigado por avisar!</string>
     <string name="ok">OK</string>
@@ -165,7 +169,7 @@
     <string name="seu_nome">Nome</string>
     <string name="sinalizacao">SINALIZAÇÃO</string>
     <string name="splash">Carregando…</string>
-    <string name="splash_info">Esta tela só precisará ser carregada da primeira vez ;)</string>
+    <string name="splash_info">Carregando dados…</string>
     <string name="splash_nenhuma_camada">Não foi possível carregar nenhuma camada de dados. Verifique sua rede.</string>
     <string name="splash_nenhuma_estacao">Ops… Não conseguimos carregar as estações de compartilhamento de bike. Isso não é comum!</string>
     <string name="splash_sem_bikesampa">Ops… Não foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
@@ -184,6 +188,9 @@
     <string name="title_activity_route_detail_splash">Entenda a rota</string>
     <string name="title_activity_rss">Novidades</string>
     <string name="title_activity_sugestao">Sugestão</string>
+    <string name="toast_error">Ocorreu algum erro...</string>
+    <string name="toast_thanks">Obrigado!</string>
+    <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
     <string name="type_of_alert">TIPO DE ALERTA</string>
     <string name="vagas">Vagas: </string>
     <string name="vagas_livres">Vagas livres:</string>

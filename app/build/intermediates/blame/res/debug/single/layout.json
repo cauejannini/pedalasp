@@ -37,7 +37,7 @@
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/place_autocomplete_fragment.xml",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.2/res/layout/place_autocomplete_fragment.xml"
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/res/layout/place_autocomplete_fragment.xml"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/progress_bar.xml",
@@ -69,7 +69,7 @@
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/place_autocomplete_item_powered_by_google.xml",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.2/res/layout/place_autocomplete_item_powered_by_google.xml"
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/res/layout/place_autocomplete_item_powered_by_google.xml"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
@@ -196,6 +196,10 @@
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/layout/abc_list_menu_item_radio.xml"
     },
     {
+        "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/ad_toomuchmarkers.xml",
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/layout/ad_toomuchmarkers.xml"
+    },
+    {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/activity_route_detail_splash.xml",
         "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/layout/activity_route_detail_splash.xml"
     },
@@ -237,7 +241,7 @@
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/place_autocomplete_progress.xml",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.2/res/layout/place_autocomplete_progress.xml"
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/res/layout/place_autocomplete_progress.xml"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/mr_media_route_controller_material_dialog_b.xml",
@@ -245,7 +249,7 @@
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/place_autocomplete_item_prediction.xml",
-        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.2/res/layout/place_autocomplete_item_prediction.xml"
+        "source": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.0.0/res/layout/place_autocomplete_item_prediction.xml"
     },
     {
         "merged": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",

@@ -159,7 +159,7 @@ public class BarGraph extends View implements HoloGraphAnimate {
             usableHeight = getHeight() - bottomPadding;
         }
 
-        // Draw x-axis line
+        // Draw bt_x-axis line
         if (mShowAxis) {
             mPaint.setColor(mAxisColor);
             mPaint.setStrokeWidth(2 * resources.getDisplayMetrics().density);
@@ -306,7 +306,7 @@ public class BarGraph extends View implements HoloGraphAnimate {
                     mBoundsRect.right,
                     mBoundsRect.bottom);
 
-            // Draw x-axis label text
+            // Draw bt_x-axis label text
             if (mShowAxisLabel) {
                 mPaint.setColor(bar.getLabelColor());
                 mPaint.setTextSize(labelTextSize);

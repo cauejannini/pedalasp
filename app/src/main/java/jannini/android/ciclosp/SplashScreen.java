@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.widget.ProgressBar;
 
 import org.json.JSONException;
@@ -17,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
+import jannini.android.ciclosp.NetworkRequests.CallHandler;
+import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.JSONParser;
 
 public class SplashScreen extends Activity {
@@ -38,14 +43,33 @@ public class SplashScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
+        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+
+        String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+        if (deviceID.equals("")) {
+            Calls.createDevice(new CallHandler() {
+                @Override
+                public void onSuccess(int code, String response) {
+                    sharedPreferences.edit().putString(Constant.deviceID, response).apply();
+                }
+            });
+        }
+
         jsonObjString = sharedPreferences.getString(Constant.spJobGeral, null);
         jsonObjBSString = sharedPreferences.getString(Constant.spJobBS, null);
         jsonObjCSString = sharedPreferences.getString(Constant.spJobCS, null);
 
         if (jsonObjString == null && jsonObjBSString == null && jsonObjCSString == null) {
             progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-            progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable, null));
+            } else {
+                progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
+            }
             new CarregarDB().execute();
         } else {
             Intent intent = new Intent(this, MainActivity.class);

@@ -419,14 +419,14 @@ public class LineGraph extends View {
             lineCount++;
         }
 
-        // Draw x-axis line
+        // Draw bt_x-axis line
         resetPaintWithAntiAlias(mPaint, true);
         mPaint.setColor(mAxisColor);
         mPaint.setStrokeWidth(2 * getResources().getDisplayMetrics().density);
 
         float height;
         if (minY < 0) {
-            // Negative values in serie, set x-axis to zero
+            // Negative values in serie, set bt_x-axis to zero
             height = getHeight() - bottomPadding - (usableHeight * (-minY / (maxY - minY)));
         } else {
             height = getHeight() - bottomPadding;

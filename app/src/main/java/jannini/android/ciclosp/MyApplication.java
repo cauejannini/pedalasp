@@ -1,14 +1,13 @@
 package jannini.android.ciclosp;
 
-import java.util.HashMap;
-
-import org.acra.ACRA;
-import org.acra.annotation.ReportsCrashes;
+import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
-import android.app.Application;
+import org.acra.annotation.ReportsCrashes;
+
+import java.util.HashMap;
 
 @ReportsCrashes(
 		formKey="",
@@ -27,7 +26,7 @@ public class MyApplication extends Application {
 	  public void onCreate() {
 	    // The following line triggers the initialization of ACRA
 	    super.onCreate();
-	    ACRA.init(this);
+	    //ACRA.init(this);
 	  }
 
 	public static boolean isActivityVisible() {

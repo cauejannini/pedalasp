@@ -6,31 +6,33 @@
         <string name="drawer_close">Closed</string>
 
         <string-array name="menu_array">
-            <item>Vias para bicicleta</item>
-            <item>Estações</item>
-            <item>Estabelecimentos</item>
-            <item>Pontos para estacionar</item>
-            <item>Parques</item>
-            <item>Pontos Wifi Livre SP</item>
-            <item>Alertas</item>
+                <item>Vias para bicicleta</item>
+                <item>Estações</item>
+                <item>Estabelecimentos</item>
+                <item>Pontos para estacionar</item>
+                <item>Parques</item>
+                <item>Pontos Wifi Livre SP</item>
+                <item>Alertas</item>
+                <item>Escreva para nós</item>
         </string-array>
         <string-array name="menu_array_descriptions">
-            <item>Ciclovias, ciclofaixas e ciclorrotas</item>
-            <item>de compartilhamento de bikes</item>
-            <item>Lojas, oficinas, banho e mais</item>
-            <item>Bicicletários e paraciclos</item>
-            <item>Parques com ciclovia</item>
-            <item>Wifi municipal aberto</item>
-            <item>enviados pelos usuários</item>
+                <item>Ciclovias, ciclofaixas e ciclorrotas</item>
+                <item>de compartilhamento de bikes</item>
+                <item>Lojas, oficinas, banho e mais</item>
+                <item>Bicicletários e paraciclos</item>
+                <item>Parques com ciclovia</item>
+                <item>Wifi municipal aberto</item>
+                <item>enviados pelos usuários</item>
+                <item/>
         </string-array>
         <string-array name="menu_array_quantidades">
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
-            <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
+                <item/>
         </string-array>
 
         <string name="delete_last_point">Deletar</string>
@@ -51,7 +53,7 @@
         <string name="texto_do_email">Escreva sua mensagem</string>
         <string name="enviar_email">Enviar</string>
         <string name="preencha_campos">Por favor, preencha todos os campos.</string>
-        <string name="envie_sugestao">Envie-nos uma sugestão</string>
+        <string name="envie_sugestao">Escreva para nós</string>
         <string name="obrigado_feedback">Obrigado pelo feedback!</string>
         <string name="network_alert_title">Sem conexão com a internet</string>
         <string name="network_alert_dialog">Verifique sua conexão.</string>
@@ -66,7 +68,7 @@
         <string name="bem_vindo">Bem vindo ao Pedala SP</string>
         <string name="fechar">Fechar</string>
         <string name="network_alert_dialog_splash">Você precisa de uma conexão ativa para iniciar o aplicativo da primeira vez. Configure sua conexão.</string>
-        <string name="splash_info">Esta tela só precisará ser carregada da primeira vez ;)</string>
+        <string name="splash_info">Carregando dados…</string>
         <string name="title_activity_report">Enviar alerta</string>
         <string name="alerta">Alerta</string>
         <string name="buraco">BURACO</string>
@@ -167,4 +169,7 @@
         <string name="saved_place">Local salvo</string>
         <string name="mandatory_field">Campo obrigatório</string>
         <string name="toast_error">Ocorreu algum erro...</string>
+        <string name="atencao">Atenção</string>
+        <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
+        <string name="dont_show_again">Não mostrar novamente</string>
 </resources>

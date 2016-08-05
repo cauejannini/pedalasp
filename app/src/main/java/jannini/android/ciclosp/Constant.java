@@ -7,6 +7,8 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class Constant {
 
+    public static String deviceID = "jannini.android.ciclosp.deviceID";
+
     public static LatLng latLngCity = new LatLng(-23.550765, -46.630437);
     public static double llLat = -24.124366;
     public static double llLng = -47.059433;
@@ -21,6 +23,9 @@ public class Constant {
     public static String url_send_parkedHere = "http://pedalaspapp.com.br/dbaccess/send_parkedHere.php";
     public static String url_send_email = "http://pedalaspapp.com.br/dbaccess/send_email.php";
     public static String url_notify_solved = "http://pedalaspapp.com.br/dbaccess/notify_solved_report.php";
+    public static String url_send_originDestination = "http://pedalaspapp.com.br/dbaccess/send_origin_destination.php";
+    public static String url_create_device = "http://pedalaspapp.com.br/dbaccess/create_device.php";
+
 
     public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
     public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
@@ -28,12 +33,11 @@ public class Constant {
     public static String spParkedHereListSize = "jannini.android.ciclosp.spParkedHereListSize";
     public static String spParkedHereLat = "jannini.android.ciclosp.parkedHereLat";
     public static String spParkedHereLng = "jannini.android.ciclosp.parkedHereLng";
-    public static String spFavoritePlaceListSize = "jannini.android.ciclosp.spFavoritePlaceListSize";
-    public static String spFavoritePlaceLat = "jannini.android.ciclosp.spFavoritePlaceLat";
-    public static String spFavoritePlaceLng = "jannini.android.ciclosp.spFavoritePlaceLng";
 
     public static String spUpdateTimeBS = "jannini.android.ciclosp.updateTimeBS";
     public static String spUpdateTimeCS = "jannini.android.ciclosp.updateTimeCS";
+
+    public static String dontWarnAgainTooMuchMarkers = "jannini.android.ciclosp.dontWarnAgainTooMuchMarkers";
 
     public static boolean[] states = {true, true, true, true, true, true, true};
     public static boolean[] bikeLanesStates = {true, true, true};

@@ -15,7 +15,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            android:background="@drawable/cor_ciclovia"/>
+            android:background="@drawable/ic_lanes_permanent"/>
 
         <LinearLayout
             android:layout_weight="1"
@@ -67,7 +67,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            android:background="@drawable/cor_ciclofaixa"/>
+            android:background="@drawable/ic_lanes_recreational"/>
 
         <LinearLayout
             android:layout_weight="1"
@@ -119,7 +119,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            android:background="@drawable/cor_ciclorrota"/>
+            android:background="@drawable/ic_lanes_preferential"/>
 
         <LinearLayout
             android:layout_weight="1"
@@ -164,7 +164,7 @@
         android:id="@+id/bt_bikelanes_ok"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bt_lightblue"
+        android:background="@drawable/bt_water_blue"
         android:text="OK"/>
 
 </LinearLayout>

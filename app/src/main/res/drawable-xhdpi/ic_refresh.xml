@@ -10,7 +10,7 @@
 	
 	<item>
 		<bitmap
-		   	android:src="@drawable/ic_action_refresh"
+		   	android:src="@drawable/actionbar_refresh"
 		   	android:gravity="center_vertical|center_horizontal"
 		   />
 	</item>

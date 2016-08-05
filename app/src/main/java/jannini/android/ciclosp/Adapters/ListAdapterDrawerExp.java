@@ -50,12 +50,12 @@ public class ListAdapterDrawerExp extends ArrayAdapter<String> {
           case 0:
               if (DrawerExpActivity.states[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.cor_ciclovia);
+              holder.image.setBackgroundResource(R.drawable.ic_lanes_permanent);
               break;
           case 1:
               if (DrawerExpActivity.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.icon_bikesampa);
+              holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
               break;
           case 2:
               if (DrawerExpActivity.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);

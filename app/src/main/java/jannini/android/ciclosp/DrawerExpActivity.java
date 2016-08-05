@@ -1,6 +1,7 @@
 package jannini.android.ciclosp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
 
@@ -23,12 +26,16 @@ public class DrawerExpActivity extends Activity {
     public static ListView mDrawerList;
     ListAdapterDrawerExp myAdapter;
 
+    SharedPreferences sharedPreferences;
+
     public static boolean[] states = {false, false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_exp_splash);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
 
         mMenuTitles = getResources().getStringArray(R.array.menu_array);
         mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
@@ -80,11 +87,12 @@ public class DrawerExpActivity extends Activity {
             states[position] = false;
         }
 
+        checkNumberOfOptionsDisplayed();
+
     }
 
     public void finishExp (View view) {
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("states0", states[0]);
         editor.putBoolean("states1", states[1]);
@@ -98,6 +106,36 @@ public class DrawerExpActivity extends Activity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void checkNumberOfOptionsDisplayed() {
+
+        int numberOfTrues = 0;
+
+        for (int i = 1; i < states.length; i++) {
+            if (states[i]) numberOfTrues++;
+        }
+
+        if (numberOfTrues > 2) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+            final AlertDialog alert = alertBuilder.create();
+            View alertView = getLayoutInflater().inflate(R.layout.ad_toomuchmarkers, null);
+            alert.setView(alertView);
+            alert.setCancelable(false);
+            Button btOk = (Button) alertView.findViewById(R.id.bt_toomuchmarkers_ok);
+            final ToggleButton tbDonotWarnAgain = (ToggleButton) alertView.findViewById(R.id.tb_toomuchmarkers_donotdisplay);
+            btOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    sharedPreferences.edit().putBoolean(Constant.dontWarnAgainTooMuchMarkers, tbDonotWarnAgain.isChecked()).apply();
+
+                    alert.dismiss();
+
+                }
+            });
+            alert.show();
+        }
     }
 
     @Override
