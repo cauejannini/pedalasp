@@ -1617,13 +1617,15 @@ public class MainActivity extends FragmentActivity
 	}
 
 	public void setParkedHere (View view) {
+
+        String deviceID = sharedPreferences.getString(Constant.deviceID, "");
         if (activeMarker != null) {
             parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
                     .position(activeMarker.getPosition())
                     .title(getString(R.string.your_bike_is_here))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
                     .anchor(0.5f, 1f)));
-            Calls.sendParkedHere(String.valueOf(activeMarker.getPosition().latitude), String.valueOf(activeMarker.getPosition().longitude), null);
+            Calls.sendParkedHere(deviceID, String.valueOf(activeMarker.getPosition().latitude), String.valueOf(activeMarker.getPosition().longitude), null);
 
             hideBottomButton(view);
 

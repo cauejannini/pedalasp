@@ -138,6 +138,7 @@ public class Calls {
 	}
 
 	public static void sendParkedHere (
+			final String deviceID,
 			final String lat,
 			final String lng,
 			final CallHandler handler) {
@@ -164,6 +165,7 @@ public class Calls {
 					OutputStream os = connection.getOutputStream();
 					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 					buffWriter.write(
+							"device_id="+deviceID+"&"+
 							"lat="+lat+"&"+
 							"lng="+lng+"&"+
 							"timestamp="+timestamp
