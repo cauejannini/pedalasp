@@ -92,7 +92,7 @@
         <string name="start_network_ad">Não foi possível baixar dados atualizados. Foram exibidos as informações salvas de seu último acesso ao aplicativo.</string>
         <string name="add_bikepoint">Adicionar um Bike Point</string>
         <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
-        <string name="endereco">Endereço</string>
+        <string name="endereco_aproximado">Endereço aproximado</string>
         <string name="splash_nenhuma_camada">Não foi possível carregar nenhuma camada de dados. Verifique sua rede.</string>
         <string name="splash_nenhuma_estacao">Ops… Não conseguimos carregar as estações de compartilhamento de bike. Isso não é comum!</string>
         <string name="splash_somente_ciclosampa">Ops… Só foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
@@ -146,7 +146,7 @@
         <string name="drawerexp_explanation2">(Você poderá mudar isso depois!)</string>
         <string name="cancelar">Cancelar</string>
         <string name="enviar_alerta">Enviar alerta</string>
-        <string name="route_explanation">Clique em cima da linha do perfil de elevação para visualizar, no mapa, a elevação de um ponto específico.</string>
+        <string name="route_explanation">Clique no gráfico de elevação para visualizar no mapa o ponto correspondente.</string>
         <string name="route_tab_explanation">No modo rota, a aba inferior mostra detalhes da rota selecionada, como o perfil de elevação.</string>
         <string name="curta_no_facebook">Curta nossa página no facebook!</string>
         <string name="feed_not_loaded">Não foi possível carregar o feed =/</string>

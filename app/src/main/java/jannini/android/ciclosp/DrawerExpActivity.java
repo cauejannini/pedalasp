@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -21,9 +23,7 @@ import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
 public class DrawerExpActivity extends Activity {
 
     //Navigation Drawer
-    public static String[] mMenuTitles;
-    public static String[] mMenuDescriptions;
-    public static ListView mDrawerList;
+    public ListView mDrawerList;
     ListAdapterDrawerExp myAdapter;
 
     SharedPreferences sharedPreferences;
@@ -35,12 +35,18 @@ public class DrawerExpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_exp_splash);
 
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
         sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
 
-        mMenuTitles = getResources().getStringArray(R.array.menu_array);
-        mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
+        String[] mMenuTitles = getResources().getStringArray(R.array.menu_array);
+        String[] mMenuTitlesForDrawerExp = {mMenuTitles[0], mMenuTitles[1], mMenuTitles[2], mMenuTitles[3], mMenuTitles[4], mMenuTitles[5]};
+        String[] mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
+        String[] mMenuDescriptionsForDrawerExp = {mMenuDescriptions[0], mMenuDescriptions[1], mMenuDescriptions[2], mMenuDescriptions[3], mMenuDescriptions[4], mMenuDescriptions[5]};
         // Set up the drawer's list view with items and click listener.
-        myAdapter = new ListAdapterDrawerExp(this, mMenuTitles, mMenuDescriptions);
+        myAdapter = new ListAdapterDrawerExp(this, mMenuTitlesForDrawerExp, mMenuDescriptionsForDrawerExp);
         mDrawerList = (ListView) findViewById(R.id.list_drawer_exp);
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());

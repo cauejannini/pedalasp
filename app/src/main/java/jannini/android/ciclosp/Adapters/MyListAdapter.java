@@ -54,7 +54,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
             case 0:
                 if (Constant.states[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-                holder.image.setBackgroundResource(R.drawable.ic_lanes_permanent);
+                holder.image.setBackgroundResource(R.drawable.ic_lanes);
                 holder.btSettings.setVisibility(View.VISIBLE);
                 holder.btSettings.setOnClickListener(new View.OnClickListener() {
                     @Override

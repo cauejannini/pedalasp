@@ -403,7 +403,7 @@
     <string name="end_nao_encontrado_mensagem">The address could not be found in São Paulo. To make searching more effective, avoid abreviations. </string>
     <string name="end_nao_encontrado_titulo">Address not found</string>
     <string name="end_origem_nao_encontrado_titulo">Origin address not found</string>
-    <string name="endereco">Address</string>
+    <string name="endereco_aproximado">Nearby</string>
     <string name="entendi">Understood</string>
     <string name="enviar_alerta">Send alert</string>
     <string name="enviar_email">Send</string>
@@ -481,7 +481,7 @@
     <string name="remove">REMOVE</string>
     <string name="report_description">Alert problem on your way</string>
     <string name="route_error_check_connection">Error creating route. Check you connection.</string>
-    <string name="route_explanation">Click on top of the elevation profile line to see, on the map, the elevation of a specific point.</string>
+    <string name="route_explanation">Click on the elevation graph to see the respective point on map.</string>
     <string name="route_header_hint">type in or touch and hold on map</string>
     <string name="route_nenhuma_rota_criada">No route created</string>
     <string name="route_tab_explanation">On the route mode, the bottom tab shows details of the selected route, with it\'s elevation profile.</string>

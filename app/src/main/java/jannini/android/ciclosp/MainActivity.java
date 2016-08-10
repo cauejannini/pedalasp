@@ -517,6 +517,9 @@ public class MainActivity extends FragmentActivity
                     }
 
                 }
+
+                sharedPreferences.edit().putBoolean("states0", Constant.states[0]).apply();
+
 				break;
 
             // Sharing Systems
@@ -541,6 +544,9 @@ public class MainActivity extends FragmentActivity
                         ListMarkersBRA.get(i).setVisible(false);
                     }
                 }
+
+                sharedPreferences.edit().putBoolean("states1", Constant.states[1]).apply();
+
 				break;
 
             // Parking
@@ -568,7 +574,11 @@ public class MainActivity extends FragmentActivity
                     for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
                         ListMarkersBicicletarios.get(i).setVisible(false);
                     }
+
+                    hideBottomButton(btParkedHere);
                 }
+
+                sharedPreferences.edit().putBoolean("states2", Constant.states[2]).apply();
 
                 break;
 
@@ -599,6 +609,9 @@ public class MainActivity extends FragmentActivity
                         ListMarkersParques.get(i).setVisible(false);
                     }
                 }
+
+                sharedPreferences.edit().putBoolean("states3", Constant.states[3]).apply();
+
                 break;
 
             // Wifi
@@ -626,6 +639,9 @@ public class MainActivity extends FragmentActivity
                         ListMarkersWifi.get(i).setVisible(false);
                     }
                 }
+
+                sharedPreferences.edit().putBoolean("states4", Constant.states[4]).apply();
+
                 break;
 
             // Alerts
@@ -651,6 +667,8 @@ public class MainActivity extends FragmentActivity
                     }
                     hideBottomButton(notifyButton);
                 }
+
+                sharedPreferences.edit().putBoolean("states5", Constant.states[5]).apply();
 
                 break;
 			case 6:
@@ -698,6 +716,13 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onClick(View v) {
 				alert.dismiss();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("bikeLanesStates0", Constant.bikeLanesStates[0]);
+                editor.putBoolean("bikeLanesStates1", Constant.bikeLanesStates[1]);
+                editor.putBoolean("bikeLanesStates2", Constant.bikeLanesStates[2]);
+                editor.apply();
+
 				if (Constant.states[0]) {
 					displayBikeLanes();
 				}
@@ -803,6 +828,12 @@ public class MainActivity extends FragmentActivity
             @Override
             public void onClick(View v) {
                 alert.dismiss();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
+                editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
+                editor.apply();
+
                 if (Constant.states[1]) {
                     displaySharingSystems();
                 }
@@ -1630,6 +1661,14 @@ public class MainActivity extends FragmentActivity
             hideBottomButton(view);
 
         }
+
+        int lastIndex = parkedHereMarkerList.size() - 1;
+
+        sharedPreferences.edit().putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()))
+                .putString(Constant.spParkedHereLat + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().latitude))
+                .putString(Constant.spParkedHereLng + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().longitude))
+                .apply();
+
     }
 
     public void removePlace(View view) {
@@ -1642,6 +1681,16 @@ public class MainActivity extends FragmentActivity
 				parkedHereMarkerList.trimToSize();
             }
         }
+
+        // Update all spParkedHere info on SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()));
+        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
+            editor.putString(Constant.spParkedHereLat + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().latitude))
+                    .putString(Constant.spParkedHereLng + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().longitude));
+        }
+        editor.apply();
+
     }
 
     /* END REPORT MANAGING */
@@ -2353,7 +2402,7 @@ public class MainActivity extends FragmentActivity
 				marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
 				marker.setAnchor(0.5f, 1.0f);
 				marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
-                        + newline + getString(R.string.endereco)+": " + ListBicicletarios.get(i).address);
+                        + newline + getString(R.string.endereco_aproximado)+": " + ListBicicletarios.get(i).address);
 			}
 			ListMarkersBicicletarios.add(marker);
 		}
@@ -2577,6 +2626,8 @@ public class MainActivity extends FragmentActivity
 			header.removeAllViews();
 			header.addView(routeHeader);
 
+			etDestination.setVisibility(View.GONE);
+			tvDestination.setVisibility(View.VISIBLE);
 			tvDestination.setText(destination_string);
 
 			markerSearch.remove();
@@ -2596,7 +2647,7 @@ public class MainActivity extends FragmentActivity
 			final AlertDialog alert = alertBuilder.create();
 			View alertView = getLayoutInflater().inflate(R.layout.ad_from_which_location, null);
 			alert.setView(alertView);
-			alert.setCancelable(false);
+			alert.setCancelable(true);
 			Button btFromMyLocation = (Button) alertView.findViewById(R.id.from_my_location);
 			Button btFromAnotherLocation = (Button) alertView.findViewById(R.id.from_another_location);
 
@@ -3841,36 +3892,6 @@ public class MainActivity extends FragmentActivity
 		super.onPause();
 
 		MyApplication.activityPaused();
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-		editor.putBoolean("states0", Constant.states[0]);
-		editor.putBoolean("states1", Constant.states[1]);
-		editor.putBoolean("states2", Constant.states[2]);
-		editor.putBoolean("states3", Constant.states[3]);
-		editor.putBoolean("states4", Constant.states[4]);
-		editor.putBoolean("states5", Constant.states[5]);
-
-        editor.putBoolean("bikeLanesStates0", Constant.bikeLanesStates[0]);
-        editor.putBoolean("bikeLanesStates1", Constant.bikeLanesStates[1]);
-        editor.putBoolean("bikeLanesStates2", Constant.bikeLanesStates[2]);
-
-        editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
-        editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
-
-        editor.putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()));
-        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
-            editor.putString(Constant.spParkedHereLat + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().latitude))
-                    .putString(Constant.spParkedHereLng + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().longitude));
-        }
-
-		/*
-		editor.putString(Constant.spFavoritePlaceListSize, String.valueOf(favoritePlacesMarkerList.size()));
-		for (int i = 0 ; i < favoritePlacesMarkerList.size() ; i++) {
-			editor.putString(Constant.spFavoritePlaceLat + i, String.valueOf(favoritePlacesMarkerList.get(i).getPosition().latitude))
-					.putString(Constant.spFavoritePlaceLng + i, String.valueOf(favoritePlacesMarkerList.get(i).getPosition().longitude));
-		}*/
-
-        editor.apply();
 
         Log.e("ONPAUSE", "SHOT");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

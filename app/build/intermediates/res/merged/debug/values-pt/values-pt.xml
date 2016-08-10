@@ -85,7 +85,7 @@
     <string name="end_nao_encontrado_mensagem">Não encontramos o endereço na Grande São Paulo. Para facilitar a busca, evite abreviações.</string>
     <string name="end_nao_encontrado_titulo">Endereço não encontrado</string>
     <string name="end_origem_nao_encontrado_titulo">Endereço de origem não encontrado</string>
-    <string name="endereco">Endereço</string>
+    <string name="endereco_aproximado">Endereço aproximado</string>
     <string name="entendi">Entendi</string>
     <string name="enviar_alerta">Enviar alerta</string>
     <string name="enviar_email">Enviar</string>
@@ -154,7 +154,7 @@
     <string name="remove">REMOVER</string>
     <string name="report_description">Alertar problema no trajeto</string>
     <string name="route_error_check_connection">Erro ao criar a rota. Verifique sua conexão.</string>
-    <string name="route_explanation">Clique em cima da linha do perfil de elevação para visualizar, no mapa, a elevação de um ponto específico.</string>
+    <string name="route_explanation">Clique no gráfico de elevação para visualizar no mapa o ponto correspondente.</string>
     <string name="route_header_hint">digite ou escolha no mapa</string>
     <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
     <string name="route_tab_explanation">No modo rota, a aba inferior mostra detalhes da rota selecionada, como o perfil de elevação.</string>
