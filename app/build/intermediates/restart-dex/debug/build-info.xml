@@ -4,22 +4,30 @@
     api-level="23"
     density="xhdpi"
     format="7"
-    timestamp="110514106462254"
+    timestamp="115056055427818"
     token="4115961687095843942" >
 
     <task
         name="javac"
-        duration="1532" />
+        duration="1931" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="956" />
+        duration="655" />
     <task
         name="verifier"
-        duration="230" />
+        duration="299" />
 
-    <build timestamp="110514106462254" />
+    <artifact
+        location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="115056055427818" >
+        <artifact
+            location="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
 
 </instant-run>

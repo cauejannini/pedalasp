@@ -48,6 +48,7 @@
                 android:textSize="14sp"
                 android:padding="5dp"
                 android:background="@null"
+                android:textColor="@color/dark_text"
                 android:inputType="textImeMultiLine"
                 android:hint="@string/route_header_hint"
                 android:imeOptions="actionSearch"
@@ -100,6 +101,7 @@
                 android:background="@null"
                 android:inputType="textImeMultiLine"
                 android:imeOptions="actionSearch"
+                android:textColor="@color/dark_text"
                 android:hint="@string/route_header_hint"
                 android:visibility="gone"/>
 

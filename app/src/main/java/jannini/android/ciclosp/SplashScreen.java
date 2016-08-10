@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import org.json.JSONException;
@@ -85,6 +86,8 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            Log.e("onPreExecute", "START");
 
             if (!isNetworkAvailable()) {
             	cancel(true);
@@ -202,6 +205,8 @@ public class SplashScreen extends Activity {
 
         // Adiciona marcadores no mapa para todos os objetos encontrados.
 		protected void onPostExecute(String file_url) {
+
+            Log.e("onPostExecute", "START");
 
 			Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
             startActivity(i);
