@@ -17,113 +17,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bed5f731-92a1-4262-9c1c-ffb0235b9cb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/ic_lanes.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/Adapters/MyListAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/BuildConfig.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/BuildConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity$DrawerItemClickListener.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity$DrawerItemClickListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/DrawerExpActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$10.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$11.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$15.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$16.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$17.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$18.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$20.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$21.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$22.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$23.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$23.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$24.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$24.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$25.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$25.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$26.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$26.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$27.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$28.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$30.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$31.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$32.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$33.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$33.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$34.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$35.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$35.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$36.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$36.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$CustomComparator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity$SwipeFragmentPagerAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$drawable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity$5$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity$5$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/ReportActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SplashScreen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/jannini/android/ciclosp/SplashScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/jannini/android/ciclosp/BuildConfig.java" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/jannini/android/ciclosp/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/jannini/android/ciclosp/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/jannini/android/ciclosp/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-pt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-ldpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_main_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt/values-pt.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-pt/values-pt.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
     </list>
     <ignored path="PedalaSP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -328,8 +228,8 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52910054">
-              <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.3968254">
+              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -2513,12 +2413,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values-pt/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/MyListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/Adapters/ListAdapterDrawerExp.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/jannini/android/ciclosp/DrawerExpActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -3023,8 +2923,8 @@
     <property name="settings.editor.selected.configurable" value="instant.run" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="device.picker.selection" value="0011481912" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/libs/acra-4.9.0.jar" />
-    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../APK" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/../APK" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="android.project.structure.last.selected" value="app" />
@@ -3364,7 +3264,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3373,7 +3273,7 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20641026" sideWeight="0.56437767" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20641026" sideWeight="0.56437767" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4948718" sideWeight="0.4356223" order="7" side_tool="true" content_ui="tabs" />
@@ -4009,8 +3909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52910054">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.3968254">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding />
         </state>
       </provider>
