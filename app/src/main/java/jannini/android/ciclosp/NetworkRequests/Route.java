@@ -18,11 +18,11 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class Directions{
+public class Route {
 public final static String MODE_DRIVING = "driving";
 public final static String MODE_WALKING = "walking";
 
-public Directions() {
+public Route() {
 }
 
 public Document getDocument(LatLng start, LatLng end, String mode) {
@@ -171,57 +171,34 @@ public String getCopyRights(Document doc) {
 }
 
 public ArrayList<PolylineOptions> getDirection(Document doc) {
-	
-	ArrayList<PolylineOptions> routesPolylines = new ArrayList<PolylineOptions>();
+
+	ArrayList<PolylineOptions> routesPolylines = new ArrayList<>();
 	NodeList routesNodeList = doc.getElementsByTagName("route");
 	
 	for (int i=0 ; i<routesNodeList.getLength() ; i++){
 		Node routeNode = routesNodeList.item(i);
 		NodeList routeNodeChilds = routeNode.getChildNodes();
-		Node routeStepsNode = doc.createElement("emptyNode");
-		/**for (i=0 ; i<routeNodeChilds.getLength() ; i++){
-			if (routeNodeChilds.item(i).getNodeName().equals("step")){
-				routeStepsNode.appendChild(routeNodeChilds.item(i));
-			} else {}
-		}*/
-		
-		NodeList nl1, nl2, nl3;
-	    ArrayList<LatLng> listGeopoints = new ArrayList<LatLng>();
+
+	    ArrayList<LatLng> listGeopoints = new ArrayList<>();
 	    PolylineOptions polyline = new PolylineOptions();
-	    
-	    nl1 = routeNodeChilds.item(getNodeIndex(routeNodeChilds, "leg")).getChildNodes();
-	    //nl1 = doc.getElementsByTagName("step");
-	    if (nl1.getLength() > 0) {
-	        for (int y = 0; y < nl1.getLength(); y++) {
-	        	if (nl1.item(y).getNodeName().equals("step")){
-		            Node node1 = nl1.item(y);
-		            nl2 = node1.getChildNodes();
+
+        NodeList nlLegs = routeNodeChilds.item(getNodeIndex(routeNodeChilds, "leg")).getChildNodes();
+
+	    if (nlLegs.getLength() > 0) {
+	        for (int y = 0; y < nlLegs.getLength(); y++) {
+	        	if (nlLegs.item(y).getNodeName().equals("step")){
+		            Node node1 = nlLegs.item(y);
+		            NodeList nl2 = node1.getChildNodes();
 		
-		            Node locationNode = nl2.item(getNodeIndex(nl2, "start_location"));
-		            nl3 = locationNode.getChildNodes();
-		            Node latNode = nl3.item(getNodeIndex(nl3, "lat"));
-		            double lat = Double.parseDouble(latNode.getTextContent());
-		            Node lngNode = nl3.item(getNodeIndex(nl3, "lng"));
-		            double lng = Double.parseDouble(lngNode.getTextContent());
-		            listGeopoints.add(new LatLng(lat, lng));
-		
-		            locationNode = nl2.item(getNodeIndex(nl2, "polyline"));
-		            nl3 = locationNode.getChildNodes();
-		            latNode = nl3.item(getNodeIndex(nl3, "points"));
-		            ArrayList<LatLng> arr = decodePoly(latNode.getTextContent());
+		            Node nodePolyline = nl2.item(getNodeIndex(nl2, "polyline"));
+                    NodeList nlPoints = nodePolyline.getChildNodes();
+		            Node nodePoints= nlPoints.item(getNodeIndex(nlPoints, "points"));
+		            ArrayList<LatLng> arr = decodePoly(nodePoints.getTextContent());
 		            for (int j = 0; j < arr.size(); j++) {
 		                listGeopoints.add(new LatLng(arr.get(j).latitude, arr
 		                        .get(j).longitude));
 		            }
-		
-		            locationNode = nl2.item(getNodeIndex(nl2, "end_location"));
-		            nl3 = locationNode.getChildNodes();
-		            latNode = nl3.item(getNodeIndex(nl3, "lat"));
-		            lat = Double.parseDouble(latNode.getTextContent());
-		            lngNode = nl3.item(getNodeIndex(nl3, "lng"));
-		            lng = Double.parseDouble(lngNode.getTextContent());
-		            listGeopoints.add(new LatLng(lat, lng));
-	        	} else {}
+	        	}
 	        }
 	    }
 	    polyline.addAll(listGeopoints);
@@ -240,7 +217,7 @@ private int getNodeIndex(NodeList nl, String nodename) {
 }
 
 private ArrayList<LatLng> decodePoly(String encoded) {
-    ArrayList<LatLng> poly = new ArrayList<LatLng>();
+    ArrayList<LatLng> poly = new ArrayList<>();
     int index = 0, len = encoded.length();
     int lat = 0, lng = 0;
     while (index < len) {
@@ -266,4 +243,5 @@ private ArrayList<LatLng> decodePoly(String encoded) {
         poly.add(position);
     }
     return poly;
-}}
+}
+}

@@ -104,7 +104,7 @@ import jannini.android.ciclosp.Fragments.SwipeFragment;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Directions;
+import jannini.android.ciclosp.NetworkRequests.Route;
 import jannini.android.ciclosp.NetworkRequests.JSONParser;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
 
@@ -3270,9 +3270,9 @@ public class MainActivity extends FragmentActivity
 
 				ArrayList<CyclingPath> returnList = new ArrayList<>();
 
-				Directions md = new Directions();
+				Route md = new Route();
 
-				Document doc = md.getDocument(origin, destination, Directions.MODE_DRIVING);
+				Document doc = md.getDocument(origin, destination, Route.MODE_DRIVING);
 
 				ArrayList<PolylineOptions> pOptList = md.getDirection(doc);
 
@@ -3284,31 +3284,20 @@ public class MainActivity extends FragmentActivity
 				}
 
 				publishProgress(25);
-				//runOnUiThread(new Runnable() {public void run() { pbLoadingRoute.setProgress(25); }});
 
 				// Check if any routes were found
 				if (!pOptList.isEmpty()) {
 
 					for (int i = 0; i < pOptList.size(); i++) {
 
-						if (isCancelled()) {
-							break;
-						}
+						if (isCancelled()) { break; }
 
 						final int numberOfRoutes = pOptList.size();
 
 						PolylineOptions pOpt = pOptList.get(i);
 
 						// Criando lista de LatLng pro objeto CyclingPath
-						ArrayList<LatLng> latLngList = new ArrayList<>();
-						for (int y = 0; y < pOpt.getPoints().size(); y++) {
-
-							if (isCancelled()) {
-								break;
-							}
-
-							latLngList.add(pOpt.getPoints().get(y));
-						}
+						ArrayList<LatLng> latLngList = (ArrayList<LatLng>) pOpt.getPoints();
 
 						// Get distances array from Directions, in case the MapQuest API doesn't work.
 						Double distanceKms = null;
@@ -3316,7 +3305,7 @@ public class MainActivity extends FragmentActivity
 							distanceKms = (double) distancesArray.get(i) / 1000;
 						}
 
-						CyclingPath cp = getCompleteCyclingPath(pOpt);
+						CyclingPath cp = getCompleteCyclingPath(latLngList);
 
 						if (cp != null) {
 							returnList.add(cp);
@@ -3408,10 +3397,9 @@ public class MainActivity extends FragmentActivity
 	}
 
 	// Inicializado por: getRoutes(). Solicita elevações e distâncias do mapQuest e retorna CyclingPath
-	public CyclingPath getCompleteCyclingPath(PolylineOptions pOpt) {
+	public CyclingPath getCompleteCyclingPath(ArrayList<LatLng> pathLatLng) {
 
 		// Variáveis que serão populadas para comporem o CyclingPath final
-		ArrayList<LatLng> pathLatLng = (ArrayList<LatLng>) pOpt.getPoints();
 		ArrayList<Double> elevationList = new ArrayList<>();
 		ArrayList<Double> referenceDistanceList = new ArrayList<>();
 
@@ -3424,7 +3412,7 @@ public class MainActivity extends FragmentActivity
 
 		ArrayList<String> urls = new ArrayList<>();
 
-		int limit = 195; // Limite de pontos LatLng pra procurar por URL (220 * 9 * 2 = 3960) Url máxima = 4096
+		int limit = 90; // Limite de pontos LatLng pra procurar por URL (90 * 10 * 2 = 1800) Url máxima aproximada = 2000
 		int y = (pathLatLng.size() / limit);
 
 		for (int i = 0; i < y; i++) {

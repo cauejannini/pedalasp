@@ -13,8 +13,8 @@
     <string-array name="menu_array">
         <item>Bike lanes</item>
         <item>Bike sharing</item>
-        <item>Parks</item>
         <item>Parking</item>
+        <item>Parks</item>
         <item>Free Wifi SP</item>
         <item>Alerts</item>
         <item>Write for us</item>
@@ -22,8 +22,8 @@
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
         <item>stations</item>
-        <item>Parks with bike lanes</item>
         <item>Outdoor and indoor bike racks</item>
+        <item>Parks with bike lanes</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
         <item />
