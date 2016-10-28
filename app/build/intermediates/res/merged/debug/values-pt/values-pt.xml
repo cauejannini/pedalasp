@@ -8,6 +8,7 @@
                 <item>Pontos Wifi Livre SP</item>
                 <item>Alertas</item>
                 <item>Escreva para nós</item>
+                <item>Configurações</item>
         </string-array>
     <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
@@ -16,13 +17,6 @@
                 <item>Parques com ciclovia</item>
                 <item>Wifi municipal aberto</item>
                 <item>enviados pelos usuários</item>
-                <item/>
-        </string-array>
-    <string-array name="menu_array_quantidades">
-                <item/>
-                <item/>
-                <item/>
-                <item/>
                 <item/>
                 <item/>
         </string-array>
@@ -137,6 +131,7 @@
     <string name="obrigado_feedback">Obrigado pelo feedback!</string>
     <string name="obrigado_por_avisar">Obrigado por avisar!</string>
     <string name="ok">OK</string>
+    <string name="on_bikelanes">por ciclovias</string>
     <string name="open">ABERTA AGORA</string>
     <string name="origem">Origem</string>
     <string name="outro">OUTRO</string>

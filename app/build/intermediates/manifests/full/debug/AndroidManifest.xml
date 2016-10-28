@@ -49,11 +49,13 @@
         <activity
             android:name="jannini.android.ciclosp.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/MainActionBarTheme" >
         </activity>
         <activity
             android:name="jannini.android.ciclosp.SplashScreen"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,6 +66,7 @@
         <activity
             android:name="jannini.android.ciclosp.SugestaoActivity"
             android:label="@string/title_activity_sugestao"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" >
         </activity>
 
@@ -78,14 +81,17 @@
         <activity
             android:name="jannini.android.ciclosp.ReportActivity"
             android:label="@string/title_activity_report"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name="jannini.android.ciclosp.RouteDetailSplashScreen"
             android:label="@string/title_activity_route_detail_splash"
+            android:screenOrientation="portrait"
             android:theme="@style/ThemeTransparent" />
         <activity
             android:name="jannini.android.ciclosp.DrawerExpActivity"
             android:label="@string/title_activity_drawer_exp_splash"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
 
         <receiver

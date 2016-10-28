@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Criteria;
@@ -26,16 +27,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -51,6 +50,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -74,22 +74,24 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import jannini.android.ciclosp.Adapters.InfoWindowActivity;
@@ -100,20 +102,19 @@ import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
 import jannini.android.ciclosp.CustomItemClasses.Estacao;
 import jannini.android.ciclosp.CustomItemClasses.Parque;
 import jannini.android.ciclosp.CustomItemClasses.Report;
-import jannini.android.ciclosp.Fragments.SwipeFragment;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Route;
+import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 import jannini.android.ciclosp.NetworkRequests.JSONParser;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
+import jannini.android.ciclosp.NetworkRequests.Route;
 
 
 public class MainActivity extends FragmentActivity
         implements
         LocationListener,
-        OnMapReadyCallback,
-        SwipeFragment.SwipeFragmentInteractionListener {
+        OnMapReadyCallback {
 
 	// Location Manager and Provider
 	private LocationManager locationManager;
@@ -130,8 +131,6 @@ public class MainActivity extends FragmentActivity
 
     static boolean savedInstanceStateHasRun = false;
     boolean isViewPagerVisible = false;
-    String[] stringGraphPointMarkerInfo;
-    LatLng latLngGraphPointMarker;
 
 	// Calendars
 	public Calendar rightNow;
@@ -229,8 +228,6 @@ public class MainActivity extends FragmentActivity
 
 	public SharedPreferences sharedPreferences;
 
-	static ArrayList<Polyline> polylineRoutesList = new ArrayList<>();
-
 	Criteria criteria = new Criteria();
 
 	LatLng user_latlng = null;
@@ -249,25 +246,26 @@ public class MainActivity extends FragmentActivity
 	// Auxiliar list that only stores the selected cyclingPath
 	ArrayList<CyclingPath> selectedCyclingPath = new ArrayList<>();
 
-	// Auxiliar marker to show point selected on Graph
-	Marker graph_point_marker = null;
-
 	// AsyncTasks
 	AsyncTask<String, String, String> geocodeOriginASY;
 	AsyncTask<String, String, String> geocodeDestinationASY;
 	AsyncTask<String, Integer, ArrayList<CyclingPath>> getRoutesASY;
 
-	ViewPager viewPager;
-	Integer viewPagerPosition;
-	ObjectAnimator hideViewPager;
+    // Route panel, details and subViews
+	LinearLayout llRoutePanel;
+    LinearLayout llRouteDetailFragment;
+    RelativeLayout rlRouteDetails;
+    TextView tvRouteDistance, tvRouteDuration, tvRoutePercentageOnBikeLanes, tvElevationUnavailable;
+    LinearLayout llChart;
+
+	ObjectAnimator showRoutePanel, hideRoutePanel;
 
 	ToggleButton btRouteMode;
 
 	//aChartEngine
     static ArrayList<LinearLayout> aChartLinearLayoutList = new ArrayList<>();
-    static ArrayList<GraphicalView> graphViewArray = new ArrayList<>();
 
-	AlertDialog adLoadingRoute;
+	//AlertDialog adLoadingRoute;
 	ProgressBar pbLoadingRoute;
 
 	@Override
@@ -390,15 +388,6 @@ public class MainActivity extends FragmentActivity
 
 		iv = (ImageView) findViewById(R.id.iv_action_refresh);
 
-		//AlertView for calculating routes
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-		adLoadingRoute = alertBuilder.create();
-		adLoadingRoute.setCancelable(false);
-		View calculatingRouteAV = getLayoutInflater().inflate(R.layout.ad_loading_route, null);
-		adLoadingRoute.setView(calculatingRouteAV);
-		Button btCancelCalculatingRoute = (Button) calculatingRouteAV.findViewById(R.id.cancel_loading_routes);
-		pbLoadingRoute = (ProgressBar) calculatingRouteAV.findViewById(R.id.pb_loading_route);
-
 		// DRAWER VARIABLES
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -431,18 +420,34 @@ public class MainActivity extends FragmentActivity
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-		// GET VIEWPAGER
-		viewPager = (ViewPager) findViewById(R.id.route_panel);
+        // ROUTE PANEL
+        RelativeLayout rlBottomOptions = (RelativeLayout) findViewById(R.id.rl_bottom_options);
+        llRoutePanel = (LinearLayout) findViewById(R.id.ll_route_panel);
 
-		hideViewPager = ObjectAnimator.ofFloat(viewPager, "translationY", 0, 600);
-		hideViewPager.addListener(new AnimatorListener() {
+        // ROUTE DETAILS
+        rlRouteDetails = (RelativeLayout) findViewById(R.id.rl_route_details);
+        llRouteDetailFragment = (LinearLayout) findViewById(R.id.ll_route_details);
+        tvRouteDistance = (TextView) findViewById(R.id.tv_route_distance);
+        tvRouteDuration = (TextView) findViewById(R.id.tv_route_duration);
+        tvRoutePercentageOnBikeLanes = (TextView) findViewById(R.id.tv_route_percentage_on_lanes);
+        llChart = (LinearLayout) findViewById(R.id.aChart);
+        tvElevationUnavailable = (TextView) findViewById(R.id.tv_elevation_unavailable);
+
+		pbLoadingRoute = (ProgressBar) findViewById(R.id.pb_loading_route);
+
+		// Get number of pixels correspondent to 98 dp in current device
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		float px = 128 * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+
+		hideRoutePanel = ObjectAnimator.ofFloat(rlBottomOptions, "translationY", px);
+		hideRoutePanel.addListener(new AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animation) {
 			}
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				viewPager.setVisibility(View.GONE);
+				llRoutePanel.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -451,6 +456,29 @@ public class MainActivity extends FragmentActivity
 
 			@Override
 			public void onAnimationRepeat(Animator animation) {
+			}
+		});
+
+		showRoutePanel = ObjectAnimator.ofFloat(rlBottomOptions, "translationY", 0);
+		showRoutePanel.addListener(new AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animator) {
+				llRoutePanel.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator) {
+
 			}
 		});
 
@@ -1066,11 +1094,6 @@ public class MainActivity extends FragmentActivity
 				}
 				listMarker.clear();
 
-				// Remove graph_point_marker
-
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
 				// Remove markerSearch from old search
 				if (markerSearch != null) {
 					markerSearch.remove();
@@ -1150,16 +1173,14 @@ public class MainActivity extends FragmentActivity
 					}
 				}
 
-				if (!polylineRoutesList.isEmpty()) {
-					for (int i = 0; i < polylineRoutesList.size(); i++) {
-						List<LatLng> list = polylineRoutesList.get(i).getPoints();
+				if (!cyclingPathList.isEmpty()) {
+					for (int i = 0; i < cyclingPathList.size(); i++) {
+						ArrayList<LatLng> list = cyclingPathList.get(i).pathLatLng;
 						LatLng closestPoint = checking.checkClick(point, list, maxDistance);
 						if (closestPoint != null) {
-							for (Polyline p : polylineRoutesList) {
-								p.setColor(getApplicationContext().getResources().getColor(R.color.not_selected_route_blue));
-							}
-							polylineRoutesList.get(i).setColor(getApplicationContext().getResources().getColor(R.color.selected_route_blue));
-							viewPager.setCurrentItem(i);
+
+							selectCyclingPath(cyclingPathList.get(i));
+							//viewPager.setCurrentItem(i);
 						}
 					}
 				}
@@ -1185,11 +1206,6 @@ public class MainActivity extends FragmentActivity
 				if (markerSearch != null) {
 					markerSearch.remove();
 					markerSearch = null;
-				}
-
-				// Remove graph_point_marker
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
 				}
 
                 if (ListMarkersAlerts.contains(marker)) {
@@ -1226,12 +1242,7 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onMapLongClick(LatLng latLng) {
 
-                hideAllBottomButtons();
-
-				// Remove graph_point_marker
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
+                final ArrayList<ObjectAnimator> hideAnimationsList = hideAllBottomButtons();
 
 				// Geocode LatLng to Address
 				final LatLng ll = latLng;
@@ -1356,6 +1367,7 @@ public class MainActivity extends FragmentActivity
 										.title(sAddress));
 							}
 
+							hideAnimationsList.get(1).cancel();
                             showBottomButton(btParkedHere);
 						}
 					}
@@ -1579,6 +1591,7 @@ public class MainActivity extends FragmentActivity
 			markerSearch = null;
 		}
 		btClearSearch.setVisibility(View.GONE);
+		hideAllBottomButtons();
 
 	}
 
@@ -2500,7 +2513,7 @@ public class MainActivity extends FragmentActivity
 
 				//cicloviasOptionsList.add(polylineOpt);
 				//cicloviasLineList.add(googleMap.addPolyline(cicloviasOptionsList.get(i).visible(visibility).zIndex(10).width(5.0f)));
-				cicloviasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(10).width(3.0f)));
+				cicloviasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(10).width(Constant.bikeLaneWidth)));
 			}
 		}
 	}
@@ -2523,7 +2536,7 @@ public class MainActivity extends FragmentActivity
 				}
 				polylineOpt.color(this.getResources().getColor(R.color.ciclofaixaLazer));
 
-				ciclofaixasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(5).width(3.0f)));
+				ciclofaixasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(5).width(Constant.bikeLaneWidth)));
 
 				//ciclofaixasOptionsList.add(polylineOpt);
 				//ciclofaixasLineList.add(googleMap.addPolyline(ciclofaixasOptionsList.get(i).visible(visibility).zIndex(5).width(5.0f)));
@@ -2541,7 +2554,7 @@ public class MainActivity extends FragmentActivity
 
 			for (int i = 0; i < ciclorrotasOptionsList.size(); i++) {
 				ciclorrotasOptionsList.get(i).color(this.getResources().getColor(R.color.ciclorrota));
-				ciclorrotasLineList.add(googleMap.addPolyline(ciclorrotasOptionsList.get(i).visible(visibility).zIndex(1).width(3.0f)));
+				ciclorrotasLineList.add(googleMap.addPolyline(ciclorrotasOptionsList.get(i).visible(visibility).zIndex(1).width(Constant.bikeLaneWidth)));
 			}
 		}
 	}
@@ -2643,52 +2656,25 @@ public class MainActivity extends FragmentActivity
 					.anchor(0.0f, 1.0f)
 					.title(getString(R.string.chegada)));
 
-			AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-			final AlertDialog alert = alertBuilder.create();
-			View alertView = getLayoutInflater().inflate(R.layout.ad_from_which_location, null);
-			alert.setView(alertView);
-			alert.setCancelable(true);
-			Button btFromMyLocation = (Button) alertView.findViewById(R.id.from_my_location);
-			Button btFromAnotherLocation = (Button) alertView.findViewById(R.id.from_another_location);
-
-			btFromMyLocation.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (user_latlng != null) {
-						// Set markerOrigin
-						if (markerOrigin != null) {
-							markerOrigin.remove();
-						}
-						markerOrigin = googleMap.addMarker(new MarkerOptions()
-								.position(user_latlng)
-								.title(getString(R.string.partida)));
-						alert.dismiss();
-
-						tvOrigin.setText(getString(R.string.seu_local));
-
-						getRoutes();
-
-					} else {
-						Toast.makeText(getApplicationContext(), getString(R.string.loc_selecione_manualmente), Toast.LENGTH_SHORT).show();
-						tvOrigin.setVisibility(View.GONE);
-						etOrigin.setVisibility(View.VISIBLE);
-						etOrigin.requestFocus();
-						alert.dismiss();
-					}
+			if (user_latlng != null) {
+				// Set markerOrigin
+				if (markerOrigin != null) {
+					markerOrigin.remove();
 				}
-			});
-			btFromAnotherLocation.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					tvOrigin.setVisibility(View.GONE);
-					etOrigin.setVisibility(View.VISIBLE);
-					etOrigin.requestFocus();
-					alert.dismiss();
-				}
-			});
+				markerOrigin = googleMap.addMarker(new MarkerOptions()
+						.position(user_latlng)
+						.title(getString(R.string.partida)));
 
-			alert.show();
+				tvOrigin.setText(getString(R.string.seu_local));
 
+				getRoutes();
+
+			} else {
+				Toast.makeText(getApplicationContext(), getString(R.string.loc_selecione_manualmente), Toast.LENGTH_SHORT).show();
+				tvOrigin.setVisibility(View.GONE);
+				etOrigin.setVisibility(View.VISIBLE);
+				etOrigin.requestFocus();
+			}
 		} else {
 			header.removeAllViews();
 			header.addView(routeHeader);
@@ -2744,20 +2730,21 @@ public class MainActivity extends FragmentActivity
 		etSearch.setText("");
 		btClearSearch.setVisibility(View.GONE);
 
-        viewPager.setAdapter(null);
+        //viewPager.setAdapter(null);
 
-		hideViewPager.start();
+		hideRoutePanel.start();
 
 		// Hide btRouteMode
 		//if (btRouteMode.getTranslationX() == 0) {hideRouteButton.start();}
 
 		// Clean polyline on map
-		if (!polylineRoutesList.isEmpty()) {
-			for (Polyline polyline : polylineRoutesList) polyline.remove();
-		}
-		// Remove marker that points elevation for selected route step
-		if (graph_point_marker != null) {
-			graph_point_marker.remove();
+		if (!cyclingPathList.isEmpty()) {
+			for (CyclingPath cp : cyclingPathList) {
+				cp.routePolyline.remove();
+				for (Polyline p : cp.intersectionPolylines) {
+					p.remove();
+				}
+			}
 		}
 		if (markerOrigin != null) {
 			markerOrigin.remove();
@@ -3197,8 +3184,8 @@ public class MainActivity extends FragmentActivity
 
 	public void getRoutes() {
 
-		final LatLng origin = markerOrigin.getPosition();
-		final LatLng destination = markerDestination.getPosition();
+		LatLng origin = markerOrigin.getPosition();
+		LatLng destination = markerDestination.getPosition();
 
 		// find LatLngBound to animate camera and show the entire route.
 
@@ -3224,156 +3211,82 @@ public class MainActivity extends FragmentActivity
 			bounds = new LatLngBounds(dLatLng, oLatLng);
 		}
 
-		CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		int width = size.x;
+		int height = size.y;
+
+		CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, width, height/3, 20);
 		googleMap.animateCamera(cUpd);
 
-		getRoutesASY = new AsyncTask<String, Integer, ArrayList<CyclingPath>>() {
+		if (cyclingPathList != null) {
+			for (CyclingPath cp : cyclingPathList) cp.routePolyline.remove();
+			cyclingPathList.clear();
+		}
 
-			@Override
-			protected void onPreExecute() {
+		pbLoadingRoute.setVisibility(View.VISIBLE);
+		pbLoadingRoute.animate(); // MAYBE THIS SHOULD BE TAKEN OFF?
 
-				if (polylineRoutesList != null) {
-					for (Polyline polyline : polylineRoutesList) polyline.remove();
-					polylineRoutesList.clear();
-				}
+		// Show view pager loading
+		showRoutePanel.start();
 
-				adLoadingRoute.show();
+		if (!isNetworkAvailable()) {
+			AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
+			network_alert.setTitle(getString(R.string.network_alert_title))
+					.setMessage(getString(R.string.route_error_check_connection))
+					.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+						}
+					});
+			network_alert.show();
+		} else {
+			Route routeObj = new Route();
+			routeObj.getRoute(origin, destination, new GetRouteInterface() {
+				@Override
+				public void onFinished(ArrayList<ArrayList<LatLng>> routesPaths, ArrayList<ArrayList<Double>> pathsElevations, ArrayList<Double> distances, ArrayList<Integer> durations, ArrayList<LatLngBounds> boundsList) {
 
-				pbLoadingRoute.setProgress(10);
-
-				setUpdating();
-
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
-
-				if (viewPager.getVisibility() == View.VISIBLE) {
-					hideViewPager.start();
-				}
-
-				if (!isNetworkAvailable()) {
-					cancel(true);
-					AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-					network_alert.setTitle(getString(R.string.network_alert_title))
-							.setMessage(getString(R.string.route_error_check_connection))
-							.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							});
-					network_alert.show();
-				}
-
-			}
-
-			@Override
-			protected ArrayList<CyclingPath> doInBackground(String... params) {
-
-				ArrayList<CyclingPath> returnList = new ArrayList<>();
-
-				Route md = new Route();
-
-				Document doc = md.getDocument(origin, destination, Route.MODE_DRIVING);
-
-				ArrayList<PolylineOptions> pOptList = md.getDirection(doc);
-
-				ArrayList<Integer> distancesArray = md.getDistanceValues(doc);
-
-				// Clean cyclingPathList before adding new elements
-				if (!cyclingPathList.isEmpty()) {
-					cyclingPathList.clear();
-				}
-
-				publishProgress(25);
-
-				// Check if any routes were found
-				if (!pOptList.isEmpty()) {
-
-					for (int i = 0; i < pOptList.size(); i++) {
-
-						if (isCancelled()) { break; }
-
-						final int numberOfRoutes = pOptList.size();
-
-						PolylineOptions pOpt = pOptList.get(i);
-
-						// Criando lista de LatLng pro objeto CyclingPath
-						ArrayList<LatLng> latLngList = (ArrayList<LatLng>) pOpt.getPoints();
-
-						// Get distances array from Directions, in case the MapQuest API doesn't work.
-						Double distanceKms = null;
-						if (!distancesArray.isEmpty()) {
-							distanceKms = (double) distancesArray.get(i) / 1000;
+					if (!routesPaths.isEmpty()) {
+						// Clean cyclingPathList before adding new elements
+						if (!cyclingPathList.isEmpty()) {
+							cyclingPathList.clear();
 						}
 
-						CyclingPath cp = getCompleteCyclingPath(latLngList);
+						for (int i = 0; i<routesPaths.size(); i++) {
+							CyclingPath cp = new CyclingPath(routesPaths.get(i), distances.get(i), durations.get(i), pathsElevations.get(i), boundsList.get(i), ListCiclovias, googleMap);
+							cyclingPathList.add(cp);
+						}
 
-						if (cp != null) {
-							returnList.add(cp);
-						} else if (distanceKms != null) {
-							CyclingPath cpSimple = new CyclingPath(latLngList, distanceKms);
-							returnList.add(cpSimple);
+						// Reorder cyclingPathList so the max percentage of bike lanes is the last object
+
+						Collections.sort(cyclingPathList, new InclinationComparator());
+						cyclingPathList.get(0).flattest  = true;
+
+						Collections.sort(cyclingPathList, new MinDurationComparator());
+						cyclingPathList.get(0).fastest = true;
+
+						Collections.sort(cyclingPathList, new PercentageOnBikeLanesComparator());
+						cyclingPathList.get(cyclingPathList.size()-1).mostBikeLanes = true;
+
+                        // Send to db infos about cycling path with mostBikeLanes
+                        String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+                        if (!deviceID.equals("")){
+                            Calls.sendOriginDestination(deviceID, markerOrigin.getPosition(), markerDestination.getPosition(),
+                                    cyclingPathList.get(cyclingPathList.size()-1).totalDistanceInKm, cyclingPathList.get(cyclingPathList.size()-1).maxInclination, null);
+                        }
+
+                        // Select route according to user's priority configuration
+						if (sharedPreferences.getString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES).equals(Constant.PRIORITY_FASTEST)) {
+							for (CyclingPath cp : cyclingPathList) { if (cp.fastest) selectCyclingPath(cp); }
+						} else if (sharedPreferences.getString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES).equals(Constant.PRIORITY_FLATTEST)) {
+							for (CyclingPath cp : cyclingPathList) {if (cp.flattest) selectCyclingPath(cp); }
 						} else {
-							CyclingPath cpSimple = new CyclingPath(latLngList);
-							returnList.add(cpSimple);
+							for (CyclingPath cp : cyclingPathList) {if (cp.mostBikeLanes) selectCyclingPath(cp); }
 						}
-
-						publishProgress(25 + (75 / numberOfRoutes) * (i + 1));
-
-						//runOnUiThread(new Runnable() {public void run() { pbLoadingRoute.setProgress(25+(75/numberOfRoutes)*(iValue+1)); }});
-
 					}
-				} else {
-					// Cancel task if zero routes were found
-					cancel(true);
 				}
-
-				return returnList;
-			}
-
-			protected void onProgressUpdate(Integer... progress) {
-				pbLoadingRoute.setProgress(progress[0]);
-			}
-
-			@Override
-			protected void onPostExecute(ArrayList<CyclingPath> list) {
-
-				pbLoadingRoute.setProgress(100);
-
-				adLoadingRoute.dismiss();
-
-				resetUpdating();
-
-				cyclingPathList = list;
-
-				// Reorder cyclingPathList so the min inclination is the first object
-				Collections.sort(cyclingPathList, new CustomComparator());
-
-				// Define the first "selectedCyclingPath"
-				if (!selectedCyclingPath.isEmpty()) {
-					selectedCyclingPath.clear();
-				}
-				selectedCyclingPath.add(cyclingPathList.get(0));
-
-                String deviceID = sharedPreferences.getString(Constant.deviceID, "");
-                if (!deviceID.equals("")){
-                    Calls.sendOriginDestination(deviceID, markerOrigin.getPosition(), markerDestination.getPosition(),
-                            selectedCyclingPath.get(0).totalDistance, selectedCyclingPath.get(0).maxInclination, null);
-                }
-
-				drawRoutes();
-
-			}
-
-			protected void onCancelled() {
-
-				adLoadingRoute.dismiss();
-
-				resetUpdating();
-			}
-
-		};
-
-		getRoutesASY.execute();
+			});
+		}
 	}
 
 	public void cancelLoadingRoute(View v) {
@@ -3390,231 +3303,105 @@ public class MainActivity extends FragmentActivity
 
 		resetUpdating();
 
-		//pBarRoute.setVisibility(View.GONE);
-		//btRoute.setVisibility(View.VISIBLE);
-
-		adLoadingRoute.dismiss();
-	}
-
-	// Inicializado por: getRoutes(). Solicita elevações e distâncias do mapQuest e retorna CyclingPath
-	public CyclingPath getCompleteCyclingPath(ArrayList<LatLng> pathLatLng) {
-
-		// Variáveis que serão populadas para comporem o CyclingPath final
-		ArrayList<Double> elevationList = new ArrayList<>();
-		ArrayList<Double> referenceDistanceList = new ArrayList<>();
-
-		// CyclingPath que será retornado no final
-		CyclingPath cp = null;
-
-		String base_url = "http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluu821utnd%2Cr0%3Do5-94b5gr&shapeFormat=raw&useFilter=true&latLngCollection=";
-
-		DecimalFormat dc = new DecimalFormat("##.#####", new DecimalFormatSymbols(Locale.US));
-
-		ArrayList<String> urls = new ArrayList<>();
-
-		int limit = 90; // Limite de pontos LatLng pra procurar por URL (90 * 10 * 2 = 1800) Url máxima aproximada = 2000
-		int y = (pathLatLng.size() / limit);
-
-		for (int i = 0; i < y; i++) {
-			String pathUrl = String.valueOf(pathLatLng.get(i * limit).latitude) + "," + String.valueOf(pathLatLng.get(i * limit).longitude);
-			for (int x = ((i * limit) + 1); x < (i + 1) * limit; x++) {
-				pathUrl = pathUrl + "," + dc.format(pathLatLng.get(x).latitude) + "," + dc.format(pathLatLng.get(x).longitude);
-			}
-			urls.add(base_url + pathUrl);
-
-		}
-
-		if (pathLatLng.size() > (y * limit)) {
-			String pathUrlFinal = String.valueOf(pathLatLng.get(y * limit).latitude) + "," + String.valueOf(pathLatLng.get(y * limit).longitude);
-			for (int x = ((y * limit) + 1); x < pathLatLng.size(); x++) {
-				pathUrlFinal = pathUrlFinal + "," + dc.format(pathLatLng.get(x).latitude) + "," + dc.format(pathLatLng.get(x).longitude);
-			}
-			urls.add(base_url + pathUrlFinal);
-		}
-
-		// Making requests for MAPQUEST
-
-		// Variável que começa zerada e guarda a referenceDistance da última distância de cada trecho pra que seja somado às distâncias no próximo trecho.
-		Double startingDistance = 0.0;
-
-		//JSONParser jParser = new JSONParser();
-
-		for (int i = 0; i < urls.size(); i++) {
-
-			JSONArray elevationProfileJson = null;
-
-			String jsonString = "";
-
-			//HttpClient client = new DefaultHttpClient();
-			//HttpPost post = new HttpPost(urls.get(i));
-
-			try {
-
-				JSONObject jsonObject = jParser.makeHttpRequest(urls.get(i));
-				elevationProfileJson = jsonObject.getJSONArray("elevationProfile");
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			if (elevationProfileJson != null) {
-				try {
-					for (int x = 0; x < elevationProfileJson.length(); x++) {
-
-						JSONObject obj = elevationProfileJson.getJSONObject(x);
-						double height = Double.parseDouble(obj.getString("height"));
-						double distance = startingDistance + Double.parseDouble(obj.getString("distance"));
-
-						if (x == elevationProfileJson.length() - 1) {
-							startingDistance = distance;
-						}
-
-						elevationList.add(height);
-						referenceDistanceList.add(distance);
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		}
-
-		if (!pathLatLng.isEmpty() && !elevationList.isEmpty() && !referenceDistanceList.isEmpty()) {
-			cp = new CyclingPath(pathLatLng, elevationList, referenceDistanceList);
-
-		}
-		return cp;
-
 	}
 
 	// Reorders cyclingPathList by maxInclination
-	public class CustomComparator implements Comparator<CyclingPath> {
+	public class InclinationComparator implements Comparator<CyclingPath> {
 		@TargetApi(Build.VERSION_CODES.KITKAT)
 		@Override
 		public int compare(CyclingPath cp1, CyclingPath cp2) {
 			return Double.compare(cp1.maxInclination, cp2.maxInclination);
 		}
 	}
-
-	public void drawRoutes() {
-
-		// Create PolylineOptions list to be populated
-		ArrayList<PolylineOptions> routesOptionList = new ArrayList<>();
-
-		// Clear lists that will be populated, if they are not empty.
-		if (!polylineRoutesList.isEmpty()) {
-			for (Polyline polyline : polylineRoutesList) polyline.remove();
+	// Reorders cyclingPathList by PercentageOnBikeLanes
+	public class PercentageOnBikeLanesComparator implements Comparator<CyclingPath> {
+		@TargetApi(Build.VERSION_CODES.KITKAT)
+		@Override
+		public int compare(CyclingPath cp1, CyclingPath cp2) {
+			return Integer.compare(cp1.percentageOnBikeLanes, cp2.percentageOnBikeLanes);
 		}
-		if (!polylineRoutesList.isEmpty()) {
-			polylineRoutesList.clear();
+	}
+	// Reorders cyclingPathList by MinDuration
+	public class MinDurationComparator implements Comparator<CyclingPath> {
+		@TargetApi(Build.VERSION_CODES.KITKAT)
+		@Override
+		public int compare(CyclingPath cp1, CyclingPath cp2) {
+			return Double.compare(cp1.totalDurationSecs, cp2.totalDurationSecs);
 		}
-
-		// aChartEngine: Clear list of graphs
-		if (!graphViewArray.isEmpty()) {
-			graphViewArray.clear();
-		}
-        Log.e("CYCLINGPATHSIZE", String.valueOf(cyclingPathList.size()));
-		// For each other cycling path stored on cyclingPathList
-		for (int i = 0; i < cyclingPathList.size(); i++) {
-
-			// Create PolylineOptions to the current cyclingPath. Add to list.
-
-			PolylineOptions polylineOptions = new PolylineOptions();
-			polylineOptions.addAll(cyclingPathList.get(i).pathLatLng);
-			polylineOptions.zIndex(9);
-
-			//Change to bright blue if this is the cyclingPath with minimun elevation
-			if (i == 0) {
-				polylineOptions.color(this.getResources().getColor(R.color.selected_route_blue));
-			} else {
-				polylineOptions.color(this.getResources().getColor(R.color.not_selected_route_blue));
-			}
-
-			// Add it to the PolylineOption list
-			routesOptionList.add(polylineOptions);
-		}
-
-		// Add routesOptionList to map
-		for (PolylineOptions routesOption : routesOptionList) {
-			polylineRoutesList.add(googleMap.addPolyline(routesOption));
-		}
-
-		// Set up view pager
-		viewPager.setVisibility(View.VISIBLE);
-		ObjectAnimator objAnim = ObjectAnimator.ofFloat(viewPager, "translationY", 0);
-		objAnim.start();
-
-        SwipeFragmentPagerAdapter swipeFragmentPagerAdapter = new SwipeFragmentPagerAdapter(this, getSupportFragmentManager());
-
-		viewPager.setAdapter(swipeFragmentPagerAdapter);
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setOnPageChangeListener(new OnPageChangeListener() {
-			public void onPageSelected(int position) {
-
-                Log.e("onPageSelected", "RAN, position: " + String.valueOf(position));
-				for (Polyline polyline : polylineRoutesList) {
-					polyline.setColor(getResources().getColor(R.color.not_selected_route_blue));
-				}
-				polylineRoutesList.get(position).setColor(getResources().getColor(R.color.selected_route_blue));
-				selectedCyclingPath.set(0, cyclingPathList.get(position));
-
-				// When swiped, remove marker that points elevation for previous selected route step
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-		});
-
-		if (viewPagerPosition != null) {
-			viewPager.setCurrentItem(viewPagerPosition);
-		}
-
-		// Hide keyboard
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
-		imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
-
-		if (!elevGraphExpWasShown) {
-			Intent intent = new Intent(this, RouteDetailSplashScreen.class);
-			startActivity(intent);
-			elevGraphExpWasShown = true;
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putBoolean("elevGraphExpWasShown", true);
-			editor.apply();
-		}
-
 	}
 
-	public class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
+	public void selectCyclingPath(CyclingPath cyclingPath) {
 
-        Context context;
+        for (CyclingPath cp : cyclingPathList) {
+            cp.setSelected(false);
+        }
+        cyclingPath.setSelected(true);
 
-		public SwipeFragmentPagerAdapter(Context c, FragmentManager fm) {
-			super(fm);
-            context = c;
-		}
+        // Define the first "selectedCyclingPath"
+        if (!selectedCyclingPath.isEmpty()) {
+            selectedCyclingPath.clear();
+        }
+        selectedCyclingPath.add(cyclingPathList.get(cyclingPathList.size() - 1));
 
-		@Override
-		public int getCount() {
-			return cyclingPathList.size();
-		}
+        pbLoadingRoute.setVisibility(View.GONE);
+        // Add Route details
 
-		@Override
-		public Fragment getItem(int position) {
-			//SwipeFragment fragment = new SwipeFragment();
-			return SwipeFragment.newInstance(context, position);
-		}
+        llRouteDetailFragment.setVisibility(View.VISIBLE);
 
-	}
+        tvRouteDistance.setText(cyclingPath.totalDistanceInKm + " km");
+        tvRouteDuration.setText(cyclingPath.getReadableDuration());
+        tvRoutePercentageOnBikeLanes.setText(cyclingPath.percentageOnBikeLanes + "%");
+
+        if (!cyclingPath.pathElevation.isEmpty()) {
+
+            XYSeriesRenderer renderer = new XYSeriesRenderer();
+            XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();renderer.setLineWidth(30);
+            renderer.setColor(getResources().getColor(R.color.water_blue));
+            renderer.setDisplayBoundingPoints(true);
+            renderer.setPointStyle(PointStyle.CIRCLE);
+            renderer.setPointStrokeWidth(22);
+            XYSeriesRenderer.FillOutsideLine fill = new XYSeriesRenderer.FillOutsideLine(XYSeriesRenderer.FillOutsideLine.Type.BELOW);
+            fill.setColor(getResources().getColor(R.color.water_blue));
+            renderer.addFillOutsideLine(fill);
+
+            mRenderer.addSeriesRenderer(renderer);
+            mRenderer.setMarginsColor(Color.argb(0x00, 0xff, 0x00, 0x00));
+            mRenderer.setMargins(new int[]{15, 0, 0, 0});
+            mRenderer.setPanEnabled(false, false);
+            mRenderer.setZoomEnabled(false, false);
+            mRenderer.setShowGrid(false);
+            mRenderer.setShowAxes(false);
+            mRenderer.setShowLabels(false);
+            mRenderer.setShowLegend(false);
+            mRenderer.setDisplayValues(false);
+            mRenderer.setClickEnabled(true);
+            mRenderer.setXLabelsPadding(100);
+            mRenderer.setYLabelsPadding(100);
+
+            // aChartEngine
+            XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
+            XYSeries xySeries = new XYSeries("MySerie");
+
+            // Get cyclingPath's elevations list
+            ArrayList<Double> elevations = cyclingPath.pathElevation;
+
+            // Add each elevation point to the elevationSeries1 variable
+            for (int i = 0; i < elevations.size(); i++) {
+                xySeries.add(i, elevations.get(i));
+            }
+
+            //aChartEngine
+            mDataset.addSeries(xySeries);
+
+            GraphicalView gView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
+            gView.setClickable(true);
+            gView.setPadding(0, 0, 0, 0);
+
+            llChart.addView(gView, 0);
+        } else {
+            tvElevationUnavailable.setVisibility(View.VISIBLE);
+        }
+    }
 
 	public void switchAddresses(View view) {
 		if (tvDestination.getVisibility() == View.VISIBLE && tvOrigin.getVisibility() == View.VISIBLE) {
@@ -3688,12 +3475,30 @@ public class MainActivity extends FragmentActivity
 
     public void showBottomButton (final View viewToAnimate) {
         ObjectAnimator showAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0);
-        viewToAnimate.setVisibility(View.VISIBLE);
-        showAnimation.start();
+		showAnimation.addListener(new AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animator) {
+				viewToAnimate.setVisibility(View.VISIBLE);
+			}
 
+			@Override
+			public void onAnimationEnd(Animator animator) {
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator) {
+
+			}
+		});
+        showAnimation.start();
     }
 
-    public void hideBottomButton(final View viewToAnimate) {
+    public ObjectAnimator hideBottomButton(final View viewToAnimate) {
         ObjectAnimator hideAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0, 600);
         hideAnimation.addListener(new AnimatorListener() {
 
@@ -3715,13 +3520,19 @@ public class MainActivity extends FragmentActivity
             }
         });
         hideAnimation.start();
+		return hideAnimation;
     }
 
-    public void hideAllBottomButtons () {
-        hideBottomButton(notifyButton);
-        hideBottomButton(btParkedHere);
-        hideBottomButton(btRemovePlace);
+    public ArrayList<ObjectAnimator> hideAllBottomButtons () {
+
+		ArrayList<ObjectAnimator> returnArray = new ArrayList<>();
+
+		returnArray.add(hideBottomButton(notifyButton));
+		returnArray.add(hideBottomButton(btParkedHere));
+		returnArray.add(hideBottomButton(btRemovePlace));
         //hideBottomButton(llPlaceOptions);
+
+		return returnArray;
     }
 
     public void checkNumberOfOptionsDisplayed() {
@@ -3923,20 +3734,6 @@ public class MainActivity extends FragmentActivity
                     .title(getString(R.string.chegada)));
         }
 
-        if (isViewPagerVisible) {
-
-            drawRoutes();
-
-            if (stringGraphPointMarkerInfo != null && latLngGraphPointMarker != null) {
-                graph_point_marker = googleMap.addMarker(new MarkerOptions()
-                        .position(latLngGraphPointMarker)
-                        .anchor(0.5f, 0.5f)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
-                        .title(stringGraphPointMarkerInfo[0])
-                        .snippet(stringGraphPointMarkerInfo[1])
-                );
-            }
-        }
     }
 
 	protected void onRestoreInstanceState (@NonNull Bundle savedInstanceState) {
@@ -4017,10 +3814,6 @@ public class MainActivity extends FragmentActivity
 				selectedCyclingPath = savedInstanceState.getParcelableArrayList("selectedCyclingPath");
 				viewPagerPosition = savedInstanceState.getInt("viewPagerPOSITION");
 				isViewPagerVisible = true;
-				if (savedInstanceState.getBoolean("graph_point_markerVIS")) {
-					stringGraphPointMarkerInfo = savedInstanceState.getStringArray("graph_point_markerINFO");
-                    latLngGraphPointMarker = savedInstanceState.getParcelable("graph_point_markerLATLNG");
-				}
 			}
 		}
         etSearch.clearFocus();
@@ -4066,7 +3859,7 @@ public class MainActivity extends FragmentActivity
 			savedInstanceState.putString("tvDestinationSTRING", tvDestination.getText().toString());
 			savedInstanceState.putString("etDestinationSTRING", etDestination.getText().toString());
 
-			// Get cyclingPathList, viewPager and graph_point_marker
+			// Get cyclingPathList and viewPager
 
 			savedInstanceState.putParcelableArrayList("cyclingPathList", cyclingPathList);
 			savedInstanceState.putParcelableArrayList("selectedCyclingPath", selectedCyclingPath);
@@ -4077,26 +3870,6 @@ public class MainActivity extends FragmentActivity
             if (markerDestination != null) {
                 savedInstanceState.putParcelable("markerDestinationLatLng", markerDestination.getPosition());
             }
-
-			// Save ViewPager State
-			if (viewPager.getVisibility() == View.VISIBLE) {
-				savedInstanceState.putBoolean("viewPagerVIS", true);
-				savedInstanceState.putInt("viewPagerPOSITION", viewPager.getCurrentItem());
-
-				// Save graph_point_marker State (marcador que indica qual ponto da rota foi clicado
-				if (graph_point_marker != null) {
-					savedInstanceState.putBoolean("graph_point_markerVIS", true);
-					savedInstanceState.putParcelable("graph_point_markerLATLNG", graph_point_marker.getPosition());
-					String[] s = new String[2];
-					s[0] = graph_point_marker.getTitle();
-					s[1] = graph_point_marker.getSnippet();
-					savedInstanceState.putStringArray("graph_point_markerINFO", s);
-				} else {
-					savedInstanceState.putBoolean("graph_point_markerVIS", false);
-				}
-			} else {
-				savedInstanceState.putBoolean("viewPagerVIS", false);
-			}
 		}
 	}
 
@@ -4115,32 +3888,6 @@ public class MainActivity extends FragmentActivity
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onSwipeFragmentInteraction(Double clickedRefDistance) {
-
-        Log.e("onMainActivity", "HERE");
-
-        if (graph_point_marker != null) {
-            graph_point_marker.remove();
-        }
-
-        graph_point_marker = googleMap.addMarker(new MarkerOptions()
-                .position(selectedCyclingPath.get(0).getLatLngFromRefDistance(clickedRefDistance))
-                .anchor(0.5f, 0.5f)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
-                .title(getString(R.string.inclinacao) + " " + String.valueOf(selectedCyclingPath.get(0).getElevationFromRefDistance(clickedRefDistance)) + "°")
-                .snippet(getString(R.string.posicao) + " " + Double.valueOf(String.format(Locale.US, "%.2f", clickedRefDistance)) + " km")
-        );
-
-        graph_point_marker.showInfoWindow();
-
-        // display information of the clicked point
-        /** "Chart element in series index " + seriesSelection.getSeriesIndex()
-         + " data point index " + seriesSelection.getPointIndex() + " was clicked"
-         + " closest point value X=" + seriesSelection.getXValue() + ", Y="
-         + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();*/
     }
 
 }

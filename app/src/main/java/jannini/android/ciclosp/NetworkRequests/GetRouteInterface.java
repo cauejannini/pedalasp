@@ -1,29 +1,16 @@
 package jannini.android.ciclosp.NetworkRequests;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+
+import java.util.ArrayList;
+
 /**
  * Created by cauejannini on 04/07/16.
  */
-public class GetRouteInterface {
+public interface GetRouteInterface {
 
-    public GetRouteInterface() {
-    }
-
-    public void onResponse (int responseCode, String response) {
-        if (responseCode == 200) {
-            onSuccess(responseCode, response);
-        } else {
-            onFailure(responseCode, response);
-        }
-    }
-
-    public void onSuccess (int responseCode, String response) {
-
-    }
-
-    public void onFailure (int responseCode, String response) {
-
-    }
-
+    void onFinished(ArrayList<ArrayList<LatLng>> routesPaths, ArrayList<ArrayList<Double>> pathsElevations, ArrayList<Double> distances, ArrayList<Integer> durationsInSecs, ArrayList<LatLngBounds> boundsList);
 }
 
 

@@ -32,13 +32,15 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/MainActionBarTheme">
+            android:theme="@style/MainActionBarTheme"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,7 +50,8 @@
         <activity
             android:name=".SugestaoActivity"
             android:label="@string/title_activity_sugestao"
-            android:theme="@style/NoActionBarTheme" >
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait">
         </activity>
 
         <receiver
@@ -62,17 +65,20 @@
         <activity
             android:name=".ReportActivity"
             android:label="@string/title_activity_report"
-            android:theme="@style/NoActionBarTheme"/>
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".RouteDetailSplashScreen"
             android:label="@string/title_activity_route_detail_splash"
-            android:theme="@style/ThemeTransparent"/>
+            android:theme="@style/ThemeTransparent"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".DrawerExpActivity"
             android:label="@string/title_activity_drawer_exp_splash"
-            android:theme="@style/NoActionBarTheme"/>
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"/>
 
     </application>
 

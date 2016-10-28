@@ -18,6 +18,7 @@
         <item>Free Wifi SP</item>
         <item>Alerts</item>
         <item>Write for us</item>
+        <item>Settings</item>
     </string-array>
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
@@ -26,7 +27,8 @@
         <item>Parks with bike lanes</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
-        <item />
+        <item/>
+        <item/>
     </string-array>
 
     <string name="app_name">Pedala SP</string>
@@ -142,6 +144,7 @@
     <string name="toast_thanks">Thanks!</string>
     <string name="rede_nao_disponivel">Network not available</string>
     <string name="inclinacao_maxima">Max inclination</string>
+    <string name="on_bikelanes">on bikelanes</string>
     <string name="route_nenhuma_rota_criada">No route created</string>
     <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
     <string name="drawerexp_explanation2">(You\'ll be able to change this after)</string>

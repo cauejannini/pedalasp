@@ -1,15 +1,15 @@
 [
     {
-        "outputFile": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/res/merged/debug/values-pt/values-pt.xml",
+        "outputFile": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
                     "startOffset": 55,
-                    "endLine": 10,
+                    "endLine": 11,
                     "endColumn": 23,
-                    "endOffset": 420
+                    "endOffset": 463
                 },
                 "from": {
                     "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
@@ -17,3263 +17,2071 @@
                         "startLine": 7,
                         "startColumn": 8,
                         "startOffset": 274,
-                        "endLine": 15,
+                        "endLine": 16,
                         "endColumn": 23,
-                        "endOffset": 639
+                        "endOffset": 682
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 11,
+                    "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 425,
-                    "endLine": 19,
+                    "startOffset": 468,
+                    "endLine": 21,
                     "endColumn": 23,
-                    "endOffset": 852
+                    "endOffset": 919
                 },
                 "from": {
                     "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
                     "position": {
-                        "startLine": 16,
+                        "startLine": 17,
                         "startColumn": 8,
-                        "startOffset": 648,
-                        "endLine": 24,
+                        "startOffset": 691,
+                        "endLine": 26,
                         "endColumn": 23,
-                        "endOffset": 1075
+                        "endOffset": 1142
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 20,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 857,
-                    "endLine": 27,
-                    "endColumn": 23,
-                    "endOffset": 1069
+                    "startOffset": 924,
+                    "endColumn": 119,
+                    "endOffset": 1039
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 8,
-                        "startOffset": 1084,
-                        "endLine": 32,
-                        "endColumn": 23,
-                        "endOffset": 1296
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1044,
+                    "endColumn": 107,
+                    "endOffset": 1147
+                },
+                "from": {
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1152,
+                    "endColumn": 122,
+                    "endOffset": 1270
+                },
+                "from": {
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 1275,
+                    "endColumn": 105,
+                    "endOffset": 1376
+                },
+                "from": {
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1381,
+                    "endColumn": 106,
+                    "endOffset": 1483
+                },
+                "from": {
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 1488,
+                    "endColumn": 88,
+                    "endOffset": 1572
+                },
+                "from": {
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 1074,
-                    "endColumn": 119,
-                    "endOffset": 1189
+                    "startOffset": 1577,
+                    "endColumn": 100,
+                    "endOffset": 1673
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 276,
-                        "endColumn": 119,
-                        "endOffset": 391
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 29,
                     "startColumn": 4,
-                    "startOffset": 1194,
-                    "endColumn": 107,
-                    "endOffset": 1297
+                    "startOffset": 1678,
+                    "endColumn": 117,
+                    "endOffset": 1791
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 396,
-                        "endColumn": 107,
-                        "endOffset": 499
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 30,
                     "startColumn": 4,
-                    "startOffset": 1302,
-                    "endColumn": 122,
-                    "endOffset": 1420
+                    "startOffset": 1796,
+                    "endColumn": 86,
+                    "endOffset": 1878
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 504,
-                        "endColumn": 122,
-                        "endOffset": 622
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 31,
                     "startColumn": 4,
-                    "startOffset": 1425,
-                    "endColumn": 105,
-                    "endOffset": 1526
+                    "startOffset": 1883,
+                    "endColumn": 106,
+                    "endOffset": 1985
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 627,
-                        "endColumn": 105,
-                        "endOffset": 728
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 32,
                     "startColumn": 4,
-                    "startOffset": 1531,
-                    "endColumn": 106,
-                    "endOffset": 1633
+                    "startOffset": 1990,
+                    "endColumn": 111,
+                    "endOffset": 2097
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 733,
-                        "endColumn": 106,
-                        "endOffset": 835
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 33,
                     "startColumn": 4,
-                    "startOffset": 1638,
-                    "endColumn": 88,
-                    "endOffset": 1722
+                    "startOffset": 2102,
+                    "endColumn": 101,
+                    "endOffset": 2199
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 840,
-                        "endColumn": 88,
-                        "endOffset": 924
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 34,
                     "startColumn": 4,
-                    "startOffset": 1727,
-                    "endColumn": 100,
-                    "endOffset": 1823
+                    "startOffset": 2204,
+                    "endColumn": 107,
+                    "endOffset": 2307
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 929,
-                        "endColumn": 100,
-                        "endOffset": 1025
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 35,
                     "startColumn": 4,
-                    "startOffset": 1828,
-                    "endColumn": 117,
-                    "endOffset": 1941
+                    "startOffset": 2312,
+                    "endColumn": 106,
+                    "endOffset": 2414
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1030,
-                        "endColumn": 117,
-                        "endOffset": 1143
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 36,
                     "startColumn": 4,
-                    "startOffset": 1946,
-                    "endColumn": 86,
-                    "endOffset": 2028
+                    "startOffset": 2419,
+                    "endColumn": 109,
+                    "endOffset": 2524
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1148,
-                        "endColumn": 86,
-                        "endOffset": 1230
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 37,
                     "startColumn": 4,
-                    "startOffset": 2033,
-                    "endColumn": 106,
-                    "endOffset": 2135
+                    "startOffset": 2529,
+                    "endColumn": 124,
+                    "endOffset": 2649
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1235,
-                        "endColumn": 106,
-                        "endOffset": 1337
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 38,
                     "startColumn": 4,
-                    "startOffset": 2140,
-                    "endColumn": 111,
-                    "endOffset": 2247
+                    "startOffset": 2654,
+                    "endColumn": 99,
+                    "endOffset": 2749
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1342,
-                        "endColumn": 111,
-                        "endOffset": 1449
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 39,
                     "startColumn": 4,
-                    "startOffset": 2252,
-                    "endColumn": 101,
-                    "endOffset": 2349
+                    "startOffset": 2754,
+                    "endColumn": 89,
+                    "endOffset": 2839
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1454,
-                        "endColumn": 101,
-                        "endOffset": 1551
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 40,
                     "startColumn": 4,
-                    "startOffset": 2354,
-                    "endColumn": 107,
-                    "endOffset": 2457
+                    "startOffset": 2844,
+                    "endColumn": 57,
+                    "endOffset": 2897
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1556,
-                        "endColumn": 107,
-                        "endOffset": 1659
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 41,
                     "startColumn": 4,
-                    "startOffset": 2462,
-                    "endColumn": 106,
-                    "endOffset": 2564
+                    "startOffset": 2902,
+                    "endColumn": 65,
+                    "endOffset": 2963
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 1664,
-                        "endColumn": 106,
-                        "endOffset": 1766
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 42,
                     "startColumn": 4,
-                    "startOffset": 2569,
-                    "endColumn": 109,
-                    "endOffset": 2674
+                    "startOffset": 2968,
+                    "endColumn": 41,
+                    "endOffset": 3005
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 1771,
-                        "endColumn": 109,
-                        "endOffset": 1876
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 43,
                     "startColumn": 4,
-                    "startOffset": 2679,
-                    "endColumn": 124,
-                    "endOffset": 2799
+                    "startOffset": 3010,
+                    "endColumn": 48,
+                    "endOffset": 3054
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 1881,
-                        "endColumn": 124,
-                        "endOffset": 2001
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 44,
                     "startColumn": 4,
-                    "startOffset": 2804,
-                    "endColumn": 99,
-                    "endOffset": 2899
+                    "startOffset": 3059,
+                    "endColumn": 46,
+                    "endOffset": 3101
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 2006,
-                        "endColumn": 99,
-                        "endOffset": 2101
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 45,
                     "startColumn": 4,
-                    "startOffset": 2904,
-                    "endColumn": 89,
-                    "endOffset": 2989
+                    "startOffset": 3106,
+                    "endColumn": 43,
+                    "endOffset": 3145
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 134,
-                        "startColumn": 8,
-                        "startOffset": 8969,
-                        "endColumn": 93,
-                        "endOffset": 9054
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 46,
                     "startColumn": 4,
-                    "startOffset": 2994,
-                    "endColumn": 57,
-                    "endOffset": 3047
+                    "startOffset": 3150,
+                    "endColumn": 55,
+                    "endOffset": 3201
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 8,
-                        "startOffset": 110,
-                        "endColumn": 61,
-                        "endOffset": 163
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 47,
                     "startColumn": 4,
-                    "startOffset": 3052,
-                    "endColumn": 65,
-                    "endOffset": 3113
+                    "startOffset": 3206,
+                    "endColumn": 53,
+                    "endOffset": 3255
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 92,
-                        "startColumn": 8,
-                        "startOffset": 5650,
-                        "endColumn": 69,
-                        "endOffset": 5711
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 48,
                     "startColumn": 4,
-                    "startOffset": 3118,
-                    "endColumn": 41,
-                    "endOffset": 3155
+                    "startOffset": 3260,
+                    "endColumn": 60,
+                    "endOffset": 3316
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 69,
-                        "startColumn": 8,
-                        "startOffset": 3774,
-                        "endColumn": 45,
-                        "endOffset": 3811
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 49,
                     "startColumn": 4,
-                    "startOffset": 3160,
-                    "endColumn": 48,
-                    "endOffset": 3204
+                    "startOffset": 3321,
+                    "endColumn": 70,
+                    "endOffset": 3387
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 131,
-                        "startColumn": 8,
-                        "startOffset": 8777,
-                        "endColumn": 52,
-                        "endOffset": 8821
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 50,
                     "startColumn": 4,
-                    "startOffset": 3209,
-                    "endColumn": 46,
-                    "endOffset": 3251
+                    "startOffset": 3392,
+                    "endColumn": 162,
+                    "endOffset": 3550
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 8,
-                        "startOffset": 59,
-                        "endColumn": 50,
-                        "endOffset": 101
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 51,
                     "startColumn": 4,
-                    "startOffset": 3256,
-                    "endColumn": 43,
-                    "endOffset": 3295
+                    "startOffset": 3555,
+                    "endColumn": 64,
+                    "endOffset": 3615
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 167,
-                        "startColumn": 8,
-                        "startOffset": 11573,
-                        "endColumn": 47,
-                        "endOffset": 11612
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 52,
                     "startColumn": 4,
-                    "startOffset": 3300,
-                    "endColumn": 55,
-                    "endOffset": 3351
+                    "startOffset": 3620,
+                    "endColumn": 41,
+                    "endOffset": 3657
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 123,
-                        "startColumn": 8,
-                        "startOffset": 8212,
-                        "endColumn": 59,
-                        "endOffset": 8263
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 53,
                     "startColumn": 4,
-                    "startOffset": 3356,
-                    "endColumn": 53,
-                    "endOffset": 3405
+                    "startOffset": 3662,
+                    "endColumn": 61,
+                    "endOffset": 3719
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 41,
-                        "startColumn": 8,
-                        "startOffset": 1676,
-                        "endColumn": 57,
-                        "endOffset": 1725
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 54,
                     "startColumn": 4,
-                    "startOffset": 3410,
-                    "endColumn": 60,
-                    "endOffset": 3466
+                    "startOffset": 3724,
+                    "endColumn": 45,
+                    "endOffset": 3765
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 64,
-                        "startColumn": 8,
-                        "startOffset": 3373,
-                        "endColumn": 64,
-                        "endOffset": 3429
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 55,
                     "startColumn": 4,
-                    "startOffset": 3471,
-                    "endColumn": 70,
-                    "endOffset": 3537
+                    "startOffset": 3770,
+                    "endColumn": 61,
+                    "endOffset": 3827
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 88,
-                        "startColumn": 8,
-                        "startOffset": 5259,
-                        "endColumn": 74,
-                        "endOffset": 5325
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 56,
                     "startColumn": 4,
-                    "startOffset": 3542,
-                    "endColumn": 162,
-                    "endOffset": 3700
+                    "startOffset": 3832,
+                    "endColumn": 43,
+                    "endOffset": 3871
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 85,
-                        "startColumn": 8,
-                        "startOffset": 4962,
-                        "endColumn": 166,
-                        "endOffset": 5120
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 57,
                     "startColumn": 4,
-                    "startOffset": 3705,
-                    "endColumn": 64,
-                    "endOffset": 3765
+                    "startOffset": 3876,
+                    "endColumn": 48,
+                    "endOffset": 3920
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 121,
-                        "startColumn": 8,
-                        "startOffset": 8084,
-                        "endColumn": 68,
-                        "endOffset": 8144
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 58,
                     "startColumn": 4,
-                    "startOffset": 3770,
-                    "endColumn": 41,
-                    "endOffset": 3807
+                    "startOffset": 3925,
+                    "endColumn": 51,
+                    "endOffset": 3972
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 70,
-                        "startColumn": 8,
-                        "startOffset": 3820,
-                        "endColumn": 45,
-                        "endOffset": 3857
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 59,
                     "startColumn": 4,
-                    "startOffset": 3812,
-                    "endColumn": 61,
-                    "endOffset": 3869
+                    "startOffset": 3977,
+                    "endColumn": 95,
+                    "endOffset": 4068
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 40,
-                        "startColumn": 8,
-                        "startOffset": 1610,
-                        "endColumn": 65,
-                        "endOffset": 1667
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 60,
                     "startColumn": 4,
-                    "startOffset": 3874,
-                    "endColumn": 45,
-                    "endOffset": 3915
+                    "startOffset": 4073,
+                    "endColumn": 77,
+                    "endOffset": 4146
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 146,
-                        "startColumn": 8,
-                        "startOffset": 9956,
-                        "endColumn": 49,
-                        "endOffset": 9997
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 61,
                     "startColumn": 4,
-                    "startOffset": 3920,
-                    "endColumn": 61,
-                    "endOffset": 3977
+                    "startOffset": 4151,
+                    "endColumn": 35,
+                    "endOffset": 4182
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 106,
-                        "startColumn": 8,
-                        "startOffset": 7031,
-                        "endColumn": 65,
-                        "endOffset": 7088
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 62,
                     "startColumn": 4,
-                    "startOffset": 3982,
-                    "endColumn": 43,
-                    "endOffset": 4021
+                    "startOffset": 4187,
+                    "endColumn": 53,
+                    "endOffset": 4236
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 37,
-                        "startColumn": 8,
-                        "startOffset": 1468,
-                        "endColumn": 47,
-                        "endOffset": 1507
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 63,
                     "startColumn": 4,
-                    "startOffset": 4026,
-                    "endColumn": 48,
-                    "endOffset": 4070
+                    "startOffset": 4241,
+                    "endColumn": 43,
+                    "endOffset": 4280
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 113,
-                        "startColumn": 8,
-                        "startOffset": 7560,
-                        "endColumn": 52,
-                        "endOffset": 7604
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 64,
                     "startColumn": 4,
-                    "startOffset": 4075,
-                    "endColumn": 51,
-                    "endOffset": 4122
+                    "startOffset": 4285,
+                    "endColumn": 45,
+                    "endOffset": 4326
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 35,
-                        "startColumn": 8,
-                        "startOffset": 1364,
-                        "endColumn": 55,
-                        "endOffset": 1411
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 65,
                     "startColumn": 4,
-                    "startOffset": 4127,
-                    "endColumn": 95,
-                    "endOffset": 4218
+                    "startOffset": 4331,
+                    "endColumn": 54,
+                    "endOffset": 4381
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 82,
-                        "startColumn": 8,
-                        "startOffset": 4709,
-                        "endColumn": 99,
-                        "endOffset": 4800
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 66,
                     "startColumn": 4,
-                    "startOffset": 4223,
-                    "endColumn": 77,
-                    "endOffset": 4296
+                    "startOffset": 4386,
+                    "endColumn": 60,
+                    "endOffset": 4442
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 150,
-                        "startColumn": 8,
-                        "startOffset": 10341,
-                        "endColumn": 81,
-                        "endOffset": 10414
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 67,
                     "startColumn": 4,
-                    "startOffset": 4301,
-                    "endColumn": 35,
-                    "endOffset": 4332
+                    "startOffset": 4447,
+                    "endColumn": 65,
+                    "endOffset": 4508
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 104,
-                        "startColumn": 8,
-                        "startOffset": 6947,
-                        "endColumn": 39,
-                        "endOffset": 6978
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 68,
                     "startColumn": 4,
-                    "startOffset": 4337,
-                    "endColumn": 53,
-                    "endOffset": 4386
+                    "startOffset": 4513,
+                    "endColumn": 47,
+                    "endOffset": 4556
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 34,
-                        "startColumn": 8,
-                        "startOffset": 1306,
-                        "endColumn": 57,
-                        "endOffset": 1355
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 69,
                     "startColumn": 4,
-                    "startOffset": 4391,
-                    "endColumn": 43,
-                    "endOffset": 4430
+                    "startOffset": 4561,
+                    "endColumn": 44,
+                    "endOffset": 4601
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 39,
-                        "startColumn": 8,
-                        "startOffset": 1562,
-                        "endColumn": 47,
-                        "endOffset": 1601
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 70,
                     "startColumn": 4,
-                    "startOffset": 4435,
-                    "endColumn": 45,
-                    "endOffset": 4476
+                    "startOffset": 4606,
+                    "endColumn": 90,
+                    "endOffset": 4692
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 130,
-                        "startColumn": 8,
-                        "startOffset": 8727,
-                        "endColumn": 49,
-                        "endOffset": 8768
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 71,
                     "startColumn": 4,
-                    "startOffset": 4481,
-                    "endColumn": 54,
-                    "endOffset": 4531
+                    "startOffset": 4697,
+                    "endColumn": 83,
+                    "endOffset": 4776
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 74,
-                        "startColumn": 8,
-                        "startOffset": 4045,
-                        "endColumn": 58,
-                        "endOffset": 4095
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 72,
                     "startColumn": 4,
-                    "startOffset": 4536,
-                    "endColumn": 60,
-                    "endOffset": 4592
+                    "startOffset": 4781,
+                    "endColumn": 87,
+                    "endOffset": 4864
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 111,
-                        "startColumn": 8,
-                        "startOffset": 7445,
-                        "endColumn": 64,
-                        "endOffset": 7501
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 73,
                     "startColumn": 4,
-                    "startOffset": 4597,
-                    "endColumn": 65,
-                    "endOffset": 4658
+                    "startOffset": 4869,
+                    "endColumn": 81,
+                    "endOffset": 4946
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 169,
-                        "startColumn": 8,
-                        "startOffset": 11743,
-                        "endColumn": 69,
-                        "endOffset": 11804
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 74,
                     "startColumn": 4,
-                    "startOffset": 4663,
-                    "endColumn": 47,
-                    "endOffset": 4706
+                    "startOffset": 4951,
+                    "endColumn": 51,
+                    "endOffset": 4998
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 8,
-                        "startOffset": 221,
-                        "endColumn": 51,
-                        "endOffset": 264
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 75,
                     "startColumn": 4,
-                    "startOffset": 4711,
-                    "endColumn": 44,
-                    "endOffset": 4751
+                    "startOffset": 5003,
+                    "endColumn": 128,
+                    "endOffset": 5127
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 8,
-                        "startOffset": 172,
-                        "endColumn": 48,
-                        "endOffset": 212
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 76,
                     "startColumn": 4,
-                    "startOffset": 4756,
-                    "endColumn": 90,
-                    "endOffset": 4842
+                    "startOffset": 5132,
+                    "endColumn": 78,
+                    "endOffset": 5206
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 144,
-                        "startColumn": 8,
-                        "startOffset": 9773,
-                        "endColumn": 94,
-                        "endOffset": 9859
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 77,
                     "startColumn": 4,
-                    "startOffset": 4847,
-                    "endColumn": 83,
-                    "endOffset": 4926
+                    "startOffset": 5211,
+                    "endColumn": 96,
+                    "endOffset": 5303
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 145,
-                        "startColumn": 8,
-                        "startOffset": 9868,
-                        "endColumn": 87,
-                        "endOffset": 9947
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 78,
                     "startColumn": 4,
-                    "startOffset": 4931,
-                    "endColumn": 87,
-                    "endOffset": 5014
+                    "startOffset": 5308,
+                    "endColumn": 146,
+                    "endOffset": 5450
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 152,
-                        "startColumn": 8,
-                        "startOffset": 10507,
-                        "endColumn": 91,
-                        "endOffset": 10590
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 79,
                     "startColumn": 4,
-                    "startOffset": 5019,
-                    "endColumn": 81,
-                    "endOffset": 5096
+                    "startOffset": 5455,
+                    "endColumn": 77,
+                    "endOffset": 5528
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 124,
-                        "startColumn": 8,
-                        "startOffset": 8272,
-                        "endColumn": 85,
-                        "endOffset": 8349
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 80,
                     "startColumn": 4,
-                    "startOffset": 5101,
-                    "endColumn": 51,
-                    "endOffset": 5148
+                    "startOffset": 5533,
+                    "endColumn": 94,
+                    "endOffset": 5623
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 120,
-                        "startColumn": 8,
-                        "startOffset": 8028,
-                        "endColumn": 55,
-                        "endOffset": 8075
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 81,
                     "startColumn": 4,
-                    "startOffset": 5153,
-                    "endColumn": 128,
-                    "endOffset": 5277
+                    "startOffset": 5628,
+                    "endColumn": 67,
+                    "endOffset": 5691
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 79,
-                        "startColumn": 8,
-                        "startOffset": 4418,
-                        "endColumn": 132,
-                        "endOffset": 4542
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 82,
                     "startColumn": 4,
-                    "startOffset": 5282,
-                    "endColumn": 78,
-                    "endOffset": 5356
+                    "startOffset": 5696,
+                    "endColumn": 43,
+                    "endOffset": 5735
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 78,
-                        "startColumn": 8,
-                        "startOffset": 4335,
-                        "endColumn": 82,
-                        "endOffset": 4409
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 83,
                     "startColumn": 4,
-                    "startOffset": 5361,
-                    "endColumn": 96,
-                    "endOffset": 5453
+                    "startOffset": 5740,
+                    "endColumn": 55,
+                    "endOffset": 5791
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 45,
-                        "startColumn": 8,
-                        "startOffset": 2066,
-                        "endColumn": 100,
-                        "endOffset": 2158
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 84,
                     "startColumn": 4,
-                    "startOffset": 5458,
-                    "endColumn": 146,
-                    "endOffset": 5600
+                    "startOffset": 5796,
+                    "endColumn": 47,
+                    "endOffset": 5839
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 42,
-                        "startColumn": 8,
-                        "startOffset": 1734,
-                        "endColumn": 150,
-                        "endOffset": 1876
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 85,
                     "startColumn": 4,
-                    "startOffset": 5605,
-                    "endColumn": 77,
-                    "endOffset": 5678
+                    "startOffset": 5844,
+                    "endColumn": 59,
+                    "endOffset": 5899
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 43,
-                        "startColumn": 8,
-                        "startOffset": 1885,
-                        "endColumn": 81,
-                        "endOffset": 1958
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 86,
                     "startColumn": 4,
-                    "startOffset": 5683,
-                    "endColumn": 94,
-                    "endOffset": 5773
+                    "startOffset": 5904,
+                    "endColumn": 83,
+                    "endOffset": 5983
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 44,
-                        "startColumn": 8,
-                        "startOffset": 1967,
-                        "endColumn": 98,
-                        "endOffset": 2057
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 87,
                     "startColumn": 4,
-                    "startOffset": 5778,
-                    "endColumn": 67,
-                    "endOffset": 5841
+                    "startOffset": 5988,
+                    "endColumn": 65,
+                    "endOffset": 6049
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 94,
-                        "startColumn": 8,
-                        "startOffset": 5808,
-                        "endColumn": 71,
-                        "endOffset": 5871
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 88,
                     "startColumn": 4,
-                    "startOffset": 5846,
-                    "endColumn": 43,
-                    "endOffset": 5885
+                    "startOffset": 6054,
+                    "endColumn": 67,
+                    "endOffset": 6117
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 86,
-                        "startColumn": 8,
-                        "startOffset": 5129,
-                        "endColumn": 47,
-                        "endOffset": 5168
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 89,
                     "startColumn": 4,
-                    "startOffset": 5890,
-                    "endColumn": 55,
-                    "endOffset": 5941
+                    "startOffset": 6122,
+                    "endColumn": 66,
+                    "endOffset": 6184
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 147,
-                        "startColumn": 8,
-                        "startOffset": 10006,
-                        "endColumn": 59,
-                        "endOffset": 10057
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 90,
                     "startColumn": 4,
-                    "startOffset": 5946,
-                    "endColumn": 47,
-                    "endOffset": 5989
+                    "startOffset": 6189,
+                    "endColumn": 67,
+                    "endOffset": 6252
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 50,
-                        "startColumn": 8,
-                        "startOffset": 2405,
-                        "endColumn": 51,
-                        "endOffset": 2448
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 91,
                     "startColumn": 4,
-                    "startOffset": 5994,
-                    "endColumn": 59,
-                    "endOffset": 6049
+                    "startOffset": 6257,
+                    "endColumn": 41,
+                    "endOffset": 6294
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 52,
-                        "startColumn": 8,
-                        "startOffset": 2542,
-                        "endColumn": 63,
-                        "endOffset": 2597
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 92,
                     "startColumn": 4,
-                    "startOffset": 6054,
-                    "endColumn": 83,
-                    "endOffset": 6133
+                    "startOffset": 6299,
+                    "endColumn": 79,
+                    "endOffset": 6374
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 93,
-                        "startColumn": 8,
-                        "startOffset": 5720,
-                        "endColumn": 87,
-                        "endOffset": 5799
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 93,
                     "startColumn": 4,
-                    "startOffset": 6138,
-                    "endColumn": 65,
-                    "endOffset": 6199
+                    "startOffset": 6379,
+                    "endColumn": 72,
+                    "endOffset": 6447
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 125,
-                        "startColumn": 8,
-                        "startOffset": 8358,
-                        "endColumn": 69,
-                        "endOffset": 8419
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 94,
                     "startColumn": 4,
-                    "startOffset": 6204,
-                    "endColumn": 67,
-                    "endOffset": 6267
+                    "startOffset": 6452,
+                    "endColumn": 71,
+                    "endOffset": 6519
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 119,
-                        "startColumn": 8,
-                        "startOffset": 7956,
-                        "endColumn": 71,
-                        "endOffset": 8019
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 95,
                     "startColumn": 4,
-                    "startOffset": 6272,
-                    "endColumn": 66,
-                    "endOffset": 6334
+                    "startOffset": 6524,
+                    "endColumn": 56,
+                    "endOffset": 6576
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 159,
-                        "startColumn": 8,
-                        "startOffset": 11065,
-                        "endColumn": 70,
-                        "endOffset": 11127
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 96,
                     "startColumn": 4,
-                    "startOffset": 6339,
-                    "endColumn": 67,
-                    "endOffset": 6402
+                    "startOffset": 6581,
+                    "endColumn": 57,
+                    "endOffset": 6634
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 116,
-                        "startColumn": 8,
-                        "startOffset": 7770,
-                        "endColumn": 71,
-                        "endOffset": 7833
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 97,
                     "startColumn": 4,
-                    "startOffset": 6407,
-                    "endColumn": 41,
-                    "endOffset": 6444
+                    "startOffset": 6639,
+                    "endColumn": 50,
+                    "endOffset": 6685
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 65,
-                        "startColumn": 8,
-                        "startOffset": 3438,
-                        "endColumn": 45,
-                        "endOffset": 3475
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 98,
                     "startColumn": 4,
-                    "startOffset": 6449,
-                    "endColumn": 79,
-                    "endOffset": 6524
+                    "startOffset": 6690,
+                    "endColumn": 63,
+                    "endOffset": 6749
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 151,
-                        "startColumn": 8,
-                        "startOffset": 10423,
-                        "endColumn": 83,
-                        "endOffset": 10498
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 99,
                     "startColumn": 4,
-                    "startOffset": 6529,
-                    "endColumn": 72,
-                    "endOffset": 6597
+                    "startOffset": 6754,
+                    "endColumn": 55,
+                    "endOffset": 6805
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 83,
-                        "startColumn": 8,
-                        "startOffset": 4809,
-                        "endColumn": 76,
-                        "endOffset": 4877
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 100,
                     "startColumn": 4,
-                    "startOffset": 6602,
-                    "endColumn": 71,
-                    "endOffset": 6669
+                    "startOffset": 6810,
+                    "endColumn": 78,
+                    "endOffset": 6884
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 84,
-                        "startColumn": 8,
-                        "startOffset": 4886,
-                        "endColumn": 75,
-                        "endOffset": 4953
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 101,
                     "startColumn": 4,
-                    "startOffset": 6674,
-                    "endColumn": 56,
-                    "endOffset": 6726
+                    "startOffset": 6889,
+                    "endColumn": 103,
+                    "endOffset": 6988
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 129,
-                        "startColumn": 8,
-                        "startOffset": 8666,
-                        "endColumn": 60,
-                        "endOffset": 8718
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 102,
                     "startColumn": 4,
-                    "startOffset": 6731,
-                    "endColumn": 57,
-                    "endOffset": 6784
+                    "startOffset": 6993,
+                    "endColumn": 137,
+                    "endOffset": 7126
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 162,
-                        "startColumn": 8,
-                        "startOffset": 11276,
-                        "endColumn": 61,
-                        "endOffset": 11329
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 103,
                     "startColumn": 4,
-                    "startOffset": 6789,
-                    "endColumn": 50,
-                    "endOffset": 6835
+                    "startOffset": 7131,
+                    "endColumn": 93,
+                    "endOffset": 7220
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 137,
-                        "startColumn": 8,
-                        "startOffset": 9312,
-                        "endColumn": 54,
-                        "endOffset": 9358
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 104,
                     "startColumn": 4,
-                    "startOffset": 6840,
-                    "endColumn": 63,
-                    "endOffset": 6899
+                    "startOffset": 7225,
+                    "endColumn": 79,
+                    "endOffset": 7300
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 142,
-                        "startColumn": 8,
-                        "startOffset": 9627,
-                        "endColumn": 67,
-                        "endOffset": 9686
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 105,
                     "startColumn": 4,
-                    "startOffset": 6904,
-                    "endColumn": 55,
-                    "endOffset": 6955
+                    "startOffset": 7305,
+                    "endColumn": 138,
+                    "endOffset": 7439
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 155,
-                        "startColumn": 8,
-                        "startOffset": 10719,
-                        "endColumn": 59,
-                        "endOffset": 10770
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 106,
                     "startColumn": 4,
-                    "startOffset": 6960,
-                    "endColumn": 78,
-                    "endOffset": 7034
+                    "startOffset": 7444,
+                    "endColumn": 63,
+                    "endOffset": 7503
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 157,
-                        "startColumn": 8,
-                        "startOffset": 10921,
-                        "endColumn": 82,
-                        "endOffset": 10995
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 107,
                     "startColumn": 4,
-                    "startOffset": 7039,
-                    "endColumn": 103,
-                    "endOffset": 7138
+                    "startOffset": 7508,
+                    "endColumn": 68,
+                    "endOffset": 7572
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 110,
-                        "startColumn": 8,
-                        "startOffset": 7337,
-                        "endColumn": 107,
-                        "endOffset": 7436
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 108,
                     "startColumn": 4,
-                    "startOffset": 7143,
-                    "endColumn": 137,
-                    "endOffset": 7276
+                    "startOffset": 7577,
+                    "endColumn": 37,
+                    "endOffset": 7610
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 156,
-                        "startColumn": 8,
-                        "startOffset": 10779,
-                        "endColumn": 141,
-                        "endOffset": 10912
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 109,
                     "startColumn": 4,
-                    "startOffset": 7281,
-                    "endColumn": 93,
-                    "endOffset": 7370
+                    "startOffset": 7615,
+                    "endColumn": 61,
+                    "endOffset": 7672
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 109,
-                        "startColumn": 8,
-                        "startOffset": 7239,
-                        "endColumn": 97,
-                        "endOffset": 7328
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 110,
                     "startColumn": 4,
-                    "startOffset": 7375,
-                    "endColumn": 79,
-                    "endOffset": 7450
+                    "startOffset": 7677,
+                    "endColumn": 65,
+                    "endOffset": 7738
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 139,
-                        "startColumn": 8,
-                        "startOffset": 9416,
-                        "endColumn": 83,
-                        "endOffset": 9491
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 111,
                     "startColumn": 4,
-                    "startOffset": 7455,
-                    "endColumn": 138,
-                    "endOffset": 7589
+                    "startOffset": 7743,
+                    "endColumn": 110,
+                    "endOffset": 7849
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 135,
-                        "startColumn": 8,
-                        "startOffset": 9063,
-                        "endColumn": 142,
-                        "endOffset": 9197
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 112,
                     "startColumn": 4,
-                    "startOffset": 7594,
-                    "endColumn": 63,
-                    "endOffset": 7653
+                    "startOffset": 7854,
+                    "endColumn": 115,
+                    "endOffset": 7965
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 107,
-                        "startColumn": 8,
-                        "startOffset": 7097,
-                        "endColumn": 67,
-                        "endOffset": 7156
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 113,
                     "startColumn": 4,
-                    "startOffset": 7658,
-                    "endColumn": 68,
-                    "endOffset": 7722
+                    "startOffset": 7970,
+                    "endColumn": 110,
+                    "endOffset": 8076
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 75,
-                        "startColumn": 8,
-                        "startOffset": 4104,
-                        "endColumn": 72,
-                        "endOffset": 4168
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 114,
                     "startColumn": 4,
-                    "startOffset": 7727,
-                    "endColumn": 37,
-                    "endOffset": 7760
+                    "startOffset": 8081,
+                    "endColumn": 105,
+                    "endOffset": 8182
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 59,
-                        "startColumn": 8,
-                        "startOffset": 3055,
-                        "endColumn": 41,
-                        "endOffset": 3088
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 115,
                     "startColumn": 4,
-                    "startOffset": 7765,
-                    "endColumn": 61,
-                    "endOffset": 7822
+                    "startOffset": 8187,
+                    "endColumn": 131,
+                    "endOffset": 8314
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 165,
-                        "startColumn": 8,
-                        "startOffset": 11441,
-                        "endColumn": 65,
-                        "endOffset": 11498
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 116,
                     "startColumn": 4,
-                    "startOffset": 7827,
-                    "endColumn": 65,
-                    "endOffset": 7888
+                    "startOffset": 8319,
+                    "endColumn": 96,
+                    "endOffset": 8411
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 102,
-                        "startColumn": 8,
-                        "startOffset": 6801,
-                        "endColumn": 69,
-                        "endOffset": 6862
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 117,
                     "startColumn": 4,
-                    "startOffset": 7893,
-                    "endColumn": 110,
-                    "endOffset": 7999
+                    "startOffset": 8416,
+                    "endColumn": 99,
+                    "endOffset": 8511
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 278,
-                        "endColumn": 110,
-                        "endOffset": 384
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 118,
                     "startColumn": 4,
-                    "startOffset": 8004,
-                    "endColumn": 115,
-                    "endOffset": 8115
+                    "startOffset": 8516,
+                    "endColumn": 125,
+                    "endOffset": 8637
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 389,
-                        "endColumn": 115,
-                        "endOffset": 500
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 119,
                     "startColumn": 4,
-                    "startOffset": 8120,
-                    "endColumn": 110,
-                    "endOffset": 8226
+                    "startOffset": 8642,
+                    "endColumn": 112,
+                    "endOffset": 8750
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 505,
-                        "endColumn": 110,
-                        "endOffset": 611
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 120,
                     "startColumn": 4,
-                    "startOffset": 8231,
-                    "endColumn": 105,
-                    "endOffset": 8332
+                    "startOffset": 8755,
+                    "endColumn": 86,
+                    "endOffset": 8837
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 616,
-                        "endColumn": 105,
-                        "endOffset": 717
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 121,
                     "startColumn": 4,
-                    "startOffset": 8337,
-                    "endColumn": 131,
-                    "endOffset": 8464
+                    "startOffset": 8842,
+                    "endColumn": 98,
+                    "endOffset": 8936
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 722,
-                        "endColumn": 131,
-                        "endOffset": 849
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 122,
                     "startColumn": 4,
-                    "startOffset": 8469,
-                    "endColumn": 96,
-                    "endOffset": 8561
+                    "startOffset": 8941,
+                    "endColumn": 79,
+                    "endOffset": 9016
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 854,
-                        "endColumn": 96,
-                        "endOffset": 946
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 123,
                     "startColumn": 4,
-                    "startOffset": 8566,
-                    "endColumn": 99,
-                    "endOffset": 8661
+                    "startOffset": 9021,
+                    "endColumn": 71,
+                    "endOffset": 9088
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 951,
-                        "endColumn": 99,
-                        "endOffset": 1046
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 124,
                     "startColumn": 4,
-                    "startOffset": 8666,
-                    "endColumn": 125,
-                    "endOffset": 8787
+                    "startOffset": 9093,
+                    "endColumn": 155,
+                    "endOffset": 9244
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1051,
-                        "endColumn": 125,
-                        "endOffset": 1172
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 125,
                     "startColumn": 4,
-                    "startOffset": 8792,
-                    "endColumn": 112,
-                    "endOffset": 8900
+                    "startOffset": 9249,
+                    "endColumn": 74,
+                    "endOffset": 9319
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1177,
-                        "endColumn": 112,
-                        "endOffset": 1285
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 126,
                     "startColumn": 4,
-                    "startOffset": 8905,
-                    "endColumn": 86,
-                    "endOffset": 8987
+                    "startOffset": 9324,
+                    "endColumn": 66,
+                    "endOffset": 9386
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1290,
-                        "endColumn": 86,
-                        "endOffset": 1372
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 127,
                     "startColumn": 4,
-                    "startOffset": 8992,
-                    "endColumn": 98,
-                    "endOffset": 9086
+                    "startOffset": 9391,
+                    "endColumn": 106,
+                    "endOffset": 9493
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1377,
-                        "endColumn": 98,
-                        "endOffset": 1471
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 128,
                     "startColumn": 4,
-                    "startOffset": 9091,
-                    "endColumn": 79,
-                    "endOffset": 9166
+                    "startOffset": 9498,
+                    "endColumn": 82,
+                    "endOffset": 9576
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 115,
-                        "startColumn": 8,
-                        "startOffset": 7686,
-                        "endColumn": 83,
-                        "endOffset": 7761
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 129,
                     "startColumn": 4,
-                    "startOffset": 9171,
-                    "endColumn": 71,
-                    "endOffset": 9238
+                    "startOffset": 9581,
+                    "endColumn": 69,
+                    "endOffset": 9646
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 55,
-                        "startColumn": 8,
-                        "startOffset": 2759,
-                        "endColumn": 75,
-                        "endOffset": 2826
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 130,
                     "startColumn": 4,
-                    "startOffset": 9243,
-                    "endColumn": 155,
-                    "endOffset": 9394
+                    "startOffset": 9651,
+                    "endColumn": 69,
+                    "endOffset": 9716
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 66,
-                        "startColumn": 8,
-                        "startOffset": 3484,
-                        "endColumn": 159,
-                        "endOffset": 3635
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 131,
                     "startColumn": 4,
-                    "startOffset": 9399,
-                    "endColumn": 74,
-                    "endOffset": 9469
+                    "startOffset": 9721,
+                    "endColumn": 68,
+                    "endOffset": 9785
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 54,
-                        "startColumn": 8,
-                        "startOffset": 2680,
-                        "endColumn": 78,
-                        "endOffset": 2750
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 132,
                     "startColumn": 4,
-                    "startOffset": 9474,
-                    "endColumn": 66,
-                    "endOffset": 9536
+                    "startOffset": 9790,
+                    "endColumn": 33,
+                    "endOffset": 9819
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 58,
-                        "startColumn": 8,
-                        "startOffset": 2984,
-                        "endColumn": 70,
-                        "endOffset": 3046
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 133,
                     "startColumn": 4,
-                    "startOffset": 9541,
-                    "endColumn": 106,
-                    "endOffset": 9643
+                    "startOffset": 9824,
+                    "endColumn": 54,
+                    "endOffset": 9874
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 56,
-                        "startColumn": 8,
-                        "startOffset": 2835,
-                        "endColumn": 110,
-                        "endOffset": 2937
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 134,
                     "startColumn": 4,
-                    "startOffset": 9648,
-                    "endColumn": 82,
-                    "endOffset": 9726
+                    "startOffset": 9879,
+                    "endColumn": 45,
+                    "endOffset": 9920
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 76,
-                        "startColumn": 8,
-                        "startOffset": 4177,
-                        "endColumn": 86,
-                        "endOffset": 4255
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 135,
                     "startColumn": 4,
-                    "startOffset": 9731,
-                    "endColumn": 69,
-                    "endOffset": 9796
+                    "startOffset": 9925,
+                    "endColumn": 41,
+                    "endOffset": 9962
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 108,
-                        "startColumn": 8,
-                        "startOffset": 7165,
-                        "endColumn": 73,
-                        "endOffset": 7230
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 136,
                     "startColumn": 4,
-                    "startOffset": 9801,
-                    "endColumn": 69,
-                    "endOffset": 9866
+                    "startOffset": 9967,
+                    "endColumn": 39,
+                    "endOffset": 10002
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 53,
-                        "startColumn": 8,
-                        "startOffset": 2606,
-                        "endColumn": 73,
-                        "endOffset": 2671
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 137,
                     "startColumn": 4,
-                    "startOffset": 9871,
-                    "endColumn": 68,
-                    "endOffset": 9935
+                    "startOffset": 10007,
+                    "endColumn": 39,
+                    "endOffset": 10042
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 114,
-                        "startColumn": 8,
-                        "startOffset": 7613,
-                        "endColumn": 72,
-                        "endOffset": 7677
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 138,
                     "startColumn": 4,
-                    "startOffset": 9940,
-                    "endColumn": 33,
-                    "endOffset": 9969
+                    "startOffset": 10047,
+                    "endColumn": 43,
+                    "endOffset": 10086
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 57,
-                        "startColumn": 8,
-                        "startOffset": 2946,
-                        "endColumn": 37,
-                        "endOffset": 2975
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 139,
                     "startColumn": 4,
-                    "startOffset": 9974,
-                    "endColumn": 45,
-                    "endOffset": 10015
+                    "startOffset": 10091,
+                    "endColumn": 63,
+                    "endOffset": 10150
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 112,
-                        "startColumn": 8,
-                        "startOffset": 7510,
-                        "endColumn": 49,
-                        "endOffset": 7551
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 140,
                     "startColumn": 4,
-                    "startOffset": 10020,
-                    "endColumn": 41,
-                    "endOffset": 10057
+                    "startOffset": 10155,
+                    "endColumn": 44,
+                    "endOffset": 10195
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 38,
-                        "startColumn": 8,
-                        "startOffset": 1516,
-                        "endColumn": 45,
-                        "endOffset": 1553
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 141,
                     "startColumn": 4,
-                    "startOffset": 10062,
-                    "endColumn": 39,
-                    "endOffset": 10097
+                    "startOffset": 10200,
+                    "endColumn": 87,
+                    "endOffset": 10283
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 72,
-                        "startColumn": 8,
-                        "startOffset": 3922,
-                        "endColumn": 43,
-                        "endOffset": 3957
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 142,
                     "startColumn": 4,
-                    "startOffset": 10102,
-                    "endColumn": 39,
-                    "endOffset": 10137
+                    "startOffset": 10288,
+                    "endColumn": 95,
+                    "endOffset": 10379
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 105,
-                        "startColumn": 8,
-                        "startOffset": 6987,
-                        "endColumn": 43,
-                        "endOffset": 7022
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 143,
                     "startColumn": 4,
-                    "startOffset": 10142,
-                    "endColumn": 43,
-                    "endOffset": 10181
+                    "startOffset": 10384,
+                    "endColumn": 80,
+                    "endOffset": 10460
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 36,
-                        "startColumn": 8,
-                        "startOffset": 1420,
-                        "endColumn": 47,
-                        "endOffset": 1459
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 144,
                     "startColumn": 4,
-                    "startOffset": 10186,
-                    "endColumn": 63,
-                    "endOffset": 10245
+                    "startOffset": 10465,
+                    "endColumn": 72,
+                    "endOffset": 10533
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 153,
-                        "startColumn": 8,
-                        "startOffset": 10599,
-                        "endColumn": 67,
-                        "endOffset": 10658
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 145,
                     "startColumn": 4,
-                    "startOffset": 10250,
-                    "endColumn": 44,
-                    "endOffset": 10290
+                    "startOffset": 10538,
+                    "endColumn": 66,
+                    "endOffset": 10600
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 138,
-                        "startColumn": 8,
-                        "startOffset": 9367,
-                        "endColumn": 48,
-                        "endOffset": 9407
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 146,
                     "startColumn": 4,
-                    "startOffset": 10295,
-                    "endColumn": 87,
-                    "endOffset": 10378
+                    "startOffset": 10605,
+                    "endColumn": 67,
+                    "endOffset": 10668
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 127,
-                        "startColumn": 8,
-                        "startOffset": 8474,
-                        "endColumn": 91,
-                        "endOffset": 8557
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 147,
                     "startColumn": 4,
-                    "startOffset": 10383,
-                    "endColumn": 95,
-                    "endOffset": 10474
+                    "startOffset": 10673,
+                    "endColumn": 43,
+                    "endOffset": 10712
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 128,
-                        "startColumn": 8,
-                        "startOffset": 8566,
-                        "endColumn": 99,
-                        "endOffset": 8657
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 148,
                     "startColumn": 4,
-                    "startOffset": 10479,
-                    "endColumn": 80,
-                    "endOffset": 10555
+                    "startOffset": 10717,
+                    "endColumn": 42,
+                    "endOffset": 10755
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 51,
-                        "startColumn": 8,
-                        "startOffset": 2457,
-                        "endColumn": 84,
-                        "endOffset": 2533
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 149,
                     "startColumn": 4,
-                    "startOffset": 10560,
-                    "endColumn": 72,
-                    "endOffset": 10628
+                    "startOffset": 10760,
+                    "endColumn": 74,
+                    "endOffset": 10830
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 133,
-                        "startColumn": 8,
-                        "startOffset": 8892,
-                        "endColumn": 76,
-                        "endOffset": 8960
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 150,
                     "startColumn": 4,
-                    "startOffset": 10633,
-                    "endColumn": 66,
-                    "endOffset": 10695
+                    "startOffset": 10835,
+                    "endColumn": 101,
+                    "endOffset": 10932
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 160,
-                        "startColumn": 8,
-                        "startOffset": 11136,
-                        "endColumn": 70,
-                        "endOffset": 11198
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 151,
                     "startColumn": 4,
-                    "startOffset": 10700,
-                    "endColumn": 67,
-                    "endOffset": 10763
+                    "startOffset": 10937,
+                    "endColumn": 123,
+                    "endOffset": 11056
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 141,
-                        "startColumn": 8,
-                        "startOffset": 9555,
-                        "endColumn": 71,
-                        "endOffset": 9618
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 152,
                     "startColumn": 4,
-                    "startOffset": 10768,
-                    "endColumn": 43,
-                    "endOffset": 10807
+                    "startOffset": 11061,
+                    "endColumn": 71,
+                    "endOffset": 11128
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 60,
-                        "startColumn": 8,
-                        "startOffset": 3097,
-                        "endColumn": 47,
-                        "endOffset": 3136
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 153,
                     "startColumn": 4,
-                    "startOffset": 10812,
-                    "endColumn": 42,
-                    "endOffset": 10850
+                    "startOffset": 11133,
+                    "endColumn": 73,
+                    "endOffset": 11202
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 163,
-                        "startColumn": 8,
-                        "startOffset": 11338,
-                        "endColumn": 46,
-                        "endOffset": 11376
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 154,
                     "startColumn": 4,
-                    "startOffset": 10855,
-                    "endColumn": 74,
-                    "endOffset": 10925
+                    "startOffset": 11207,
+                    "endColumn": 142,
+                    "endOffset": 11345
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 73,
-                        "startColumn": 8,
-                        "startOffset": 3966,
-                        "endColumn": 78,
-                        "endOffset": 4036
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 155,
                     "startColumn": 4,
-                    "startOffset": 10930,
-                    "endColumn": 101,
-                    "endOffset": 11027
+                    "startOffset": 11350,
+                    "endColumn": 66,
+                    "endOffset": 11412
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 136,
-                        "startColumn": 8,
-                        "startOffset": 9206,
-                        "endColumn": 105,
-                        "endOffset": 9303
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 156,
                     "startColumn": 4,
-                    "startOffset": 11032,
-                    "endColumn": 123,
-                    "endOffset": 11151
+                    "startOffset": 11417,
+                    "endColumn": 51,
+                    "endOffset": 11464
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 148,
-                        "startColumn": 8,
-                        "startOffset": 10066,
-                        "endColumn": 127,
-                        "endOffset": 10185
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 157,
                     "startColumn": 4,
-                    "startOffset": 11156,
-                    "endColumn": 71,
-                    "endOffset": 11223
+                    "startOffset": 11469,
+                    "endColumn": 104,
+                    "endOffset": 11569
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 103,
-                        "startColumn": 8,
-                        "startOffset": 6871,
-                        "endColumn": 75,
-                        "endOffset": 6938
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 158,
                     "startColumn": 4,
-                    "startOffset": 11228,
-                    "endColumn": 73,
-                    "endOffset": 11297
+                    "startOffset": 11574,
+                    "endColumn": 54,
+                    "endOffset": 11624
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 143,
-                        "startColumn": 8,
-                        "startOffset": 9695,
-                        "endColumn": 77,
-                        "endOffset": 9764
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 159,
                     "startColumn": 4,
-                    "startOffset": 11302,
-                    "endColumn": 142,
-                    "endOffset": 11440
+                    "startOffset": 11629,
+                    "endColumn": 47,
+                    "endOffset": 11672
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 149,
-                        "startColumn": 8,
-                        "startOffset": 10194,
-                        "endColumn": 146,
-                        "endOffset": 10332
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 160,
                     "startColumn": 4,
-                    "startOffset": 11445,
-                    "endColumn": 66,
-                    "endOffset": 11507
+                    "startOffset": 11677,
+                    "endColumn": 41,
+                    "endOffset": 11714
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 77,
-                        "startColumn": 8,
-                        "startOffset": 4264,
-                        "endColumn": 70,
-                        "endOffset": 4326
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 161,
                     "startColumn": 4,
-                    "startOffset": 11512,
+                    "startOffset": 11719,
                     "endColumn": 51,
-                    "endOffset": 11559
+                    "endOffset": 11766
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 164,
-                        "startColumn": 8,
-                        "startOffset": 11385,
-                        "endColumn": 55,
-                        "endOffset": 11432
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 162,
                     "startColumn": 4,
-                    "startOffset": 11564,
-                    "endColumn": 104,
-                    "endOffset": 11664
+                    "startOffset": 11771,
+                    "endColumn": 46,
+                    "endOffset": 11813
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 61,
-                        "startColumn": 8,
-                        "startOffset": 3145,
-                        "endColumn": 108,
-                        "endOffset": 3245
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 163,
                     "startColumn": 4,
-                    "startOffset": 11669,
-                    "endColumn": 54,
-                    "endOffset": 11719
+                    "startOffset": 11818,
+                    "endColumn": 57,
+                    "endOffset": 11871
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 48,
-                        "startColumn": 8,
-                        "startOffset": 2278,
-                        "endColumn": 58,
-                        "endOffset": 2328
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 164,
                     "startColumn": 4,
-                    "startOffset": 11724,
-                    "endColumn": 47,
-                    "endOffset": 11767
+                    "startOffset": 11876,
+                    "endColumn": 120,
+                    "endOffset": 11992
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 154,
-                        "startColumn": 8,
-                        "startOffset": 10667,
-                        "endColumn": 51,
-                        "endOffset": 10710
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 165,
                     "startColumn": 4,
-                    "startOffset": 11772,
-                    "endColumn": 41,
-                    "endOffset": 11809
+                    "startOffset": 11997,
+                    "endColumn": 139,
+                    "endOffset": 12132
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 47,
-                        "startColumn": 8,
-                        "startOffset": 2232,
-                        "endColumn": 45,
-                        "endOffset": 2269
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 166,
                     "startColumn": 4,
-                    "startOffset": 11814,
-                    "endColumn": 51,
-                    "endOffset": 11861
+                    "startOffset": 12137,
+                    "endColumn": 121,
+                    "endOffset": 12254
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 71,
-                        "startColumn": 8,
-                        "startOffset": 3866,
-                        "endColumn": 55,
-                        "endOffset": 3913
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 167,
                     "startColumn": 4,
-                    "startOffset": 11866,
-                    "endColumn": 46,
-                    "endOffset": 11908
+                    "startOffset": 12259,
+                    "endColumn": 123,
+                    "endOffset": 12378
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 63,
-                        "startColumn": 8,
-                        "startOffset": 3322,
-                        "endColumn": 50,
-                        "endOffset": 3364
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 168,
                     "startColumn": 4,
-                    "startOffset": 11913,
-                    "endColumn": 57,
-                    "endOffset": 11966
+                    "startOffset": 12383,
+                    "endColumn": 124,
+                    "endOffset": 12503
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 67,
-                        "startColumn": 8,
-                        "startOffset": 3644,
-                        "endColumn": 61,
-                        "endOffset": 3697
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 169,
                     "startColumn": 4,
-                    "startOffset": 11971,
-                    "endColumn": 120,
-                    "endOffset": 12087
+                    "startOffset": 12508,
+                    "endColumn": 126,
+                    "endOffset": 12630
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 95,
-                        "startColumn": 8,
-                        "startOffset": 5880,
-                        "endColumn": 124,
-                        "endOffset": 5996
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 170,
                     "startColumn": 4,
-                    "startOffset": 12092,
-                    "endColumn": 139,
-                    "endOffset": 12227
+                    "startOffset": 12635,
+                    "endColumn": 133,
+                    "endOffset": 12764
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 96,
-                        "startColumn": 8,
-                        "startOffset": 6005,
-                        "endColumn": 143,
-                        "endOffset": 6140
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 171,
                     "startColumn": 4,
-                    "startOffset": 12232,
-                    "endColumn": 121,
-                    "endOffset": 12349
+                    "startOffset": 12769,
+                    "endColumn": 160,
+                    "endOffset": 12925
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 100,
-                        "startColumn": 8,
-                        "startOffset": 6547,
-                        "endColumn": 125,
-                        "endOffset": 6664
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 172,
                     "startColumn": 4,
-                    "startOffset": 12354,
-                    "endColumn": 123,
-                    "endOffset": 12473
+                    "startOffset": 12930,
+                    "endColumn": 100,
+                    "endOffset": 13026
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 101,
-                        "startColumn": 8,
-                        "startOffset": 6673,
-                        "endColumn": 127,
-                        "endOffset": 6792
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 173,
                     "startColumn": 4,
-                    "startOffset": 12478,
-                    "endColumn": 124,
-                    "endOffset": 12598
+                    "startOffset": 13031,
+                    "endColumn": 50,
+                    "endOffset": 13077
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 98,
-                        "startColumn": 8,
-                        "startOffset": 6280,
-                        "endColumn": 128,
-                        "endOffset": 6400
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 174,
                     "startColumn": 4,
-                    "startOffset": 12603,
-                    "endColumn": 126,
-                    "endOffset": 12725
+                    "startOffset": 13082,
+                    "endColumn": 54,
+                    "endOffset": 13132
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 97,
-                        "startColumn": 8,
-                        "startOffset": 6149,
-                        "endColumn": 130,
-                        "endOffset": 6271
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 175,
                     "startColumn": 4,
-                    "startOffset": 12730,
-                    "endColumn": 133,
-                    "endOffset": 12859
+                    "startOffset": 13137,
+                    "endColumn": 63,
+                    "endOffset": 13196
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 99,
-                        "startColumn": 8,
-                        "startOffset": 6409,
-                        "endColumn": 137,
-                        "endOffset": 6538
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 176,
                     "startColumn": 4,
-                    "startOffset": 12864,
-                    "endColumn": 160,
-                    "endOffset": 13020
+                    "startOffset": 13201,
+                    "endColumn": 85,
+                    "endOffset": 13282
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 91,
-                        "startColumn": 8,
-                        "startOffset": 5485,
-                        "endColumn": 164,
-                        "endOffset": 5641
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 177,
                     "startColumn": 4,
-                    "startOffset": 13025,
-                    "endColumn": 100,
-                    "endOffset": 13121
+                    "startOffset": 13287,
+                    "endColumn": 63,
+                    "endOffset": 13346
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values-pt/values-pt.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 2106,
-                        "endColumn": 100,
-                        "endOffset": 2202
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 178,
                     "startColumn": 4,
-                    "startOffset": 13126,
-                    "endColumn": 50,
-                    "endOffset": 13172
+                    "startOffset": 13351,
+                    "endColumn": 77,
+                    "endOffset": 13424
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 117,
-                        "startColumn": 8,
-                        "startOffset": 7842,
-                        "endColumn": 54,
-                        "endOffset": 7888
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 179,
                     "startColumn": 4,
-                    "startOffset": 13177,
-                    "endColumn": 54,
-                    "endOffset": 13227
+                    "startOffset": 13429,
+                    "endColumn": 56,
+                    "endOffset": 13481
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 118,
-                        "startColumn": 8,
-                        "startOffset": 7897,
-                        "endColumn": 58,
-                        "endOffset": 7947
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 180,
                     "startColumn": 4,
-                    "startOffset": 13232,
-                    "endColumn": 63,
-                    "endOffset": 13291
+                    "startOffset": 13486,
+                    "endColumn": 60,
+                    "endOffset": 13542
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 49,
-                        "startColumn": 8,
-                        "startOffset": 2337,
-                        "endColumn": 67,
-                        "endOffset": 2396
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 181,
                     "startColumn": 4,
-                    "startOffset": 13296,
-                    "endColumn": 85,
-                    "endOffset": 13377
+                    "startOffset": 13547,
+                    "endColumn": 61,
+                    "endOffset": 13604
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 89,
-                        "startColumn": 8,
-                        "startOffset": 5334,
-                        "endColumn": 89,
-                        "endOffset": 5415
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 182,
                     "startColumn": 4,
-                    "startOffset": 13382,
-                    "endColumn": 63,
-                    "endOffset": 13441
+                    "startOffset": 13609,
+                    "endColumn": 50,
+                    "endOffset": 13655
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 68,
-                        "startColumn": 8,
-                        "startOffset": 3706,
-                        "endColumn": 67,
-                        "endOffset": 3765
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 183,
                     "startColumn": 4,
-                    "startOffset": 13446,
-                    "endColumn": 77,
-                    "endOffset": 13519
+                    "startOffset": 13660,
+                    "endColumn": 117,
+                    "endOffset": 13773
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 87,
-                        "startColumn": 8,
-                        "startOffset": 5177,
-                        "endColumn": 81,
-                        "endOffset": 5250
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 184,
                     "startColumn": 4,
-                    "startOffset": 13524,
+                    "startOffset": 13778,
                     "endColumn": 56,
-                    "endOffset": 13576
+                    "endOffset": 13830
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 90,
-                        "startColumn": 8,
-                        "startOffset": 5424,
-                        "endColumn": 60,
-                        "endOffset": 5476
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 185,
                     "startColumn": 4,
-                    "startOffset": 13581,
-                    "endColumn": 60,
-                    "endOffset": 13637
+                    "startOffset": 13835,
+                    "endColumn": 41,
+                    "endOffset": 13872
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 46,
-                        "startColumn": 8,
-                        "startOffset": 2167,
-                        "endColumn": 64,
-                        "endOffset": 2223
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 186,
                     "startColumn": 4,
-                    "startOffset": 13642,
-                    "endColumn": 61,
-                    "endOffset": 13699
+                    "startOffset": 13877,
+                    "endColumn": 54,
+                    "endOffset": 13927
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 166,
-                        "startColumn": 8,
-                        "startOffset": 11507,
-                        "endColumn": 65,
-                        "endOffset": 11564
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 187,
                     "startColumn": 4,
-                    "startOffset": 13704,
-                    "endColumn": 50,
-                    "endOffset": 13750
+                    "startOffset": 13932,
+                    "endColumn": 57,
+                    "endOffset": 13985
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 140,
-                        "startColumn": 8,
-                        "startOffset": 9500,
-                        "endColumn": 54,
-                        "endOffset": 9546
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 188,
                     "startColumn": 4,
-                    "startOffset": 13755,
-                    "endColumn": 117,
-                    "endOffset": 13868
+                    "startOffset": 13990,
+                    "endColumn": 63,
+                    "endOffset": 14049
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 168,
-                        "startColumn": 8,
-                        "startOffset": 11621,
-                        "endColumn": 121,
-                        "endOffset": 11734
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 189,
                     "startColumn": 4,
-                    "startOffset": 13873,
-                    "endColumn": 56,
-                    "endOffset": 13925
+                    "startOffset": 14054,
+                    "endColumn": 77,
+                    "endOffset": 14127
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 158,
-                        "startColumn": 8,
-                        "startOffset": 11004,
-                        "endColumn": 60,
-                        "endOffset": 11056
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 190,
                     "startColumn": 4,
-                    "startOffset": 13930,
-                    "endColumn": 41,
-                    "endOffset": 13967
+                    "startOffset": 14132,
+                    "endColumn": 71,
+                    "endOffset": 14199
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 126,
-                        "startColumn": 8,
-                        "startOffset": 8428,
-                        "endColumn": 45,
-                        "endOffset": 8465
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             },
             {
                 "to": {
                     "startLine": 191,
                     "startColumn": 4,
-                    "startOffset": 13972,
-                    "endColumn": 54,
-                    "endOffset": 14022
-                },
-                "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 122,
-                        "startColumn": 8,
-                        "startOffset": 8153,
-                        "endColumn": 58,
-                        "endOffset": 8203
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 192,
-                    "startColumn": 4,
-                    "startOffset": 14027,
-                    "endColumn": 57,
-                    "endOffset": 14080
-                },
-                "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 132,
-                        "startColumn": 8,
-                        "startOffset": 8830,
-                        "endColumn": 61,
-                        "endOffset": 8883
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 193,
-                    "startColumn": 4,
-                    "startOffset": 14085,
-                    "endColumn": 63,
-                    "endOffset": 14144
-                },
-                "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 62,
-                        "startColumn": 8,
-                        "startOffset": 3254,
-                        "endColumn": 67,
-                        "endOffset": 3313
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 194,
-                    "startColumn": 4,
-                    "startOffset": 14149,
-                    "endColumn": 77,
-                    "endOffset": 14222
-                },
-                "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 81,
-                        "startColumn": 8,
-                        "startOffset": 4627,
-                        "endColumn": 81,
-                        "endOffset": 4700
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 195,
-                    "startColumn": 4,
-                    "startOffset": 14227,
-                    "endColumn": 71,
-                    "endOffset": 14294
-                },
-                "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 80,
-                        "startColumn": 8,
-                        "startOffset": 4551,
-                        "endColumn": 75,
-                        "endOffset": 4618
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 196,
-                    "startColumn": 4,
-                    "startOffset": 14299,
+                    "startOffset": 14204,
                     "endColumn": 64,
-                    "endOffset": 14359
+                    "endOffset": 14264
                 },
                 "from": {
-                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml",
-                    "position": {
-                        "startLine": 161,
-                        "startColumn": 8,
-                        "startOffset": 11207,
-                        "endColumn": 68,
-                        "endOffset": 11267
-                    }
+                    "file": "/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/src/main/res/values-pt/strings.xml"
                 }
             }
         ]

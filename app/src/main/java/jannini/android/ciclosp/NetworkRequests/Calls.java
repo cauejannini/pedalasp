@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -205,8 +206,6 @@ public class Calls {
 				}
 			}
 		}.execute();
-
-
 	}
 
 	public static void sendOriginDestination (
@@ -363,4 +362,79 @@ public class Calls {
 
 
 	}
+
+	public static void getElevationLists (
+			final ArrayList<String> encodedPathList,
+			final ArrayList<Integer> samplesNumbers,
+			final CallHandler handler) {
+
+		new AsyncTask<String, String, ResponseWrapper>() {
+
+			protected ResponseWrapper doInBackground(String... args) {
+				// Set up the URL
+				HttpURLConnection connection = null;
+				try {
+					URL url = new URL(Constant.urlGetElevationForUrls);
+					// Obtain connection object
+					connection = (HttpURLConnection) url.openConnection();
+					connection.setDoOutput(true);
+					connection.setDoInput(true);
+					connection.setRequestMethod("POST");
+
+					// Criar variáveis strings para enviar no OutputStream
+					String encodedPathListString = "";
+					for (String encodedPath : encodedPathList) {
+						encodedPathListString = encodedPathListString + "," + encodedPath;
+					}
+
+					String sampleNumbersString = "";
+					for (int sampleNumber : samplesNumbers) {
+						sampleNumbersString = sampleNumbersString + "," + String.valueOf(sampleNumber);
+					}
+
+					// Criar o OutputStream para carregar a mensagem
+					OutputStream os = connection.getOutputStream();
+					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+					buffWriter.write(
+							"encodedPathList=" + encodedPathListString + "&" +
+									"sampleNumbers=" + sampleNumbersString + "&" +
+									"key=" + Constant.elevationAuthKey
+					);
+					buffWriter.flush();
+					buffWriter.close();
+					os.close();
+
+					connection.connect();
+
+					InputStream is = connection.getInputStream();
+					int responseCode = connection.getResponseCode();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
+					StringBuilder sb = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						sb.append(line).append("\n");
+					}
+					is.close();
+					String response = sb.toString();
+
+					return new ResponseWrapper(responseCode, response);
+
+				} catch (Exception e) {
+					Log.e("Buffer Error", "Error converting result " + e.toString());
+
+				} finally {
+					assert connection != null;
+					connection.disconnect();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(ResponseWrapper wrapper) {
+				handler.onResponse(wrapper.responseCode, wrapper.response);
+			}
+		}.execute();
+	}
+
 }
