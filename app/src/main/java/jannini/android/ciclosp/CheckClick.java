@@ -77,10 +77,31 @@ public class CheckClick {
 		ArrayList<PolylineOptions> pOptList = new ArrayList<>();
 		ArrayList<LatLng> intersectionPath = new ArrayList<>();
 
+		// Locations to check whether point is close to start or end of lane. Because if it is, it coulb be outside bounds and still be valid.
+		Location startPointLocation = new Location("startPointLocation");
+		startPointLocation.setLatitude(lanePath.get(0).latitude);
+		startPointLocation.setLongitude(lanePath.get(0).longitude);
+
+		Location endPointLocation = new Location("startPointLocation");
+		endPointLocation.setLatitude(lanePath.get(lanePath.size()-1).latitude);
+		endPointLocation.setLongitude(lanePath.get(lanePath.size()-1).longitude);
+
 		for (int i = 0; i <routePath.size(); i++) {
 
-			// Se o atual ponto da rota estiver fora das bounds da ciclovia, já seta checkThisPoint como false.
-			boolean checkThisPoint = laneBounds.contains(routePath.get(i)) && checkPoint(routePath.get(i), lanePath);
+			LatLng latLngPoint = routePath.get(i);
+
+			Location pointLocation = new Location("pointLocation");
+			pointLocation.setLatitude(latLngPoint.latitude);
+			pointLocation.setLongitude(latLngPoint.longitude);
+
+			boolean checkThisPoint = false;
+
+			if (laneBounds.contains(routePath.get(i))
+					|| pointLocation.distanceTo(startPointLocation) <= Constant.routeIntersectionTolerance
+					|| pointLocation.distanceTo(endPointLocation) <= Constant.routeIntersectionTolerance) {
+				// Se o atual ponto da rota estiver fora das bounds da ciclovia, já seta checkThisPoint como false.
+				checkThisPoint = checkPoint(routePath.get(i), lanePath);
+			}
 
 			if (checkThisPoint) {
 				countSubsequentTrues++;

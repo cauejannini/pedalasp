@@ -34,22 +34,6 @@ public class Ciclovia implements Parcelable {
 
 		this.bounds = builder.build();
 
-		/*
-		LatLng origin = latLngList.get(0);
-		LatLng destination = latLngList.get(latLngList.size()-1);
-
-		if (origin.latitude < destination.latitude && origin.longitude < destination.longitude) {
-            this.bounds = new LatLngBounds(new LatLng(origin.latitude, origin.longitude), new LatLng(destination.latitude, destination.longitude));
-
-		} else if (origin.latitude < destination.latitude && destination.longitude < origin.longitude) {
-            this.bounds = new LatLngBounds(new LatLng(origin.latitude, destination.longitude), new LatLng(destination.latitude, origin.longitude));
-
-        } else if (destination.latitude < origin.latitude && origin.longitude < destination.longitude) {
-            this.bounds = new LatLngBounds(new LatLng(destination.latitude, origin.longitude), new LatLng(origin.latitude, destination.longitude));
-
-        } else if (destination.latitude < origin.latitude && destination.longitude < origin.longitude) {
-            this.bounds = new LatLngBounds(new LatLng(destination.latitude, destination.longitude), new LatLng(origin.latitude, origin.longitude));
-		}*/
 	}
 
 	public int describeContents() {
