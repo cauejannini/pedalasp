@@ -1,134 +1,193 @@
 package jannini.android.ciclosp.CustomItemClasses;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Locale;
 
+import jannini.android.ciclosp.CheckClick;
+import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.NetworkRequests.Utils;
+
 public class CyclingPath implements Parcelable {
+    Context context;
+    public boolean isDrawn = false;
+    public GoogleMap map;
+    public Polyline routePolyline;
+    public PolylineOptions routePolylineOptions;
 	public ArrayList<LatLng> pathLatLng = new ArrayList<>();
 	public ArrayList<Double> pathElevation = new ArrayList<>();
-	public ArrayList<Double> referenceDistances = new ArrayList<>();
+	public double totalDistanceInKm;
+	public int totalDurationSecs;
 	public double maxInclination;
-	public double referenceDistanceForMaxInclination;
-	public ArrayList<Double> inclinationList = new ArrayList<>();
-	public double totalDistance;
-	public HashMap<Double, Double> hashRefDistInclination = new HashMap<>();
-	public HashMap<Double, LatLng> hashRefDistLatLng = new HashMap<>();
+	public LatLngBounds bounds;
 	public int percentageOnBikeLanes;
+    public ArrayList<Polyline> intersectionPolylines = new ArrayList<>();
+    public ArrayList<PolylineOptions> intersectionPolylineOptions = new ArrayList<>();
+    public boolean isSelected = false;
+    public boolean mostBikeLanes, fastest, flattest;
 
-	public CyclingPath(ArrayList<LatLng> pathLatLng, ArrayList<Double> pathElevation, ArrayList<Double> referenceDistances){
-		this.pathLatLng = pathLatLng;
+	public CyclingPath(Context context, ArrayList<LatLng> pathLatLng, double totalDistance, int totalDurationSecs, ArrayList<Double> pathElevation, LatLngBounds bounds, ArrayList<Ciclovia> cicloviaList, GoogleMap map){
+
+        this.context = context;
+        this.routePolylineOptions = new PolylineOptions().addAll(pathLatLng);
+        this.map = map;
+
+        this.pathLatLng = pathLatLng;
 		this.pathElevation = pathElevation;
-		this.referenceDistances = referenceDistances;
+		String roundedDouble = String.format(Locale.US, "%.2f", totalDistance/1000);
+		this.totalDistanceInKm = Double.valueOf(roundedDouble);
+		this.totalDurationSecs = totalDurationSecs;
+		this.bounds = bounds;
 
-		HashMap<Double, LatLng> refDistLatLngHMAssist = new HashMap<>();
-		for (int y = 0; y<referenceDistances.size(); y++) {
-			refDistLatLngHMAssist.put(referenceDistances.get(y),
-					pathLatLng.get(y));
+		this.maxInclination = calculateMaxInclination();
+		this.percentageOnBikeLanes = calculatePercentageOnBikeLanes(cicloviaList);
+
+        this.mostBikeLanes = this.fastest = this.flattest = false;
+
+        setSelected(false);
+	}
+
+    public void drawOnMap() {
+        isDrawn = true;
+        this.routePolyline = map.addPolyline(this.routePolylineOptions);
+        for (PolylineOptions intersectionPOpt : this.intersectionPolylineOptions) {
+            this.intersectionPolylines.add(map.addPolyline(intersectionPOpt));
+        }
+    }
+
+    public String getReadableDuration() {
+        String readableDuration = "";
+
+        if (this.totalDurationSecs < 60) {
+            readableDuration = this.totalDurationSecs + " segs";
+        } else if (this.totalDurationSecs < 3600) {
+            int minutes = this.totalDurationSecs / 60;
+            readableDuration = minutes + " min";
+        } else {
+            int hours = this.totalDurationSecs / 3600;
+            int minutes = ((this.totalDurationSecs / 3600) - hours) * 60;
+            readableDuration = hours + " h " + minutes + " min";
+        }
+
+        return readableDuration;
+    }
+
+	private double calculateMaxInclination() {
+		double maxInclinationDegrees = 0;
+
+		for (int i=0; i<pathElevation.size()-2; i++) {
+			double h0 = pathElevation.get(i);
+			double h1 = pathElevation.get(i+2);
+
+			// Calculate angle of this step in degrees
+			double seno = (h1 - h0) / Constant.distanceBetweenElevationSamples*2;
+			double radians = Math.asin(seno);
+			double degrees = Math.toDegrees(radians);
+			// Add the degrees for the inclination of this step to list of all inclinations
+			String roundedStringDouble = String.format(Locale.US, "%.1f", degrees);
+			Double degreesTwoDecimals = Double.valueOf(roundedStringDouble);
+			// If this is the biggest inclination so fat, cast it to "maxInclinationRadians" variable.
+			if (i == 0 || degreesTwoDecimals > maxInclinationDegrees) {
+				maxInclinationDegrees = degreesTwoDecimals;
+			}
 		}
-		this.hashRefDistLatLng = refDistLatLngHMAssist;
+		return maxInclinationDegrees;
+	}
 
-		ArrayList<Double> inclinationListAssistArray = new ArrayList<>();
-		HashMap<Double, Double> refDistInclinationHMAssist = new HashMap<>();
+	private int calculatePercentageOnBikeLanes(ArrayList<Ciclovia> cicloviaList) {
 
-		if (pathElevation.size() == referenceDistances.size()){
-			double maxInclinationDegrees = 0;
-			double referenceDistanceForMaxInclinationX = 0;
+		for (int i = 0; i<cicloviaList.size(); i++) {
 
-			for (int i=0; i<pathElevation.size()-1; i++) {
-				double h0 = pathElevation.get(i);
-				double h1 = pathElevation.get(i+1);
-
-				double d0 = referenceDistances.get(i)*1000; // it's necessary to multiply by 1000 cause mapquest api gives height in meters and distance in kilometers
-				double d1 = referenceDistances.get(i+1)*1000;
-
-				// Se os steps são iguais ou muito próximos, ignorar o cálculo de elevação e considerar que ela é zero.
-				if (d1-d0 < 3 && d1-d0 > -3){
-
-					// Add the 0 degrees for the inclination of this step
-					inclinationListAssistArray.add(0.0);
-
-
-				} else {
-					// Calculate angle of this step in degrees
-					double seno = (h1 - h0) / (d1 - d0);
-					double radians = Math.asin(seno);
-					double degrees = Math.toDegrees(radians);
-					// Add the degrees for the inclination of this step to list of all inclinations
-					String roundedStringDouble = String.format(Locale.US, "%.1f", degrees);
-					Double degreesTwoDecimals = Double.valueOf(roundedStringDouble);
-					inclinationListAssistArray.add(degreesTwoDecimals);
-					// Populate hashMap that will become variable hashM
-					refDistInclinationHMAssist.put(referenceDistances.get(i), degreesTwoDecimals);
-					// If this is the biggest inclination so fat, cast it to "maxInclinationRadians" variable.
-					if (i == 0 || degreesTwoDecimals > maxInclinationDegrees) {
-						maxInclinationDegrees = degreesTwoDecimals;
-						referenceDistanceForMaxInclinationX = referenceDistances.get(i);
-					}
-				}
+            // Antes de fazer o resultFrom check da ciclovia, checar se os quadrantes se interseccionam. Caso negativo, pular pra próxima.
+			if (!doesBoundsIntersect(this.bounds, cicloviaList.get(i).bounds)) {
+				continue;
 			}
 
-			this.maxInclination = maxInclinationDegrees;
-			this.referenceDistanceForMaxInclination = Double.valueOf(String.format(Locale.US, "%.2f", referenceDistanceForMaxInclinationX));
-			this.inclinationList = inclinationListAssistArray;
-			this.hashRefDistInclination = refDistInclinationHMAssist;
-		} else {
-			this.maxInclination = 999;
-			this.referenceDistanceForMaxInclination = 999.9;
-			this.inclinationList = null;
+			ArrayList<LatLng> bikeLanePath = cicloviaList.get(i).latLngList;
+            LatLngBounds bikeLaneBounds = cicloviaList.get(i).bounds;
+
+            CheckClick cc = new CheckClick();
+            CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bikeLanePath, bikeLaneBounds);
+
+            Log.e("ciclovia " + String.valueOf(i) , cicloviaList.get(i).Nome + "bounds: " + cicloviaList.get(i).bounds +" bool: " + String.valueOf(resultFromCheck.hasIntersection));
+            // Check if route has intersection
+            if (resultFromCheck.hasIntersection) {
+
+                intersectionPolylineOptions.addAll(resultFromCheck.pOptList);
+
+            }
 		}
-		String roundedDouble = String.format(Locale.US, "%.2f", referenceDistances.get(referenceDistances.size()-1));
-		this.totalDistance = Double.valueOf(roundedDouble);
 
-		Log.d("REFERENCEDISTANCES:", referenceDistances.toString());
+        // Calculate meters of intersection and percentage of total
+        double totalDistanceOfIntersection = 0.0;
+
+        if (intersectionPolylineOptions.size() > 0) {
+            for (PolylineOptions polyOptions : intersectionPolylineOptions) {
+                double distanceOfPolyline = 0.0;
+                for (int i = 1; i < polyOptions .getPoints().size(); i++) {
+                    Location location0 = new Location("loc0");
+                    location0.setLatitude(polyOptions .getPoints().get(i-1).latitude);
+                    location0.setLongitude(polyOptions .getPoints().get(i-1).longitude);
+
+                    Location location1 = new Location("loc0");
+                    location1.setLatitude(polyOptions .getPoints().get(i).latitude);
+                    location1.setLongitude(polyOptions .getPoints().get(i).longitude);
+
+                    distanceOfPolyline += location0.distanceTo(location1);
+                }
+                totalDistanceOfIntersection += distanceOfPolyline;
+            }
+        }
+
+        return (int) (totalDistanceOfIntersection / this.totalDistanceInKm)/10;
 
 	}
 
-	public CyclingPath (ArrayList<LatLng> pathLatLng) {
-		this.pathLatLng = pathLatLng;
-		this.pathElevation = new ArrayList<>();
-		this.referenceDistances = new ArrayList<>();
-		this.maxInclination = 999;
-		this.referenceDistanceForMaxInclination = 999.9;
-		this.inclinationList = new ArrayList<>();
-		this.totalDistance = 999;
-	}
+    public void setSelected (boolean shouldSelect) {
+        this.isSelected = shouldSelect;
 
-	public CyclingPath (ArrayList<LatLng> pathLatLng, Double totalDistance) {
-		this.pathLatLng = pathLatLng;
-		this.pathElevation = new ArrayList<>();
-		this.referenceDistances = new ArrayList<>();
-		this.maxInclination = 999;
-		this.referenceDistanceForMaxInclination = 999.0;
-		this.inclinationList = new ArrayList<>();
-		this.totalDistance = totalDistance;
-	}
+        if (routePolyline != null) {
 
-	public int getEstimatedTime(){
-		Double estimatedTime = this.totalDistance / 10 * 60; // Considering 10 km/h. Result in minutes, that's why the *60
-		return estimatedTime.intValue();
-	}
+            if (shouldSelect) {
+                Log.e("maxInclination", String.valueOf(this.maxInclination));
+                routePolyline.setWidth(Utils.getPixelValue(this.context, Constant.selectedPolylineWidth));
+                routePolyline.setColor(Color.BLUE);
+                routePolyline.setZIndex(10);
+                for (Polyline poly : intersectionPolylines) {
+                    poly.setVisible(true);
+                    poly.setWidth(Utils.getPixelValue(this.context, Constant.selectedPolylineWidth));
+                    poly.setColor(Color.RED);
+                    poly.setZIndex(10);
+                }
+            } else {
+                routePolyline.setWidth(Utils.getPixelValue(this.context, Constant.unSelectedPolylineWidth));
+                routePolyline.setColor(Color.LTGRAY);
+                routePolyline.setZIndex(9);
+                for (Polyline poly : intersectionPolylines) {
+                    poly.setVisible(false);
+                    poly.setWidth(Utils.getPixelValue(this.context, Constant.unSelectedPolylineWidth));
+                }
+            }
+        }
+    }
 
-	public Double getElevationFromRefDistance(Double refDistance){
-		return this.hashRefDistInclination.get(refDistance);
-	}
+	private boolean doesBoundsIntersect(LatLngBounds b1, LatLngBounds b2) {
 
-	public LatLng getLatLngFromRefDistance(Double refDistance){
-		return this.hashRefDistLatLng.get(refDistance);
-	}
+		return !(b1.southwest.latitude > b2.northeast.latitude || b2.southwest.latitude > b1.northeast.latitude)
+				&& !(b1.southwest.longitude > b2.northeast.longitude || b2.southwest.longitude > b1.northeast.longitude);
 
-	public void addPercentage(int percentage){
-		this.percentageOnBikeLanes = percentage;
-	}
-
-	public boolean hasElevation() {
-		return !this.pathElevation.isEmpty();
 	}
 
 	public int describeContents() {
@@ -139,11 +198,8 @@ public class CyclingPath implements Parcelable {
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeList(pathLatLng);
 		out.writeList(pathElevation);
-		out.writeList(referenceDistances);
 		out.writeDouble(maxInclination);
-		out.writeDouble(referenceDistanceForMaxInclination);
-		out.writeList(inclinationList);
-		out.writeDouble(totalDistance);
+		out.writeDouble(totalDistanceInKm);
 		out.writeInt(percentageOnBikeLanes);
 	}
 
@@ -158,14 +214,11 @@ public class CyclingPath implements Parcelable {
 	};
 
 	@SuppressWarnings("unchecked")
-	public CyclingPath(Parcel in) {
+	private CyclingPath(Parcel in) {
 		pathLatLng = in.readArrayList(LatLng.class.getClassLoader());
 		pathElevation = in.readArrayList(Double.class.getClassLoader());
-		referenceDistances = in.readArrayList(Double.class.getClassLoader());
 		maxInclination = in.readDouble();
-		referenceDistanceForMaxInclination = in.readDouble();
-		inclinationList = in.readArrayList(Integer.class.getClassLoader());
-		totalDistance = in.readDouble();
+		totalDistanceInKm = in.readDouble();
 		percentageOnBikeLanes = in.readInt();
 	}
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/route_panel"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="#FFFFFF"
-    android:paddingTop="5dp"
+    android:paddingTop="0dp"
     android:paddingBottom="0dp"
+    android:visibility="gone"
+    android:id="@+id/ll_route_details"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +23,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/route_line_distance"
+                android:id="@+id/tv_route_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginRight="11dp"
@@ -31,12 +32,12 @@
                 />
 
             <TextView
-                android:id="@+id/route_line_time"
+                android:id="@+id/tv_route_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginRight="11dp"
                 android:layout_marginLeft="11dp"
-                android:textColor="@color/route_blue"
+                android:textColor="@color/water_blue"
                 />
 
         </LinearLayout>
@@ -48,12 +49,13 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/route_line_inclination"
+                android:id="@+id/tv_route_percentage_on_lanes"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginRight="11dp"
                 android:layout_marginLeft="11dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
+                android:textColor="@color/water_blue"
                 android:textSize="20sp"
                 />
 
@@ -62,9 +64,9 @@
                 android:layout_height="20dp"
                 android:layout_marginRight="11dp"
                 android:layout_marginLeft="11dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:textStyle="italic"
-                android:text="@string/inclinacao_maxima"
+                android:text="@string/on_bikelanes"
                 />
 
         </LinearLayout>
@@ -72,17 +74,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/aChart"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:id="@+id/aChart"
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_elevation_unavailable"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/textViewChartWarn"
             android:visibility="gone"
             android:textStyle="italic"
             android:textColor="#888888"
@@ -90,12 +92,12 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/route_blue"
+        android:background="@color/water_blue"
         android:gravity="center_horizontal|center_vertical"
         >
-    </LinearLayout>
+    </View>
 
 </LinearLayout>

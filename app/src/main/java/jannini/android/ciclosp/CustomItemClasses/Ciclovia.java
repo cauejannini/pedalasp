@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,27 @@ public class Ciclovia implements Parcelable {
 	public Double Dist;
 	public ArrayList<LatLng> latLngList = new ArrayList<>();
 	public int tipo;
+    public LatLngBounds bounds;
+
+	public Ciclovia(String nome, String info, Double dist, ArrayList<LatLng> llList, Integer tipo){
+		this.Nome = nome;
+		this.Info = info;
+		this.Dist = dist;
+		this.latLngList = llList;
+		this.tipo = tipo;
+        getBounds();
+	}
+
+	private void getBounds() {
+
+		LatLngBounds.Builder builder = new LatLngBounds.Builder();
+		for (LatLng latLng : this.latLngList) {
+			builder.include(latLng);
+		}
+
+		this.bounds = builder.build();
+
+	}
 
 	public int describeContents() {
 		// TODO Auto-generated method stub
@@ -37,14 +59,6 @@ public class Ciclovia implements Parcelable {
 		}
 	};
 
-	public Ciclovia(String nome, String info, Double dist, ArrayList<LatLng> llList, Integer tipo){
-		this.Nome = nome;
-		this.Info = info;
-		this.Dist = dist;
-		this.latLngList = llList;
-		this.tipo = tipo;
-	}
-
 	@SuppressWarnings("unchecked")
 	public Ciclovia(Parcel in) {
 		Nome = in.readString();
@@ -52,6 +66,8 @@ public class Ciclovia implements Parcelable {
 		Dist = in.readDouble();
 		latLngList = in.readArrayList(LatLng.class.getClassLoader());
 		tipo = in.readInt();
+
+        getBounds();
 	}
 
 

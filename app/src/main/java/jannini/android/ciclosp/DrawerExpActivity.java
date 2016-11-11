@@ -39,7 +39,7 @@ public class DrawerExpActivity extends Activity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
-        sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         String[] mMenuTitles = getResources().getStringArray(R.array.menu_array);
         String[] mMenuTitlesForDrawerExp = {mMenuTitles[0], mMenuTitles[1], mMenuTitles[2], mMenuTitles[3], mMenuTitles[4], mMenuTitles[5]};

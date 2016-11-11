@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/search_header"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:paddingStart="11dp"
     android:weightSum="1">
 
@@ -21,24 +21,12 @@
 
     <Button
         android:id="@+id/clear_search"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/bt_x"
-        android:backgroundTint="@color/light_text"
         android:onClick="clearSearch"
         android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="5dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bt_lupa_transparent"
-        android:onClick="findAddress"
-        android:visibility="visible"/>
 
     <ProgressBar
         android:id="@+id/progress_bar_search"
@@ -47,5 +35,15 @@
         android:layout_margin="5dp"
         android:layout_gravity="center_vertical"
         android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bt_lupa_transparent"
+        android:onClick="findAddress"/>
+
+
 
 </LinearLayout>

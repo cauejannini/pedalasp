@@ -5,14 +5,19 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
+import android.animation.PropertyValuesHolder;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -22,20 +27,14 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -51,6 +50,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -67,6 +68,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -74,46 +78,52 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import jannini.android.ciclosp.Adapters.InfoWindowActivity;
 import jannini.android.ciclosp.Adapters.MyListAdapter;
+import jannini.android.ciclosp.Adapters.RoutePrioritySpinnerAdapter;
 import jannini.android.ciclosp.CustomItemClasses.Bicicletario;
 import jannini.android.ciclosp.CustomItemClasses.Ciclovia;
 import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
 import jannini.android.ciclosp.CustomItemClasses.Estacao;
 import jannini.android.ciclosp.CustomItemClasses.Parque;
 import jannini.android.ciclosp.CustomItemClasses.Report;
-import jannini.android.ciclosp.Fragments.SwipeFragment;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Route;
-import jannini.android.ciclosp.NetworkRequests.JSONParser;
+import jannini.android.ciclosp.NetworkRequests.GeocoderCallHandler;
+import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
+import jannini.android.ciclosp.NetworkRequests.Route;
+import jannini.android.ciclosp.NetworkRequests.Utils;
+
+import static com.google.android.gms.maps.CameraUpdateFactory.newCameraPosition;
+import static com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom;
+import static jannini.android.ciclosp.R.id.map;
 
 
 public class MainActivity extends FragmentActivity
-        implements
-        LocationListener,
-        OnMapReadyCallback,
-        SwipeFragment.SwipeFragmentInteractionListener {
+		implements
+		LocationListener,
+		OnMapReadyCallback,
+		SensorEventListener {
 
 	// Location Manager and Provider
 	private LocationManager locationManager;
@@ -127,11 +137,6 @@ public class MainActivity extends FragmentActivity
 
 	// Analytics tracker
 	Tracker t;
-
-    static boolean savedInstanceStateHasRun = false;
-    boolean isViewPagerVisible = false;
-    String[] stringGraphPointMarkerInfo;
-    LatLng latLngGraphPointMarker;
 
 	// Calendars
 	public Calendar rightNow;
@@ -148,9 +153,6 @@ public class MainActivity extends FragmentActivity
 
 	public static String newline = System.getProperty("line.separator");
 
-	// Creating JSON Parser object
-	JSONParser jParser = new JSONParser();
-
 	// APP STORED PREFERENCES
 
 	// Boolean to check if this is the first time app is being opened
@@ -166,7 +168,7 @@ public class MainActivity extends FragmentActivity
 	public static ArrayList<Ciclovia> ListCiclofaixas = new ArrayList<>();
 	public static ArrayList<MarkerOptions> ListWifi = new ArrayList<>();
 	public static ArrayList<Report> ListAlerts = new ArrayList<>();
-    public static ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
+	public static ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
 
 	//Criando listas dos marcadores de mapa para os itens de cada tabela da DB
 	ArrayList<Marker> ListMarkersITAU = new ArrayList<>();
@@ -175,9 +177,9 @@ public class MainActivity extends FragmentActivity
 	ArrayList<Marker> ListMarkersBicicletarios = new ArrayList<>();
 	ArrayList<Marker> ListMarkersWifi = new ArrayList<>();
 	ArrayList<Marker> ListMarkersAlerts = new ArrayList<>();
-    ArrayList<Marker> ListMarkersAcessos = new ArrayList<>();
+	ArrayList<Marker> ListMarkersAcessos = new ArrayList<>();
 
-    ArrayList<String> ListMarkersAlertsIds = new ArrayList<>();
+	ArrayList<String> ListMarkersAlertsIds = new ArrayList<>();
 	List<Marker> listMarker = new ArrayList<>();
 
 	//Navigation Drawer
@@ -203,13 +205,11 @@ public class MainActivity extends FragmentActivity
 
 	LinearLayout routeHeader;
 
+	LinearLayout llEditRoute, llEditOrigin, llEditDestination;
+
 	TextView tvOrigin;
 	TextView tvDestination;
-	EditText etDestination;
-	EditText etOrigin;
-	Button btRoute;
 	Button btSwitchAddresses;
-	ProgressBar pBarRoute;
 
 	Boolean isRouteModeOn = false;
 
@@ -217,58 +217,59 @@ public class MainActivity extends FragmentActivity
 	List<Address> addressListBase = new ArrayList<>();
 	Marker markerDestination, markerOrigin, markerSearch;
 
-    LatLng latLngMarkerOrigin;
-    LatLng latLngMarkerDestination;
+	LatLng latLngMarkerOrigin;
+	LatLng latLngMarkerDestination;
 
 	ImageView iv;
 	Menu mymenu;
 	MenuItem menu_item;
 
-	double[] current_latlng;
-	float zoom;
-
 	public SharedPreferences sharedPreferences;
-
-	static ArrayList<Polyline> polylineRoutesList = new ArrayList<>();
 
 	Criteria criteria = new Criteria();
 
 	LatLng user_latlng = null;
 
-    //LinearLayout llPlaceOptions;
+	//LinearLayout llPlaceOptions;
 	Button notifyButton, btParkedHere, btRemovePlace;//, btParkedHereSmall, btPlaceFavorite;
 	Marker activeMarker;
-    ArrayList<Marker> parkedHereMarkerList = new ArrayList<>();
-    //ArrayList<Marker> favoritePlacesMarkerList = new ArrayList<>();
+	ArrayList<Marker> parkedHereMarkerList = new ArrayList<>();
+	//ArrayList<Marker> favoritePlacesMarkerList = new ArrayList<>();
 
 	Map<String, String> alertMap = new HashMap<>();
 
 	// ROUTE variables
 	public static ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
+	public int routeRequestId = 0;
 
 	// Auxiliar list that only stores the selected cyclingPath
 	ArrayList<CyclingPath> selectedCyclingPath = new ArrayList<>();
 
-	// Auxiliar marker to show point selected on Graph
-	Marker graph_point_marker = null;
+	// Route panel, details and subViews
+	LinearLayout llRoutePanel;
+	LinearLayout llRouteDetailFragment;
+	RelativeLayout rlRouteDetails;
+	TextView tvRouteDistance, tvRouteDuration, tvRoutePercentageOnBikeLanes, tvElevationUnavailable;
+	LinearLayout llChart;
 
-	// AsyncTasks
-	AsyncTask<String, String, String> geocodeOriginASY;
-	AsyncTask<String, String, String> geocodeDestinationASY;
-	AsyncTask<String, Integer, ArrayList<CyclingPath>> getRoutesASY;
+	Spinner spinnerRoutePriority;
 
-	ViewPager viewPager;
-	Integer viewPagerPosition;
-	ObjectAnimator hideViewPager;
+	ObjectAnimator showRoutePanel, hideRoutePanel;
 
 	ToggleButton btRouteMode;
 
-	//aChartEngine
-    static ArrayList<LinearLayout> aChartLinearLayoutList = new ArrayList<>();
-    static ArrayList<GraphicalView> graphViewArray = new ArrayList<>();
-
-	AlertDialog adLoadingRoute;
+	//AlertDialog adLoadingRoute;
 	ProgressBar pbLoadingRoute;
+
+	// NAVIGATION
+
+	ToggleButton tbSwitchNavigation;
+	Button btMyLocation;
+	boolean navigationIsOn = false;
+	Marker markerNavigation;
+	Circle circleAccuracy;
+	SensorManager sensorManager;
+	float azimuth = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -298,7 +299,7 @@ public class MainActivity extends FragmentActivity
 		// Send a screen view.
 		t.send(new HitBuilders.AppViewBuilder().build());
 
-		sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+		sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
 		betaRouteWarningWasShown = sharedPreferences.getBoolean("betaRouteWarningWasShown", false);
 		elevGraphExpWasShown = sharedPreferences.getBoolean("elevGraphExpWasShown", false);
@@ -310,20 +311,20 @@ public class MainActivity extends FragmentActivity
 
 		// Get States from sharedPreferences
 		Constant.states[0] = sharedPreferences.getBoolean("states0", true);
-        Constant.states[1] = sharedPreferences.getBoolean("states1", true);
-        Constant.states[2] = sharedPreferences.getBoolean("states2", true);
-        Constant.states[3] = sharedPreferences.getBoolean("states3", true);
-        Constant.states[4] = sharedPreferences.getBoolean("states4", true);
-        Constant.states[5] = sharedPreferences.getBoolean("states5", true);
+		Constant.states[1] = sharedPreferences.getBoolean("states1", true);
+		Constant.states[2] = sharedPreferences.getBoolean("states2", true);
+		Constant.states[3] = sharedPreferences.getBoolean("states3", true);
+		Constant.states[4] = sharedPreferences.getBoolean("states4", true);
+		Constant.states[5] = sharedPreferences.getBoolean("states5", true);
 
-        Constant.bikeLanesStates[0] = sharedPreferences.getBoolean("bikeLanesStates0", true);
-        Constant.bikeLanesStates[1] = sharedPreferences.getBoolean("bikeLanesStates1", true);
-        Constant.bikeLanesStates[2] = sharedPreferences.getBoolean("bikeLanesStates2", true);
+		Constant.bikeLanesStates[0] = sharedPreferences.getBoolean("bikeLanesStates0", true);
+		Constant.bikeLanesStates[1] = sharedPreferences.getBoolean("bikeLanesStates1", true);
+		Constant.bikeLanesStates[2] = sharedPreferences.getBoolean("bikeLanesStates2", true);
 
-        Constant.sharingSystemsStates[0] = sharedPreferences.getBoolean("sharingSystemsStates0", true);
-        Constant.sharingSystemsStates[1] = sharedPreferences.getBoolean("sharingSystemsStates1", true);
+		Constant.sharingSystemsStates[0] = sharedPreferences.getBoolean("sharingSystemsStates0", true);
+		Constant.sharingSystemsStates[1] = sharedPreferences.getBoolean("sharingSystemsStates1", true);
 
-        header = (LinearLayout) findViewById(R.id.header);
+		header = (LinearLayout) findViewById(R.id.header);
 
 		// SEARCH HEADER VARIABLES
 		searchHeaderView = getLayoutInflater().inflate(R.layout.search_header, null);
@@ -346,7 +347,7 @@ public class MainActivity extends FragmentActivity
 		// Start Header with searchHeaderView
 		header.addView(searchHeaderView);
 
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		// ROUTE HEADER VARIABLES
 		routeHeaderView = getLayoutInflater().inflate(R.layout.route_header, null);
@@ -356,48 +357,24 @@ public class MainActivity extends FragmentActivity
 
 		tvDestination = (TextView) routeHeaderView.findViewById(R.id.tv_destination);
 		tvOrigin = (TextView) routeHeaderView.findViewById(R.id.tv_origin);
-		//btCancelRouteMode = (Button) routeHeaderView.findViewById(R.id.cancel_route_mode);
-		btRoute = (Button) routeHeaderView.findViewById(R.id.bt_route);
 		btSwitchAddresses = (Button) routeHeaderView.findViewById(R.id.switch_addresses);
-		etOrigin = (EditText) routeHeaderView.findViewById(R.id.et_origin);
-		etDestination = (EditText) routeHeaderView.findViewById(R.id.et_destination);
-		pBarRoute = (ProgressBar) routeHeaderView.findViewById(R.id.progress_bar_route);
 
-		// Listener to editTexts on RouteMode (etOrigin and etDestination)
-		EditText.OnEditorActionListener etRouteClickListener = new EditText.OnEditorActionListener() {
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-					getDirections(v);
-				}
-				return false;
-			}
-		};
-
-		etOrigin.setOnEditorActionListener(etRouteClickListener);
-		etDestination.setOnEditorActionListener(etRouteClickListener);
+		llEditRoute = (LinearLayout) findViewById(R.id.ll_edit_route);
+		llEditOrigin = (LinearLayout) findViewById(R.id.ll_edit_origin);
+		llEditDestination = (LinearLayout) findViewById(R.id.ll_edit_destination);
 
 		// Define RouteButton Animation
 		btRouteMode = (ToggleButton) findViewById(R.id.route_bt);
 
 		// Define NotifyButton Animation and Animation listener
 		notifyButton = (Button) findViewById(R.id.notify_solved);
-        btParkedHere = (Button) findViewById(R.id.bt_parked_here);
-        btRemovePlace = (Button) findViewById(R.id.bt_remove_parked_here);
-        //llPlaceOptions = (LinearLayout) findViewById(R.id.ll_place_options);
-        //btParkedHereSmall = (Button) findViewById(R.id.bt_parked_here_small);
-        //btPlaceFavorite = (Button) findViewById(R.id.bt_place_favorite);
+		btParkedHere = (Button) findViewById(R.id.bt_parked_here);
+		btRemovePlace = (Button) findViewById(R.id.bt_remove_parked_here);
+		//llPlaceOptions = (LinearLayout) findViewById(R.id.ll_place_options);
+		//btParkedHereSmall = (Button) findViewById(R.id.bt_parked_here_small);
+		//btPlaceFavorite = (Button) findViewById(R.id.bt_place_favorite);
 
 		iv = (ImageView) findViewById(R.id.iv_action_refresh);
-
-		//AlertView for calculating routes
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-		adLoadingRoute = alertBuilder.create();
-		adLoadingRoute.setCancelable(false);
-		View calculatingRouteAV = getLayoutInflater().inflate(R.layout.ad_loading_route, null);
-		adLoadingRoute.setView(calculatingRouteAV);
-		Button btCancelCalculatingRoute = (Button) calculatingRouteAV.findViewById(R.id.cancel_loading_routes);
-		pbLoadingRoute = (ProgressBar) calculatingRouteAV.findViewById(R.id.pb_loading_route);
 
 		// DRAWER VARIABLES
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -411,7 +388,7 @@ public class MainActivity extends FragmentActivity
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 		// Enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		// A linha de c�digo a seguir estava pedindo API m�n. 14. Como tirar ela n�o mudou nada, tirei. getActionBar().setHomeButtonEnabled(true);
 		mDrawerToggle = new ActionBarDrawerToggle(
 				this,
@@ -431,18 +408,77 @@ public class MainActivity extends FragmentActivity
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-		// GET VIEWPAGER
-		viewPager = (ViewPager) findViewById(R.id.route_panel);
+		// ROUTE PANEL
+		RelativeLayout rlBottomOptions = (RelativeLayout) findViewById(R.id.rl_bottom_options);
+		llRoutePanel = (LinearLayout) findViewById(R.id.ll_route_panel);
+		spinnerRoutePriority = (Spinner) findViewById(R.id.spinner_route_priority);
+		spinnerRoutePriority.setAdapter(new RoutePrioritySpinnerAdapter(this));
+		spinnerRoutePriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
-		hideViewPager = ObjectAnimator.ofFloat(viewPager, "translationY", 0, 600);
-		hideViewPager.addListener(new AnimatorListener() {
+				SharedPreferences.Editor edit = sharedPreferences.edit();
+
+				switch (position) {
+					case 0:
+						edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES);
+						for (CyclingPath cp : cyclingPathList) {
+							if (cp.mostBikeLanes) selectCyclingPath(cp, false);
+						}
+						break;
+					case 1:
+						edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_FASTEST);
+						for (CyclingPath cp : cyclingPathList) {
+							if (cp.fastest) selectCyclingPath(cp, false);
+						}
+						break;
+					case 2:
+						for (CyclingPath cp : cyclingPathList) {
+							if (cp.flattest) selectCyclingPath(cp, false);
+						}
+						edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_FLATTEST);
+						break;
+				}
+				edit.apply();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView) {
+
+			}
+		});
+		ImageView ivSpinnerArrow = (ImageView) findViewById(R.id.iv_spinner_arrow);
+		ivSpinnerArrow.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				spinnerRoutePriority.performClick();
+				Log.e("ivSpinnerArrow", "CLICKED");
+			}
+		});
+
+		// ROUTE DETAILS
+		rlRouteDetails = (RelativeLayout) findViewById(R.id.rl_route_details);
+		llRouteDetailFragment = (LinearLayout) findViewById(R.id.ll_route_details);
+		tvRouteDistance = (TextView) findViewById(R.id.tv_route_distance);
+		tvRouteDuration = (TextView) findViewById(R.id.tv_route_duration);
+		tvRoutePercentageOnBikeLanes = (TextView) findViewById(R.id.tv_route_percentage_on_lanes);
+		llChart = (LinearLayout) findViewById(R.id.aChart);
+		tvElevationUnavailable = (TextView) findViewById(R.id.tv_elevation_unavailable);
+
+		pbLoadingRoute = (ProgressBar) findViewById(R.id.pb_loading_route);
+
+		// Get number of pixels correspondent to 98 dp in current device
+
+		hideRoutePanel = ObjectAnimator.ofFloat(rlBottomOptions, "translationY", Utils.getPixelValue(this, 123));
+		hideRoutePanel.addListener(new AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animation) {
 			}
 
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				viewPager.setVisibility(View.GONE);
+				llRoutePanel.setVisibility(View.GONE);
+				llRouteDetailFragment.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -454,12 +490,46 @@ public class MainActivity extends FragmentActivity
 			}
 		});
 
-        // INITIALIZE MAP
-        try {
-            ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		showRoutePanel = ObjectAnimator.ofFloat(rlBottomOptions, "translationY", 0);
+		showRoutePanel.addListener(new AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animator) {
+				llRoutePanel.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator) {
+
+			}
+		});
+
+		btMyLocation = (Button) findViewById(R.id.bt_my_location);
+		tbSwitchNavigation = (ToggleButton) findViewById(R.id.tb_navigation_switch);
+		tbSwitchNavigation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				setNavigationOn(b);
+			}
+		});
+
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+		// INITIALIZE MAP
+		try {
+			((SupportMapFragment) getSupportFragmentManager().findFragmentById(map)).getMapAsync(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// Bloco abaixo foi adicionado pra evitar o erro de null em CameraUpdateFactory e IBitMapDescriptorFactory
 		try {
@@ -467,7 +537,6 @@ public class MainActivity extends FragmentActivity
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
     /* DRAWER FUNCTIONALITY */
@@ -485,84 +554,82 @@ public class MainActivity extends FragmentActivity
 		int n = mDrawerList.getFirstVisiblePosition();
 
 		switch (position) {
-            // Bike Lanes
+			// Bike Lanes
 			case 0:
-                if (!Constant.states[0]) {
+				if (!Constant.states[0]) {
 
-                    mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    Constant.states[0] = true;
-                    displayBikeLanes();
+					mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[0] = true;
+					displayBikeLanes();
 
-                } else {
-                    mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    Constant.states[0] = false;
+				} else {
+					mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					Constant.states[0] = false;
 
-                    // Set Ciclovias not visible
-                    for (int i = 0; i < cicloviasLineList.size(); i++) {
-                        cicloviasLineList.get(i).setVisible(false);
-                    }
+					// Set Ciclovias not visible
+					for (int i = 0; i < cicloviasLineList.size(); i++) {
+						cicloviasLineList.get(i).setVisible(false);
+					}
 
-                    for (Marker marker : ListMarkersAcessos) {
-                        marker.setVisible(false);
-                    }
+					for (Marker marker : ListMarkersAcessos) {
+						marker.setVisible(false);
+					}
 
-                    // Set ciclofaixas not visible
-                    for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-                        ciclofaixasLineList.get(i).setVisible(false);
-                    }
+					// Set ciclofaixas not visible
+					for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+						ciclofaixasLineList.get(i).setVisible(false);
+					}
 
-                    // Set Ciclorrotas not visible
-                    for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-                        ciclorrotasLineList.get(i).setVisible(false);
-                    }
+					// Set Ciclorrotas not visible
+					for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+						ciclorrotasLineList.get(i).setVisible(false);
+					}
 
-                }
+				}
 
-                sharedPreferences.edit().putBoolean("states0", Constant.states[0]).apply();
+				sharedPreferences.edit().putBoolean("states0", Constant.states[0]).apply();
 
 				break;
 
-            // Sharing Systems
+			// Sharing Systems
 			case 1:
-                if (!Constant.states[1]) {
+				if (!Constant.states[1]) {
 
-                    mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    Constant.states[1] = true;
-                    displaySharingSystems();
+					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[1] = true;
+					displaySharingSystems();
 
-                } else {
-                    mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    Constant.states[1] = false;
+				} else {
+					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					Constant.states[1] = false;
 
-                    // Set BikeSampa not visible
-                    for (int i = 0; i < ListMarkersITAU.size(); i++) {
-                        ListMarkersITAU.get(i).setVisible(false);
-                    }
+					// Set BikeSampa not visible
+					for (int i = 0; i < ListMarkersITAU.size(); i++) {
+						ListMarkersITAU.get(i).setVisible(false);
+					}
 
-                    // Set CicloSampa not visible
-                    for (int i = 0; i < ListMarkersBRA.size(); i++) {
-                        ListMarkersBRA.get(i).setVisible(false);
-                    }
-                }
+					// Set CicloSampa not visible
+					for (int i = 0; i < ListMarkersBRA.size(); i++) {
+						ListMarkersBRA.get(i).setVisible(false);
+					}
+				}
 
-                sharedPreferences.edit().putBoolean("states1", Constant.states[1]).apply();
+				sharedPreferences.edit().putBoolean("states1", Constant.states[1]).apply();
 
 				break;
 
-            // Parking
-            case 2:
+			// Parking
+			case 2:
 
-                if (!Constant.states[2]) {
+				if (!Constant.states[2]) {
 
-                    mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
-                    Constant.states[2] = true;
+					mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[2] = true;
 
                     if (!ListMarkersBicicletarios.isEmpty()) {
-
                         for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
                             ListMarkersBicicletarios.get(i).setVisible(true);
                         }
-
                     } else {
                         drawBicicletarios(true);
                     }
@@ -585,14 +652,13 @@ public class MainActivity extends FragmentActivity
             // Parks
 			case 3:
 
-                if (!Constant.states[3]) {
+				if (!Constant.states[3]) {
 
-                    Constant.states[3] = true;
-                    mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[3] = true;
+					mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersParques.isEmpty()) {
 
-                        mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                         for (int i = 0; i < ListMarkersParques.size(); i++) {
                             ListMarkersParques.get(i).setVisible(true);
                         }
@@ -614,13 +680,13 @@ public class MainActivity extends FragmentActivity
 
                 break;
 
-            // Wifi
+			// Wifi
 			case 4:
 
-                if (!Constant.states[4]) {
+				if (!Constant.states[4]) {
 
-                    Constant.states[4] = true;
-                    mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[4] = true;
+					mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersWifi.isEmpty()) {
 
@@ -647,10 +713,10 @@ public class MainActivity extends FragmentActivity
             // Alerts
 			case 5:
 
-                if (!Constant.states[5]) {
+				if (!Constant.states[5]) {
 
-                    Constant.states[5] = true;
-                    mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.states[5] = true;
+					mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersAlerts.isEmpty()) {
                         for (int i = 0; i < ListMarkersAlerts.size(); i++) {
@@ -662,6 +728,7 @@ public class MainActivity extends FragmentActivity
                 } else {
                     Constant.states[5] = false;
                     mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+
                     for (int i = 0; i < ListMarkersAlerts.size(); i++) {
                         ListMarkersAlerts.get(i).setVisible(false);
                     }
@@ -676,9 +743,9 @@ public class MainActivity extends FragmentActivity
 				break;
 		}
 
-        if (!sharedPreferences.getBoolean(Constant.dontWarnAgainTooMuchMarkers, false)) {
-            checkNumberOfOptionsDisplayed();
-        }
+		if (!sharedPreferences.getBoolean(Constant.dontWarnAgainTooMuchMarkers, false)) {
+			checkNumberOfOptionsDisplayed();
+		}
 	}
 
 	public void selectBikeLaneTypes() {
@@ -686,29 +753,29 @@ public class MainActivity extends FragmentActivity
 		final AlertDialog alert = alertBuilder.create();
 		View alertView = getLayoutInflater().inflate(R.layout.ad_selectbikelanes, null);
 		alert.setView(alertView);
-        alert.setCancelable(false);
+		alert.setCancelable(false);
 		ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_permanentes);
-        tbPermanentes.setChecked(Constant.bikeLanesStates[0]);
+		tbPermanentes.setChecked(Constant.bikeLanesStates[0]);
 		tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Constant.bikeLanesStates[0] = isChecked;
+				Constant.bikeLanesStates[0] = isChecked;
 			}
 		});
 		ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_lazer);
-        tbLazer.setChecked(Constant.bikeLanesStates[1]);
+		tbLazer.setChecked(Constant.bikeLanesStates[1]);
 		tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Constant.bikeLanesStates[1] = isChecked;
+				Constant.bikeLanesStates[1] = isChecked;
 			}
 		});
 		ToggleButton tbPreferenciais = (ToggleButton) alertView.findViewById(R.id.tb_bikelanes_preferenciais);
-        tbPreferenciais.setChecked(Constant.bikeLanesStates[2]);
+		tbPreferenciais.setChecked(Constant.bikeLanesStates[2]);
 		tbPreferenciais.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Constant.bikeLanesStates[2] = isChecked;
+				Constant.bikeLanesStates[2] = isChecked;
 			}
 		});
 		Button btOk = (Button) alertView.findViewById(R.id.bt_bikelanes_ok);
@@ -717,11 +784,11 @@ public class MainActivity extends FragmentActivity
 			public void onClick(View v) {
 				alert.dismiss();
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("bikeLanesStates0", Constant.bikeLanesStates[0]);
-                editor.putBoolean("bikeLanesStates1", Constant.bikeLanesStates[1]);
-                editor.putBoolean("bikeLanesStates2", Constant.bikeLanesStates[2]);
-                editor.apply();
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putBoolean("bikeLanesStates0", Constant.bikeLanesStates[0]);
+				editor.putBoolean("bikeLanesStates1", Constant.bikeLanesStates[1]);
+				editor.putBoolean("bikeLanesStates2", Constant.bikeLanesStates[2]);
+				editor.apply();
 
 				if (Constant.states[0]) {
 					displayBikeLanes();
@@ -734,153 +801,153 @@ public class MainActivity extends FragmentActivity
 
 	public void displayBikeLanes() {
 
-        if (Constant.bikeLanesStates[0]) {
+		if (Constant.bikeLanesStates[0]) {
 
-            // Se não estiverem desenhadas, desenhar
-            if (cicloviasLineList.isEmpty()) {
+			// Se não estiverem desenhadas, desenhar
+			if (cicloviasLineList.isEmpty()) {
 
-                    drawPermanentes(true);
-            // Se já estiverem desenhadas, apenas tornar visível
-            } else {
+				drawPermanentes(true);
+				// Se já estiverem desenhadas, apenas tornar visível
+			} else {
 
-                // Set Polylines and Markers visible
-                for (int i = 0; i < cicloviasLineList.size(); i++) {
-                    cicloviasLineList.get(i).setVisible(true);
-                }
-                for (Marker marker : ListMarkersAcessos) {
-                    marker.setVisible(true);
-                }
-            }
+				// Set Polylines and Markers visible
+				for (int i = 0; i < cicloviasLineList.size(); i++) {
+					cicloviasLineList.get(i).setVisible(true);
+				}
+				for (Marker marker : ListMarkersAcessos) {
+					marker.setVisible(true);
+				}
+			}
 
-        } else {
-            // Set Ciclovias not visible
-            for (int i = 0; i < cicloviasLineList.size(); i++) {
-                cicloviasLineList.get(i).setVisible(false);
-            }
-            for (Marker marker : ListMarkersAcessos) {
-                marker.setVisible(false);
-            }
-        }
-		 // Caso não estejam desenhadas, desenhar!
+		} else {
+			// Set Ciclovias not visible
+			for (int i = 0; i < cicloviasLineList.size(); i++) {
+				cicloviasLineList.get(i).setVisible(false);
+			}
+			for (Marker marker : ListMarkersAcessos) {
+				marker.setVisible(false);
+			}
+		}
+		// Caso não estejam desenhadas, desenhar!
 
-        if (Constant.bikeLanesStates[1]) {
-            if (ciclofaixasLineList.isEmpty()) {
+		if (Constant.bikeLanesStates[1]) {
+			if (ciclofaixasLineList.isEmpty()) {
 
-                drawTemporarias(true);
+				drawTemporarias(true);
 
-            } else {
+			} else {
 
-                for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-                    ciclofaixasLineList.get(i).setVisible(true);
-                }
-            }
+				for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+					ciclofaixasLineList.get(i).setVisible(true);
+				}
+			}
 
-        } else {
-            for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-                ciclofaixasLineList.get(i).setVisible(false);
-            }
-        }
+		} else {
+			for (int i = 0; i < ciclofaixasLineList.size(); i++) {
+				ciclofaixasLineList.get(i).setVisible(false);
+			}
+		}
 
 
-        if (Constant.bikeLanesStates[2]) {
-            if (ciclorrotasLineList.isEmpty()) {
+		if (Constant.bikeLanesStates[2]) {
+			if (ciclorrotasLineList.isEmpty()) {
 
-                drawPreferenciais(true);
+				drawPreferenciais(true);
 
-            } else {
-                for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-                    ciclorrotasLineList.get(i).setVisible(true);
-                }
-            }
+			} else {
+				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+					ciclorrotasLineList.get(i).setVisible(true);
+				}
+			}
 
-        } else {
-            for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-                ciclorrotasLineList.get(i).setVisible(false);
-            }
-        }
+		} else {
+			for (int i = 0; i < ciclorrotasLineList.size(); i++) {
+				ciclorrotasLineList.get(i).setVisible(false);
+			}
+		}
 
 	}
 
-    public void selectSharingSystems() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alert = alertBuilder.create();
-        View alertView = getLayoutInflater().inflate(R.layout.ad_selectsharingsystems, null);
-        alert.setView(alertView);
-        alert.setCancelable(false);
-        ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_bs);
-        tbPermanentes.setChecked(Constant.sharingSystemsStates[0]);
-        tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Constant.sharingSystemsStates[0] = isChecked;
-            }
-        });
-        ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_cs);
-        tbLazer.setChecked(Constant.sharingSystemsStates[1]);
-        tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Constant.sharingSystemsStates[1] = isChecked;
-            }
-        });
-        Button btOk = (Button) alertView.findViewById(R.id.bt_sharingsystems_ok);
-        btOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alert.dismiss();
+	public void selectSharingSystems() {
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+		final AlertDialog alert = alertBuilder.create();
+		View alertView = getLayoutInflater().inflate(R.layout.ad_selectsharingsystems, null);
+		alert.setView(alertView);
+		alert.setCancelable(false);
+		ToggleButton tbPermanentes = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_bs);
+		tbPermanentes.setChecked(Constant.sharingSystemsStates[0]);
+		tbPermanentes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Constant.sharingSystemsStates[0] = isChecked;
+			}
+		});
+		ToggleButton tbLazer = (ToggleButton) alertView.findViewById(R.id.tb_sharingsystems_cs);
+		tbLazer.setChecked(Constant.sharingSystemsStates[1]);
+		tbLazer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Constant.sharingSystemsStates[1] = isChecked;
+			}
+		});
+		Button btOk = (Button) alertView.findViewById(R.id.bt_sharingsystems_ok);
+		btOk.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
-                editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
-                editor.apply();
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putBoolean("sharingSystemsStates0", Constant.sharingSystemsStates[0]);
+				editor.putBoolean("sharingSystemsStates1", Constant.sharingSystemsStates[1]);
+				editor.apply();
 
-                if (Constant.states[1]) {
-                    displaySharingSystems();
-                }
-            }
-        });
+				if (Constant.states[1]) {
+					displaySharingSystems();
+				}
+			}
+		});
 
-        alert.show();
-    }
+		alert.show();
+	}
 
-    public void displaySharingSystems() {
+	public void displaySharingSystems() {
 
-        if (Constant.sharingSystemsStates[0]) {
-            if (ListMarkersITAU.isEmpty()) {
+		if (Constant.sharingSystemsStates[0]) {
+			if (ListMarkersITAU.isEmpty()) {
 
-                drawBikeSampa(true);
+				drawBikeSampa(true);
 
-            } else {
+			} else {
 
-                for (int i = 0; i < ListMarkersITAU.size(); i++) {
-                    ListMarkersITAU.get(i).setVisible(true);
-                }
-            }
+				for (int i = 0; i < ListMarkersITAU.size(); i++) {
+					ListMarkersITAU.get(i).setVisible(true);
+				}
+			}
 
-        } else {
-            for (int i = 0; i < ListMarkersITAU.size(); i++) {
-                ListMarkersITAU.get(i).setVisible(false);
-            }
-        }
+		} else {
+			for (int i = 0; i < ListMarkersITAU.size(); i++) {
+				ListMarkersITAU.get(i).setVisible(false);
+			}
+		}
 
-        if (Constant.sharingSystemsStates[1]) {
-            if (ListMarkersBRA.isEmpty()) {
+		if (Constant.sharingSystemsStates[1]) {
+			if (ListMarkersBRA.isEmpty()) {
 
-                drawCicloSampa(true);
+				drawCicloSampa(true);
 
-            } else {
+			} else {
 
-                for (int i = 0; i < ListMarkersBRA.size(); i++) {
-                    ListMarkersBRA.get(i).setVisible(true);
-                }
+				for (int i = 0; i < ListMarkersBRA.size(); i++) {
+					ListMarkersBRA.get(i).setVisible(true);
+				}
 
-            }
-        } else {
-            for (int i = 0; i < ListMarkersBRA.size(); i++) {
-                ListMarkersBRA.get(i).setVisible(false);
-            }
-        }
-    }
+			}
+		} else {
+			for (int i = 0; i < ListMarkersBRA.size(); i++) {
+				ListMarkersBRA.get(i).setVisible(false);
+			}
+		}
+	}
 
     /* END DRAWER FUNCTIONALITY */
     /* LOAD MAP AND BASIC LOCATION FUNCTIONALITY */
@@ -891,7 +958,8 @@ public class MainActivity extends FragmentActivity
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
 		} else {
-			googleMap.setMyLocationEnabled(true);
+			googleMap.setMyLocationEnabled(false);
+			googleMap.setBuildingsEnabled(false);
 
 			// GET LOCATION MANAGER
 			locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
@@ -899,13 +967,18 @@ public class MainActivity extends FragmentActivity
 			Location userLoc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if (userLoc != null) {
 				user_latlng = new LatLng(userLoc.getLatitude(), userLoc.getLongitude());
+				markerNavigation = googleMap.addMarker(new MarkerOptions()
+						.position(user_latlng)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_navigation_off))
+						.anchor(0.5f, 0.5f)
+				);
 			}
 			//Get Best Location Provider
 			bestAvailableProvider = locationManager.getBestProvider(criteria, false);
 			if (bestAvailableProvider != null) {
 				if (locationManager.isProviderEnabled(bestAvailableProvider)) {
 					locationManager.requestLocationUpdates(bestAvailableProvider, 0, 0, this);
-				}  else {
+				} else {
 					Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
 				}
 			} else {
@@ -918,38 +991,28 @@ public class MainActivity extends FragmentActivity
 		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		googleMap.getUiSettings().setCompassEnabled(true);
 
-        setMapEvents();
-        if (!savedInstanceStateHasRun) {
+		setMapEvents();
 
-            Log.e("SIShasRun", "FALSE");
+		setUserLocation();
 
-            setUserLocation();
+		try {
+			createBaseArrays();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
-            try {
-                createBaseArrays();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+		if (isNetworkAvailable()) {
+			getDataFromDB();
+		} else {
+			Utils.showNetworkAlertDialog(this);
+		}
 
-            if (isNetworkAvailable()) {
-                getDataFromDB();
-            } else {
-                showNetworkAlertDialog();
-            }
-
-        } else {
-
-            Log.e("SIShasRun", "TRUE");
-
-            redrawOnMapAfterSavedInstance();
-
-        }
 
 		int parkedHereSize = Integer.valueOf(sharedPreferences.getString(Constant.spParkedHereListSize, "0"));
 		parkedHereMarkerList = new ArrayList<>();
 		for (int i = 0; i < parkedHereSize; i++) {
-			double lat = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLat+i, ""));
-			double lng = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLng+i, ""));
+			double lat = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLat + i, ""));
+			double lng = Double.valueOf(sharedPreferences.getString(Constant.spParkedHereLng + i, ""));
 			if (lat != 0 && lng != 0) {
 				parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
 						.title(getString(R.string.your_bike_is_here))
@@ -996,22 +1059,59 @@ public class MainActivity extends FragmentActivity
 			double lng = user_latlng.longitude;
 
 			if (lat > -23.778678 && lat < -23.400375 && lng > -46.773075 && lng < -46.355934) {
-				cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
+				cameraUpdate = newLatLngZoom(user_latlng, 16);
 			} else {
-				cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng_sp, 12);
+				cameraUpdate = newLatLngZoom(latLng_sp, 12);
 			}
 		} else {
-			cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng_sp, 12);
+			cameraUpdate = newLatLngZoom(latLng_sp, 12);
 		}
 		googleMap.moveCamera(cameraUpdate);
 
 	}
 
-	public void findMe(View view) {
+	public void setNavigationOn(boolean bool) {
+		if (bool) {
+
+			markerNavigation.setRotation(0);
+			// Orient map accordingly to sensor (updates in onSensorChanged) and turnNavigationOn at the end of animation
+			if (user_latlng != null) {
+				CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(user_latlng, 18, 50, azimuth));
+				googleMap.animateCamera(cameraUpdate, new GoogleMap.CancelableCallback() {
+					@Override
+					public void onFinish() {
+						navigationIsOn = true;
+						markerNavigation.setRotation(0);
+					}
+
+					@Override
+					public void onCancel() {}
+				});
+			} else {
+				navigationIsOn = true;
+			}
+
+			// Start listening to orientation changes (happening in turnOnRouteMode
+
+			// setMyLocationEnabled(false) when routeMode is on and replace myLocationDot for navigation mapicon
+		} else {
+			navigationIsOn = false;
+
+			// Conform map orientation.
+			goToMyLocation(null);
+
+			// Stop listening to orientation changes.
+
+			// setNavigationOn(false) on map move camera
+		}
+		// Start and stop listening to sensor on onResume and onPause, checking always whether navigationIsOn is true
+	}
+
+	public void goToMyLocation(View view) {
 
 		if (user_latlng != null) {
 
-			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
+			CameraUpdate cameraUpdate = newCameraPosition(new CameraPosition(user_latlng, 16, 0, 0));
 			googleMap.animateCamera(cameraUpdate);
 
 		} else {
@@ -1034,16 +1134,21 @@ public class MainActivity extends FragmentActivity
 						public void onLocationChanged(Location location) {
 
 							user_latlng = new LatLng(location.getLatitude(), location.getLongitude());
-							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
+							CameraUpdate cameraUpdate = newLatLngZoom(user_latlng, 16);
 							googleMap.animateCamera(cameraUpdate);
 						}
 
 						@Override
-						public void onStatusChanged(String provider, int status, Bundle extras) {}
+						public void onStatusChanged(String provider, int status, Bundle extras) {
+						}
+
 						@Override
-						public void onProviderEnabled(String provider) {}
+						public void onProviderEnabled(String provider) {
+						}
+
 						@Override
-						public void onProviderDisabled(String provider) {}
+						public void onProviderDisabled(String provider) {
+						}
 					}, null);
 
 				} else {
@@ -1055,22 +1160,27 @@ public class MainActivity extends FragmentActivity
 
 	public void setMapEvents() {
 
+		googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
+			@Override
+			public void onCameraMoveStarted(int i) {
+				if (i == REASON_GESTURE) {
+					navigationIsOn = false;
+					tbSwitchNavigation.setChecked(false);
+				}
+			}
+		});
+
 		googleMap.setOnMapClickListener(new OnMapClickListener() {
 
 			public void onMapClick(LatLng point) {
 
-                hideAllBottomButtons();
+				hideAllBottomButtons();
 
 				for (Marker marker : listMarker) {
 					marker.remove();
 				}
 				listMarker.clear();
 
-				// Remove graph_point_marker
-
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
 				// Remove markerSearch from old search
 				if (markerSearch != null) {
 					markerSearch.remove();
@@ -1094,13 +1204,27 @@ public class MainActivity extends FragmentActivity
 
 				CheckClick checking = new CheckClick();
 
-				if (!cicloviasLineList.isEmpty()) {
+				boolean foundClick = false;
+
+				if (!cyclingPathList.isEmpty()) {
+					for (int i = 0; i < cyclingPathList.size(); i++) {
+						ArrayList<LatLng> list = cyclingPathList.get(i).pathLatLng;
+						LatLng closestPoint = checking.checkClick(point, list, maxDistance);
+						if (closestPoint != null) {
+							foundClick = true;
+							selectCyclingPath(cyclingPathList.get(i), true);
+						}
+					}
+				}
+
+				if (!cicloviasLineList.isEmpty() && !foundClick) {
 					if (cicloviasLineList.get(0).isVisible()) {
 
 						for (int i = 0; i < cicloviasLineList.size(); i++) {
 							List<LatLng> list = cicloviasLineList.get(i).getPoints();
 							LatLng closestPoint = checking.checkClick(point, list, maxDistance);
 							if (closestPoint != null) {
+								foundClick = true;
 								listMarker.add(googleMap.addMarker(new MarkerOptions()
 										.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
 										.title(ListCiclovias.get(i).Nome)
@@ -1118,7 +1242,7 @@ public class MainActivity extends FragmentActivity
 					}
 				}
 
-				if (!ciclofaixasLineList.isEmpty()) {
+				if (!ciclofaixasLineList.isEmpty() && !foundClick) {
 					if (ciclofaixasLineList.get(0).isVisible()) {
 
 						for (int i = 0; i < ciclofaixasLineList.size(); i++) {
@@ -1150,21 +1274,6 @@ public class MainActivity extends FragmentActivity
 					}
 				}
 
-				if (!polylineRoutesList.isEmpty()) {
-					for (int i = 0; i < polylineRoutesList.size(); i++) {
-						List<LatLng> list = polylineRoutesList.get(i).getPoints();
-						LatLng closestPoint = checking.checkClick(point, list, maxDistance);
-						if (closestPoint != null) {
-							for (Polyline p : polylineRoutesList) {
-								p.setColor(getApplicationContext().getResources().getColor(R.color.not_selected_route_blue));
-							}
-							polylineRoutesList.get(i).setColor(getApplicationContext().getResources().getColor(R.color.selected_route_blue));
-							viewPager.setCurrentItem(i);
-						}
-					}
-				}
-
-
 			}
 		});
 
@@ -1187,61 +1296,62 @@ public class MainActivity extends FragmentActivity
 					markerSearch = null;
 				}
 
-				// Remove graph_point_marker
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
+				if (ListMarkersAlerts.contains(marker)) {
+					showBottomButton(notifyButton);
+				} else {
+					hideBottomButton(notifyButton);
 				}
 
-                if (ListMarkersAlerts.contains(marker)) {
-                    showBottomButton(notifyButton);
-                } else {
-                    hideBottomButton(notifyButton);
-                }
-
 				if (ListMarkersBicicletarios.contains(marker)) {
-                    showBottomButton(btParkedHere);
+					showBottomButton(btParkedHere);
 				} else {
-                    hideBottomButton(btParkedHere);
-                    //hideBottomButton(llPlaceOptions);
-                }
+					hideBottomButton(btParkedHere);
+					//hideBottomButton(llPlaceOptions);
+				}
 
-                if (marker.getTitle().equals(getString(R.string.your_bike_is_here))
-					//|| marker.getTitle().equals(getString(R.string.saved_place))
-						) {
-                    showBottomButton(btRemovePlace);
-                } else {
-                    hideBottomButton(btRemovePlace);
-                    //hideBottomButton(llPlaceOptions);
-                }
+				if (marker.getTitle() != null) {
+					if (marker.getTitle().equals(getString(R.string.your_bike_is_here))
+						//|| marker.getTitle().equals(getString(R.string.saved_place))
+							) {
+						showBottomButton(btRemovePlace);
+					} else {
+						hideBottomButton(btRemovePlace);
+						//hideBottomButton(llPlaceOptions);
+					}
+				}
 
 				// Funcionalidades padrões para quando se clica em qualquer marcador
 				marker.showInfoWindow();
 				googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()), 200, null);
 				return true;
 			}
-
 		});
 
 		googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 			@Override
 			public void onMapLongClick(LatLng latLng) {
 
-                hideAllBottomButtons();
+				if (activeMarker != null) activeMarker.hideInfoWindow();
 
-				// Remove graph_point_marker
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
+				// Remove markerSearch, if there's one, and add again.
+				if (markerSearch != null) {
+					markerSearch.remove();
+					markerSearch = null;
 				}
+
+				activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
+						.position(latLng)
+						.title(getString(R.string.marcador_inserido)));
+
+				final ArrayList<ObjectAnimator> hideAnimationsList = hideAllBottomButtons();
 
 				// Geocode LatLng to Address
 				final LatLng ll = latLng;
 
 				new AsyncTask<String, Void, String>() {
 					protected void onPreExecute() {
-						btLupa.setVisibility(View.GONE);
+						btClearSearch.setVisibility(View.GONE);
 						pBarSearch.setVisibility(View.VISIBLE);
-						btRoute.setVisibility(View.GONE);
-						pBarRoute.setVisibility(View.VISIBLE);
 						if (isRouteModeOn) {
 							setUpdating();
 						}
@@ -1270,94 +1380,23 @@ public class MainActivity extends FragmentActivity
 					protected void onPostExecute(String sAddress) {
 
 						pBarSearch.setVisibility(View.GONE);
-						btLupa.setVisibility(View.VISIBLE);
-						pBarRoute.setVisibility(View.GONE);
-						btRoute.setVisibility(View.VISIBLE);
+						resetUpdating();
 
-						if (isRouteModeOn) {
+						btClearSearch.setVisibility(View.VISIBLE);
 
-							resetUpdating();
-
-							View v = getCurrentFocus();
-							if (v != null && v.getId() == R.id.et_origin) {
-
-								// Remove markerOrigin, if there's one, and add again.
-								if (markerOrigin != null) {
-									markerOrigin.remove();
-								}
-
-								etOrigin.setVisibility(View.GONE);
-								tvOrigin.setVisibility(View.VISIBLE);
-
-								// If sAddress is an empty string, replace with "Marcador inserido"
-								if (sAddress.equals("")) {
-									tvOrigin.setText(getString(R.string.marcador_inserido));
-								} else {
-									tvOrigin.setText(sAddress);
-								}
-
-								markerOrigin = googleMap.addMarker(new MarkerOptions()
-										.position(ll)
-										.title(getString(R.string.partida)));
-
-								if (tvDestination.getVisibility() == View.VISIBLE) {
-									getRoutes();
-								}
-
-							} else {
-
-								if (etDestination.getVisibility() == View.VISIBLE) {
-									etDestination.setVisibility(View.GONE);
-									tvDestination.setVisibility(View.VISIBLE);
-								}
-
-								// If sAddress is an empty string, replace with "Marcador inserido"
-								if (sAddress.equals("")) {
-									tvDestination.setText(getString(R.string.marcador_inserido));
-								} else {
-									tvDestination.setText(sAddress);
-								}
-
-								// Remove markerDestination, if there's one, and add again.
-								if (markerDestination != null) {
-									markerDestination.remove();
-								}
-                                markerDestination = googleMap.addMarker(new MarkerOptions()
-										.position(ll)
-										.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-										.anchor(0.0f, 1.0f)
-										.title(getString(R.string.chegada)));
-
-								if (tvOrigin.getVisibility() == View.VISIBLE) {
-									getRoutes();
-								}
-
-							}
+						if (sAddress.equals("")) {
+							etSearch.setText(getString(R.string.marcador_inserido));
 
 						} else {
-
-							btClearSearch.setVisibility(View.VISIBLE);
-
-							// Remove markerSearch, if there's one, and add again.
+							etSearch.setText(sAddress);
 							if (markerSearch != null) {
-								markerSearch.remove();
-								markerSearch = null;
+								markerSearch.setTitle(sAddress);
 							}
-
-							if (sAddress.equals("")) {
-								etSearch.setText(getString(R.string.marcador_inserido));
-								activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
-										.position(ll)
-										.title(getString(R.string.marcador_inserido)));
-							} else {
-								etSearch.setText(sAddress);
-								activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
-										.position(ll)
-										.title(sAddress));
-							}
-
-                            showBottomButton(btParkedHere);
+							activeMarker = markerSearch;
 						}
+
+						hideAnimationsList.get(1).cancel();
+						showBottomButton(btParkedHere);
 					}
 				}.execute();
 			}
@@ -1367,7 +1406,7 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onInfoWindowClick(Marker marker) {
 				marker.hideInfoWindow();
-                hideAllBottomButtons();
+				hideAllBottomButtons();
 			}
 		});
 	}
@@ -1384,192 +1423,58 @@ public class MainActivity extends FragmentActivity
 		// Get the string from the EditText
 		final String s_address = etSearch.getText().toString();
 
-		new AsyncTask<String, String, String>() {
+		if (!isNetworkAvailable()) {
+			Utils.showNetworkAlertDialog(this);
+		} else {
 
-			@Override
-			protected void onPreExecute() {
-
-				// Limpar marcadores antigos de outras buscas, antes de criar um novo.
-				if (markerSearch != null) {
-					markerSearch.remove();
-					markerSearch = null;
-				}
-
-				btLupa.setVisibility(View.GONE);
-				pBarSearch.setVisibility(View.VISIBLE);
-
-				if (!isNetworkAvailable()) {
-					cancel(true);
-				}
+			// Limpar marcadores antigos de outras buscas, antes de criar um novo.
+			if (markerSearch != null) {
+				markerSearch.remove();
+				markerSearch = null;
 			}
 
-			@Override
-			protected String doInBackground(String... params) {
+			btClearSearch.setVisibility(View.GONE);
+			pBarSearch.setVisibility(View.VISIBLE);
 
-				//Checar primeiro se algo foi digitado.
-				if (!s_address.trim().equals("")) {
-					try {
-						addressListBase = geocoder.getFromLocationName(s_address, 20, Constant.llLat, Constant.llLng, Constant.urLat, Constant.urLng);
-					} catch (IOException e) {
-						e.printStackTrace();
+			Calls.getAddressFromString(this, s_address, new GeocoderCallHandler() {
+				@Override
+				public void onSuccess(Address address) {
+					super.onSuccess(address);
+
+					LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+					CameraUpdate cu = newLatLngZoom(latLng, 15f);
+					googleMap.animateCamera(cu);
+					activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
+							.position(latLng)
+							.title(address.getAddressLine(0)));
+
+					// Set the text on etSearch to be the complete address
+					String finalStringAddress = address.getAddressLine(0);
+					for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
+						finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
 					}
-				} else {
-					cancel(true);
+					etSearch.setText(finalStringAddress);
+					btClearSearch.setVisibility(View.VISIBLE);
+					pBarSearch.setVisibility(View.GONE);
+					showBottomButton(btParkedHere);
 				}
 
-				return null;
-			}
+				@Override
+				public void onFailure(String reason) {
+					super.onFailure(reason);
 
-			@Override
-			protected void onPostExecute(String result) {
-
-				pBarSearch.setVisibility(View.GONE);
-				btLupa.setVisibility(View.VISIBLE);
-
-				final ArrayList<Address> addressList = new ArrayList<>();
-
-				int u = 0;
-
-				for (int i = 0; i < addressListBase.size(); i++) {
-
-					Address ad = addressListBase.get(i);
-
-					// Place locations in São Paulo on top of list
-					if (i != 0 && ad.getLocality() != null) {
-						if (ad.getLocality().equalsIgnoreCase("São Paulo")) {
-							addressList.add(addressList.get(u));
-							addressList.set(u, ad);
-							u++;
-						}
-					} else if (i != 0 && ad.getSubAdminArea() != null) {
-						if (ad.getSubAdminArea().equalsIgnoreCase("São Paulo")) {
-							addressList.add(addressList.get(u));
-							addressList.set(u, ad);
-							u++;
-						}
-					} else {
-						addressList.add(ad);
-					}
+					pBarSearch.setVisibility(View.GONE);
 				}
 
-				String[] s_addressList = null;
-				ArrayList<String> array_address = new ArrayList<>();
+				@Override
+				public void onDismissedAlertView() {
+					super.onDismissedAlertView();
 
-				// Checar se o endere�o n�o por acaso foi encontrado. Caso negativo, ent�o lan�ar o AlertDialog no "else".
-				if (!addressList.isEmpty()) {
-
-					// Create String[] with addresses, limiting to 5 addresses.
-					for (int i = 0; i < addressList.size() && i < 5; i++) {
-
-						// Check number of AddressLine before using the second
-						if (addressList.get(i).getMaxAddressLineIndex() > 0) {
-							array_address.add(addressList.get(i).getAddressLine(0) + ", "
-									+ addressList.get(i).getAddressLine(1));
-						} else {
-							array_address.add(addressList.get(i).getAddressLine(0));
-						}
-
-						s_addressList = new String[array_address.size()];
-						s_addressList = array_address.toArray(s_addressList);
-					}
-
-					if (addressList.size() == 1) {
-						Address address = addressList.get(0);
-						if (address.hasLatitude() && address.hasLongitude()) {
-							double lat = address.getLatitude();
-							double lng = address.getLongitude();
-							LatLng coordinate = new LatLng(lat, lng);
-
-							CameraUpdate center = CameraUpdateFactory.newLatLng(coordinate);
-							CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
-							googleMap.moveCamera(center);
-							googleMap.animateCamera(zoom);
-                            activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
-									.position(new LatLng(lat, lng))
-									.title(address.getAddressLine(0)));
-
-							// Display btRouteMode
-							//showRouteButton.start();
-
-							// Set the text on etSearch to be the complete address
-							String finalStringAddress = address.getAddressLine(0);
-							for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
-								finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
-							}
-							etSearch.setText(finalStringAddress);
-							btClearSearch.setVisibility(View.VISIBLE);
-                            showBottomButton(btParkedHere);
-						}
-
-					} else {
-						AlertDialog.Builder alert_enderecos = new AlertDialog.Builder(MainActivity.this);
-						alert_enderecos.setTitle(getString(R.string.which_address))
-								.setItems(s_addressList, new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) {
-										Address address = addressList.get(which);
-										if (address.hasLatitude() && address.hasLongitude()) {
-											double lat = address.getLatitude();
-											double lng = address.getLongitude();
-											LatLng coordinate = new LatLng(lat, lng);
-
-											CameraUpdate center = CameraUpdateFactory.newLatLng(coordinate);
-											CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
-											googleMap.moveCamera(center);
-											googleMap.animateCamera(zoom);
-                                            activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
-													.position(new LatLng(lat, lng))
-													.title(address.getAddressLine(0)));
-
-											// Set the text on etSearch to be the complete address
-											String finalStringAddress = address.getAddressLine(0);
-											for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
-												finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
-											}
-											etSearch.setText(finalStringAddress);
-											btClearSearch.setVisibility(View.VISIBLE);
-                                            showBottomButton(btParkedHere);
-										}
-									}
-								});
-						alert_enderecos.show();
-					}
-				} else {
-					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-					alert.setTitle(getString(R.string.end_nao_encontrado_titulo))
-							.setMessage(getString(R.string.end_nao_encontrado_mensagem))
-							.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							});
-					// Create the AlertDialog object and return it
-					alert.show();
+					pBarSearch.setVisibility(View.GONE);
 				}
-			}
-
-			protected void onCancelled() {
-
-				pBarSearch.setVisibility(View.GONE);
-				btLupa.setVisibility(View.VISIBLE);
-
-				showNetworkAlertDialog();
-			}
-		}.execute();
-	}
-
-	public void showNetworkAlertDialog () {
-		AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-		network_alert.setTitle(getString(R.string.network_alert_title))
-				.setMessage(getString(R.string.network_alert_dialog))
-				.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-					}
-				})
-				.setNegativeButton(getString(R.string.network_settings), new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-					}
-				});
-		network_alert.show();
+			});
+		}
 	}
 
 	public void clearSearch(View view) {
@@ -1579,25 +1484,26 @@ public class MainActivity extends FragmentActivity
 			markerSearch = null;
 		}
 		btClearSearch.setVisibility(View.GONE);
+		hideAllBottomButtons();
 
 	}
 
     /* END LOAD MAP AND BASIC LOCATION FUNCIONALITY */
 	/* ADD SOMETHING */
 
-	public void addFunction (View view) {
+	public void addFunction(View view) {
 
-        Intent i = new Intent(MainActivity.this, ReportActivity.class);
-        if (user_latlng != null) {
-            i.putExtra("latitude", user_latlng.latitude);
-            i.putExtra("longitude", user_latlng.longitude);
-        }
-        startActivity(i);
+		Intent i = new Intent(MainActivity.this, ReportActivity.class);
+		if (user_latlng != null) {
+			i.putExtra("latitude", user_latlng.latitude);
+			i.putExtra("longitude", user_latlng.longitude);
+		}
+		startActivity(i);
 	}
 
     /* REPORT MANAGING */
 
-	public void notifySolved (View view) {
+	public void notifySolved(View view) {
 
 		boolean b = false;
 
@@ -1605,7 +1511,9 @@ public class MainActivity extends FragmentActivity
 			for (int i = 0; i < ListMarkersAlerts.size(); i++) {
 
 				if (ListMarkersAlerts.get(i).isInfoWindowShown()) {
-					String timestamp = alertMap.get(ListMarkersAlerts.get(i).getId());
+					String snippet = ListMarkersAlerts.get(i).getSnippet();
+					String timestamp = snippet.substring(snippet.length()-19, snippet.length());
+					Log.e("timestamp", timestamp);
 
 					NotifySolvedReport notifyObj = new NotifySolvedReport();
 					try {
@@ -1630,68 +1538,59 @@ public class MainActivity extends FragmentActivity
 			}
 		} else {
 
-			AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-			network_alert.setTitle(getString(R.string.network_alert_title))
-					.setMessage(getString(R.string.network_alert_dialog))
-					.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-						}
-					})
-					.setNegativeButton(getString(R.string.network_settings), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-						}
-					});
-			network_alert.show();
+			Utils.showNetworkAlertDialog(this);
 		}
 
 	}
 
-	public void setParkedHere (View view) {
+	public void setParkedHere(View view) {
 
-        String deviceID = sharedPreferences.getString(Constant.deviceID, "");
-        if (activeMarker != null) {
-            parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
-                    .position(activeMarker.getPosition())
-                    .title(getString(R.string.your_bike_is_here))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
-                    .anchor(0.5f, 1f)));
-            Calls.sendParkedHere(deviceID, String.valueOf(activeMarker.getPosition().latitude), String.valueOf(activeMarker.getPosition().longitude), null);
+		String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+		if (activeMarker != null) {
+			parkedHereMarkerList.add(googleMap.addMarker(new MarkerOptions()
+					.position(activeMarker.getPosition())
+					.title(getString(R.string.your_bike_is_here))
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parked_here))
+					.zIndex(110)
+					.anchor(0.5f, 1f)));
+			Calls.sendParkedHere(deviceID, String.valueOf(activeMarker.getPosition().latitude), String.valueOf(activeMarker.getPosition().longitude), null);
 
-            hideBottomButton(view);
+			hideBottomButton(view);
 
-        }
+		}
 
-        int lastIndex = parkedHereMarkerList.size() - 1;
+		int lastIndex = parkedHereMarkerList.size() - 1;
 
-        sharedPreferences.edit().putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()))
-                .putString(Constant.spParkedHereLat + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().latitude))
-                .putString(Constant.spParkedHereLng + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().longitude))
-                .apply();
+		sharedPreferences.edit().putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()))
+				.putString(Constant.spParkedHereLat + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().latitude))
+				.putString(Constant.spParkedHereLng + lastIndex, String.valueOf(parkedHereMarkerList.get(lastIndex).getPosition().longitude))
+				.apply();
 
-    }
+	}
 
-    public void removePlace(View view) {
+	public void removePlace(View view) {
 		hideBottomButton(btRemovePlace);
-        if (activeMarker != null) { activeMarker.remove();}
-        // Remove marker from list
-        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
-            if (parkedHereMarkerList.get(i).getId().equals(activeMarker.getId())) {
-                parkedHereMarkerList.remove(i);
+		if (activeMarker != null) {
+			activeMarker.remove();
+		}
+		// Remove marker from list
+		for (int i = 0; i < parkedHereMarkerList.size(); i++) {
+			if (parkedHereMarkerList.get(i).getId().equals(activeMarker.getId())) {
+				parkedHereMarkerList.remove(i);
 				parkedHereMarkerList.trimToSize();
-            }
-        }
+			}
+		}
 
-        // Update all spParkedHere info on SharedPreferences
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()));
-        for (int i = 0 ; i < parkedHereMarkerList.size() ; i++) {
-            editor.putString(Constant.spParkedHereLat + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().latitude))
-                    .putString(Constant.spParkedHereLng + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().longitude));
-        }
-        editor.apply();
+		// Update all spParkedHere info on SharedPreferences
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putString(Constant.spParkedHereListSize, String.valueOf(parkedHereMarkerList.size()));
+		for (int i = 0; i < parkedHereMarkerList.size(); i++) {
+			editor.putString(Constant.spParkedHereLat + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().latitude))
+					.putString(Constant.spParkedHereLng + i, String.valueOf(parkedHereMarkerList.get(i).getPosition().longitude));
+		}
+		editor.apply();
 
-    }
+	}
 
     /* END REPORT MANAGING */
     /* SETTING UP INFO FROM DB */
@@ -1700,79 +1599,75 @@ public class MainActivity extends FragmentActivity
 
 		setUpdating();
 
-		Calls.jsonRequest(Constant.url_obter_dados, getDataHandler);
-		Calls.jsonRequest(Constant.url_obter_bikesampa, getBikeSampaHandler);
-		Calls.jsonRequest(Constant.url_obter_ciclosampa, getCicloSampaHandler);
+		Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
+			@Override
+			public void onSuccess(int responseCode, String response) {
+				Log.e("getDataHandler", responseCode + ": " + response);
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobGeral, response);
+				editor.apply();
+
+				try {
+					createBaseArrays();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
+			@Override
+			public void onSuccess(int code, String response) {
+				Log.e("getBikeSampasHandler", code + ": " + response);
+
+				Calendar now = Calendar.getInstance();
+				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+				String minutes = String.valueOf(now.get(Calendar.MINUTE));
+				if (minutes.length() == 1) {
+					minutes = "0" + minutes;
+				}
+				String updateTimeBS = hours + ":" + minutes;
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobBS, response);
+				editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
+				editor.apply();
+
+				try {
+					createBikeSampaArray();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
+			@Override
+			public void onSuccess(int code, String response) {
+				Log.e("getCicloSampaHandler", code + ": " + response);
+
+				Calendar now = Calendar.getInstance();
+				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+				String minutes = String.valueOf(now.get(Calendar.MINUTE));
+				if (minutes.length() == 1) {
+					minutes = "0" + minutes;
+				}
+				String updateTimeCS = hours + ":" + minutes;
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobCS, response);
+				editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
+				editor.apply();
+
+				try {
+					createCicloSampaArray();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
-
-	CallHandler getDataHandler = new CallHandler() {
-		@Override
-		public void onSuccess(int code, String response) {
-			Log.e("getDataHandler", code +": "+response);
-
-			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString(Constant.spJobGeral, response);
-			editor.apply();
-
-			try {
-				createBaseArrays();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-	};
-
-	CallHandler getBikeSampaHandler = new CallHandler() {
-		@Override
-		public void onSuccess(int code, String response) {
-			Log.e("getBikeSampasHandler", code +": "+response);
-
-			Calendar now = Calendar.getInstance();
-			String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-			String minutes = String.valueOf(now.get(Calendar.MINUTE));
-			if (minutes.length() == 1) {
-				minutes = "0" + minutes;
-			}
-			String updateTimeBS = hours + ":" + minutes;
-
-			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString(Constant.spJobBS, response);
-			editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
-			editor.apply();
-
-			try {
-				createBikeSampaArray();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-	};
-
-	CallHandler getCicloSampaHandler = new CallHandler() {
-		@Override
-		public void onSuccess(int code, String response) {
-			Log.e("getCicloSampaHandler", code +": "+response);
-
-			Calendar now = Calendar.getInstance();
-			String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-			String minutes = String.valueOf(now.get(Calendar.MINUTE));
-			if (minutes.length() == 1) {
-				minutes = "0" + minutes;
-			}
-			String updateTimeCS = hours + ":" + minutes;
-
-			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString(Constant.spJobCS, response);
-			editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
-			editor.apply();
-
-			try {
-				createCicloSampaArray();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-	};
 
 	public void createBaseArrays() throws JSONException {
 
@@ -2041,38 +1936,38 @@ public class MainActivity extends FragmentActivity
 				e.printStackTrace();
 			}
 
-            try {
+			try {
 
-                JSONArray AccessJSArray = job.getJSONArray("ACESSOS");
+				JSONArray AccessJSArray = job.getJSONArray("ACESSOS");
 
-                //Clear list before adding updated items
-                ListAcesso.clear();
+				//Clear list before adding updated items
+				ListAcesso.clear();
 
-                // looping por todos os Estacionamentos
-                for (int i = 0; i < AccessJSArray.length(); i++) {
-                    JSONObject c = AccessJSArray.getJSONObject(i);
+				// looping por todos os Estacionamentos
+				for (int i = 0; i < AccessJSArray.length(); i++) {
+					JSONObject c = AccessJSArray.getJSONObject(i);
 
-                    // Storing each json item in variable
-                    String nome = c.getString("name");
-                    String lat = c.getString("lat");
-                    String lng = c.getString("lng");
-                    String details = c.getString("details");
+					// Storing each json item in variable
+					String nome = c.getString("name");
+					String lat = c.getString("lat");
+					String lng = c.getString("lng");
+					String details = c.getString("details");
 
-                    double latitude = Double.parseDouble(lat);
-                    double longitude = Double.parseDouble(lng);
+					double latitude = Double.parseDouble(lat);
+					double longitude = Double.parseDouble(lng);
 
-                    MarkerOptions item_acesso = new MarkerOptions()
-                            .title(getResources().getString(R.string.acesso_ciclovia_marginal) + newline + nome)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-                            .snippet(details)
-                            .anchor(0.5f, 0.5f)
-                            .position(new LatLng(latitude, longitude));
+					MarkerOptions item_acesso = new MarkerOptions()
+							.title(getResources().getString(R.string.acesso_ciclovia_marginal) + newline + nome)
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
+							.snippet(details)
+							.anchor(0.5f, 0.5f)
+							.position(new LatLng(latitude, longitude));
 
-                    ListAcesso.add(item_acesso);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+					ListAcesso.add(item_acesso);
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 
 
 			myAdapter.notifyDataSetChanged();
@@ -2083,15 +1978,15 @@ public class MainActivity extends FragmentActivity
 
 			drawPreferenciais((Constant.states[0] && Constant.bikeLanesStates[2]));
 
-            drawBicicletarios(Constant.states[2]);
+			if (Constant.states[2]) drawBicicletarios(true);
 
-			drawParques(Constant.states[3]);
+			if (Constant.states[3]) drawParques(true);
 
-			drawWifi(Constant.states[4]);
+			if (Constant.states[4]) drawWifi(true);
 
-			drawAlerts(Constant.states[5]);
+			if (Constant.states[5]) drawAlerts(true);
 
-            resetUpdating();
+			resetUpdating();
 		}
 
 	}
@@ -2370,7 +2265,7 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	public void drawBicicletarios(Boolean visibility) {
+	public void drawBicicletarios(final Boolean visibility) {
 
 		if (ListMarkersBicicletarios != null) {
 			for (Marker marker : ListMarkersBicicletarios) marker.remove();
@@ -2379,32 +2274,33 @@ public class MainActivity extends FragmentActivity
 		for (int i = 0; i < ListBicicletarios.size(); i++) {
 			LatLng ll = ListBicicletarios.get(i).getLatLng();
 
-			Marker marker = googleMap.addMarker(new MarkerOptions()
+			MarkerOptions markerOpt = new MarkerOptions()
 					.position(ll)
 					.title(ListBicicletarios.get(i).Nome)
-					.visible(visibility));
+					.visible(visibility);
 
 			if (ListBicicletarios.get(i).Tipo.equals("b")) {
 
-                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_b));
-				marker.setAnchor(0.5f, 1.0f);
+				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_b));
+				markerOpt.anchor(0.5f, 1.0f);
 				if (ListBicicletarios.get(i).hasEmprestimo()) {
-					marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
+					markerOpt.snippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
 							+ newline + newline + getString(R.string.possui_emprestimo_bicicleta)
 							+ newline + newline + getString(R.string.funcionamento) + " " + ListBicicletarios.get(i).Horario);
 				} else {
-					marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
+					markerOpt.snippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
 							+ newline + newline + getString(R.string.possui_emprestimo_bicicleta_nao)
 							+ newline + newline + getString(R.string.funcionamento) + " " + ListBicicletarios.get(i).Horario);
 				}
 			} else {
 
-				marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
-				marker.setAnchor(0.5f, 1.0f);
-				marker.setSnippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
-                        + newline + getString(R.string.endereco_aproximado)+": " + ListBicicletarios.get(i).address);
+				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
+				markerOpt.anchor(0.5f, 0.5f);
+				markerOpt.snippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
+						+ newline + getString(R.string.endereco_aproximado) + ": " + ListBicicletarios.get(i).address);
 			}
-			ListMarkersBicicletarios.add(marker);
+
+			ListMarkersBicicletarios.add(googleMap.addMarker(markerOpt));
 		}
 	}
 
@@ -2428,47 +2324,34 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	public void drawAlerts(Boolean visibility) {
+	public void drawAlerts(final Boolean visibility) {
 
 		if (ListMarkersAlerts != null) {
 			for (Marker marker : ListMarkersAlerts) marker.remove();
 		}
 
-		if (ListMarkersAlertsIds != null) {
-			ListMarkersAlertsIds.clear();
-		}
-
-		if (alertMap != null) {
-			alertMap.clear();
-		}
-
 		hideBottomButton(notifyButton);
 
 		for (int i = 0; i < ListAlerts.size(); i++) {
-			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper. 
-			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
 
-			MarkerOptions mOptions = new MarkerOptions()
+			MarkerOptions markerOpt = new MarkerOptions()
 					.snippet(ListAlerts.get(i).Endereco + newline + getString(R.string.details) + " " + ListAlerts.get(i).Descricao + newline + getString(R.string.alerta_em) + " " + ListAlerts.get(i).timestamp)
 					.position(new LatLng(ListAlerts.get(i).Lat, ListAlerts.get(i).Lng))
 					.visible(visibility)
 					.anchor(0.5f, 1.0f);
 
 			if (ListAlerts.get(i).Tipo.equals("bu")) {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_pothole));
-				mOptions.title(getString(R.string.via_esburacada));
+				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_pothole));
+				markerOpt.title(getString(R.string.via_esburacada));
 			} else if (ListAlerts.get(i).Tipo.equals("si")) {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_signalling));
-				mOptions.title(getString(R.string.problema_sinalizacao));
+				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_signalling));
+				markerOpt.title(getString(R.string.problema_sinalizacao));
 			} else {
-				mOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert));
-				mOptions.title(getString(R.string.alerta));
+				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert));
+				markerOpt.title(getString(R.string.alerta));
 			}
 
-			Marker marker = googleMap.addMarker(mOptions);
-			alertMap.put(marker.getId(), ListAlerts.get(i).timestamp);
-			ListMarkersAlerts.add(marker);
-			ListMarkersAlertsIds.add(marker.getId());
+			ListMarkersAlerts.add(googleMap.addMarker(markerOpt));
 		}
 	}
 
@@ -2476,7 +2359,7 @@ public class MainActivity extends FragmentActivity
 
 		if (!ListCiclovias.isEmpty()) {
 
-            drawAcessos(visibility);
+			drawAcessos(visibility);
 
 			if (!cicloviasLineList.isEmpty()) {
 				for (Polyline polyline : cicloviasLineList) polyline.remove();
@@ -2500,7 +2383,7 @@ public class MainActivity extends FragmentActivity
 
 				//cicloviasOptionsList.add(polylineOpt);
 				//cicloviasLineList.add(googleMap.addPolyline(cicloviasOptionsList.get(i).visible(visibility).zIndex(10).width(5.0f)));
-				cicloviasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(10).width(3.0f)));
+				cicloviasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(10).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
 			}
 		}
 	}
@@ -2523,7 +2406,7 @@ public class MainActivity extends FragmentActivity
 				}
 				polylineOpt.color(this.getResources().getColor(R.color.ciclofaixaLazer));
 
-				ciclofaixasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(5).width(3.0f)));
+				ciclofaixasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(5).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
 
 				//ciclofaixasOptionsList.add(polylineOpt);
 				//ciclofaixasLineList.add(googleMap.addPolyline(ciclofaixasOptionsList.get(i).visible(visibility).zIndex(5).width(5.0f)));
@@ -2541,23 +2424,23 @@ public class MainActivity extends FragmentActivity
 
 			for (int i = 0; i < ciclorrotasOptionsList.size(); i++) {
 				ciclorrotasOptionsList.get(i).color(this.getResources().getColor(R.color.ciclorrota));
-				ciclorrotasLineList.add(googleMap.addPolyline(ciclorrotasOptionsList.get(i).visible(visibility).zIndex(1).width(3.0f)));
+				ciclorrotasLineList.add(googleMap.addPolyline(ciclorrotasOptionsList.get(i).visible(visibility).zIndex(1).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
 			}
 		}
 	}
 
-    public void drawAcessos(Boolean visibility) {
+	public void drawAcessos(Boolean visibility) {
 
-        if (ListMarkersAcessos != null) {
-            for (Marker marker : ListMarkersAcessos) marker.remove();
-        }
+		if (ListMarkersAcessos != null) {
+			for (Marker marker : ListMarkersAcessos) marker.remove();
+		}
 
-        for (int i = 0; i < ListAcesso.size(); i++) {
-            // Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper.
-            // Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
-            ListMarkersAcessos.add(googleMap.addMarker(ListAcesso.get(i).visible(visibility)));
-        }
-    }
+		for (int i = 0; i < ListAcesso.size(); i++) {
+			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper.
+			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
+			ListMarkersAcessos.add(googleMap.addMarker(ListAcesso.get(i).visible(visibility)));
+		}
+	}
 
 	public void refreshData(final MenuItem item) {
 
@@ -2602,7 +2485,7 @@ public class MainActivity extends FragmentActivity
 						})
 						.show();
 				betaRouteWarningWasShown = true;
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+				SharedPreferences.Editor editor = sharedPreferences.edit();
 				editor.putBoolean("betaRouteWarningWasShown", true);
 				editor.apply();
 			} else {
@@ -2616,18 +2499,27 @@ public class MainActivity extends FragmentActivity
 	public void turnOnRouteMode() {
 
 		isRouteModeOn = true;
-        hideAllBottomButtons();
+		hideAllBottomButtons();
+
+		btMyLocation.setVisibility(View.GONE);
+		tbSwitchNavigation.setVisibility(View.VISIBLE);
+		// Register listener for the Rotation Vector sensor
+		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
+
+		// Change searchHeader for routeHeader
+		header.removeAllViews();
+		header.addView(routeHeader);
 
 		if (markerSearch != null) {
-			String destination_string = etSearch.getText().toString();
+
+			// Set destination to "inserted marker" only if etSearch is empty
+			String destination_string = getString(R.string.marcador_inserido);
+			if (!etSearch.getText().toString().trim().equals("")) {
+				destination_string = etSearch.getText().toString();
+			}
+
 			LatLng destination_latlng = markerSearch.getPosition();
 
-			// Change searchHeader for routeHeader
-			header.removeAllViews();
-			header.addView(routeHeader);
-
-			etDestination.setVisibility(View.GONE);
-			tvDestination.setVisibility(View.VISIBLE);
 			tvDestination.setText(destination_string);
 
 			markerSearch.remove();
@@ -2639,64 +2531,9 @@ public class MainActivity extends FragmentActivity
 
 			markerDestination = googleMap.addMarker(new MarkerOptions()
 					.position(destination_latlng)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-					.anchor(0.0f, 1.0f)
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_destination))
+					.anchor(0.5f, 0.5f)
 					.title(getString(R.string.chegada)));
-
-			AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-			final AlertDialog alert = alertBuilder.create();
-			View alertView = getLayoutInflater().inflate(R.layout.ad_from_which_location, null);
-			alert.setView(alertView);
-			alert.setCancelable(true);
-			Button btFromMyLocation = (Button) alertView.findViewById(R.id.from_my_location);
-			Button btFromAnotherLocation = (Button) alertView.findViewById(R.id.from_another_location);
-
-			btFromMyLocation.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (user_latlng != null) {
-						// Set markerOrigin
-						if (markerOrigin != null) {
-							markerOrigin.remove();
-						}
-						markerOrigin = googleMap.addMarker(new MarkerOptions()
-								.position(user_latlng)
-								.title(getString(R.string.partida)));
-						alert.dismiss();
-
-						tvOrigin.setText(getString(R.string.seu_local));
-
-						getRoutes();
-
-					} else {
-						Toast.makeText(getApplicationContext(), getString(R.string.loc_selecione_manualmente), Toast.LENGTH_SHORT).show();
-						tvOrigin.setVisibility(View.GONE);
-						etOrigin.setVisibility(View.VISIBLE);
-						etOrigin.requestFocus();
-						alert.dismiss();
-					}
-				}
-			});
-			btFromAnotherLocation.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					tvOrigin.setVisibility(View.GONE);
-					etOrigin.setVisibility(View.VISIBLE);
-					etOrigin.requestFocus();
-					alert.dismiss();
-				}
-			});
-
-			alert.show();
-
-		} else {
-			header.removeAllViews();
-			header.addView(routeHeader);
-
-			tvOrigin.setVisibility(View.GONE);
-			etOrigin.setVisibility(View.VISIBLE);
-			tvDestination.setVisibility(View.GONE);
-			etDestination.setVisibility(View.VISIBLE);
 
 			if (user_latlng != null) {
 				// Set markerOrigin
@@ -2705,36 +2542,54 @@ public class MainActivity extends FragmentActivity
 				}
 				markerOrigin = googleMap.addMarker(new MarkerOptions()
 						.position(user_latlng)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_origin))
+						.anchor(0.5f, 0.5f)
 						.title(getString(R.string.partida)));
 
-				etOrigin.setVisibility(View.GONE);
-				tvOrigin.setVisibility(View.VISIBLE);
 				tvOrigin.setText(getString(R.string.seu_local));
+
+				getRoutes(markerOrigin.getPosition(), markerDestination.getPosition());
 
 			} else {
 				Toast.makeText(getApplicationContext(), getString(R.string.loc_selecione_manualmente), Toast.LENGTH_SHORT).show();
+
+				editOrigin(null);
 			}
+		} else {
 
+			if (user_latlng != null) {
+				// Set markerOrigin
+				if (markerOrigin != null) {
+					markerOrigin.remove();
+				}
+				markerOrigin = googleMap.addMarker(new MarkerOptions()
+						.position(user_latlng)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_origin))
+						.anchor(0.5f, 0.5f)
+						.title(getString(R.string.partida)));
+
+				tvOrigin.setText(getString(R.string.seu_local));
+
+				editDestination(null);
+
+			} else {
+				Toast.makeText(getApplicationContext(), getString(R.string.loc_selecione_manualmente), Toast.LENGTH_SHORT).show();
+				editOrigin(null);
+			}
 		}
-
 	}
 
 	public void turnOffRouteMode() {
 
 		isRouteModeOn = false;
+		navigationIsOn = false;
 
-		if (geocodeOriginASY != null) {
-			geocodeOriginASY.cancel(true);
-		}
-		if (geocodeDestinationASY != null) {
-			geocodeDestinationASY.cancel(true);
-		}
-		if (getRoutesASY != null) {
-			getRoutesASY.cancel(true);
-		}
+		googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(googleMap.getCameraPosition().target, googleMap.getCameraPosition().zoom, 0, 0)));
 
-		etDestination.setText("");
-		etOrigin.setText("");
+		btMyLocation.setVisibility(View.VISIBLE);
+		tbSwitchNavigation.setVisibility(View.GONE);
+		tbSwitchNavigation.setChecked(false);
+
 		tvDestination.setText("");
 		tvOrigin.setText("");
 
@@ -2744,39 +2599,21 @@ public class MainActivity extends FragmentActivity
 		etSearch.setText("");
 		btClearSearch.setVisibility(View.GONE);
 
-        viewPager.setAdapter(null);
-
-		hideViewPager.start();
-
-		// Hide btRouteMode
-		//if (btRouteMode.getTranslationX() == 0) {hideRouteButton.start();}
+		hideRoutePanel.start();
 
 		// Clean polyline on map
-		if (!polylineRoutesList.isEmpty()) {
-			for (Polyline polyline : polylineRoutesList) polyline.remove();
-		}
-		// Remove marker that points elevation for selected route step
-		if (graph_point_marker != null) {
-			graph_point_marker.remove();
+		if (!cyclingPathList.isEmpty()) {
+			for (CyclingPath cp : cyclingPathList) {
+				cp.routePolyline.remove();
+				for (Polyline p : cp.intersectionPolylines) {
+					p.remove();
+				}
+			}
 		}
 		if (markerOrigin != null) {
 			markerOrigin.remove();
+			markerOrigin = null;
 		}
-		if (markerDestination != null) {
-			markerDestination.remove();
-		}
-
-		// Hide keyboard
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
-		imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
-	}
-
-	public void editDestination(View view) {
-		tvDestination.setVisibility(View.GONE);
-		etDestination.setVisibility(View.VISIBLE);
-		etDestination.requestFocus();
-
 		if (markerDestination != null) {
 			markerDestination.remove();
 			markerDestination = null;
@@ -2784,421 +2621,297 @@ public class MainActivity extends FragmentActivity
 	}
 
 	public void editOrigin(View view) {
-		tvOrigin.setVisibility(View.GONE);
-		etOrigin.setVisibility(View.VISIBLE);
+
+		llEditRoute.setVisibility(View.VISIBLE);
+		llEditOrigin.setVisibility(View.VISIBLE);
+		PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0, 1);
+		ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+		alpha.start();
+
+		final EditText etOrigin = (EditText) findViewById(R.id.et_origin);
 		etOrigin.requestFocus();
+		etOrigin.setText(tvOrigin.getText().toString());
+		etOrigin.selectAll();
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.showSoftInput(etOrigin, 0);
 
+		final ProgressBar pbEditOrigin = (ProgressBar) findViewById(R.id.pb_edit_origin);
 
-		if (markerOrigin != null) {
-			markerOrigin.remove();
-			markerOrigin = null;
-		}
-	}
+		etOrigin.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
 
-	public void getDirections(View view) {
-		if (etOrigin.getVisibility() == View.VISIBLE) {
-			geocodeOrigin();
-		} else if (etDestination.getVisibility() == View.VISIBLE) {
-			geocodeDestination();
-		} else {
-			getRoutes();
-		}
-	}
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
 
-	public void geocodeOrigin() {
+				if (isNetworkAvailable()) {
 
-		addressList.clear();
-		addressListBase.clear();
+					pbEditOrigin.setVisibility(View.VISIBLE);
+					pbEditOrigin.animate();
 
-		// Get the string from the EditText
-		final String s_address = etOrigin.getText().toString();
+					Calls.getAddressFromString(MainActivity.this, etOrigin.getText().toString(), new GeocoderCallHandler() {
+						@Override
+						public void onSuccess (Address address) {
 
-		//Checar primeiro se algo foi digitado.
-		if (!s_address.trim().equals("")) {
+							pbEditOrigin.setVisibility(View.GONE);
+							pbEditOrigin.clearAnimation();
 
-			geocodeOriginASY = new AsyncTask<String, String, String>() {
+							PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1, 0);
+							ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+							alpha.addListener(new AnimatorListener() {
+								@Override
+								public void onAnimationStart(Animator animator) {}
 
-				@Override
-				protected void onPreExecute() {
-
-					btRoute.setVisibility(View.GONE);
-					pBarRoute.setVisibility(View.VISIBLE);
-
-					setUpdating();
-
-					if (!isNetworkAvailable()) {
-						cancel(true);
-					}
-				}
-
-				@Override
-				protected String doInBackground(String... params) {
-
-					try {
-						addressListBase = geocoder.getFromLocationName(s_address, 5);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
-					return null;
-				}
-
-				@Override
-				protected void onPostExecute(String result) {
-
-					Double latLL = -23.863142;
-					Double lngLL = -46.942720;
-					Double latUR = -23.316943;
-					Double lngUR = -46.357698;
-
-					pBarRoute.setVisibility(View.GONE);
-					btRoute.setVisibility(View.VISIBLE);
-
-					resetUpdating();
-
-					final ArrayList<Address> addressList = new ArrayList<>();
-
-					// Manual bounding box for addresses
-					for (int i = 0; i < addressListBase.size(); i++) {
-						//Double lat = addressListBase.get(i).getLatitude();
-						//Double lng = addressListBase.get(i).getLongitude();
-						//if (lat>latLL && lat<latUR && lng>lngLL && lng<lngUR ) {
-						addressList.add(addressListBase.get(i));
-						//} else {}
-					}
-					String[] s_addressList = null;
-					ArrayList<String> array_address = new ArrayList<>();
-
-					// Checar se o endere�o n�o por acaso foi encontrado. Caso negativo, ent�o lan�ar o AlertDialog no "else".
-					if (!addressList.isEmpty()) {
-
-						// Create String[] with addresses
-						for (int i = 0; i < addressList.size(); i++) {
-
-							// Check number of AddressLine before using the second
-							if (addressList.get(i).getMaxAddressLineIndex() > 0) {
-								array_address.add(addressList.get(i).getAddressLine(0) + ", "
-										+ addressList.get(i).getAddressLine(1));
-							} else {
-								array_address.add(addressList.get(i).getAddressLine(0));
-							}
-
-							s_addressList = new String[array_address.size()];
-							s_addressList = array_address.toArray(s_addressList);
-						}
-
-						if (addressList.size() == 1) {
-							Address address = addressList.get(0);
-							if (address.hasLatitude() && address.hasLongitude()) {
-								double lat = address.getLatitude();
-								double lng = address.getLongitude();
-
-								if (markerOrigin != null) {
-									markerOrigin.remove();
+								@Override
+								public void onAnimationEnd(Animator animator) {
+									llEditRoute.setVisibility(View.GONE);
+									llEditOrigin.setVisibility(View.INVISIBLE);
 								}
-								markerOrigin = googleMap.addMarker(new MarkerOptions()
-										.position(new LatLng(lat, lng))
-										.title(getString(R.string.partida)));
-							}
-							// Set the text on etOrigin to be the complete address
+
+								@Override
+								public void onAnimationCancel(Animator animator) {}
+
+								@Override
+								public void onAnimationRepeat(Animator animator) {}
+							});
+							alpha.start();
+
 							String finalStringAddress = address.getAddressLine(0);
 							for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
 								finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
 							}
-							etOrigin.setVisibility(View.GONE);
-							tvOrigin.setVisibility(View.VISIBLE);
-							tvOrigin.setText(finalStringAddress);
-							if (etDestination.getVisibility() == View.VISIBLE && !etDestination.getText().toString().equals("")) {
-								geocodeDestination();
-							} else if (tvDestination.getVisibility() == View.VISIBLE) {
-								getRoutes();
-							}
 
-						} else {
-							AlertDialog.Builder alert_enderecos = new AlertDialog.Builder(MainActivity.this);
-							alert_enderecos.setTitle(getString(R.string.which_origin))
-									.setItems(s_addressList, new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog, int which) {
-											Address address = addressList.get(which);
-											if (address.hasLatitude() && address.hasLongitude()) {
-												double lat = address.getLatitude();
-												double lng = address.getLongitude();
+							setOriginOrDestination("origin", finalStringAddress, new LatLng(address.getLatitude(), address.getLongitude()));
+						}
 
-												if (markerOrigin != null) {
-													markerOrigin.remove();
-												}
-												markerOrigin = googleMap.addMarker(new MarkerOptions()
-														.position(new LatLng(lat, lng))
-														.title(getString(R.string.partida)));
-											}
-											// Set the text on etOrigin to be the complete address
-											String finalStringAddress = address.getAddressLine(0);
-											for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
-												finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
-											}
-											etOrigin.setVisibility(View.GONE);
-											tvOrigin.setVisibility(View.VISIBLE);
-											tvOrigin.setText(finalStringAddress);
-											if (etDestination.getVisibility() == View.VISIBLE && !etDestination.getText().toString().equals("")) {
-												geocodeDestination();
-											} else if (tvDestination.getVisibility() == View.VISIBLE) {
-												getRoutes();
-											}
+						@Override
+						public void onFailure(String reason) {
+
+							pbEditOrigin.setVisibility(View.GONE);
+							pbEditOrigin.clearAnimation();
+
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+							alert.setTitle(getString(R.string.end_origem_nao_encontrado_titulo))
+									.setMessage(getString(R.string.end_nao_encontrado_mensagem))
+									.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int id) {
 										}
 									});
-							alert_enderecos.show();
+							alert.show();
 						}
-					} else {
-						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-						alert.setTitle(getString(R.string.end_origem_nao_encontrado_titulo))
-								.setMessage(getString(R.string.end_nao_encontrado_mensagem))
-								.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int id) {
-									}
-								});
-						alert.show();
-					}
-				}
 
-				protected void onCancelled() {
-
-					pBarRoute.setVisibility(View.GONE);
-					btRoute.setVisibility(View.VISIBLE);
-
-					resetUpdating();
-
-					AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-					network_alert.setTitle(getString(R.string.network_alert_title))
-							.setMessage(getString(R.string.network_alert_dialog))
-							.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							})
-							.setNegativeButton(getString(R.string.network_settings), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-								}
-							});
-					network_alert.show();
-				}
-			};
-
-			geocodeOriginASY.execute();
-
-		} else {
-			AlertDialog.Builder emptyAddressDialog = new AlertDialog.Builder(MainActivity.this);
-			emptyAddressDialog.setTitle(getString(R.string.empty_address_dialog_title))
-					.setMessage(getString(R.string.empty_address_dialog_message))
-					.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
+						@Override
+						public void onDismissedAlertView() {
+							pbEditOrigin.setVisibility(View.GONE);
+							pbEditOrigin.clearAnimation();
 						}
 					});
-			emptyAddressDialog.show();
-		}
+				} else {
+					Utils.showNetworkAlertDialog(MainActivity.this);
+				}
+				return true;
+			}
+		});
+
+		LinearLayout llEditOriginBack = (LinearLayout) findViewById(R.id.ll_edit_origin_back);
+		llEditOriginBack.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1, 0);
+				ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+				alpha.addListener(new AnimatorListener() {
+					@Override
+					public void onAnimationStart(Animator animator) {}
+
+					@Override
+					public void onAnimationEnd(Animator animator) {
+						llEditRoute.setVisibility(View.GONE);
+						llEditOrigin.setVisibility(View.INVISIBLE);
+					}
+
+					@Override
+					public void onAnimationCancel(Animator animator) {}
+
+					@Override
+					public void onAnimationRepeat(Animator animator) {}
+				});
+				alpha.start();
+
+				// Hide keyboard
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
+			}
+		});
 
 	}
 
-	public void geocodeDestination() {
+	public void editDestination(View view){
 
-		addressList.clear();
-		addressListBase.clear();
+		llEditRoute.setVisibility(View.VISIBLE);
+		llEditDestination.setVisibility(View.VISIBLE);
+		PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0, 1);
+		ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+		alpha.start();
 
-		// Get the string from the EditText
-		final String s_address = etDestination.getText().toString();
+		final EditText etDestination = (EditText) findViewById(R.id.et_destination);
+		etDestination.requestFocus();
+		etDestination.setText(tvDestination.getText().toString());
+		etDestination.selectAll();
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.showSoftInput(etDestination, 0);
 
-		//Checar primeiro se algo foi digitado.
-		if (!s_address.trim().equals("")) {
+		final ProgressBar pbEditDestination = (ProgressBar) findViewById(R.id.pb_edit_destination);
 
-			geocodeDestinationASY = new AsyncTask<String, String, String>() {
+		etDestination.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
 
-				@Override
-				protected void onPreExecute() {
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
 
-					btRoute.setVisibility(View.GONE);
-					pBarRoute.setVisibility(View.VISIBLE);
+				if (isNetworkAvailable()) {
 
-					setUpdating();
+					pbEditDestination.setVisibility(View.VISIBLE);
+					pbEditDestination.animate();
 
-					if (!isNetworkAvailable()) {
-						cancel(true);
-					}
-				}
+					Calls.getAddressFromString(MainActivity.this, etDestination.getText().toString(), new GeocoderCallHandler() {
+						@Override
+						public void onSuccess(Address address) {
 
-				@Override
-				protected String doInBackground(String... params) {
+							pbEditDestination.setVisibility(View.GONE);
+							pbEditDestination.clearAnimation();
 
-					try {
-						addressListBase = geocoder.getFromLocationName(s_address, 5);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+							PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1, 0);
+							ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+							alpha.addListener(new AnimatorListener() {
+								@Override
+								public void onAnimationStart(Animator animator) {}
 
-					return null;
-				}
-
-				@Override
-				protected void onPostExecute(String result) {
-
-					Double latLL = -23.863142;
-					Double lngLL = -46.942720;
-					Double latUR = -23.316943;
-					Double lngUR = -46.357698;
-
-					pBarRoute.setVisibility(View.GONE);
-					btRoute.setVisibility(View.VISIBLE);
-
-					resetUpdating();
-
-					final ArrayList<Address> addressList = new ArrayList<>();
-
-					// Manual bounding box for addresses
-					for (int i = 0; i < addressListBase.size(); i++) {
-						//Double lat = addressListBase.get(i).getLatitude();
-						//Double lng = addressListBase.get(i).getLongitude();
-						//if (lat>latLL && lat<latUR && lng>lngLL && lng<lngUR ) {
-						addressList.add(addressListBase.get(i));
-						//} else {}
-					}
-					String[] s_addressList = null;
-					ArrayList<String> array_address = new ArrayList<>();
-
-					// Checar se o endere�o n�o por acaso foi encontrado. Caso negativo, ent�o lan�ar o AlertDialog no "else".
-					if (!addressList.isEmpty()) {
-
-						// Create String[] with addresses
-						for (int i = 0; i < addressList.size(); i++) {
-
-							// Check number of AddressLine before using the second
-							if (addressList.get(i).getMaxAddressLineIndex() > 0) {
-								array_address.add(addressList.get(i).getAddressLine(0) + ", "
-										+ addressList.get(i).getAddressLine(1));
-							} else {
-								array_address.add(addressList.get(i).getAddressLine(0));
-							}
-
-							s_addressList = new String[array_address.size()];
-							s_addressList = array_address.toArray(s_addressList);
-						}
-
-						if (addressList.size() == 1) {
-							Address address = addressList.get(0);
-							if (address.hasLatitude() && address.hasLongitude()) {
-								double lat = address.getLatitude();
-								double lng = address.getLongitude();
-
-								if (markerDestination != null) {
-									markerDestination.remove();
+								@Override
+								public void onAnimationEnd(Animator animator) {
+									llEditRoute.setVisibility(View.GONE);
+									llEditDestination.setVisibility(View.INVISIBLE);
 								}
-								markerDestination = googleMap.addMarker(new MarkerOptions()
-										.position(new LatLng(lat, lng))
-										.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-										.anchor(0.0f, 1.0f)
-										.title(getString(R.string.chegada)));
-							}
+
+								@Override
+								public void onAnimationCancel(Animator animator) {}
+
+								@Override
+								public void onAnimationRepeat(Animator animator) {}
+							});
+							alpha.start();
+
 							String finalStringAddress = address.getAddressLine(0);
 							for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
 								finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
 							}
-							etDestination.setVisibility(View.GONE);
-							tvDestination.setVisibility(View.VISIBLE);
-							tvDestination.setText(finalStringAddress);
-							getRoutes();
 
-						} else {
-							AlertDialog.Builder alert_enderecos = new AlertDialog.Builder(MainActivity.this);
-							alert_enderecos.setTitle(getString(R.string.which_destination))
-									.setItems(s_addressList, new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog, int which) {
-											Address address = addressList.get(which);
-											if (address.hasLatitude() && address.hasLongitude()) {
-												double lat = address.getLatitude();
-												double lng = address.getLongitude();
 
-												if (markerSearch != null) {
-													markerSearch.remove();
-													markerSearch = null;
-												}
-												if (markerDestination != null) {
-													markerDestination.remove();
-												}
-												markerDestination = googleMap.addMarker(new MarkerOptions()
-														.position(new LatLng(lat, lng))
-														.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-														.anchor(0.0f, 1.0f)
-														.title(getString(R.string.chegada)));
-											}
-											String finalStringAddress = address.getAddressLine(0);
-											for (int x = 1; x < address.getMaxAddressLineIndex(); x++) {
-												finalStringAddress = finalStringAddress + ", " + address.getAddressLine(x);
-											}
-											etDestination.setVisibility(View.GONE);
-											tvDestination.setVisibility(View.VISIBLE);
-											tvDestination.setText(finalStringAddress);
-											getRoutes();
+
+							setOriginOrDestination("destination", finalStringAddress, new LatLng(address.getLatitude(), address.getLongitude()));
+						}
+
+						@Override
+						public void onFailure(String reason) {
+
+							pbEditDestination.setVisibility(View.GONE);
+							pbEditDestination.clearAnimation();
+
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+							alert.setTitle(getString(R.string.end_destino_nao_encontrado_titulo))
+									.setMessage(getString(R.string.end_nao_encontrado_mensagem))
+									.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int id) {
 										}
 									});
-							alert_enderecos.show();
+							alert.show();
 						}
 
-						// Hide keyboard
-						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-						imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
-						imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
-
-
-					} else {
-						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-						alert.setTitle(getString(R.string.end_destino_nao_encontrado_titulo))
-								.setMessage(getString(R.string.end_nao_encontrado_mensagem))
-								.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int id) {
-									}
-								});
-						alert.show();
-					}
-				}
-
-				protected void onCancelled() {
-
-					pBarRoute.setVisibility(View.GONE);
-					btRoute.setVisibility(View.VISIBLE);
-
-					resetUpdating();
-
-					AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-					network_alert.setTitle(getString(R.string.network_alert_title))
-							.setMessage(getString(R.string.network_alert_dialog))
-							.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							})
-							.setNegativeButton(getString(R.string.network_settings), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-								}
-							});
-					network_alert.show();
-				}
-			};
-
-			geocodeDestinationASY.execute();
-
-		} else {
-			AlertDialog.Builder emptyAddressDialog = new AlertDialog.Builder(MainActivity.this);
-			emptyAddressDialog.setTitle(getString(R.string.empty_address_dialog_title))
-					.setMessage(getString(R.string.empty_address_dialog_message))
-					.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
+						@Override
+						public void onDismissedAlertView() {
+							pbEditDestination.setVisibility(View.GONE);
+							pbEditDestination.clearAnimation();
 						}
 					});
-			emptyAddressDialog.show();
+				} else {
+					Utils.showNetworkAlertDialog(MainActivity.this);
+				}
+				return true;
+			}
+		});
+
+		LinearLayout llEditDestinationBack = (LinearLayout) findViewById(R.id.ll_edit_destination_back);
+		llEditDestinationBack.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				PropertyValuesHolder pvhAlpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1, 0);
+				ObjectAnimator alpha = ObjectAnimator.ofPropertyValuesHolder(llEditRoute, pvhAlpha);
+				alpha.addListener(new AnimatorListener() {
+					@Override
+					public void onAnimationStart(Animator animator) {}
+
+					@Override
+					public void onAnimationEnd(Animator animator) {
+						llEditRoute.setVisibility(View.GONE);
+						llEditDestination.setVisibility(View.INVISIBLE);
+					}
+
+					@Override
+					public void onAnimationCancel(Animator animator) {}
+
+					@Override
+					public void onAnimationRepeat(Animator animator) {}
+				});
+				alpha.start();
+
+				// Hide keyboard
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
+			}
+		});
+
+	}
+
+	public void setOriginOrDestination (String whatToSet, String address, LatLng latLng) {
+
+		switch (whatToSet) {
+			case "origin":
+
+				if (markerOrigin != null) { markerOrigin.remove(); }
+				markerOrigin = googleMap.addMarker(new MarkerOptions()
+						.position(latLng)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_origin))
+						.anchor(0.5f, 0.5f)
+						.title(getString(R.string.partida)));
+
+				tvOrigin.setText(address);
+
+				break;
+
+			case "destination":
+
+				if (markerDestination != null) { markerDestination.remove(); }
+				markerDestination = googleMap.addMarker(new MarkerOptions()
+						.position(latLng)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_destination))
+						.anchor(0.5f, 0.5f)
+						.title(getString(R.string.chegada)));
+
+				tvDestination.setText(address);
+
+				break;
+		}
+
+		if (markerOrigin != null && markerDestination != null) {
+			getRoutes(markerOrigin.getPosition(), markerDestination.getPosition());
+		} else {
+			googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 		}
 	}
 
-	public void getRoutes() {
-
-		final LatLng origin = markerOrigin.getPosition();
-		final LatLng destination = markerDestination.getPosition();
+	public void getRoutes(LatLng origin, LatLng destination) {
 
 		// find LatLngBound to animate camera and show the entire route.
 
@@ -3207,478 +2920,274 @@ public class MainActivity extends FragmentActivity
 		Double dLat = destination.latitude;
 		Double dLng = destination.longitude;
 
-		LatLng oLatLng = new LatLng(oLat, oLng);
-		LatLng dLatLng = new LatLng(dLat, dLng);
-		LatLng oLatdLng = new LatLng(oLat, dLng);
-		LatLng dLatoLng = new LatLng(dLat, oLng);
+		// Get distance between origin and destination to check
+		Location originLocation = new Location("originLocation");
+		originLocation.setLatitude(oLat);
+		originLocation.setLongitude(oLng);
+		Location destinationLocation = new Location("destinationLocation");
+		destinationLocation.setLatitude(dLat);
+		destinationLocation.setLongitude(dLng);
 
-		LatLngBounds bounds = null;
+		// Check if origin and destination are more than 50 km from each other
+		if (originLocation.distanceTo(destinationLocation) > 25000) {
 
-		if (oLat < dLat && oLng < dLng) {
-			bounds = new LatLngBounds(oLatLng, dLatLng);
-		} else if (oLat < dLat && dLng < oLng) {
-			bounds = new LatLngBounds(oLatdLng, dLatoLng);
-		} else if (dLat < oLat && oLng < dLng) {
-			bounds = new LatLngBounds(dLatoLng, oLatdLng);
-		} else if (dLat < oLat && dLng < oLng) {
-			bounds = new LatLngBounds(dLatLng, oLatLng);
-		}
+			Utils.showSimpleAlertDialog(this, getString(R.string.error), getString(R.string.too_distant_route));
+			pbLoadingRoute.setVisibility(View.GONE);
+			hideRoutePanel.start();
 
-		CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, 200);
-		googleMap.animateCamera(cUpd);
+		} else {
 
-		getRoutesASY = new AsyncTask<String, Integer, ArrayList<CyclingPath>>() {
+			llRouteDetailFragment.setVisibility(View.GONE);
+			pbLoadingRoute.setVisibility(View.VISIBLE);
 
-			@Override
-			protected void onPreExecute() {
+			LatLng oLatLng = new LatLng(oLat, oLng);
+			LatLng dLatLng = new LatLng(dLat, dLng);
+			LatLng oLatdLng = new LatLng(oLat, dLng);
+			LatLng dLatoLng = new LatLng(dLat, oLng);
 
-				if (polylineRoutesList != null) {
-					for (Polyline polyline : polylineRoutesList) polyline.remove();
-					polylineRoutesList.clear();
-				}
+			LatLngBounds bounds = null;
 
-				adLoadingRoute.show();
-
-				pbLoadingRoute.setProgress(10);
-
-				setUpdating();
-
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
-
-				if (viewPager.getVisibility() == View.VISIBLE) {
-					hideViewPager.start();
-				}
-
-				if (!isNetworkAvailable()) {
-					cancel(true);
-					AlertDialog.Builder network_alert = new AlertDialog.Builder(MainActivity.this);
-					network_alert.setTitle(getString(R.string.network_alert_title))
-							.setMessage(getString(R.string.route_error_check_connection))
-							.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							});
-					network_alert.show();
-				}
-
+			if (oLat < dLat && oLng < dLng) {
+				bounds = new LatLngBounds(oLatLng, dLatLng);
+			} else if (oLat < dLat && dLng < oLng) {
+				bounds = new LatLngBounds(oLatdLng, dLatoLng);
+			} else if (dLat < oLat && oLng < dLng) {
+				bounds = new LatLngBounds(dLatoLng, oLatdLng);
+			} else if (dLat < oLat && dLng < oLng) {
+				bounds = new LatLngBounds(dLatLng, oLatLng);
 			}
 
-			@Override
-			protected ArrayList<CyclingPath> doInBackground(String... params) {
+			Display display = getWindowManager().getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			int width = size.x;
+			int height = size.y;
 
-				ArrayList<CyclingPath> returnList = new ArrayList<>();
+			CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, width/2, height / 3, 0);
+			googleMap.animateCamera(cUpd);
 
-				Route md = new Route();
-
-				Document doc = md.getDocument(origin, destination, Route.MODE_DRIVING);
-
-				ArrayList<PolylineOptions> pOptList = md.getDirection(doc);
-
-				ArrayList<Integer> distancesArray = md.getDistanceValues(doc);
-
-				// Clean cyclingPathList before adding new elements
-				if (!cyclingPathList.isEmpty()) {
-					cyclingPathList.clear();
-				}
-
-				publishProgress(25);
-
-				// Check if any routes were found
-				if (!pOptList.isEmpty()) {
-
-					for (int i = 0; i < pOptList.size(); i++) {
-
-						if (isCancelled()) { break; }
-
-						final int numberOfRoutes = pOptList.size();
-
-						PolylineOptions pOpt = pOptList.get(i);
-
-						// Criando lista de LatLng pro objeto CyclingPath
-						ArrayList<LatLng> latLngList = (ArrayList<LatLng>) pOpt.getPoints();
-
-						// Get distances array from Directions, in case the MapQuest API doesn't work.
-						Double distanceKms = null;
-						if (!distancesArray.isEmpty()) {
-							distanceKms = (double) distancesArray.get(i) / 1000;
-						}
-
-						CyclingPath cp = getCompleteCyclingPath(latLngList);
-
-						if (cp != null) {
-							returnList.add(cp);
-						} else if (distanceKms != null) {
-							CyclingPath cpSimple = new CyclingPath(latLngList, distanceKms);
-							returnList.add(cpSimple);
-						} else {
-							CyclingPath cpSimple = new CyclingPath(latLngList);
-							returnList.add(cpSimple);
-						}
-
-						publishProgress(25 + (75 / numberOfRoutes) * (i + 1));
-
-						//runOnUiThread(new Runnable() {public void run() { pbLoadingRoute.setProgress(25+(75/numberOfRoutes)*(iValue+1)); }});
-
+			// Clean polyline on map
+			if (!cyclingPathList.isEmpty()) {
+				for (CyclingPath cp : cyclingPathList) {
+					cp.routePolyline.remove();
+					for (Polyline p : cp.intersectionPolylines) {
+						p.remove();
 					}
-				} else {
-					// Cancel task if zero routes were found
-					cancel(true);
 				}
-
-				return returnList;
 			}
 
-			protected void onProgressUpdate(Integer... progress) {
-				pbLoadingRoute.setProgress(progress[0]);
+			// Select route according to user's priority configuration
+			if (sharedPreferences.getString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES).equals(Constant.PRIORITY_MOST_BIKE_LANES)) {
+				spinnerRoutePriority.setSelection(0);
+			} else if (sharedPreferences.getString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES).equals(Constant.PRIORITY_FASTEST)) {
+				spinnerRoutePriority.setSelection(1);
+			} else if (sharedPreferences.getString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES).equals(Constant.PRIORITY_FLATTEST)) {
+				spinnerRoutePriority.setSelection(2);
 			}
 
-			@Override
-			protected void onPostExecute(ArrayList<CyclingPath> list) {
+			// Show view pager loading
+			showRoutePanel.start();
 
-				pbLoadingRoute.setProgress(100);
-
-				adLoadingRoute.dismiss();
-
-				resetUpdating();
-
-				cyclingPathList = list;
-
-				// Reorder cyclingPathList so the min inclination is the first object
-				Collections.sort(cyclingPathList, new CustomComparator());
-
-				// Define the first "selectedCyclingPath"
-				if (!selectedCyclingPath.isEmpty()) {
-					selectedCyclingPath.clear();
-				}
-				selectedCyclingPath.add(cyclingPathList.get(0));
-
-                String deviceID = sharedPreferences.getString(Constant.deviceID, "");
-                if (!deviceID.equals("")){
-                    Calls.sendOriginDestination(deviceID, markerOrigin.getPosition(), markerDestination.getPosition(),
-                            selectedCyclingPath.get(0).totalDistance, selectedCyclingPath.get(0).maxInclination, null);
-                }
-
-				drawRoutes();
-
-			}
-
-			protected void onCancelled() {
-
-				adLoadingRoute.dismiss();
-
-				resetUpdating();
-			}
-
-		};
-
-		getRoutesASY.execute();
-	}
-
-	public void cancelLoadingRoute(View v) {
-
-		if (geocodeOriginASY != null) {
-			geocodeOriginASY.cancel(true);
-		}
-		if (geocodeDestinationASY != null) {
-			geocodeDestinationASY.cancel(true);
-		}
-		if (getRoutesASY != null) {
-			getRoutesASY.cancel(true);
-		}
-
-		resetUpdating();
-
-		//pBarRoute.setVisibility(View.GONE);
-		//btRoute.setVisibility(View.VISIBLE);
-
-		adLoadingRoute.dismiss();
-	}
-
-	// Inicializado por: getRoutes(). Solicita elevações e distâncias do mapQuest e retorna CyclingPath
-	public CyclingPath getCompleteCyclingPath(ArrayList<LatLng> pathLatLng) {
-
-		// Variáveis que serão populadas para comporem o CyclingPath final
-		ArrayList<Double> elevationList = new ArrayList<>();
-		ArrayList<Double> referenceDistanceList = new ArrayList<>();
-
-		// CyclingPath que será retornado no final
-		CyclingPath cp = null;
-
-		String base_url = "http://open.mapquestapi.com/elevation/v1/profile?key=Fmjtd%7Cluu821utnd%2Cr0%3Do5-94b5gr&shapeFormat=raw&useFilter=true&latLngCollection=";
-
-		DecimalFormat dc = new DecimalFormat("##.#####", new DecimalFormatSymbols(Locale.US));
-
-		ArrayList<String> urls = new ArrayList<>();
-
-		int limit = 90; // Limite de pontos LatLng pra procurar por URL (90 * 10 * 2 = 1800) Url máxima aproximada = 2000
-		int y = (pathLatLng.size() / limit);
-
-		for (int i = 0; i < y; i++) {
-			String pathUrl = String.valueOf(pathLatLng.get(i * limit).latitude) + "," + String.valueOf(pathLatLng.get(i * limit).longitude);
-			for (int x = ((i * limit) + 1); x < (i + 1) * limit; x++) {
-				pathUrl = pathUrl + "," + dc.format(pathLatLng.get(x).latitude) + "," + dc.format(pathLatLng.get(x).longitude);
-			}
-			urls.add(base_url + pathUrl);
-
-		}
-
-		if (pathLatLng.size() > (y * limit)) {
-			String pathUrlFinal = String.valueOf(pathLatLng.get(y * limit).latitude) + "," + String.valueOf(pathLatLng.get(y * limit).longitude);
-			for (int x = ((y * limit) + 1); x < pathLatLng.size(); x++) {
-				pathUrlFinal = pathUrlFinal + "," + dc.format(pathLatLng.get(x).latitude) + "," + dc.format(pathLatLng.get(x).longitude);
-			}
-			urls.add(base_url + pathUrlFinal);
-		}
-
-		// Making requests for MAPQUEST
-
-		// Variável que começa zerada e guarda a referenceDistance da última distância de cada trecho pra que seja somado às distâncias no próximo trecho.
-		Double startingDistance = 0.0;
-
-		//JSONParser jParser = new JSONParser();
-
-		for (int i = 0; i < urls.size(); i++) {
-
-			JSONArray elevationProfileJson = null;
-
-			String jsonString = "";
-
-			//HttpClient client = new DefaultHttpClient();
-			//HttpPost post = new HttpPost(urls.get(i));
-
-			try {
-
-				JSONObject jsonObject = jParser.makeHttpRequest(urls.get(i));
-				elevationProfileJson = jsonObject.getJSONArray("elevationProfile");
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			if (elevationProfileJson != null) {
-				try {
-					for (int x = 0; x < elevationProfileJson.length(); x++) {
-
-						JSONObject obj = elevationProfileJson.getJSONObject(x);
-						double height = Double.parseDouble(obj.getString("height"));
-						double distance = startingDistance + Double.parseDouble(obj.getString("distance"));
-
-						if (x == elevationProfileJson.length() - 1) {
-							startingDistance = distance;
-						}
-
-						elevationList.add(height);
-						referenceDistanceList.add(distance);
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		}
-
-		if (!pathLatLng.isEmpty() && !elevationList.isEmpty() && !referenceDistanceList.isEmpty()) {
-			cp = new CyclingPath(pathLatLng, elevationList, referenceDistanceList);
-
-		}
-		return cp;
-
-	}
-
-	// Reorders cyclingPathList by maxInclination
-	public class CustomComparator implements Comparator<CyclingPath> {
-		@TargetApi(Build.VERSION_CODES.KITKAT)
-		@Override
-		public int compare(CyclingPath cp1, CyclingPath cp2) {
-			return Double.compare(cp1.maxInclination, cp2.maxInclination);
-		}
-	}
-
-	public void drawRoutes() {
-
-		// Create PolylineOptions list to be populated
-		ArrayList<PolylineOptions> routesOptionList = new ArrayList<>();
-
-		// Clear lists that will be populated, if they are not empty.
-		if (!polylineRoutesList.isEmpty()) {
-			for (Polyline polyline : polylineRoutesList) polyline.remove();
-		}
-		if (!polylineRoutesList.isEmpty()) {
-			polylineRoutesList.clear();
-		}
-
-		// aChartEngine: Clear list of graphs
-		if (!graphViewArray.isEmpty()) {
-			graphViewArray.clear();
-		}
-        Log.e("CYCLINGPATHSIZE", String.valueOf(cyclingPathList.size()));
-		// For each other cycling path stored on cyclingPathList
-		for (int i = 0; i < cyclingPathList.size(); i++) {
-
-			// Create PolylineOptions to the current cyclingPath. Add to list.
-
-			PolylineOptions polylineOptions = new PolylineOptions();
-			polylineOptions.addAll(cyclingPathList.get(i).pathLatLng);
-			polylineOptions.zIndex(9);
-
-			//Change to bright blue if this is the cyclingPath with minimun elevation
-			if (i == 0) {
-				polylineOptions.color(this.getResources().getColor(R.color.selected_route_blue));
+			if (!isNetworkAvailable()) {
+				Utils.showNetworkAlertDialog(this);
 			} else {
-				polylineOptions.color(this.getResources().getColor(R.color.not_selected_route_blue));
-			}
 
-			// Add it to the PolylineOption list
-			routesOptionList.add(polylineOptions);
+				routeRequestId ++;
+
+				Route.getRoute(this, routeRequestId, origin, destination, googleMap, new GetRouteInterface() {
+					@Override
+					public void onFinished(int requestId, ArrayList<CyclingPath> cyclingPaths) {
+
+						if (requestId == routeRequestId && btRouteMode.isChecked()) {
+
+							if (cyclingPaths.size() > 0) {
+
+								cyclingPathList.clear();
+								cyclingPathList = cyclingPaths;
+
+								for (CyclingPath cp: cyclingPathList) {
+									cp.drawOnMap();
+								}
+
+								CyclingPath cpMostBikeLanes = cyclingPathList.get(cyclingPathList.size() - 1);
+
+								// Send to db infos about cycling path with mostBikeLanes
+								String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+								if (!deviceID.equals("")) {
+									Calls.sendOriginDestination(deviceID, cpMostBikeLanes.pathLatLng.get(0), cpMostBikeLanes.pathLatLng.get(cpMostBikeLanes.pathLatLng.size() - 1),
+											cpMostBikeLanes.totalDistanceInKm, cpMostBikeLanes.maxInclination, null);
+								}
+
+								// Select route according to spinner's selected priority
+								switch (spinnerRoutePriority.getSelectedItemPosition()) {
+									case 0:
+										for (CyclingPath cp : cyclingPathList) {
+											if (cp.mostBikeLanes) selectCyclingPath(cp, false);
+										}
+										break;
+									case 1:
+										for (CyclingPath cp : cyclingPathList) {
+											if (cp.fastest) selectCyclingPath(cp, false);
+										}
+										break;
+									case 2:
+										for (CyclingPath cp : cyclingPathList) {
+											if (cp.flattest) selectCyclingPath(cp, false);
+										}
+										break;
+								}
+							} else {
+								pbLoadingRoute.setVisibility(View.GONE);
+								hideRoutePanel.start();
+								Toast.makeText(MainActivity.this, getString(R.string.route_nenhuma_rota_encontrada), Toast.LENGTH_SHORT).show();
+							}
+						}
+					}
+				});
+			}
+		}
+	}
+
+	public void selectCyclingPath(CyclingPath cyclingPath, boolean selectedFromMapClick) {
+
+		if (selectedFromMapClick) {
+			// Set spinner item for selected bike lane and update Shared Preferences with user's preferred priority
+			SharedPreferences.Editor edit = sharedPreferences.edit();
+			if (cyclingPath.mostBikeLanes) {
+				spinnerRoutePriority.setSelection(0);
+				edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_MOST_BIKE_LANES);
+			} else if (cyclingPath.fastest) {
+				spinnerRoutePriority.setSelection(1);
+				edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_FASTEST);
+			} else if (cyclingPath.flattest) {
+				spinnerRoutePriority.setSelection(2);
+				edit.putString(Constant.SPKEY_ROUTE_PRIORITY, Constant.PRIORITY_FLATTEST);
+			}
+			edit.apply();
 		}
 
-		// Add routesOptionList to map
-		for (PolylineOptions routesOption : routesOptionList) {
-			polylineRoutesList.add(googleMap.addPolyline(routesOption));
-		}
+        for (CyclingPath cp : cyclingPathList) {
+            cp.setSelected(false);
+        }
+        cyclingPath.setSelected(true);
 
-		// Set up view pager
-		viewPager.setVisibility(View.VISIBLE);
-		ObjectAnimator objAnim = ObjectAnimator.ofFloat(viewPager, "translationY", 0);
-		objAnim.start();
+        // Define the first "selectedCyclingPath"
+        if (!selectedCyclingPath.isEmpty()) {
+            selectedCyclingPath.clear();
+        }
+        selectedCyclingPath.add(cyclingPathList.get(cyclingPathList.size() - 1));
 
-        SwipeFragmentPagerAdapter swipeFragmentPagerAdapter = new SwipeFragmentPagerAdapter(this, getSupportFragmentManager());
+		// Add Route details
+		pbLoadingRoute.setVisibility(View.GONE);
+        llRouteDetailFragment.setVisibility(View.VISIBLE);
 
-		viewPager.setAdapter(swipeFragmentPagerAdapter);
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setOnPageChangeListener(new OnPageChangeListener() {
-			public void onPageSelected(int position) {
+        tvRouteDistance.setText(cyclingPath.totalDistanceInKm + " km");
+        tvRouteDuration.setText(cyclingPath.getReadableDuration());
+        tvRoutePercentageOnBikeLanes.setText(cyclingPath.percentageOnBikeLanes + "%");
 
-                Log.e("onPageSelected", "RAN, position: " + String.valueOf(position));
-				for (Polyline polyline : polylineRoutesList) {
-					polyline.setColor(getResources().getColor(R.color.not_selected_route_blue));
-				}
-				polylineRoutesList.get(position).setColor(getResources().getColor(R.color.selected_route_blue));
-				selectedCyclingPath.set(0, cyclingPathList.get(position));
+        if (!cyclingPath.pathElevation.isEmpty()) {
 
-				// When swiped, remove marker that points elevation for previous selected route step
-				if (graph_point_marker != null) {
-					graph_point_marker.remove();
-				}
-			}
+            XYSeriesRenderer renderer = new XYSeriesRenderer();
+            XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();renderer.setLineWidth(30);
+            renderer.setColor(getResources().getColor(R.color.water_blue));
+            renderer.setDisplayBoundingPoints(true);
+            renderer.setPointStyle(PointStyle.CIRCLE);
+            renderer.setPointStrokeWidth(22);
+            XYSeriesRenderer.FillOutsideLine fill = new XYSeriesRenderer.FillOutsideLine(XYSeriesRenderer.FillOutsideLine.Type.BELOW);
+            fill.setColor(getResources().getColor(R.color.water_blue));
+            renderer.addFillOutsideLine(fill);
 
+            mRenderer.addSeriesRenderer(renderer);
+            mRenderer.setMarginsColor(Color.argb(0x00, 0xff, 0x00, 0x00));
+            mRenderer.setMargins(new int[]{15, 0, 0, 0});
+            mRenderer.setPanEnabled(false, false);
+            mRenderer.setZoomEnabled(false, false);
+            mRenderer.setShowGrid(false);
+            mRenderer.setShowAxes(false);
+            mRenderer.setShowLabels(false);
+            mRenderer.setShowLegend(false);
+            mRenderer.setDisplayValues(false);
+            mRenderer.setClickEnabled(true);
+            mRenderer.setXLabelsPadding(100);
+            mRenderer.setYLabelsPadding(100);
+
+            // aChartEngine
+            XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
+            XYSeries xySeries = new XYSeries("MySerie");
+
+            // Get cyclingPath's elevations list
+            ArrayList<Double> elevations = cyclingPath.pathElevation;
+
+            // Add each elevation point to the elevationSeries1 variable
+            for (int i = 0; i < elevations.size(); i++) {
+                xySeries.add(i, elevations.get(i));
+            }
+
+            //aChartEngine
+            mDataset.addSeries(xySeries);
+
+            GraphicalView gView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
+            gView.setClickable(true);
+            gView.setPadding(0, 0, 0, 0);
+
+            llChart.addView(gView, 0);
+        } else {
+            tvElevationUnavailable.setVisibility(View.VISIBLE);
+        }
+    }
+
+	public void switchAddresses(final View view) {
+
+		ObjectAnimator oa = ObjectAnimator.ofFloat(view,"rotation", 180);
+		oa.addListener(new AnimatorListener() {
 			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-
+			public void onAnimationStart(Animator animator) {}
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			public void onAnimationEnd(Animator animator) {
+				view.setRotation(0);
 			}
+			@Override
+			public void onAnimationCancel(Animator animator) {}
+			@Override
+			public void onAnimationRepeat(Animator animator) {}
 		});
+		oa.start();
 
-		if (viewPagerPosition != null) {
-			viewPager.setCurrentItem(viewPagerPosition);
-		}
+		String oString = tvOrigin.getText().toString();
+		String dString = tvDestination.getText().toString();
+		tvOrigin.setText(dString);
+		tvDestination.setText(oString);
 
-		// Hide keyboard
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(etOrigin.getWindowToken(), 0);
-		imm.hideSoftInputFromWindow(etDestination.getWindowToken(), 0);
+		if (markerOrigin != null && markerDestination != null) {
 
-		if (!elevGraphExpWasShown) {
-			Intent intent = new Intent(this, RouteDetailSplashScreen.class);
-			startActivity(intent);
-			elevGraphExpWasShown = true;
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putBoolean("elevGraphExpWasShown", true);
-			editor.apply();
-		}
-
-	}
-
-	public class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
-
-        Context context;
-
-		public SwipeFragmentPagerAdapter(Context c, FragmentManager fm) {
-			super(fm);
-            context = c;
-		}
-
-		@Override
-		public int getCount() {
-			return cyclingPathList.size();
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			//SwipeFragment fragment = new SwipeFragment();
-			return SwipeFragment.newInstance(context, position);
-		}
-
-	}
-
-	public void switchAddresses(View view) {
-		if (tvDestination.getVisibility() == View.VISIBLE && tvOrigin.getVisibility() == View.VISIBLE) {
-			String oString = tvOrigin.getText().toString();
-			String dString = tvDestination.getText().toString();
 			LatLng oLatLng = markerOrigin.getPosition();
 			LatLng dLatLng = markerDestination.getPosition();
 
-			tvOrigin.setText(dString);
-			tvDestination.setText(oString);
 			markerOrigin.setPosition(dLatLng);
 			markerDestination.setPosition(oLatLng);
 
-			getRoutes();
-		} else if (etOrigin.getVisibility() == View.VISIBLE && etDestination.getVisibility() == View.VISIBLE) {
-
-			String oString = etOrigin.getText().toString();
-			String dString = etDestination.getText().toString();
-
-			etOrigin.setText(dString);
-			etDestination.setText(oString);
-
-		} else if (etOrigin.getVisibility() == View.VISIBLE && tvDestination.getVisibility() == View.VISIBLE) {
-			String oString = etOrigin.getText().toString();
-			String dString = tvDestination.getText().toString();
-
-			etOrigin.setVisibility(View.GONE);
-			tvOrigin.setVisibility(View.VISIBLE);
-			tvOrigin.setText(dString);
-
-			tvDestination.setVisibility(View.GONE);
-			etDestination.setVisibility(View.VISIBLE);
-			etDestination.setText(oString);
-
-			LatLng dLatLng = markerDestination.getPosition();
-
-			markerDestination.remove();
-
-			markerOrigin = googleMap.addMarker(new MarkerOptions()
-					.position(dLatLng)
-					.title(getString(R.string.partida)));
-
-		} else if (tvOrigin.getVisibility() == View.VISIBLE && etDestination.getVisibility() == View.VISIBLE) {
-
-			String oString = tvOrigin.getText().toString();
-			String dString = etDestination.getText().toString();
-
-			tvOrigin.setVisibility(View.GONE);
-			etOrigin.setVisibility(View.VISIBLE);
-			etOrigin.setText(dString);
-
-			etDestination.setVisibility(View.GONE);
-			tvDestination.setVisibility(View.VISIBLE);
-			tvDestination.setText(oString);
-
-			LatLng oLatLng = markerOrigin.getPosition();
-
-			markerOrigin.remove();
+			getRoutes(dLatLng, oLatLng);
+		} else if (markerOrigin != null) {
 
 			markerDestination = googleMap.addMarker(new MarkerOptions()
-					.position(oLatLng)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-					.anchor(0.0f, 1.0f)
+					.position(markerOrigin.getPosition())
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_destination))
+					.anchor(0.5f, 0.5f)
 					.title(getString(R.string.chegada)));
+
+			markerOrigin.remove();
+			markerOrigin = null;
+
+		} else if (markerDestination != null) {
+
+			markerOrigin = googleMap.addMarker(new MarkerOptions()
+					.position(markerDestination.getPosition())
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_route_origin))
+					.anchor(0.5f, 0.5f)
+					.title(getString(R.string.partida)));
+
+			markerDestination.remove();
+			markerDestination = null;
 
 		}
 	}
@@ -3688,12 +3197,30 @@ public class MainActivity extends FragmentActivity
 
     public void showBottomButton (final View viewToAnimate) {
         ObjectAnimator showAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0);
-        viewToAnimate.setVisibility(View.VISIBLE);
-        showAnimation.start();
+		showAnimation.addListener(new AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animator) {
+				viewToAnimate.setVisibility(View.VISIBLE);
+			}
 
+			@Override
+			public void onAnimationEnd(Animator animator) {
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator) {
+
+			}
+		});
+        showAnimation.start();
     }
 
-    public void hideBottomButton(final View viewToAnimate) {
+    public ObjectAnimator hideBottomButton(final View viewToAnimate) {
         ObjectAnimator hideAnimation = ObjectAnimator.ofFloat(viewToAnimate, "translationY", 0, 600);
         hideAnimation.addListener(new AnimatorListener() {
 
@@ -3715,13 +3242,19 @@ public class MainActivity extends FragmentActivity
             }
         });
         hideAnimation.start();
+		return hideAnimation;
     }
 
-    public void hideAllBottomButtons () {
-        hideBottomButton(notifyButton);
-        hideBottomButton(btParkedHere);
-        hideBottomButton(btRemovePlace);
+    public ArrayList<ObjectAnimator> hideAllBottomButtons () {
+
+		ArrayList<ObjectAnimator> returnArray = new ArrayList<>();
+
+		returnArray.add(hideBottomButton(notifyButton));
+		returnArray.add(hideBottomButton(btParkedHere));
+		returnArray.add(hideBottomButton(btRemovePlace));
         //hideBottomButton(llPlaceOptions);
+
+		return returnArray;
     }
 
     public void checkNumberOfOptionsDisplayed() {
@@ -3754,7 +3287,7 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-	private boolean isNetworkAvailable() {
+	public boolean isNetworkAvailable() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting());
@@ -3782,9 +3315,72 @@ public class MainActivity extends FragmentActivity
 		return true;
 	}
 
+	float[] orientation = new float[3];
+	float[] rMat = new float[9];
+
+	@Override
+	public void onSensorChanged(SensorEvent sensorEvent) {
+
+		// If the sensor data is unreliable return
+		if (sensorEvent.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
+			return;
+
+		if(sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR ) {
+
+			// calculate th rotation matrix
+			SensorManager.getRotationMatrixFromVector(rMat, sensorEvent.values);
+
+			azimuth = (float) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
+
+			// If navigation is On, turn map
+			if (navigationIsOn) {
+				googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(user_latlng, 18, 50, azimuth)));
+			} else {
+				// If navigation is off, but markerNavigation is on, just turn marker navigation
+				if (markerNavigation != null) {
+					markerNavigation.setRotation(azimuth);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int i) {}
+
 	@Override
 	public void onLocationChanged(Location location) {
 		user_latlng = new LatLng(location.getLatitude(), location.getLongitude());
+
+		// If markerNavigation created, update position. If not created, create
+		if (markerNavigation != null) {
+			markerNavigation.setPosition(user_latlng);
+			markerNavigation.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.btic_navigation));
+		} else {
+			markerNavigation = googleMap.addMarker(new MarkerOptions()
+					.position(user_latlng)
+					.zIndex(100)
+					.icon(BitmapDescriptorFactory.fromResource(R.drawable.btic_navigation))
+					.anchor(0.5f, 0.5f)
+			);
+		}
+
+		if (circleAccuracy != null) {
+			circleAccuracy.setCenter(user_latlng);
+			circleAccuracy.setRadius(location.getAccuracy());
+		} else {
+			circleAccuracy = googleMap.addCircle(new CircleOptions()
+					.center(user_latlng)
+					.radius(location.getAccuracy())
+					.strokeColor(getResources().getColor(R.color.transparent))
+					.zIndex(-10f)
+					.fillColor(getResources().getColor(R.color.water_blue_translucent)));
+		}
+
+		if (navigationIsOn) {
+			if (googleMap != null) {
+				googleMap.animateCamera(newLatLngZoom(user_latlng, 18));
+			}
+		}
 	}
 
 	@Override
@@ -3857,6 +3453,8 @@ public class MainActivity extends FragmentActivity
 
 		MyApplication.activityResumed();
 
+		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
+
 		// If permission is not granted, request it
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -3881,6 +3479,9 @@ public class MainActivity extends FragmentActivity
 
 		MyApplication.activityPaused();
 
+		// Register this class as a listener for the Rotation Vector sensor
+		sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR));
+
         Log.e("ONPAUSE", "SHOT");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 3);
@@ -3890,214 +3491,6 @@ public class MainActivity extends FragmentActivity
             }
         }
 
-	}
-
-    public void redrawOnMapAfterSavedInstance () {
-        if (Constant.states[0] && Constant.bikeLanesStates[0]) {drawPermanentes(true);}
-        if (Constant.states[0] && Constant.bikeLanesStates[1]) {drawTemporarias(true);}
-        if (Constant.states[0] && Constant.bikeLanesStates[2]) {drawPreferenciais(true);}
-        if (Constant.states[1] && Constant.sharingSystemsStates[0]) {drawBikeSampa(true);}
-        if (Constant.states[1] && Constant.sharingSystemsStates[1]) {drawCicloSampa(true);}
-        if (Constant.states[2]) {drawBicicletarios(true);}
-        if (Constant.states[3]) {drawParques(true);}
-        if (Constant.states[4]) {drawWifi(true);}
-        if (Constant.states[5]) {drawAlerts(true);}
-
-        if (current_latlng != null) {
-            LatLng position = new LatLng(current_latlng[0], current_latlng[1]);
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, zoom);
-            googleMap.moveCamera(cameraUpdate);
-        }
-
-        if (latLngMarkerOrigin != null) {
-            markerOrigin = googleMap.addMarker(new MarkerOptions()
-                    .position(latLngMarkerOrigin)
-                    .title(getString(R.string.partida)));
-        }
-
-        if (latLngMarkerDestination != null) {
-            markerDestination = googleMap.addMarker(new MarkerOptions()
-                    .position(latLngMarkerDestination)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_chegada))
-                    .anchor(0.0f, 1.0f)
-                    .title(getString(R.string.chegada)));
-        }
-
-        if (isViewPagerVisible) {
-
-            drawRoutes();
-
-            if (stringGraphPointMarkerInfo != null && latLngGraphPointMarker != null) {
-                graph_point_marker = googleMap.addMarker(new MarkerOptions()
-                        .position(latLngGraphPointMarker)
-                        .anchor(0.5f, 0.5f)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
-                        .title(stringGraphPointMarkerInfo[0])
-                        .snippet(stringGraphPointMarkerInfo[1])
-                );
-            }
-        }
-    }
-
-	protected void onRestoreInstanceState (@NonNull Bundle savedInstanceState) {
-
-        savedInstanceStateHasRun = true;
-
-        Constant.states = savedInstanceState.getBooleanArray("STATES");
-        Constant.bikeLanesStates = savedInstanceState.getBooleanArray("BIKELANESSTATES");
-        Constant.sharingSystemsStates = savedInstanceState.getBooleanArray("SHARINGSYSTEMSSTATES");
-		current_latlng = savedInstanceState.getDoubleArray("LATLNG");
-
-        zoom = savedInstanceState.getFloat("ZOOM");
-		if (savedInstanceState.getBoolean("isDrawerOpen")) {
-			mDrawerLayout.openDrawer(Gravity.LEFT);
-            etSearch.clearFocus();
-        }
-
-		ListCiclovias = savedInstanceState.getParcelableArrayList("CICLOVIAS_LIST");
-
-		ListCiclofaixas = savedInstanceState.getParcelableArrayList("CICLOFAIXAS_LIST");
-
-		ciclorrotasOptionsList = savedInstanceState.getParcelableArrayList("CICLORROTAS_LIST");
-
-		ListEstacoesITAU = savedInstanceState.getParcelableArrayList("ITAU_LIST");
-
-		ListEstacoesBRA = savedInstanceState.getParcelableArrayList("BRA_LIST");
-
-		ListParques = savedInstanceState.getParcelableArrayList("PARQUES_LIST");
-
-		ListBicicletarios = savedInstanceState.getParcelableArrayList("BICICLETARIOS_LIST");
-
-		ListWifi = savedInstanceState.getParcelableArrayList("WIFI_LIST");
-
-		ListAlerts = savedInstanceState.getParcelableArrayList("REPORTS_LIST");
-
-		isRouteModeOn = savedInstanceState.getBoolean("isRouteModeOn");
-
-		if (isRouteModeOn) {
-            btRouteMode.setChecked(true);
-			header.removeAllViews();
-			header.addView(routeHeaderView);
-
-			if (savedInstanceState.getBoolean("tvOriginVIS")) {
-				etOrigin.setVisibility(View.GONE);
-				tvOrigin.setVisibility(View.VISIBLE);
-				tvOrigin.setText(savedInstanceState.getString("tvOriginSTRING"));
-
-			} else {
-				tvOrigin.setVisibility(View.GONE);
-				etOrigin.setVisibility(View.VISIBLE);
-				etOrigin.setText(savedInstanceState.getString("etOriginSTRING"));}
-
-			if (savedInstanceState.getBoolean("tvDestinationVIS")) {
-				etDestination.setVisibility(View.GONE);
-				tvDestination.setVisibility(View.VISIBLE);
-				tvDestination.setText(savedInstanceState.getString("tvDestinationSTRING"));
-
-			} else {
-				tvDestination.setVisibility(View.GONE);
-				etDestination.setVisibility(View.VISIBLE);
-				etDestination.setText(savedInstanceState.getString("etDestinationSTRING"));}
-
-            if (savedInstanceState.getParcelable("markerOriginLatLng") != null) {
-                latLngMarkerOrigin = savedInstanceState.getParcelable("markerOriginLatLng");
-            }
-            if (savedInstanceState.getParcelable("markerDestinationLatLng") != null) {
-                latLngMarkerDestination = savedInstanceState.getParcelable("markerDestinationLatLng");
-            }
-
-			if (savedInstanceState.getBoolean("viewPagerVIS")) {
-
-                for (LinearLayout ll : aChartLinearLayoutList) {
-                    ll.removeAllViews();
-                }
-                aChartLinearLayoutList.clear();
-
-				cyclingPathList = savedInstanceState.getParcelableArrayList("cyclingPathList");
-				selectedCyclingPath = savedInstanceState.getParcelableArrayList("selectedCyclingPath");
-				viewPagerPosition = savedInstanceState.getInt("viewPagerPOSITION");
-				isViewPagerVisible = true;
-				if (savedInstanceState.getBoolean("graph_point_markerVIS")) {
-					stringGraphPointMarkerInfo = savedInstanceState.getStringArray("graph_point_markerINFO");
-                    latLngGraphPointMarker = savedInstanceState.getParcelable("graph_point_markerLATLNG");
-				}
-			}
-		}
-        etSearch.clearFocus();
-
-	}
-
-	public void onSaveInstanceState (Bundle savedInstanceState) {
-		super.onSaveInstanceState(savedInstanceState);
-
-		double[] latlng = {googleMap.getCameraPosition().target.latitude, googleMap.getCameraPosition().target.longitude};
-		savedInstanceState.putDoubleArray("LATLNG", latlng);
-		savedInstanceState.putFloat("ZOOM", googleMap.getCameraPosition().zoom);
-        savedInstanceState.putParcelableArrayList("CICLOVIAS_LIST", ListCiclovias);
-        savedInstanceState.putParcelableArrayList("CICLOFAIXAS_LIST", ListCiclofaixas);
-        savedInstanceState.putParcelableArrayList("CICLORROTAS_LIST", ciclorrotasOptionsList);
-		savedInstanceState.putParcelableArrayList("ITAU_LIST", ListEstacoesITAU);
-		savedInstanceState.putParcelableArrayList("BRA_LIST", ListEstacoesBRA);
-		savedInstanceState.putParcelableArrayList("PARQUES_LIST", ListParques);
-		savedInstanceState.putParcelableArrayList("BICICLETARIOS_LIST", ListBicicletarios);
-		savedInstanceState.putParcelableArrayList("WIFI_LIST", ListWifi);
-		savedInstanceState.putParcelableArrayList("REPORTS_LIST", ListAlerts);
-
-		savedInstanceState.putBoolean("isDrawerOpen", mDrawerLayout.isDrawerOpen(Gravity.LEFT));
-
-        savedInstanceState.putBooleanArray("STATES", Constant.states);
-        savedInstanceState.putBooleanArray("BIKELANESSTATES", Constant.bikeLanesStates);
-        savedInstanceState.putBooleanArray("SHARINGSYSTEMSSTATES", Constant.sharingSystemsStates);
-
-		// ROUTEMODE
-		savedInstanceState.putBoolean("isRouteModeOn", isRouteModeOn);
-
-		if (isRouteModeOn) {
-			// Get visibilities of header views
-			savedInstanceState.putBoolean("pBarRouteVIS", pBarRoute.getVisibility() == View.VISIBLE);
-			savedInstanceState.putBoolean("btRouteVIS", btRoute.getVisibility() == View.VISIBLE);
-
-			savedInstanceState.putBoolean("tvOriginVIS", tvOrigin.getVisibility() == View.VISIBLE);
-			savedInstanceState.putBoolean("etOriginVIS", etOrigin.getVisibility() == View.VISIBLE);
-			savedInstanceState.putBoolean("tvDestinationVIS", tvDestination.getVisibility() == View.VISIBLE);
-			savedInstanceState.putBoolean("etDestinationVIS", etDestination.getVisibility() == View.VISIBLE);
-			savedInstanceState.putString("tvOriginSTRING", tvOrigin.getText().toString());
-			savedInstanceState.putString("etOriginSTRING", etOrigin.getText().toString());
-			savedInstanceState.putString("tvDestinationSTRING", tvDestination.getText().toString());
-			savedInstanceState.putString("etDestinationSTRING", etDestination.getText().toString());
-
-			// Get cyclingPathList, viewPager and graph_point_marker
-
-			savedInstanceState.putParcelableArrayList("cyclingPathList", cyclingPathList);
-			savedInstanceState.putParcelableArrayList("selectedCyclingPath", selectedCyclingPath);
-
-            if (markerOrigin != null) {
-                savedInstanceState.putParcelable("markerOriginLatLng", markerOrigin.getPosition());
-            }
-            if (markerDestination != null) {
-                savedInstanceState.putParcelable("markerDestinationLatLng", markerDestination.getPosition());
-            }
-
-			// Save ViewPager State
-			if (viewPager.getVisibility() == View.VISIBLE) {
-				savedInstanceState.putBoolean("viewPagerVIS", true);
-				savedInstanceState.putInt("viewPagerPOSITION", viewPager.getCurrentItem());
-
-				// Save graph_point_marker State (marcador que indica qual ponto da rota foi clicado
-				if (graph_point_marker != null) {
-					savedInstanceState.putBoolean("graph_point_markerVIS", true);
-					savedInstanceState.putParcelable("graph_point_markerLATLNG", graph_point_marker.getPosition());
-					String[] s = new String[2];
-					s[0] = graph_point_marker.getTitle();
-					s[1] = graph_point_marker.getSnippet();
-					savedInstanceState.putStringArray("graph_point_markerINFO", s);
-				} else {
-					savedInstanceState.putBoolean("graph_point_markerVIS", false);
-				}
-			} else {
-				savedInstanceState.putBoolean("viewPagerVIS", false);
-			}
-		}
 	}
 
     @Override
@@ -4115,32 +3508,6 @@ public class MainActivity extends FragmentActivity
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onSwipeFragmentInteraction(Double clickedRefDistance) {
-
-        Log.e("onMainActivity", "HERE");
-
-        if (graph_point_marker != null) {
-            graph_point_marker.remove();
-        }
-
-        graph_point_marker = googleMap.addMarker(new MarkerOptions()
-                .position(selectedCyclingPath.get(0).getLatLngFromRefDistance(clickedRefDistance))
-                .anchor(0.5f, 0.5f)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.graph_blue_ball))
-                .title(getString(R.string.inclinacao) + " " + String.valueOf(selectedCyclingPath.get(0).getElevationFromRefDistance(clickedRefDistance)) + "°")
-                .snippet(getString(R.string.posicao) + " " + Double.valueOf(String.format(Locale.US, "%.2f", clickedRefDistance)) + " km")
-        );
-
-        graph_point_marker.showInfoWindow();
-
-        // display information of the clicked point
-        /** "Chart element in series index " + seriesSelection.getSeriesIndex()
-         + " data point index " + seriesSelection.getPointIndex() + " was clicked"
-         + " closest point value X=" + seriesSelection.getXValue() + ", Y="
-         + seriesSelection.getValue(), Toast.LENGTH_SHORT).show();*/
     }
 
 }

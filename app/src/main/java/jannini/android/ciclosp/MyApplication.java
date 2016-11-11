@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class MyApplication extends Application {
 
 	private static boolean activityVisible;
-	
+
 	@Override
 	public void onCreate() {
 	    // The following line triggers the initialization of ACRA

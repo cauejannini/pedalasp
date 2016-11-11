@@ -4,8 +4,6 @@
     <string name="title_activity_info_window" translatable="false">InfoWindowActivity</string>
     <string name="title_activity_welcome_screen" translatable="false">WelcomeScreen</string>
     <string name="title_activity_splash" translatable="false">Splash</string>
-    <string name="title_activity_my_sqlite_helper" translatable="false">MySQLiteHelper</string>
-    <string name="preferences" translatable="false">ped_pref</string>
     <string name="title_activity_directions" translatable="false">Directions</string>
     <string name="title_activity_create_route" translatable="false">CreateRouteActivity</string>
     <string name="offline" translatable="false">OFFLINE</string>
@@ -26,7 +24,7 @@
         <item>Parks with bike lanes</item>
         <item>Free city wifi</item>
         <item>sent by users</item>
-        <item />
+        <item/>
     </string-array>
 
     <string name="app_name">Pedala SP</string>
@@ -80,7 +78,8 @@
     <string name="preencha_campos">Please, complete all the fields.</string>
     <string name="refresh">Refresh</string>
     <string name="report_description">Alert problem on your way</string>
-    <string name="route_header_hint">type in or touch and hold on map</string>
+    <string name="route_origin_hint">Insert origin</string>
+    <string name="route_destination_hint">Insert destination</string>
     <string name="runkeeper_login">Connect to Runkeeper</string>
     <string name="sem_conexao">We coudn\'t download the data. Check you connection.</string>
     <string name="seu_email">Email</string>
@@ -142,7 +141,8 @@
     <string name="toast_thanks">Thanks!</string>
     <string name="rede_nao_disponivel">Network not available</string>
     <string name="inclinacao_maxima">Max inclination</string>
-    <string name="route_nenhuma_rota_criada">No route created</string>
+    <string name="on_bikelanes">on bikelanes</string>
+    <string name="route_nenhuma_rota_encontrada">Zero routes found</string>
     <string name="drawerexp_explanation1">Choose which items to see on the map:</string>
     <string name="drawerexp_explanation2">(You\'ll be able to change this after)</string>
     <string name="cancelar">Cancel</string>
@@ -171,4 +171,14 @@
     <string name="atencao">Warning</string>
     <string name="toomuchmarkers">Visualizing too much items in a broad area can make the app run slow</string>
     <string name="dont_show_again">Don\'t show again</string>
+
+    <string-array name="route_priorities">
+        <item>More bike lanes</item>
+        <item>Fastest route</item>
+        <item>Flattest route</item>
+    </string-array>
+
+    <string name="error">Error</string>
+    <string name="too_distant_route">The maximum distance accepted between origin and destination is 25 km</string>
+
 </resources>

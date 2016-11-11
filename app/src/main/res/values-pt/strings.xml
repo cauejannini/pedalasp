@@ -23,14 +23,6 @@
                 <item>enviados pelos usuários</item>
                 <item/>
         </string-array>
-        <string-array name="menu_array_quantidades">
-                <item/>
-                <item/>
-                <item/>
-                <item/>
-                <item/>
-                <item/>
-        </string-array>
 
         <string name="delete_last_point">Deletar</string>
         <string name="create_route">Criar rota</string>
@@ -101,7 +93,8 @@
         <string name="splash_sem_bikesampa">Ops… Não foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
         <string name="splash_sem_ciclosampa">Ops… Não foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
         <string name="marcador_inserido">(marcador inserido)</string>
-        <string name="route_header_hint">digite ou escolha no mapa</string>
+        <string name="route_origin_hint">Insira a origem</string>
+        <string name="route_destination_hint">Insira o destino</string>
         <string name="de">De: </string>
         <string name="para">Para: </string>
         <string name="carregando_rotas">Carregando rotas</string>
@@ -141,7 +134,8 @@
         <string name="toast_thanks">Obrigado!</string>
         <string name="rede_nao_disponivel">Rede não disponível</string>
         <string name="inclinacao_maxima">Inclinação máxima</string>
-        <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
+        <string name="on_bikelanes">por ciclovias</string>
+        <string name="route_nenhuma_rota_encontrada">Nenhuma rota encontrada</string>
         <string name="drawerexp_explanation1">Escolha quais itens visualizar no mapa:</string>
         <string name="drawerexp_explanation2">(Você poderá mudar isso depois!)</string>
         <string name="cancelar">Cancelar</string>
@@ -168,4 +162,13 @@
         <string name="atencao">Atenção</string>
         <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
         <string name="dont_show_again">Não mostrar novamente</string>
+
+        <string-array name="route_priorities">
+                <item>Rota por ciclovias</item>
+                <item>Rota mais rápida</item>
+                <item>Rota mais plana</item>
+        </string-array>
+
+        <string name="error">Erro</string>
+        <string name="too_distant_route">A distância máxima entre origem e destino é de 25 km</string>
 </resources>

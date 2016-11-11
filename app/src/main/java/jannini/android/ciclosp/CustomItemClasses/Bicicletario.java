@@ -38,7 +38,6 @@ public class Bicicletario implements Parcelable{
 		Horario = in.readString();
 	}
 
-
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(Nome);
 		out.writeDouble(Lat);

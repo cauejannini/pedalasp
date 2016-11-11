@@ -107,7 +107,6 @@ public class MyListAdapter extends ArrayAdapter<String> {
                 holder.image.setVisibility(View.GONE);
                 holder.description.setVisibility(View.GONE);
                 break;
-
         }
 
         return drawListView;
