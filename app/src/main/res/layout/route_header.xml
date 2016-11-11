@@ -13,46 +13,30 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_edit_origin"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:padding="6dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:weightSum="1">
 
-            <TextView
-                android:layout_width="38dp"
-                android:layout_height="30dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:textColor="@color/light_text"
-                android:text="@string/de"
-                android:onClick="editOrigin"/>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_route_origin"/>
 
             <TextView
                 android:id="@+id/tv_origin"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:padding="5dp"
                 android:maxLines="1"
-                android:background="@color/water_blue"
+                android:gravity="center_vertical"
+                android:hint="@string/route_origin_hint"
+                android:textColor="@color/grey_bg"
                 android:onClick="editOrigin"/>
-
-            <EditText
-                android:id="@+id/et_origin"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="30dp"
-                android:textSize="14sp"
-                android:padding="5dp"
-                android:background="@null"
-                android:textColor="@color/dark_text"
-                android:inputType="textImeMultiLine"
-                android:hint="@string/route_header_hint"
-                android:imeOptions="actionSearch"
-                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -60,86 +44,45 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginRight="5dp"
-            android:layout_marginLeft="43dp"
+            android:layout_marginLeft="46dp"
             android:background="#CCCCCC"/>
 
         <LinearLayout
+            android:id="@+id/ll_edit_destination"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="45dp"
             android:orientation="horizontal"
-            android:padding="6dp"
             android:gravity="center_vertical"
             android:weightSum="1">
 
-            <TextView
-                android:layout_width="38dp"
-                android:layout_height="30dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:textColor="@color/light_text"
-                android:text="@string/para"
-                android:onClick="editOrigin"/>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_route_destination"/>
 
             <TextView
                 android:id="@+id/tv_destination"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:padding="5dp"
                 android:maxLines="1"
-                android:background="@color/water_blue"
+                android:gravity="center_vertical"
+                android:hint="@string/route_destination_hint"
+                android:textColor="@color/grey_bg"
                 android:onClick="editDestination"/>
-
-            <EditText
-                android:id="@+id/et_destination"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="30dp"
-                android:textSize="14sp"
-                android:padding="5dp"
-                android:background="@null"
-                android:inputType="textImeMultiLine"
-                android:imeOptions="actionSearch"
-                android:textColor="@color/dark_text"
-                android:hint="@string/route_header_hint"
-                android:visibility="gone"/>
-
 
         </LinearLayout>
 
     </LinearLayout>
 
-
     <Button
         android:id="@+id/switch_addresses"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_margin="5dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/switch_address"
         android:onClick="switchAddresses" />
 
-     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-         android:visibility="gone"
-        android:orientation="vertical">
-
-        <ProgressBar
-            android:id="@+id/progress_bar_route"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
-            android:visibility="gone"/>
-
-        <Button
-            android:id="@+id/bt_route"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/bt_lupa_transparent"/>
-
-    </LinearLayout>
 </LinearLayout>

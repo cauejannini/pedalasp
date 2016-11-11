@@ -13,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.widget.ProgressBar;
 
 import org.json.JSONException;
@@ -26,6 +25,8 @@ import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.JSONParser;
 
 public class SplashScreen extends Activity {
+
+    SharedPreferences sharedPreferences;
 
 	// Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -48,7 +49,7 @@ public class SplashScreen extends Activity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
-        final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         String deviceID = sharedPreferences.getString(Constant.deviceID, "");
         if (deviceID.equals("")) {
@@ -87,8 +88,6 @@ public class SplashScreen extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            Log.e("onPreExecute", "START");
-
             if (!isNetworkAvailable()) {
             	cancel(true);
             	AlertDialog.Builder network_alert = new AlertDialog.Builder(SplashScreen.this);
@@ -121,7 +120,6 @@ public class SplashScreen extends Activity {
                 JSONObject jObjBikeSampa = jParser.makeHttpRequest(Constant.url_obter_bikesampa);
                 JSONObject jObjCicloSampa = jParser.makeHttpRequest(Constant.url_obter_ciclosampa);
 
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                 try {
@@ -205,8 +203,6 @@ public class SplashScreen extends Activity {
 
         // Adiciona marcadores no mapa para todos os objetos encontrados.
 		protected void onPostExecute(String file_url) {
-
-            Log.e("onPostExecute", "START");
 
 			Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
             startActivity(i);

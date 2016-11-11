@@ -41,7 +41,6 @@ public class Parque implements Parcelable{
 		Wifi = in.readInt();
 	}
 
-
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(Nome);
 		out.writeString(Endereco);

@@ -8,7 +8,6 @@
                 <item>Pontos Wifi Livre SP</item>
                 <item>Alertas</item>
                 <item>Escreva para nós</item>
-                <item>Configurações</item>
         </string-array>
     <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
@@ -18,7 +17,11 @@
                 <item>Wifi municipal aberto</item>
                 <item>enviados pelos usuários</item>
                 <item/>
-                <item/>
+        </string-array>
+    <string-array name="route_priorities">
+                <item>Rota por ciclovias</item>
+                <item>Rota mais rápida</item>
+                <item>Rota mais plana</item>
         </string-array>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navegar para a página inicial"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
@@ -28,6 +31,8 @@
     <string msgid="4076576682505996667" name="abc_action_mode_done">"Concluído"</string>
     <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Ver tudo"</string>
     <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Selecione um app"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"DESATIVAR"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"ATIVAR"</string>
     <string msgid="7723749260725869598" name="abc_search_hint">"Pesquisar..."</string>
     <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Limpar consulta"</string>
     <string msgid="2550479030709304392" name="abc_searchview_description_query">"Consulta de pesquisa"</string>
@@ -84,6 +89,7 @@
     <string name="enviar_alerta">Enviar alerta</string>
     <string name="enviar_email">Enviar</string>
     <string name="envie_sugestao">Escreva para nós</string>
+    <string name="error">Erro</string>
     <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
     <string name="estacao_bike_sampa">Estação Bike Sampa</string>
     <string name="estacao_ciclo_sampa">Estação Ciclo Sampa</string>
@@ -109,17 +115,6 @@
     <string name="mais">MAIS</string>
     <string name="mandatory_field">Campo obrigatório</string>
     <string name="marcador_inserido">(marcador inserido)</string>
-    <string msgid="8327680881775995150" name="mr_media_route_button_content_description">"Transmitir"</string>
-    <string msgid="7553005460920830010" name="mr_media_route_chooser_searching">"Procurando dispositivos…"</string>
-    <string msgid="7106830097177242655" name="mr_media_route_chooser_title">"Conectar ao dispositivo"</string>
-    <string msgid="109793632378378069" name="mr_media_route_controller_disconnect">"Desconectar"</string>
-    <string msgid="3641544772007543920" name="mr_media_route_controller_no_info_available">"Nenhuma informação disponível"</string>
-    <string msgid="8315773974194466049" name="mr_media_route_controller_pause">"Pausar"</string>
-    <string msgid="5214423499524760404" name="mr_media_route_controller_play">"Reproduzir"</string>
-    <string msgid="379358765881274425" name="mr_media_route_controller_settings_description">"Configurações de rota"</string>
-    <string msgid="5398645111664294430" name="mr_media_route_controller_stop">"Interromper transmissão"</string>
-    <string msgid="5441529851481176817" name="mr_system_route_name">"Sistema"</string>
-    <string msgid="7498112907524977311" name="mr_user_route_category_name">"Dispositivos"</string>
     <string name="nenhum_alerta_selecionado">Nenhum alerta selecionado</string>
     <string name="network_alert_dialog">Verifique sua conexão.</string>
     <string name="network_alert_dialog_splash">Você precisa de uma conexão ativa para iniciar o aplicativo da primeira vez. Configure sua conexão.</string>
@@ -148,13 +143,15 @@
     <string name="refresh">Refresh</string>
     <string name="remove">REMOVER</string>
     <string name="report_description">Alertar problema no trajeto</string>
+    <string name="route_destination_hint">Insira o destino</string>
     <string name="route_error_check_connection">Erro ao criar a rota. Verifique sua conexão.</string>
     <string name="route_explanation">Clique no gráfico de elevação para visualizar no mapa o ponto correspondente.</string>
-    <string name="route_header_hint">digite ou escolha no mapa</string>
-    <string name="route_nenhuma_rota_criada">Nenhuma rota criada</string>
+    <string name="route_nenhuma_rota_encontrada">Nenhuma rota encontrada</string>
+    <string name="route_origin_hint">Insira a origem</string>
     <string name="route_tab_explanation">No modo rota, a aba inferior mostra detalhes da rota selecionada, como o perfil de elevação.</string>
     <string name="runkeeper_login">Conectar com Runkeeper</string>
     <string name="saved_place">Local salvo</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Pesquisar"</string>
     <string name="sem_conexao">Não foi possível carregar as informações. Verifique sua conexão.</string>
     <string name="seu_email">Email de contato</string>
     <string name="seu_local">Seu local</string>
@@ -181,6 +178,7 @@
     <string name="title_activity_sugestao">Sugestão</string>
     <string name="toast_error">Ocorreu algum erro...</string>
     <string name="toast_thanks">Obrigado!</string>
+    <string name="too_distant_route">A distância máxima entre origem e destino é de 25 km</string>
     <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
     <string name="type_of_alert">TIPO DE ALERTA</string>
     <string name="vagas">Vagas: </string>

@@ -26,7 +26,6 @@ public class Report implements Parcelable{
         Descricao = in.readString();
         timestamp = in.readString();
 	}
-    
 	
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(Tipo);
@@ -52,8 +51,8 @@ public class Report implements Parcelable{
             return new Report[size];
         }
     };
-
-	
 	
 }
+
+
 

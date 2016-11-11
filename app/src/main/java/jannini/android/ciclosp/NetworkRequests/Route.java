@@ -1,26 +1,34 @@
 package jannini.android.ciclosp.NetworkRequests;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
+
+import static jannini.android.ciclosp.MainActivity.ListCiclovias;
 
 public class Route {
 
     public Route() {}
 
-    public static void getRoute (final LatLng start, final LatLng end, final GetRouteInterface handlerInterface) {
+    public static void getRoute (final Context context, final int requestId, final LatLng start, final LatLng end, final GoogleMap gMap, final GetRouteInterface handlerInterface) {
+
+        final ArrayList<CyclingPath> cyclingPathReturnList = new ArrayList<>();
 
         final ArrayList<ArrayList<LatLng>> pathRoutes = new ArrayList<>();
         final ArrayList<Double> distances = new ArrayList<>();
@@ -30,63 +38,62 @@ public class Route {
 
         final ArrayList<String> encodedPaths = new ArrayList<>();
 
-        String s_url = "http://maps.googleapis.com/maps/api/directions/json?"
-                + "origin=" + start.latitude + "," + start.longitude
-                + "&destination=" + end.latitude + "," + end.longitude
-                + "&sensor=false&units=metric&avoid=highways&mode=bicycling&alternatives=true";
-
-        Calls.jsonRequest(s_url, new CallHandler() {
+        Calls.getDirections(start, end, new CallHandler() {
             @Override
             public void onSuccess(int responseCode, String response) {
 
                 try {
-                    JSONObject job = new JSONObject(response);
+                    JSONArray jarray = new JSONArray(response);
 
-                    JSONArray arrayOfRoutes = job.getJSONArray("routes");
+                    for (int x = 0 ; x< jarray.length(); x++) {
 
-                    Log.e("Number of routes found", String.valueOf(arrayOfRoutes.length()));
+                        JSONObject job = jarray.getJSONObject(x);
+                        JSONArray arrayOfRoutes = job.getJSONArray("routes");
 
-                    for (int i = 0; i < arrayOfRoutes.length(); i++) {
+                        Log.e("Number of routes found", String.valueOf(arrayOfRoutes.length()));
 
-                        // Get encoded path and transform into ArrayList<LatLng>
-                        JSONObject routeObject = arrayOfRoutes.getJSONObject(i);
-                        JSONObject overviewPolyline = routeObject.getJSONObject("overview_polyline");
-                        String encodedPath = overviewPolyline.getString("points");
-                        encodedPaths.add(encodedPath);
+                        for (int i = 0; i < arrayOfRoutes.length(); i++) {
 
-                        ArrayList<LatLng> latLngPath = decodePoly(encodedPath);
-                        pathRoutes.add(latLngPath);
+                            // Get encoded path and transform into ArrayList<LatLng>
+                            JSONObject routeObject = arrayOfRoutes.getJSONObject(i);
+                            JSONObject overviewPolyline = routeObject.getJSONObject("overview_polyline");
+                            String encodedPath = overviewPolyline.getString("points");
+                            encodedPaths.add(encodedPath);
 
-                        // Get bounds for this route
-                        JSONObject boundsObj = routeObject.getJSONObject("bounds");
+                            ArrayList<LatLng> latLngPath = decodePoly(encodedPath);
+                            pathRoutes.add(latLngPath);
 
-                        JSONObject neBoundsObj = boundsObj.getJSONObject("northeast");
-                        Double neLat = neBoundsObj.getDouble("lat");
-                        Double neLng = neBoundsObj.getDouble("lng");
+                            // Get bounds for this route
+                            JSONObject boundsObj = routeObject.getJSONObject("bounds");
 
-                        JSONObject swBoundsObj = boundsObj.getJSONObject("southwest");
-                        Double swLat = swBoundsObj.getDouble("lat");
-                        Double swLng = swBoundsObj.getDouble("lng");
+                            JSONObject neBoundsObj = boundsObj.getJSONObject("northeast");
+                            Double neLat = neBoundsObj.getDouble("lat");
+                            Double neLng = neBoundsObj.getDouble("lng");
 
-                        LatLng neBounds = new LatLng(neLat, neLng);
-                        LatLng swBounds = new LatLng(swLat, swLng);
-                        LatLngBounds bounds = new LatLngBounds(swBounds, neBounds);
-                        boundsList.add(bounds);
+                            JSONObject swBoundsObj = boundsObj.getJSONObject("southwest");
+                            Double swLat = swBoundsObj.getDouble("lat");
+                            Double swLng = swBoundsObj.getDouble("lng");
 
-                        // Get distance and duration of leg.
-                        JSONArray legsArray = routeObject.getJSONArray("legs");
+                            LatLng neBounds = new LatLng(neLat, neLng);
+                            LatLng swBounds = new LatLng(swLat, swLng);
+                            LatLngBounds bounds = new LatLngBounds(swBounds, neBounds);
+                            boundsList.add(bounds);
 
-                        //The route should only have one leg because just one destination was asked.
-                        JSONObject leg = legsArray.getJSONObject(0);
-                        JSONObject distanceObj = leg.getJSONObject("distance");
-                        String distanceInMetersString = distanceObj.getString("value");
-                        Double distanceInMeters = Double.valueOf(distanceInMetersString);
-                        distances.add(distanceInMeters);
+                            // Get distance and duration of leg.
+                            JSONArray legsArray = routeObject.getJSONArray("legs");
 
-                        JSONObject durationObj = leg.getJSONObject("duration");
-                        Integer durationString = durationObj.getInt("value");
-                        durations.add(durationString);
+                            //The route should only have one leg because just one destination was asked.
+                            JSONObject leg = legsArray.getJSONObject(0);
+                            JSONObject distanceObj = leg.getJSONObject("distance");
+                            String distanceInMetersString = distanceObj.getString("value");
+                            Double distanceInMeters = Double.valueOf(distanceInMetersString);
+                            distances.add(distanceInMeters);
 
+                            JSONObject durationObj = leg.getJSONObject("duration");
+                            Integer durationString = durationObj.getInt("value");
+                            durations.add(durationString);
+
+                        }
                     }
 
                     ArrayList<Integer> numbersOfSamplesList = new ArrayList<>();
@@ -124,7 +131,59 @@ public class Route {
                                     }
                                 }
 
-                                handlerInterface.onFinished(pathRoutes, elevationLists, distances, durations, boundsList);
+                                // Create cyclingPathReturnList, select better routes for each priority and discard the rest.
+
+
+                                if (!pathRoutes.isEmpty()) {
+
+                                    Log.e("getRoute", "create CyclingPaths");
+                                    for (int i = 0; i < pathRoutes.size(); i++) {
+                                        CyclingPath cp = new CyclingPath(context, pathRoutes.get(i),
+                                                distances.get(i),
+                                                durations.get(i),
+                                                elevationLists.get(i),
+                                                boundsList.get(i), ListCiclovias, gMap);
+                                        cyclingPathReturnList.add(cp);
+                                    }
+
+                                    Log.e("getRoute", "reordering CyclingPaths");
+
+                                    // Reorder cyclingPathReturnList so the max percentage of bike lanes is the last object
+
+                                    Collections.sort(cyclingPathReturnList, new InclinationComparator());
+                                    cyclingPathReturnList.get(0).flattest = true;
+                                    double minInclination = cyclingPathReturnList.get(0).maxInclination;
+
+                                    Collections.sort(cyclingPathReturnList, new MinDurationComparator());
+                                    cyclingPathReturnList.get(0).fastest = true;
+                                    double minDuration = cyclingPathReturnList.get(0).totalDurationSecs;
+
+                                    Collections.sort(cyclingPathReturnList, new PercentageOnBikeLanesComparator());
+                                    cyclingPathReturnList.get(cyclingPathReturnList.size() - 1).mostBikeLanes = true;
+
+                                    // If mostBikeLanes cp matches any other best value, remove the other cycling path.
+                                    if (cyclingPathReturnList.get(cyclingPathReturnList.size() - 1).maxInclination == minInclination) {
+                                        for (CyclingPath cp : cyclingPathReturnList) {
+                                            cp.flattest = false;
+                                        }
+                                        cyclingPathReturnList.get(cyclingPathReturnList.size() - 1).flattest = true;
+                                    }
+                                    if (cyclingPathReturnList.get(cyclingPathReturnList.size() - 1).totalDurationSecs == minDuration) {
+                                        for (CyclingPath cp : cyclingPathReturnList) {
+                                            cp.fastest = false;
+                                        }
+                                        cyclingPathReturnList.get(cyclingPathReturnList.size() - 1).fastest = true;
+                                    }
+
+                                    // Discard CyclingPaths that are not better in anything). Loop is done backwards to avoid skipping items after one is removed.
+                                    for (int i = cyclingPathReturnList.size() - 1; i >= 0; i--) {
+                                        if (!cyclingPathReturnList.get(i).mostBikeLanes && !cyclingPathReturnList.get(i).fastest && !cyclingPathReturnList.get(i).flattest) {
+                                            cyclingPathReturnList.remove(i);
+                                        }
+                                    }
+
+                                    handlerInterface.onFinished(requestId, cyclingPathReturnList);
+                                }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -137,70 +196,6 @@ public class Route {
                 }
             }
         });
-    }
-
-    public static ArrayList<ArrayList<LatLng>> getDirectionsFromDoc(Document doc) {
-
-        ArrayList<ArrayList<LatLng>> routesPolylines = new ArrayList<>();
-        NodeList routesNodeList = doc.getElementsByTagName("route");
-
-        for (int i=0 ; i<routesNodeList.getLength() ; i++){
-            Node routeNode = routesNodeList.item(i);
-            NodeList routeNodeChilds = routeNode.getChildNodes();
-
-            ArrayList<LatLng> listGeopoints = new ArrayList<>();
-
-            NodeList nlLegs = routeNodeChilds.item(getNodeIndex(routeNodeChilds, "leg")).getChildNodes();
-
-            if (nlLegs.getLength() > 0) {
-                for (int y = 0; y < nlLegs.getLength(); y++) {
-                    if (nlLegs.item(y).getNodeName().equals("step")){
-                        Node node1 = nlLegs.item(y);
-                        NodeList nl2 = node1.getChildNodes();
-
-                        Node nodePolyline = nl2.item(getNodeIndex(nl2, "polyline"));
-                        NodeList nlPoints = nodePolyline.getChildNodes();
-                        Node nodePoints= nlPoints.item(getNodeIndex(nlPoints, "points"));
-                        ArrayList<LatLng> arr = decodePoly(nodePoints.getTextContent());
-                        for (int j = 0; j < arr.size(); j++) {
-                            listGeopoints.add(new LatLng(arr.get(j).latitude, arr
-                                    .get(j).longitude));
-                        }
-                    }
-                }
-            }
-            routesPolylines.add(listGeopoints);
-        }
-
-        return routesPolylines;
-    }
-
-    public ArrayList<Integer> getDistanceValues(Document doc) {
-
-        ArrayList<Integer> distanceList = new ArrayList<>();
-
-        NodeList routeList = doc.getElementsByTagName("route");
-
-        for (int i =0; i<routeList.getLength(); i++) {
-            NodeList routeChildNodeList = routeList.item(i).getChildNodes();
-            Node legNode = routeChildNodeList.item(getNodeIndex(routeChildNodeList, "leg"));
-            NodeList legChildNodeList = legNode.getChildNodes();
-            Node distanceNode = legChildNodeList.item(getNodeIndex(legChildNodeList, "distance"));
-            NodeList distanceChildNodeList = distanceNode.getChildNodes();
-            Node valueNode = distanceChildNodeList.item(getNodeIndex(distanceChildNodeList, "value"));
-            Log.i("DistanceValue", valueNode.getTextContent());
-            distanceList.add(Integer.parseInt(valueNode.getTextContent()));
-        }
-
-        return distanceList;
-    }
-
-    private static int getNodeIndex(NodeList nl, String nodename) {
-        for (int i = 0; i < nl.getLength(); i++) {
-            if (nl.item(i).getNodeName().equals(nodename))
-                return i;
-        }
-        return -1;
     }
 
     private static ArrayList<LatLng> decodePoly(String encoded) {
@@ -232,110 +227,28 @@ public class Route {
         return poly;
     }
 
-    static class RouteResponseWrapper {
-
-        ArrayList<ArrayList<LatLng>> routePaths;
-        ArrayList<ArrayList<Double>> pathsElevations;
-        ArrayList<Double> distances;
-        ArrayList<String> durations;
-
-        public RouteResponseWrapper(ArrayList<ArrayList<LatLng>> routePaths, ArrayList<ArrayList<Double>> pathsElevations, ArrayList<Double> distances, ArrayList<String> durations) {
-            this.routePaths = routePaths;
-            this.pathsElevations = pathsElevations;
-            this.distances = distances;
-            this.durations = durations;
+    // Reorders cyclingPathReturnList by maxInclination
+    public static class InclinationComparator implements Comparator<CyclingPath> {
+        @TargetApi(Build.VERSION_CODES.KITKAT)
+        @Override
+        public int compare(CyclingPath cp1, CyclingPath cp2) {
+            return Double.compare(cp1.maxInclination, cp2.maxInclination);
         }
     }
-
-    public String getDurationText(Document doc) {
-        try {
-            NodeList nl1 = doc.getElementsByTagName("duration");
-            Node node1 = nl1.item(0);
-            NodeList nl2 = node1.getChildNodes();
-            Node node2 = nl2.item(getNodeIndex(nl2, "text"));
-            Log.i("DurationText", node2.getTextContent());
-            return node2.getTextContent();
-        } catch (Exception e) {
-            return "0";
+    // Reorders cyclingPathReturnList by PercentageOnBikeLanes
+    public static class PercentageOnBikeLanesComparator implements Comparator<CyclingPath> {
+        @TargetApi(Build.VERSION_CODES.KITKAT)
+        @Override
+        public int compare(CyclingPath cp1, CyclingPath cp2) {
+            return Integer.compare(cp1.percentageOnBikeLanes, cp2.percentageOnBikeLanes);
         }
     }
-
-    public int getDurationValue(Document doc) {
-        try {
-            NodeList nl1 = doc.getElementsByTagName("duration");
-            Node node1 = nl1.item(0);
-            NodeList nl2 = node1.getChildNodes();
-            Node node2 = nl2.item(getNodeIndex(nl2, "value"));
-            Log.i("DurationValue", node2.getTextContent());
-            return Integer.parseInt(node2.getTextContent());
-        } catch (Exception e) {
-            return -1;
+    // Reorders cyclingPathReturnList by MinDuration
+    public static class MinDurationComparator implements Comparator<CyclingPath> {
+        @TargetApi(Build.VERSION_CODES.KITKAT)
+        @Override
+        public int compare(CyclingPath cp1, CyclingPath cp2) {
+            return Double.compare(cp1.totalDurationSecs, cp2.totalDurationSecs);
         }
-    }
-
-    public String getDistanceText(Document doc) {
-        /*
-         * while (en.hasMoreElements()) { type type = (type) en.nextElement();
-         *
-         * }
-         */
-
-        try {
-            NodeList nl1;
-            nl1 = doc.getElementsByTagName("distance");
-            Node node1 = nl1.item(nl1.getLength() - 1);
-            NodeList nl2 = null;
-            nl2 = node1.getChildNodes();
-            Node node2 = nl2.item(getNodeIndex(nl2, "value"));
-            return node2.getTextContent();
-        } catch (Exception e) {
-            return "-1";
-        }
-
-        /*
-         * NodeList nl1; if(doc.getElementsByTagName("distance")!=null){ nl1=
-         * doc.getElementsByTagName("distance");
-         *
-         * Node node1 = nl1.item(nl1.getLength() - 1); NodeList nl2 = null; if
-         * (node1.getChildNodes() != null) { nl2 = node1.getChildNodes(); Node
-         * node2 = nl2.item(getNodeIndex(nl2, "value")); Log.d("DistanceText",
-         * node2.getTextContent()); return node2.getTextContent(); } else return
-         * "-1";} else return "-1";
-         */
-    }
-
-    public String getStartAddress(Document doc) {
-        try {
-            NodeList nl1 = doc.getElementsByTagName("start_address");
-            Node node1 = nl1.item(0);
-            Log.i("StartAddress", node1.getTextContent());
-            return node1.getTextContent();
-        } catch (Exception e) {
-            return "-1";
-        }
-
-    }
-
-    public String getEndAddress(Document doc) {
-        try {
-            NodeList nl1 = doc.getElementsByTagName("end_address");
-            Node node1 = nl1.item(0);
-            Log.i("StartAddress", node1.getTextContent());
-            return node1.getTextContent();
-        } catch (Exception e) {
-            return "-1";
-    }
-    }
-
-    public String getCopyRights(Document doc) {
-        try {
-            NodeList nl1 = doc.getElementsByTagName("copyrights");
-            Node node1 = nl1.item(0);
-            Log.i("CopyRights", node1.getTextContent());
-            return node1.getTextContent();
-        } catch (Exception e) {
-        return "-1";
-        }
-
     }
 }

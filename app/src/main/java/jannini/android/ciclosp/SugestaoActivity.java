@@ -1,6 +1,8 @@
 package jannini.android.ciclosp;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,8 @@ public class SugestaoActivity extends Activity {
 	EditText et_email;
 	EditText et_mensagem;
 
+	SharedPreferences sp;
+
 	Tracker t;
 	
 	public static String newline = System.getProperty("line.separator");
@@ -42,6 +46,14 @@ public class SugestaoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sugestao);
+
+		et_nome = (EditText) findViewById(R.id.nome);
+		et_email = (EditText) findViewById(R.id.email);
+		et_mensagem = (EditText) findViewById(R.id.mensagem);
+
+		sp = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+		et_nome.setText(sp.getString(Constant.SPKEY_USER_NAME, ""));
+		et_email.setText(sp.getString(Constant.SPKEY_USER_EMAIL, ""));
 		
 		// Get tracker.
         t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
@@ -54,18 +66,19 @@ public class SugestaoActivity extends Activity {
 	}
 	
 	public void sendEmail (View v){
-		
-		et_nome = (EditText) findViewById(R.id.nome);
-		et_email = (EditText) findViewById(R.id.email);
-		et_mensagem = (EditText) findViewById(R.id.mensagem);
-		
+
 		nome = et_nome.getText().toString();
 		email = et_email.getText().toString();
 
 		mensagem = et_mensagem.getText().toString();
 
 		new postData().execute();
-		
+
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putString(Constant.SPKEY_USER_NAME, nome);
+		editor.putString(Constant.SPKEY_USER_EMAIL, email);
+		editor.apply();
+
 		Toast.makeText(getApplicationContext(), R.string.obrigado_feedback, Toast.LENGTH_LONG).show();
 		
 		finish();

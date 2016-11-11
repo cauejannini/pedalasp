@@ -16,18 +16,6 @@ public class Estacao implements Parcelable {
 	public int bikes;
 	public int tamanho;
 
-	public Estacao(int numero, String s1, String s2, Double lat, Double lng){
-		this.Numero = numero;
-		this.Nome = s1;
-		this.Descricao = s2;
-		this.lat = lat;
-		this.lng = lng;
-		this.status1 = null;
-		this.status2 = null;
-		this.bikes = 999;
-		this.tamanho = 999;
-	}
-
 	public Estacao(int numero, String s1, String s2, Double lat, Double lng, String status1, String status2, int bikes, int tamanho){
 		this.Numero = numero;
 		this.Nome = s1;
@@ -66,7 +54,6 @@ public class Estacao implements Parcelable {
 			return new Estacao[size];
 		}
 	};
-
 
 	public Estacao(Parcel in) {
 		Numero = in.readInt();

@@ -25,6 +25,7 @@ public class Constant {
     public static String url_send_originDestination = "http://pedalaspapp.com.br/dbaccess/send_origin_destination.php";
     public static String url_create_device = "http://pedalaspapp.com.br/dbaccess/create_device.php";
     public static String urlGetElevationForUrls = "http://www.pedalaspapp.com.br/dbaccess/get_elevations.php";
+    public static String urlGetDirections = "http://www.pedalaspapp.com.br/dbaccess/get_directions.php";
 
     public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
     public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
@@ -38,10 +39,13 @@ public class Constant {
 
     public static String dontWarnAgainTooMuchMarkers = "jannini.android.ciclosp.dontWarnAgainTooMuchMarkers";
 
+    public static String SPKEY_SHARED_PREFERENCES = "jannini.android.ciclosp.SHARED_PREFERENCES";
     public static String SPKEY_ROUTE_PRIORITY = "jannini.android.ciclosp.ROUTE_PRIORITY";
     public static String PRIORITY_MOST_BIKE_LANES = "mostBikeLanes";
     public static String PRIORITY_FASTEST = "fastest";
     public static String PRIORITY_FLATTEST= "flattest";
+    public static String SPKEY_USER_NAME = "jannini.android.ciclosp.USER_NAME";
+    public static String SPKEY_USER_EMAIL = "jannini.android.ciclosp.USER_EMAIL";
 
     public static boolean[] states = {true, true, true, true, true, true};
     public static boolean[] bikeLanesStates = {true, true, true};
@@ -49,9 +53,9 @@ public class Constant {
 
     public static int distanceBetweenElevationSamples = 50;
     public static int routeIntersectionTolerance = 45;
-    public static float bikeLaneWidth = 5f;
-    public static float selectedPolylineWidth = 10f;
-    public static float unSelectedPolylineWidth = 10f;
+    public static float bikeLaneWidth = 1.5f;
+    public static float selectedPolylineWidth = 7f;
+    public static float unSelectedPolylineWidth = 7f;
 
     public static String elevationAuthKey = "AIzaSyCjD8Rpz0_cOWredDecWSx1DKPX2GN1mhU";
 

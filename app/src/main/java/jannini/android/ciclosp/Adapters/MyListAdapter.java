@@ -107,14 +107,6 @@ public class MyListAdapter extends ArrayAdapter<String> {
                 holder.image.setVisibility(View.GONE);
                 holder.description.setVisibility(View.GONE);
                 break;
-            case 7:
-                drawListView.setPadding(18, 25, 18, 25);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    holder.text.setTextColor(context.getColor(R.color.water_blue));
-                }
-                holder.image.setVisibility(View.GONE);
-                holder.description.setVisibility(View.GONE);
-                break;
         }
 
         return drawListView;

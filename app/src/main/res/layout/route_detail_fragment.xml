@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="#FFFFFF"
-    android:paddingTop="5dp"
+    android:paddingTop="0dp"
     android:paddingBottom="0dp"
     android:visibility="gone"
     android:id="@+id/ll_route_details"
@@ -37,7 +37,7 @@
                 android:layout_height="20dp"
                 android:layout_marginRight="11dp"
                 android:layout_marginLeft="11dp"
-                android:textColor="@color/route_blue"
+                android:textColor="@color/water_blue"
                 />
 
         </LinearLayout>
@@ -55,6 +55,7 @@
                 android:layout_marginRight="11dp"
                 android:layout_marginLeft="11dp"
                 android:layout_gravity="end"
+                android:textColor="@color/water_blue"
                 android:textSize="20sp"
                 />
 

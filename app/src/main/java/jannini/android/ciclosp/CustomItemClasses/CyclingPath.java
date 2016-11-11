@@ -1,9 +1,11 @@
 package jannini.android.ciclosp.CustomItemClasses;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,9 +18,14 @@ import java.util.Locale;
 
 import jannini.android.ciclosp.CheckClick;
 import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.NetworkRequests.Utils;
 
 public class CyclingPath implements Parcelable {
+    Context context;
+    public boolean isDrawn = false;
+    public GoogleMap map;
     public Polyline routePolyline;
+    public PolylineOptions routePolylineOptions;
 	public ArrayList<LatLng> pathLatLng = new ArrayList<>();
 	public ArrayList<Double> pathElevation = new ArrayList<>();
 	public double totalDistanceInKm;
@@ -27,13 +34,15 @@ public class CyclingPath implements Parcelable {
 	public LatLngBounds bounds;
 	public int percentageOnBikeLanes;
     public ArrayList<Polyline> intersectionPolylines = new ArrayList<>();
+    public ArrayList<PolylineOptions> intersectionPolylineOptions = new ArrayList<>();
     public boolean isSelected = false;
     public boolean mostBikeLanes, fastest, flattest;
 
-	public CyclingPath(ArrayList<LatLng> pathLatLng, double totalDistance, int totalDurationSecs, ArrayList<Double> pathElevation, LatLngBounds bounds, ArrayList<Ciclovia> cicloviaList, GoogleMap map){
+	public CyclingPath(Context context, ArrayList<LatLng> pathLatLng, double totalDistance, int totalDurationSecs, ArrayList<Double> pathElevation, LatLngBounds bounds, ArrayList<Ciclovia> cicloviaList, GoogleMap map){
 
-        this.routePolyline = map.addPolyline(new PolylineOptions()
-        .addAll(pathLatLng));
+        this.context = context;
+        this.routePolylineOptions = new PolylineOptions().addAll(pathLatLng);
+        this.map = map;
 
         this.pathLatLng = pathLatLng;
 		this.pathElevation = pathElevation;
@@ -43,12 +52,20 @@ public class CyclingPath implements Parcelable {
 		this.bounds = bounds;
 
 		this.maxInclination = calculateMaxInclination();
-		this.percentageOnBikeLanes = calculatePercentageOnBikeLanes(cicloviaList, map);
+		this.percentageOnBikeLanes = calculatePercentageOnBikeLanes(cicloviaList);
 
         this.mostBikeLanes = this.fastest = this.flattest = false;
 
         setSelected(false);
 	}
+
+    public void drawOnMap() {
+        isDrawn = true;
+        this.routePolyline = map.addPolyline(this.routePolylineOptions);
+        for (PolylineOptions intersectionPOpt : this.intersectionPolylineOptions) {
+            this.intersectionPolylines.add(map.addPolyline(intersectionPOpt));
+        }
+    }
 
     public String getReadableDuration() {
         String readableDuration = "";
@@ -70,12 +87,12 @@ public class CyclingPath implements Parcelable {
 	private double calculateMaxInclination() {
 		double maxInclinationDegrees = 0;
 
-		for (int i=0; i<pathElevation.size()-1; i++) {
+		for (int i=0; i<pathElevation.size()-2; i++) {
 			double h0 = pathElevation.get(i);
-			double h1 = pathElevation.get(i+1);
+			double h1 = pathElevation.get(i+2);
 
 			// Calculate angle of this step in degrees
-			double seno = (h1 - h0) / Constant.distanceBetweenElevationSamples;
+			double seno = (h1 - h0) / Constant.distanceBetweenElevationSamples*2;
 			double radians = Math.asin(seno);
 			double degrees = Math.toDegrees(radians);
 			// Add the degrees for the inclination of this step to list of all inclinations
@@ -89,7 +106,7 @@ public class CyclingPath implements Parcelable {
 		return maxInclinationDegrees;
 	}
 
-	private int calculatePercentageOnBikeLanes(ArrayList<Ciclovia> cicloviaList, GoogleMap map) {
+	private int calculatePercentageOnBikeLanes(ArrayList<Ciclovia> cicloviaList) {
 
 		for (int i = 0; i<cicloviaList.size(); i++) {
 
@@ -99,54 +116,34 @@ public class CyclingPath implements Parcelable {
 			}
 
 			ArrayList<LatLng> bikeLanePath = cicloviaList.get(i).latLngList;
+            LatLngBounds bikeLaneBounds = cicloviaList.get(i).bounds;
 
             CheckClick cc = new CheckClick();
-            CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bikeLanePath);
+            CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bikeLanePath, bikeLaneBounds);
 
+            Log.e("ciclovia " + String.valueOf(i) , cicloviaList.get(i).Nome + "bounds: " + cicloviaList.get(i).bounds +" bool: " + String.valueOf(resultFromCheck.hasIntersection));
             // Check if route has intersection
             if (resultFromCheck.hasIntersection) {
-                int countTrues = 0;
-                ArrayList<LatLng> intersectionPath = new ArrayList<>();
 
-                for (int y = 0; y < resultFromCheck.booleanList.size(); y++) {
-                    if (resultFromCheck.booleanList.get(y)) {
-                        countTrues++;
-                        if (countTrues > 3) {
-                            // Se for a primeira vez, adiciona o index passado como primeiro
-                            if (countTrues == 4) {
-                                intersectionPath.add(this.pathLatLng.get(y-1));
-                            }
-                            intersectionPath.add(this.pathLatLng.get(y));
-                        }
-                    } else {
-                        // Se estiver saindo de uma seção de "trues" adicionar a linha que foi desenhada antes de zerar
-                        if (countTrues > 3) {
-                            Polyline polyline = map.addPolyline(new PolylineOptions().addAll(intersectionPath));
-                            polyline.setColor(Color.RED);
-                            polyline.setWidth(3f);
-                            intersectionPolylines.add(polyline);
-                        }
-                        countTrues = 0;
-                        intersectionPath.clear();
-                    }
-                }
+                intersectionPolylineOptions.addAll(resultFromCheck.pOptList);
+
             }
 		}
 
         // Calculate meters of intersection and percentage of total
         double totalDistanceOfIntersection = 0.0;
 
-        if (intersectionPolylines.size() > 0) {
-            for (Polyline polyline : intersectionPolylines) {
+        if (intersectionPolylineOptions.size() > 0) {
+            for (PolylineOptions polyOptions : intersectionPolylineOptions) {
                 double distanceOfPolyline = 0.0;
-                for (int i = 1; i < polyline.getPoints().size(); i++) {
+                for (int i = 1; i < polyOptions .getPoints().size(); i++) {
                     Location location0 = new Location("loc0");
-                    location0.setLatitude(polyline.getPoints().get(i-1).latitude);
-                    location0.setLongitude(polyline.getPoints().get(i-1).longitude);
+                    location0.setLatitude(polyOptions .getPoints().get(i-1).latitude);
+                    location0.setLongitude(polyOptions .getPoints().get(i-1).longitude);
 
                     Location location1 = new Location("loc0");
-                    location1.setLatitude(polyline.getPoints().get(i).latitude);
-                    location1.setLongitude(polyline.getPoints().get(i).longitude);
+                    location1.setLatitude(polyOptions .getPoints().get(i).latitude);
+                    location1.setLongitude(polyOptions .getPoints().get(i).longitude);
 
                     distanceOfPolyline += location0.distanceTo(location1);
                 }
@@ -161,23 +158,27 @@ public class CyclingPath implements Parcelable {
     public void setSelected (boolean shouldSelect) {
         this.isSelected = shouldSelect;
 
-        if (shouldSelect){
-            routePolyline.setWidth(Constant.selectedPolylineWidth);
-            routePolyline.setColor(Color.BLUE);
-            routePolyline.setZIndex(10);
-            for (Polyline poly: intersectionPolylines) {
-                poly.setVisible(true);
-                poly.setWidth(Constant.selectedPolylineWidth);
-                poly.setColor(Color.RED);
-                poly.setZIndex(10);
-            }
-        } else {
-            routePolyline.setWidth(Constant.unSelectedPolylineWidth);
-            routePolyline.setColor(Color.LTGRAY);
-            routePolyline.setZIndex(9);
-            for (Polyline poly: intersectionPolylines) {
-                poly.setVisible(false);
-                poly.setWidth(Constant.unSelectedPolylineWidth);
+        if (routePolyline != null) {
+
+            if (shouldSelect) {
+                Log.e("maxInclination", String.valueOf(this.maxInclination));
+                routePolyline.setWidth(Utils.getPixelValue(this.context, Constant.selectedPolylineWidth));
+                routePolyline.setColor(Color.BLUE);
+                routePolyline.setZIndex(10);
+                for (Polyline poly : intersectionPolylines) {
+                    poly.setVisible(true);
+                    poly.setWidth(Utils.getPixelValue(this.context, Constant.selectedPolylineWidth));
+                    poly.setColor(Color.RED);
+                    poly.setZIndex(10);
+                }
+            } else {
+                routePolyline.setWidth(Utils.getPixelValue(this.context, Constant.unSelectedPolylineWidth));
+                routePolyline.setColor(Color.LTGRAY);
+                routePolyline.setZIndex(9);
+                for (Polyline poly : intersectionPolylines) {
+                    poly.setVisible(false);
+                    poly.setWidth(Utils.getPixelValue(this.context, Constant.unSelectedPolylineWidth));
+                }
             }
         }
     }

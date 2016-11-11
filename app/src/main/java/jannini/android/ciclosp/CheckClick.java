@@ -3,6 +3,8 @@ package jannini.android.ciclosp;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,27 +69,40 @@ public class CheckClick {
 	}
 
 	// Returns booleanList of intersection points between route and one Bike Lane
-	public GetIntersectionResult getIntersectionBool (ArrayList<LatLng> routePath, ArrayList<LatLng> lanePath) {
+	public GetIntersectionResult getIntersectionBool (ArrayList<LatLng> routePath, ArrayList<LatLng> lanePath, LatLngBounds laneBounds) {
 		boolean hasIntersection = false;
-		ArrayList<Boolean> booleanList = new ArrayList<>();
 
 		int countSubsequentTrues = 0;
 
+		ArrayList<PolylineOptions> pOptList = new ArrayList<>();
+		ArrayList<LatLng> intersectionPath = new ArrayList<>();
+
 		for (int i = 0; i <routePath.size(); i++) {
-			boolean checkThisPoint = checkPoint(routePath.get(i), lanePath);
+
+			// Se o atual ponto da rota estiver fora das bounds da ciclovia, já seta checkThisPoint como false.
+			boolean checkThisPoint = laneBounds.contains(routePath.get(i)) && checkPoint(routePath.get(i), lanePath);
+
 			if (checkThisPoint) {
 				countSubsequentTrues++;
-				booleanList.add(true);
-				if (countSubsequentTrues == 4) {
+				if (countSubsequentTrues > 2) {
 					hasIntersection = true;
+					if (countSubsequentTrues == 3) {
+						intersectionPath.add(routePath.get(i - 2));
+						intersectionPath.add(routePath.get(i - 1));
+					}
+					intersectionPath.add(routePath.get(i));
 				}
 			} else {
+				if (countSubsequentTrues > 2) {
+					PolylineOptions pOpt = new PolylineOptions().addAll(intersectionPath);
+					pOptList.add(pOpt);
+				}
 				countSubsequentTrues = 0;
-				booleanList.add(false);
+				intersectionPath.clear();
 			}
 		}
 
-		return new GetIntersectionResult(hasIntersection, booleanList);
+		return new GetIntersectionResult(hasIntersection, pOptList);
 
 	}
 
@@ -148,12 +163,16 @@ public class CheckClick {
 
 	public class GetIntersectionResult {
 		public boolean hasIntersection;
-		public ArrayList<Boolean> booleanList;
+		public ArrayList<PolylineOptions> pOptList;
 
-		GetIntersectionResult(boolean hasIntersection, ArrayList<Boolean> booleanList) {
+		GetIntersectionResult(boolean hasIntersection, ArrayList<PolylineOptions> pOptList) {
 			this.hasIntersection = hasIntersection;
-			this.booleanList = booleanList;
+			this.pOptList = pOptList;
 		}
+	}
+
+	public void isPointInsideBounds(LatLng point, ArrayList<LatLng> latLngPath) {
+
 	}
 }
  

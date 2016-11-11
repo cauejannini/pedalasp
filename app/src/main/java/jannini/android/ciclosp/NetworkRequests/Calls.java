@@ -1,5 +1,10 @@
 package jannini.android.ciclosp.NetworkRequests;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
@@ -20,9 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.R;
 
 public class Calls {
 
@@ -363,7 +370,74 @@ public class Calls {
 
 	}
 
-	public static void getElevationLists (
+	public static void getDirections (final LatLng latLngOrigin, final LatLng latLngDestination, final CallHandler handler) {
+
+		new AsyncTask<String, String, ResponseWrapper>() {
+
+			protected ResponseWrapper doInBackground(String... args) {
+				// Set up the URL
+				URL url;
+				HttpURLConnection connection = null;
+				try {
+					url = new URL(Constant.urlGetDirections);
+					// Obtain connection object
+					connection = (HttpURLConnection) url.openConnection();
+					connection.setDoOutput(true);
+					connection.setDoInput(true);
+					connection.setRequestMethod("POST");
+
+					String oLat = String.valueOf(latLngOrigin.latitude);
+					String oLng = String.valueOf(latLngOrigin.longitude);
+					String dLat = String.valueOf(latLngDestination.latitude);
+					String dLng = String.valueOf(latLngDestination.longitude);
+
+					// Criar o OutputStream para carregar a mensagem
+					OutputStream os = connection.getOutputStream();
+					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+					buffWriter.write(
+							"oLat=" + oLat + "&" +
+							"oLng=" + oLng + "&" +
+							"dLat=" + dLat + "&" +
+							"dLng=" + dLng
+					);
+					buffWriter.flush();
+					buffWriter.close();
+					os.close();
+
+					connection.connect();
+
+					InputStream is = new BufferedInputStream(connection.getInputStream());
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+					StringBuilder sb = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						sb.append(line).append("\n");
+					}
+					is.close();
+					String response = sb.toString();
+					int code = connection.getResponseCode();
+					return new ResponseWrapper(code, response);
+
+				} catch (Exception e) {
+					Log.e("Buffer Error", "Error converting result " + e.toString());
+
+				} finally {
+					assert connection != null;
+					connection.disconnect();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(ResponseWrapper wrapper) {
+				handler.onResponse(wrapper.responseCode, wrapper.response);
+			}
+
+		}.execute();
+	}
+
+	static void getElevationLists (
 			final ArrayList<String> encodedPathList,
 			final ArrayList<Integer> samplesNumbers,
 			final CallHandler handler) {
@@ -437,4 +511,99 @@ public class Calls {
 		}.execute();
 	}
 
+	public static void getAddressFromString (final Context context, final String address, final GeocoderCallHandler handler) {
+
+		Log.e("getAddressFromString", "here");
+		final Geocoder geocoder = new Geocoder(context);
+
+		new AsyncTask<String, String, List<Address>>() {
+
+			protected List<Address> doInBackground(String... args) {
+
+				List<Address> addressListFromGeocoder = new ArrayList<>();
+				try {
+					addressListFromGeocoder = geocoder.getFromLocationName(address, 20, Constant.llLat, Constant.llLng, Constant.urLat, Constant.urLng);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				return addressListFromGeocoder;
+			}
+
+			@Override
+			protected void onPostExecute (List<Address> addressListFromGeocoder){
+
+				if (addressListFromGeocoder.isEmpty()) {
+					handler.onResponse(2, null);
+				} else if (addressListFromGeocoder.size() == 1) {
+					handler.onResponse(1, addressListFromGeocoder.get(0));
+				} else {
+
+					final ArrayList<Address> reorganizedAddressList = new ArrayList<>();
+					int u = 0;
+
+					for (int i = 0; i < addressListFromGeocoder.size(); i++) {
+
+						Address ad = addressListFromGeocoder.get(i);
+
+						// Place locations in São Paulo on top of list
+						if (i != 0 && ad.getLocality() != null) {
+							if (ad.getLocality().equalsIgnoreCase("São Paulo")) {
+								reorganizedAddressList.add(reorganizedAddressList.get(u));
+								reorganizedAddressList.set(u, ad);
+								u++;
+							}
+						} else if (i != 0 && ad.getSubAdminArea() != null) {
+							if (ad.getSubAdminArea().equalsIgnoreCase("São Paulo")) {
+								reorganizedAddressList.add(reorganizedAddressList.get(u));
+								reorganizedAddressList.set(u, ad);
+								u++;
+							}
+						} else {
+							reorganizedAddressList.add(ad);
+						}
+					}
+
+					String[] s_addressList = null;
+					ArrayList<String> array_address = new ArrayList<>();
+
+					// Create String[] with addresses, limiting to 5 addresses.
+					for (int i = 0; i < reorganizedAddressList.size() && i < 5; i++) {
+
+						// Check number of AddressLine before using the second
+						if (reorganizedAddressList.get(i).getMaxAddressLineIndex() > 0) {
+							array_address.add(reorganizedAddressList.get(i).getAddressLine(0) + ", "
+									+ reorganizedAddressList.get(i).getAddressLine(1));
+						} else {
+							array_address.add(reorganizedAddressList.get(i).getAddressLine(0));
+						}
+
+						s_addressList = new String[array_address.size()];
+						s_addressList = array_address.toArray(s_addressList);
+					}
+
+					AlertDialog.Builder alert_enderecos = new AlertDialog.Builder(context);
+					alert_enderecos.setTitle(context.getString(R.string.which_address))
+							.setItems(s_addressList, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+
+									Address address = reorganizedAddressList.get(which);
+									if (address.hasLatitude() && address.hasLongitude()) {
+										handler.onResponse(1, address);
+									}
+
+								}
+							});
+					alert_enderecos.setOnDismissListener(new DialogInterface.OnDismissListener() {
+						@Override
+						public void onDismiss(DialogInterface dialogInterface) {
+							handler.onResponse(3, null);
+						}
+					});
+					alert_enderecos.show();
+				}
+			}
+		}.execute();
+
+	}
 }
