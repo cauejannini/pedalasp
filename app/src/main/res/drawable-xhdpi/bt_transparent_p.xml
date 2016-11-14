@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<item android:bottom="0dp" android:right="0dp" android:drawable="@drawable/bt_round_bg_p"/>
+	
+	<item android:bottom="0dp" android:right="0dp">
+		<bitmap
+		   	android:src="@drawable/btic_mylocation"
+		   	android:gravity="center_vertical|center_horizontal"
+		   />
+	</item>
+      
+</layer-list>
