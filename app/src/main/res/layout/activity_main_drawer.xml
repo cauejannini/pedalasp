@@ -1,6 +1,5 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -52,21 +51,21 @@
 					/>
 
 				<Button
-					 android:id="@+id/bt_send_alert"
+					 android:id="@+id/bt_add_to_map"
 					 android:layout_alignParentEnd="true"
 					 android:layout_alignParentBottom="true"
 					 android:layout_marginEnd="11dp"
 					 android:layout_marginBottom="203dp"
 					 android:layout_width="65dp"
 					 android:layout_height="65dp"
-					 android:background="@drawable/bt_send_alert"
+					 android:background="@drawable/bt_add_to_map"
 					 android:onClick="addFunction"
 					/>
 
 				<Button
 					android:id="@+id/bt_my_location"
-					android:layout_alignEnd="@id/bt_send_alert"
-					android:layout_alignStart="@id/bt_send_alert"
+					android:layout_alignEnd="@id/bt_add_to_map"
+					android:layout_alignStart="@id/bt_add_to_map"
 					android:layout_alignParentBottom="true"
 					android:layout_marginBottom="134dp"
 					android:layout_width="65dp"
@@ -77,8 +76,8 @@
 
 				<ToggleButton
 					android:id="@+id/tb_navigation_switch"
-					android:layout_alignEnd="@id/bt_send_alert"
-					android:layout_alignStart="@id/bt_send_alert"
+					android:layout_alignEnd="@id/bt_add_to_map"
+					android:layout_alignStart="@id/bt_add_to_map"
 					android:layout_alignParentBottom="true"
 					android:layout_marginBottom="134dp"
 					android:layout_width="65dp"
@@ -191,6 +190,9 @@
 
 	<include
 		layout="@layout/view_edit_origin_destination" />
+
+	<include
+		layout="@layout/view_add_to_map"/>
 
 	<ListView
         android:id="@+id/left_drawer"

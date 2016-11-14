@@ -1,113 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_edit_route"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_add_to_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:visibility="gone"
-    android:padding="15dp"
     android:clickable="true"
-    android:background="@color/translucent_custom">
+    android:visibility="gone"
+    android:paddingBottom="15dp"
+    android:background="@color/translucent_white">
 
     <LinearLayout
-        android:id="@+id/ll_edit_origin"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:visibility="invisible"
-        android:background="@color/alwhite"
-        android:weightSum="1">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_add_on_map"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="@color/grey_bg"
+            android:text="Inserir no mapa:"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
-            android:id="@+id/ll_edit_origin_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:gravity="center">
+            android:id="@+id/ll_add_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="35dp"
+            android:paddingStart="35dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@drawable/bt_transparent"
+            android:weightSum="1">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_arrow_back"/>
+                android:id="@+id/iv_add_alert"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                android:background="@drawable/btic_add_alert"/>
+
+            <TextView
+                android:id="@+id/tv_add_alert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:alpha="0"
+                android:text="Alerta"
+                android:textColor="@color/grey_bg"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_origin"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="30dp"
-            android:textSize="14sp"
-            android:padding="5dp"
-            android:background="@null"
-            android:textColor="@color/dark_text"
-            android:inputType="textImeMultiLine"
-            android:hint="@string/route_origin_hint"
-            android:imeOptions="actionSearch"/>
-
-        <ProgressBar
-            android:id="@+id/pb_edit_origin"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_margin="12dp"
-            android:visibility="gone"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="46dp"
-        android:visibility="invisible"/>
-
-    <LinearLayout
-        android:id="@+id/ll_edit_destination"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:visibility="invisible"
-        android:background="@color/alwhite"
-        android:weightSum="1">
-
         <LinearLayout
-            android:id="@+id/ll_edit_destination_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:gravity="center">
+            android:id="@+id/ll_add_paraciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="35dp"
+            android:paddingStart="35dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@drawable/bt_transparent"
+            android:weightSum="1">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_arrow_back"/>
+                android:id="@+id/iv_add_paraciclo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                android:background="@drawable/btic_add_paraciclo"/>
+
+            <TextView
+                android:id="@+id/tv_add_paraciclo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:text="Paraciclo"
+                android:alpha="0"
+                android:textColor="@color/grey_bg"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_destination"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="30dp"
-            android:textSize="14sp"
-            android:padding="5dp"
-            android:background="@null"
-            android:textColor="@color/dark_text"
-            android:inputType="textImeMultiLine"
-            android:hint="@string/route_destination_hint"
-            android:imeOptions="actionSearch"/>
+        <LinearLayout
+            android:id="@+id/ll_add_estabelecimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bt_transparent"
+            android:paddingEnd="35dp"
+            android:paddingStart="35dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:weightSum="1">
 
-        <ProgressBar
-            android:id="@+id/pb_edit_destination"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_margin="12dp"
-            android:visibility="gone"
-            android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/iv_add_estabelecimento"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                android:background="@drawable/btic_add_estabelecimento"/>
+
+            <TextView
+                android:id="@+id/tv_add_estabelecimento"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:text="Loja ou serviço"
+                android:alpha="0"
+                android:textColor="@color/grey_bg"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

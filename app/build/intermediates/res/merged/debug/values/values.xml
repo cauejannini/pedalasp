@@ -124,6 +124,7 @@
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="translucent_custom">#55000000</color>
+    <color name="translucent_white">#DDffffff</color>
     <color name="transparent">#00000000</color>
     <color name="water_blue">#0bbee0</color>
     <color name="water_blue_light">#acf0f9</color>

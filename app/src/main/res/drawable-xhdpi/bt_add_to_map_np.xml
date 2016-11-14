@@ -5,7 +5,7 @@
 
 	<item>
 		<bitmap
-			android:src="@drawable/btic_alert"
+			android:src="@drawable/btic_add"
 			android:gravity="center_vertical|center_horizontal"
 			/>
 	</item>

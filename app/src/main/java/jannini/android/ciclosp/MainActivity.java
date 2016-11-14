@@ -4,6 +4,7 @@ package jannini.android.ciclosp;
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.AlertDialog;
@@ -1493,12 +1494,112 @@ public class MainActivity extends FragmentActivity
 
 	public void addFunction(View view) {
 
-		Intent i = new Intent(MainActivity.this, ReportActivity.class);
-		if (user_latlng != null) {
-			i.putExtra("latitude", user_latlng.latitude);
-			i.putExtra("longitude", user_latlng.longitude);
-		}
-		startActivity(i);
+		final RelativeLayout rlAddToMap = (RelativeLayout) findViewById(R.id.rl_add_to_map);
+
+		LinearLayout llAddAlert = (LinearLayout) findViewById(R.id.ll_add_alert);
+		LinearLayout llAddParaciclo = (LinearLayout) findViewById(R.id.ll_add_paraciclo);
+		LinearLayout llAddEstabelecimento = (LinearLayout) findViewById(R.id.ll_add_estabelecimento);
+
+		final TextView tvAddAlert = (TextView) findViewById(R.id.tv_add_alert);
+		final TextView tvAddParaciclo = (TextView) findViewById(R.id.tv_add_paraciclo);
+		final TextView tvAddEstabelecimento = (TextView) findViewById(R.id.tv_add_estabelecimento);
+
+		final ImageView ivAddAlert = (ImageView) findViewById(R.id.iv_add_alert);
+		final ImageView ivAddParaciclo = (ImageView) findViewById(R.id.iv_add_paraciclo);
+		final ImageView ivAddEstabelecimento = (ImageView) findViewById(R.id.iv_add_estabelecimento);
+
+		final ObjectAnimator alphaIn = ObjectAnimator.ofFloat(rlAddToMap,"alpha", 0, 1);
+		final ObjectAnimator alphaOut = ObjectAnimator.ofFloat(rlAddToMap,"alpha", 1, 0);
+		alphaOut.addListener(new AnimatorListener() {
+			@Override
+			public void onAnimationStart(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animator animator) {
+				rlAddToMap.setVisibility(View.GONE);
+				ivAddAlert.setScaleX(0);
+				ivAddAlert.setScaleY(0);
+				ivAddParaciclo.setScaleX(0);
+				ivAddParaciclo.setScaleY(0);
+				ivAddEstabelecimento.setScaleX(0);
+				ivAddEstabelecimento.setScaleY(0);
+				tvAddEstabelecimento.setAlpha(0);
+				tvAddParaciclo.setAlpha(0);
+				tvAddAlert.setAlpha(0);
+			}
+
+			@Override
+			public void onAnimationCancel(Animator animator) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animator animator) {
+
+			}
+		});
+
+		ObjectAnimator opacityTV1 = ObjectAnimator.ofFloat(tvAddEstabelecimento, "alpha", 0, 1);
+		ObjectAnimator scaleIn1X = ObjectAnimator.ofFloat(ivAddEstabelecimento, "scaleX", 0, 1);
+		ObjectAnimator scaleIn1Y = ObjectAnimator.ofFloat(ivAddEstabelecimento, "scaleY", 0, 1);
+		AnimatorSet scaleIn1 = new AnimatorSet();
+		scaleIn1.playTogether(scaleIn1X, scaleIn1Y, opacityTV1);
+
+		ObjectAnimator opacityTV2 = ObjectAnimator.ofFloat(tvAddParaciclo, "alpha", 0, 1);
+		ObjectAnimator scaleIn2X = ObjectAnimator.ofFloat(ivAddParaciclo, "scaleX", 0, 1);
+		ObjectAnimator scaleIn2Y = ObjectAnimator.ofFloat(ivAddParaciclo, "scaleY", 0, 1);
+		AnimatorSet scaleIn2 = new AnimatorSet();
+		scaleIn2.setStartDelay(60);
+		scaleIn2.playTogether(scaleIn2X, scaleIn2Y, opacityTV2);
+
+		ObjectAnimator opacityTV3 = ObjectAnimator.ofFloat(tvAddAlert, "alpha", 0, 1);
+		ObjectAnimator scaleIn3X = ObjectAnimator.ofFloat(ivAddAlert, "scaleX", 0, 1);
+		ObjectAnimator scaleIn3Y = ObjectAnimator.ofFloat(ivAddAlert, "scaleY", 0, 1);
+		AnimatorSet scaleIn3 = new AnimatorSet();
+		scaleIn3.setStartDelay(120);
+		scaleIn3.playTogether(scaleIn3X, scaleIn3Y, opacityTV3);
+
+		AnimatorSet scaleIn = new AnimatorSet();
+		scaleIn.playTogether(scaleIn1, scaleIn2, scaleIn3);
+		scaleIn.start();
+
+		rlAddToMap.setVisibility(View.VISIBLE);
+		alphaIn.start();
+
+		rlAddToMap.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				alphaOut.start();
+			}
+		});
+
+		llAddAlert.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent i = new Intent(MainActivity.this, ReportActivity.class);
+				if (user_latlng != null) {
+					i.putExtra("latitude", user_latlng.latitude);
+					i.putExtra("longitude", user_latlng.longitude);
+				}
+				startActivity(i);
+			}
+		});
+
+		llAddParaciclo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+			}
+		});
+
+		llAddEstabelecimento.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+			}
+		});
 	}
 
     /* REPORT MANAGING */

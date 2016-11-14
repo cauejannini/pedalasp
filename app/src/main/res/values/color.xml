@@ -11,6 +11,7 @@
     <color name="app_yellow">#f4aa33</color>
     <color name="actionbar_text">#000</color>
     <color name="white">#ffffff</color>
+    <color name="translucent_white">#DDffffff</color>
     <color name="translucent_custom">#55000000</color>
     <color name="alwhite">#f9f9f9</color>
     <color name="app_blue">#001f4c</color>
