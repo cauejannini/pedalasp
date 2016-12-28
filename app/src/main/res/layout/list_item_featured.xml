@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:paddingStart="20dp"
+	android:paddingEnd="20dp"
+	android:paddingTop="10dp"
+	android:paddingBottom="10dp"
+    android:orientation="horizontal"
+	android:weightSum="1"
+	android:gravity="center_vertical">
+
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:gravity="start"
+		android:layout_weight="1">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_marginBottom="5dp"
+			android:gravity="center_vertical">
+
+			<ImageView
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:layout_marginEnd="10dp"
+				android:background="@color/yellow"/>
+
+			<TextView
+				android:id="@+id/tv_featured_list_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="18sp"
+				android:textColor="@color/dark_text"
+				android:text="Revisão com 30% de desconto"/>
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/tv_featured_list_second_line"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:maxLines="1"
+			android:textSize="14sp"
+			android:layout_marginBottom="3dp"
+			android:text="Bicicletaria do Zé"
+			android:textColor="@color/dark_text"/>
+
+		<TextView
+			android:id="@+id/tv_featured_list_third_line"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14sp"
+			android:textColor="@color/light_text"
+			android:layout_marginBottom="3dp"
+			android:maxLines="1"
+			android:text="Rua Santo Amaro, 230"/>
+
+		<TextView
+			android:id="@+id/tv_featured_list_blue_line"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="14sp"
+			android:textColor="@color/water_blue"
+			android:text="Distância: 230m"/>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_width="40dp"
+		android:layout_height="40dp">
+
+		<ImageView
+			android:layout_width="15dp"
+			android:layout_height="15dp"
+			android:layout_centerInParent="true"
+			android:background="@drawable/ic_arrow_back"
+			android:rotation="180"/>
+
+	</RelativeLayout>
+
+</LinearLayout>

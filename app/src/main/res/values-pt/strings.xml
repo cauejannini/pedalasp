@@ -7,6 +7,7 @@
 
         <string-array name="menu_array">
                 <item>Vias para bicicleta</item>
+                <item>Locais</item>
                 <item>Estações</item>
                 <item>Pontos para estacionar</item>
                 <item>Parques</item>
@@ -16,6 +17,7 @@
         </string-array>
         <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
+                <item>Oficinas, lojas, cafés…</item>
                 <item>de compartilhamento de bikes</item>
                 <item>Bicicletários e paraciclos</item>
                 <item>Parques com ciclovia</item>
@@ -86,12 +88,19 @@
         <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
         <string name="endereco_aproximado">Endereço aproximado</string>
         <string name="splash_nenhuma_camada">Não foi possível carregar nenhuma camada de dados. Verifique sua rede.</string>
-        <string name="splash_nenhuma_estacao">Ops… Não conseguimos carregar as estações de compartilhamento de bike. Isso não é comum!</string>
-        <string name="splash_somente_ciclosampa">Ops… Só foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
-        <string name="splash_somente_bikesampa">Ops… Só foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
-        <string name="splash_somente_estacao">Ops… Só foi possível carregar as estações de bike compartilhada. Isso não é comum!</string>
-        <string name="splash_sem_bikesampa">Ops… Não foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
-        <string name="splash_sem_ciclosampa">Ops… Não foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
+        <string name="splash_just_places">Ops… Só foi possível carregar os Locais.</string>
+        <string name="splash_just_cs">Ops… Só foi possível carregar as estações Ciclo Sampa.</string>
+        <string name="splash_just_bs">Ops… Só foi possível carregar as estações Bike Sampa.</string>
+        <string name="splash_just_places_bs">Ops… Só foi possível carregar os Locais e Estações Bike Sampa.</string>
+        <string name="splash_just_places_cs">Ops… Só foi possível carregar os Locais e Estações Ciclo Sampa.</string>
+        <string name="splash_just_places_bscs">Ops… Só foi possível carregar os Locais e as Estações de Compartilhamento.</string>
+        <string name="splash_error_places">Ops… Não foi possível carregar os Locais.</string>
+        <string name="splash_error_places_bs">Ops… Não foi possível carregar os Locais e estações Bike Sampa.</string>
+        <string name="splash_error_places_cs">Ops… Não foi possível carregar os Locais e estações Ciclo Sampa.</string>
+        <string name="splash_error_bs">Ops… Não foi possível carregar as estações Bike Sampa.</string>
+        <string name="splash_error_cs">Ops… Não foi possível carregar as estações Ciclo Sampa.</string>
+        <string name="splash_error_bscs">Ops… Não conseguimos carregar as estações de compartilhamento de bike.</string>
+        <string name="splash_error_places_bscs">Ops… Não foi possível carregar os Locais e Estações de compartilhamento de bike.</string>
         <string name="marcador_inserido">(marcador inserido)</string>
         <string name="route_origin_hint">Insira a origem</string>
         <string name="route_destination_hint">Insira o destino</string>
@@ -103,8 +112,9 @@
         <string name="loc_no_location_permission">Sem permissão para acessar localização</string>
         <string name="loc_location_unavailable">Localização atual indisponível. Verifique seu GPS.</string>
         <string name="distancia_total">Distância total:</string>
-        <string name="open">ABERTA AGORA</string>
-        <string name="closed">FECHADA AGORA</string>
+        <string name="open_now">ABERTA AGORA</string>
+        <string name="closed_now">FECHADA AGORA</string>
+        <string name="closed">FECHADO</string>
         <string name="obrigado_por_avisar">Obrigado por avisar!</string>
         <string name="nenhum_alerta_selecionado">Nenhum alerta selecionado</string>
         <string name="extensao_ciclovia">Extensão da Ciclovia:</string>
@@ -118,6 +128,7 @@
         <string name="em_manutencao_implantacao">EM MANUTENÇÃO / IMPLANTAÇÃO</string>
         <string name="estacao_bike_sampa">Estação Bike Sampa</string>
         <string name="vagas">Vagas: </string>
+        <string name="numero_de_paraciclos">Nº de paraciclos: </string>
         <string name="possui_emprestimo_bicicleta">Possui empréstimo de bicicletas</string>
         <string name="possui_emprestimo_bicicleta_nao">Não possui empréstimo de bicicletas</string>
         <string name="funcionamento">Funcionamento:</string>
@@ -158,7 +169,8 @@
         <string name="remove">REMOVER</string>
         <string name="saved_place">Local salvo</string>
         <string name="mandatory_field">Campo obrigatório</string>
-        <string name="toast_error">Ocorreu algum erro...</string>
+        <string name="toast_error">Ocorreu um erro...</string>
+        <string name="toast_server_error">Erro de servidor: </string>
         <string name="atencao">Atenção</string>
         <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
         <string name="dont_show_again">Não mostrar novamente</string>
@@ -171,4 +183,47 @@
 
         <string name="error">Erro</string>
         <string name="too_distant_route">A distância máxima entre origem e destino é de 25 km</string>
+
+        <string-array name="place_services">
+                <item>Bicicletas novas</item>
+                <item>Bicicletas usadas</item>
+                <item>Oficina</item>
+                <item>Peças de bicicleta</item>
+                <item>Acessórios para bike</item>
+                <item>Banho</item>
+                <item>Café</item>
+                <item>Restaurante</item>
+                <item>Bar</item>
+        </string-array>
+
+        <string name="add_place">Adicionar loja ou serviço</string>
+        <string name="edit_place">Editar loja ou serviço</string>
+
+        <string name="phone">Telefone</string>
+        <string name="address">Endereço</string>
+        <string name="email">Email</string>
+        <string name="error_loading_places">Não foi possível carregar os Locais, verifique sua conexão</string>
+        <string name="place_info_not_verified">- INFORMAÇÕES NÃO VERIFICADAS -</string>
+
+        <string name="confirm_route_to_place_creation">Criar rota até este local?</string>
+        <string name="confirm_route_to_featured_creation">Criar rota até essa oferta?</string>
+        <string name="confirm_dial">Ligar para este local?</string>
+
+        <string name="opening_hours">Horário de funcionamento:</string>
+        <string name="sun">Dom</string>
+        <string name="mon">Seg</string>
+        <string name="tue">Ter</string>
+        <string name="wed">Qua</string>
+        <string name="thu">Qui</string>
+        <string name="fri">Sex</string>
+        <string name="sat">Sab</string>
+
+        <string name="not_available">Não disponível</string>
+        <string name="distance_unavailable">Distância indisponível</string>
+
+        <string name="deals">Ofertas</string>
+        <string name="get_deal">Pegar meu cupom!</string>
+        <string name="this_place_has_deals">Ofertas</string>
+
+
 </resources>

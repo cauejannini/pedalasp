@@ -54,25 +54,30 @@ public class ListAdapterDrawerExp extends ArrayAdapter<String> {
           case 1:
               if (DrawerExpActivity.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
+              holder.image.setBackgroundResource(R.drawable.btic_add_estabelecimento);
               break;
           case 2:
               if (DrawerExpActivity.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_parking);
+              holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
               break;
           case 3:
               if (DrawerExpActivity.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_park);
+              holder.image.setBackgroundResource(R.drawable.ic_parking);
               break;
           case 4:
               if (DrawerExpActivity.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
-              holder.image.setBackgroundResource(R.drawable.ic_wifi);
+              holder.image.setBackgroundResource(R.drawable.ic_park);
               break;
           case 5:
               if (DrawerExpActivity.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+              } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+              holder.image.setBackgroundResource(R.drawable.ic_wifi);
+              break;
+          case 6:
+              if (DrawerExpActivity.states[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
               } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
               holder.image.setBackgroundResource(R.drawable.ic_alert);
               break;

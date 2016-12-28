@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +18,8 @@ import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
 
+import static jannini.android.ciclosp.SplashScreen.splashResultCodes;
+
 
 public class DrawerExpActivity extends Activity {
 
@@ -28,7 +29,7 @@ public class DrawerExpActivity extends Activity {
 
     SharedPreferences sharedPreferences;
 
-    public static boolean[] states = {false, false, false, false, false, false};
+    public static boolean[] states = {false, false, false, false, false, false, false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +52,36 @@ public class DrawerExpActivity extends Activity {
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        boolean[] check_result_code = SplashScreen.result_code;
-
-        Log.d("RESULT_CODE", String.valueOf(check_result_code[0]) + ", " + String.valueOf(check_result_code[1]) + ", " + String.valueOf(check_result_code[2]));
-
-        if (!check_result_code[0] && !check_result_code[1] && !check_result_code[2]) {
+        if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[2] && !splashResultCodes[3]) {
             Toast.makeText(this, R.string.splash_nenhuma_camada, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0] && !check_result_code[1]) {
-            Toast.makeText(this, R.string.splash_somente_ciclosampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[1] && !check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_nenhuma_estacao, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0] && !check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_somente_bikesampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0]) {
+        } else if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[2]) {
+            Toast.makeText(this, R.string.splash_just_cs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[1] && !splashResultCodes[2] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_error_places_bscs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0] && !splashResultCodes[2] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_just_places, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_just_bs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0] && !splashResultCodes[1]) {
             Toast.makeText(this, R.string.splash_somente_estacao, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[1]) {
-            Toast.makeText(this, R.string.splash_sem_bikesampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_sem_ciclosampa, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0] && !splashResultCodes[2]) {
+            Toast.makeText(this, R.string.splash_just_places_cs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_just_places_bs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[1] && !splashResultCodes[2]) {
+            Toast.makeText(this, R.string.splash_error_places_bs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[1] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_error_places_cs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[2] && !splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_error_bscs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[0]) {
+            Toast.makeText(this, R.string.splash_just_places_bscs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[1]) {
+            Toast.makeText(this, R.string.splash_error_places, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[2]) {
+            Toast.makeText(this, R.string.splash_error_bs, Toast.LENGTH_LONG).show();
+        } else if (!splashResultCodes[3]) {
+            Toast.makeText(this, R.string.splash_error_cs, Toast.LENGTH_LONG).show();
         }
 
     }

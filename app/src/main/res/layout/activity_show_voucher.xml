@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_show_voucher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="jannini.android.ciclosp.ShowVoucherActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_back_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bt_transparent">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/ic_arrow_back"
+            android:backgroundTint="@color/dark_text"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_loading_voucher"
+        android:layout_width="30dp"
+        android:visibility="visible"
+        android:layout_height="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_voucher_details"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/yellow"/>
+
+        <TextView
+            android:id="@+id/tv_voucher_explanation"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:textSize="18sp"
+            android:maxLines="6"
+            android:gravity="center_horizontal"
+            android:text="Voucher text with three lines, this explanation can have 3 lines and we should check which should be the limit number of characters for this field. Reaching 5th line right now."
+            android:textColor="@color/dark_text"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_voucher_code"
+            android:layout_width="match_parent"
+            android:textSize="26sp"
+            android:layout_marginBottom="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:background="@color/water_blue"
+            android:text="CODE00"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_voucher_validity"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:text="Voucher validity"
+            android:textColor="@color/light_text"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_voucher_limit_reached"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_margin="40dp"
+        android:textColor="@color/dark_text"
+        android:text="Você já atingiu o limite de cupons para essa oferta"/>
+
+    <TextView
+        android:id="@+id/tv_voucher_featured_limit_reached"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_margin="40dp"
+        android:textColor="@color/dark_text"
+        android:text="Essa oferta já terminou =/"/>
+
+</LinearLayout>

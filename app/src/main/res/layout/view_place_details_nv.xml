@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_place_panel_nv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:visibility="invisible">
+
+    <LinearLayout
+        android:id="@+id/ll_place_details_nv"
+        android:layout_width="match_parent"
+        android:layout_height="123dp"
+        android:paddingTop="3dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="3dp"
+        android:background="@drawable/box_white_shadow_top"
+        android:orientation="vertical"
+        android:gravity="center_vertical|start"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:id="@+id/tv_place_name_nv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/light_text"/>
+
+            <LinearLayout
+                android:id="@+id/bt_place_menu_nv"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingStart="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_vertical"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/btic_place_menu"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_place_services_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/light_text"/>
+
+        <TextView
+            android:id="@+id/tv_place_address_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/light_text"/>
+
+        <TextView
+            android:id="@+id/tv_place_phone_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/light_text"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:gravity="center_horizontal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_text"
+            android:maxLines="1"
+            android:text="@string/place_info_not_verified"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_place_menu_nv"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/ll_place_details_nv"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="invisible"
+        android:background="@drawable/box_white_shadow"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_place_owner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/dark_text"
+            android:background="@drawable/bt_transparent"
+            android:text="Sou o proprietário"/>
+
+        <TextView
+            android:id="@+id/tv_correct_place_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/dark_text"
+            android:background="@drawable/bt_transparent"
+            android:text="Corrigir uma informação"/>
+
+        <TextView
+            android:id="@+id/tv_flag_place_inexistent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/dark_text"
+            android:background="@drawable/bt_transparent"
+            android:text="Este local não existe"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package jannini.android.ciclosp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import jannini.android.ciclosp.MyApplication.TrackerName;
+import jannini.android.ciclosp.NetworkRequests.Utils;
 
 public class SugestaoActivity extends Activity {
 	
@@ -38,9 +40,9 @@ public class SugestaoActivity extends Activity {
 
 	SharedPreferences sp;
 
+	String placeId = "";
+
 	Tracker t;
-	
-	public static String newline = System.getProperty("line.separator");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,16 @@ public class SugestaoActivity extends Activity {
         t.setScreenName("Sugestao");
         // Send a screen view.
         t.send(new HitBuilders.AppViewBuilder().build());
+
+		Intent i = getIntent();
+		String placeName = i.getStringExtra(Constant.IEXTRA_PLACE_NAME);
+		placeId = String.valueOf(i.getIntExtra(Constant.IEXTRA_PLACE_ID_INT, 0));
+
+		if (placeName != null && !placeId.equals("0")) {
+			if (!placeName.equals("") && !placeId.equals("")){
+				et_mensagem.setText("Olá, " + Utils.newline + Utils.newline + "Sou o proprietário do estabelecimento " + placeName + " e gostaria de confirmar as informações no mapa do Pedala SP.");
+			}
+		}
 		
 	}
 	
@@ -71,6 +83,10 @@ public class SugestaoActivity extends Activity {
 		email = et_email.getText().toString();
 
 		mensagem = et_mensagem.getText().toString();
+
+		if (!placeId.equals("")) {
+			mensagem += " | Place ID: " + placeId;
+		}
 
 		new postData().execute();
 

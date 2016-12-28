@@ -37,8 +37,9 @@
     </style>
     
      <style name="NoActionBarTheme" parent="AppTheme">
-    	<item name="android:windowActionBar">false</item>
-		<item name="android:windowTitleSize">0dp</item>
+         <item name="android:windowActionBar">false</item>
+         <item name="android:windowTitleSize">0dp</item>
+         <item name="android:titleTextStyle">@style/RobotoTextTitleStyle</item>
     </style>
 
     <style name="ThemeTransparent" parent="android:Theme">

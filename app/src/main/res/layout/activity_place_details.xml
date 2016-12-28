@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="jannini.android.ciclosp.PlaceDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_back_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bt_transparent"
+        android:layout_gravity="start">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/ic_arrow"
+            android:rotation="180"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_place_detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/dark_text"
+        android:layout_gravity="center_horizontal"
+        android:text="Nome do local"/>
+
+    <ImageView
+        android:id="@+id/iv_place_detail_services"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/tv_place_detail_services"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textColor="@color/light_text"
+        android:layout_gravity="center_horizontal"
+        android:maxLines="2"
+        android:gravity="center_horizontal"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/activity_place_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="20dp">
+
+                <ProgressBar
+                    android:id="@+id/pb_place_detail_image_loading"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"/>
+
+                <ImageView
+                    android:id="@+id/iv_place_detail_image_standard"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/light_text"
+                    android:background="@drawable/ic_estabelecimento"/>
+
+                <ImageView
+                    android:id="@+id/iv_place_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_place_detail_short_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:textColor="@color/dark_text"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:maxLines="4"
+                />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/water_blue"/>
+
+            <LinearLayout
+                android:id="@+id/ll_place_detail_featured"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:background="@drawable/bt_transparent"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/yellow"/>
+
+                <TextView
+                    android:id="@+id/tv_place_detail_has_featured"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginStart="15dp"
+                    android:maxLines="2"
+                    android:textColor="@color/dark_text"
+                    android:text="@string/this_place_has_deals"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_place_detail_address"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bt_transparent"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/btic_route"/>
+
+                <TextView
+                    android:id="@+id/tv_place_detail_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_text"
+                    android:layout_marginStart="15dp"
+                    android:maxLines="1"
+                    android:text="Rua Bela Vista, 200 - Bela Vista, São Paulo, SP"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_place_detail_phone"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:background="@drawable/bt_transparent"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="@color/water_blue"
+                    android:background="@drawable/ic_phone"/>
+
+                <TextView
+                    android:id="@+id/tv_place_detail_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_text"
+                    android:layout_marginStart="15dp"
+                    android:maxLines="1"
+                    android:text="11 3800-9090"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_place_detail_ophours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="top|center_horizontal"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:background="@drawable/bt_transparent"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/dark_text"
+                    android:textSize="14sp"
+                    android:text="@string/opening_hours"/>
+
+                <ProgressBar
+                    android:id="@+id/pb_loading_ophours"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:id="@+id/tv_ophours_not_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:textColor="@color/dark_text"
+                    android:visibility="gone"
+                    android:text="@string/not_available"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_ophours_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_ophours_sun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="DOM: FECHADO"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_mon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="SEG: 10:00 - 19:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_tue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="TER: 10:00 - 19:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_wed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="QUA: 10:00 - 19:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_thu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="QUI: 10:00 - 19:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_fri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="SEX: 10:00 - 19:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_ophours_sat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/dark_text"
+                        android:maxLines="1"
+                        android:text="SÁB: 10:00 - 14:00"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

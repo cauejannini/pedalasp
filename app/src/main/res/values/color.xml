@@ -8,9 +8,11 @@
     <color name="ciclofaixa">#F00</color>
     <color name="ciclofaixaLazer">#61bc10</color>
     <color name="ciclorrota">#0093f7</color>
-    <color name="app_yellow">#f4aa33</color>
+    <color name="yellow">#f4aa33</color>
+    <color name="yellow_light">#ffcc44</color>
+    <color name="yellow_lightest">#ffdd66</color>
     <color name="actionbar_text">#000</color>
-    <color name="white">#ffffff</color>
+    <color name="white">#fafafa</color>
     <color name="translucent_white">#DDffffff</color>
     <color name="translucent_custom">#55000000</color>
     <color name="alwhite">#f9f9f9</color>
@@ -25,8 +27,12 @@
     <color name="water_blue_light">#acf0f9</color>
     <color name="transparent">#00000000</color>
     <color name="light_text">#a0a0a0</color>
+    <color name="translucent_text">#77f9f9f9</color>
     <color name="dark_text">#2a2a2a</color>
     <color name="grey_bg">#2A2A2A</color>
     <color name="location_blue">#0080ff</color>
     <color name="shadow_component">#02000000</color>
+    <color name="app_red">#F66</color>
+    <color name="app_green">#0b0</color>
+    <color name="app_lightyellow">#FF0</color>
 </resources>

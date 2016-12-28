@@ -10,6 +10,7 @@
 
     <string-array name="menu_array">
         <item>Bike lanes</item>
+        <item>Places</item>
         <item>Bike sharing</item>
         <item>Parking</item>
         <item>Parks</item>
@@ -19,6 +20,7 @@
     </string-array>
     <string-array name="menu_array_descriptions">
         <item>Permanent, recreational and preferential</item>
+        <item>Workshops, stores, coffees…</item>
         <item>stations</item>
         <item>Outdoor and indoor bike racks</item>
         <item>Parks with bike lanes</item>
@@ -86,13 +88,23 @@
     <string name="seu_nome">Name</string>
     <string name="splash">Loading…</string>
     <string name="splash_info">Loading data…</string>
-    <string name="splash_nenhuma_camada">We coudn\'t load any data. Check you network.</string>
-    <string name="splash_nenhuma_estacao">Oops… We coudn\'t load the shared bike stations. That\'s not common!</string>
-    <string name="splash_sem_bikesampa">Oops… We coudn\'t load Bike Sampa shared bike stations. That\'s not common!</string>
-    <string name="splash_sem_ciclosampa">Oops… We coudn\'t load Ciclo Sampa shared bike stations. That\'s not common!</string>
-    <string name="splash_somente_bikesampa">Oops… We coud just load Bike Sampa shared bike stations. That\'s not common!</string>
-    <string name="splash_somente_ciclosampa">Oops… We coud just load Ciclo Sampa shared bike stations. That\'s not common!</string>
-    <string name="splash_somente_estacao">Oops… We coud just load the shared bike stations. That\'s not common!</string>
+    <string name="splash_nenhuma_camada">We coudn\'t load any app data. Check you network.</string>
+
+    <string name="splash_just_places">Oops… We could just load Places.</string>
+    <string name="splash_just_places_bs">Oops… We could just load Places and Bike Sampa bike sharing stations.</string>
+    <string name="splash_just_places_cs">Oops… We could just load Places and Ciclo Sampa bike sharing stations.</string>
+    <string name="splash_just_places_bscs">Oops… We could just load Places and Bike Sharing Stations.</string>
+    <string name="splash_error_places">Oops… We couldn\'t load Places.</string>
+    <string name="splash_error_places_bs">Oops… We couldn\'t load Places and Bike Sampa sharing stations.</string>
+    <string name="splash_error_places_cs">Oops… We couldn\'t load Places and Ciclo Sampa sharing stations.</string>
+    <string name="splash_error_places_bscs">Oops… We couldn\'t load Places and Bike Sharing Stations.</string>
+    <string name="splash_error_bscs">Oops… We couldn\'t load Bike Sharing Stations.</string>
+    <string name="splash_error_bs">Oops… We couldn\'t load Bike Sampa bike sharing stations.</string>
+    <string name="splash_error_cs">Oops… We couldn\'t load Ciclo Sampa bike sharing stations.</string>
+    <string name="splash_just_bs">Oops… We could just load Bike Sampa bike sharing stations.</string>
+    <string name="splash_just_cs">Oops… We could just load Ciclo Sampa bike sharing stations.</string>
+    <string name="splash_somente_estacao">Oops… We could just load Bike Sharing Stations.</string>
+
     <string name="start_network_ad">We couldn\'t load updated data. The app will show data from you last access.</string>
     <string name="texto_do_email">Write you message</string>
     <string name="title_activity_drawer_exp_splash">Choose what you want to visualize</string>
@@ -110,8 +122,9 @@
     <string name="loc_no_location_permission">No permission to access location</string>
     <string name="loc_location_unavailable">Current location unavalable. Check you GPS.</string>
     <string name="distancia_total">Total distance: </string>
-    <string name="open">OPEN NOW</string>
-    <string name="closed">CLOSED NOW</string>
+    <string name="open_now">OPEN NOW</string>
+    <string name="closed_now">CLOSED NOW</string>
+    <string name="closed">CLOSED</string>
     <string name="obrigado_por_avisar">Thanks for letting us know!</string>
     <string name="nenhum_alerta_selecionado">No alert selected</string>
     <string name="extensao_ciclovia">Size of bike lane:</string>
@@ -125,6 +138,7 @@
     <string name="em_manutencao_implantacao">MAINTENANCE / IMPLEMENTATION</string>
     <string name="estacao_bike_sampa">Bike Sampa Station</string>
     <string name="vagas">Parking spots: </string>
+    <string name="numero_de_paraciclos">Nº of bike racks: </string>
     <string name="possui_emprestimo_bicicleta">Has bikes to lend</string>
     <string name="possui_emprestimo_bicicleta_nao">Doesn\'t have bikes to lend</string>
     <string name="funcionamento">Opening hours: </string>
@@ -167,7 +181,8 @@
     <string name="remove">REMOVE</string>
     <string name="saved_place">Saved place</string>
     <string name="mandatory_field">Mandatory field</string>
-    <string name="toast_error">Oops, there was an error...</string>
+    <string name="toast_error">Oops, an error occurred...</string>
+    <string name="toast_server_error">Oops, server error: </string>
     <string name="atencao">Warning</string>
     <string name="toomuchmarkers">Visualizing too much items in a broad area can make the app run slow</string>
     <string name="dont_show_again">Don\'t show again</string>
@@ -180,5 +195,46 @@
 
     <string name="error">Error</string>
     <string name="too_distant_route">The maximum distance accepted between origin and destination is 25 km</string>
+
+    <string-array name="place_services">
+        <item>New bikes</item>
+        <item>Used bikes</item>
+        <item>Workshop</item>
+        <item>Bike parts</item>
+        <item>Bike accessories</item>
+        <item>Shower</item>
+        <item>Coffee</item>
+        <item>Restaurant</item>
+        <item>Bar</item>
+    </string-array>
+
+    <string name="add_place">Add store or service</string>
+    <string name="edit_place">Edit store or service</string>
+
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="error_loading_places">Error loading Places, please verify your internet connection</string>
+    <string name="place_info_not_verified">- THIS INFORMATION IS NOT VERIFIED -</string>
+
+    <string name="confirm_route_to_place_creation">Create route for this place?</string>
+    <string name="confirm_route_to_featured_creation">Create route for this deal?</string>
+    <string name="confirm_dial">Call this place?</string>
+
+    <string name="opening_hours">Opening hours:</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+
+    <string name="not_available">Not available</string>
+    <string name="distance_unavailable">Distance unavailable</string>
+
+    <string name="deals">Deals</string>
+    <string name="get_deal">I want this deal!</string>
+    <string name="this_place_has_deals">Deals</string>
 
 </resources>

@@ -2,6 +2,7 @@
 <resources>
     <string-array name="menu_array">
                 <item>Vias para bicicleta</item>
+                <item>Locais</item>
                 <item>Estações</item>
                 <item>Pontos para estacionar</item>
                 <item>Parques</item>
@@ -11,12 +12,24 @@
         </string-array>
     <string-array name="menu_array_descriptions">
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
+                <item>Oficinas, lojas, cafés…</item>
                 <item>de compartilhamento de bikes</item>
                 <item>Bicicletários e paraciclos</item>
                 <item>Parques com ciclovia</item>
                 <item>Wifi municipal aberto</item>
                 <item>enviados pelos usuários</item>
                 <item/>
+        </string-array>
+    <string-array name="place_services">
+                <item>Bicicletas novas</item>
+                <item>Bicicletas usadas</item>
+                <item>Oficina</item>
+                <item>Peças de bicicleta</item>
+                <item>Acessórios para bike</item>
+                <item>Banho</item>
+                <item>Café</item>
+                <item>Restaurante</item>
+                <item>Bar</item>
         </string-array>
     <string-array name="route_priorities">
                 <item>Rota por ciclovias</item>
@@ -45,6 +58,8 @@
     <string name="acesso_ciclovia_marginal">Acesso à ciclovia Marginal Pinheiros</string>
     <string name="action_settings">Configurações</string>
     <string name="add_bikepoint">Adicionar um Bike Point</string>
+    <string name="add_place">Adicionar loja ou serviço</string>
+    <string name="address">Endereço</string>
     <string name="alerta">Alerta</string>
     <string name="alerta_em">Alerta em:</string>
     <string name="app_name">Pedala SP</string>
@@ -60,24 +75,32 @@
     <string name="cancelar">Cancelar</string>
     <string name="carregando_rotas">Carregando rotas</string>
     <string name="chegada">Chegada</string>
-    <string name="closed">FECHADA AGORA</string>
+    <string name="closed">FECHADO</string>
+    <string name="closed_now">FECHADA AGORA</string>
+    <string name="confirm_dial">Ligar para este local?</string>
+    <string name="confirm_route_to_featured_creation">Criar rota até essa oferta?</string>
+    <string name="confirm_route_to_place_creation">Criar rota até este local?</string>
     <string name="create_route">Criar rota</string>
     <string name="current_place_for_origin">Calcular rota a partir de seu local atual?</string>
     <string name="curta_no_facebook">Curta nossa página no facebook!</string>
     <string name="de">De: </string>
+    <string name="deals">Ofertas</string>
     <string name="delete_last_point">Deletar</string>
     <string name="destino">Destino</string>
     <string name="details">Detalhes:</string>
     <string name="detalhes">dê mais detalhes…</string>
+    <string name="distance_unavailable">Distância indisponível</string>
     <string name="distancia_total">Distância total:</string>
     <string name="dont_show_again">Não mostrar novamente</string>
     <string name="drawer_close">Closed</string>
     <string name="drawer_open">Open</string>
     <string name="drawerexp_explanation1">Escolha quais itens visualizar no mapa:</string>
     <string name="drawerexp_explanation2">(Você poderá mudar isso depois!)</string>
+    <string name="edit_place">Editar loja ou serviço</string>
     <string name="elevacao_indisponivel">Informações de elevação indisponíveis</string>
     <string name="em_manutencao_implantacao">EM MANUTENÇÃO / IMPLANTAÇÃO</string>
     <string name="em_operacao">EM OPERAÇÃO</string>
+    <string name="email">Email</string>
     <string name="empty_address_dialog_message">Você deve digitar os endereços de origem e destino para buscar uma rota</string>
     <string name="empty_address_dialog_title">Campo de endereço vazio</string>
     <string name="end_destino_nao_encontrado_titulo">Endereço de destino não encontrado</string>
@@ -90,6 +113,7 @@
     <string name="enviar_email">Enviar</string>
     <string name="envie_sugestao">Escreva para nós</string>
     <string name="error">Erro</string>
+    <string name="error_loading_places">Não foi possível carregar os Locais, verifique sua conexão</string>
     <string name="escolha_no_mapa">Qual a localização exata do Bike Point?</string>
     <string name="estacao_bike_sampa">Estação Bike Sampa</string>
     <string name="estacao_ciclo_sampa">Estação Ciclo Sampa</string>
@@ -97,9 +121,11 @@
     <string name="extensao_ciclovia">Extensão da Ciclovia:</string>
     <string name="fechar">Fechar</string>
     <string name="feed_not_loaded">Não foi possível carregar o feed =/</string>
+    <string name="fri">Sex</string>
     <string name="from_my_location">Partir da minha localização</string>
     <string name="from_other_location">Escolher outro endereço</string>
     <string name="funcionamento">Funcionamento:</string>
+    <string name="get_deal">Pegar meu cupom!</string>
     <string name="i_parked_here">ESTACIONEI AQUI</string>
     <string name="inclinacao">Inclinação:</string>
     <string name="inclinacao_maxima">Inclinação máxima</string>
@@ -115,24 +141,30 @@
     <string name="mais">MAIS</string>
     <string name="mandatory_field">Campo obrigatório</string>
     <string name="marcador_inserido">(marcador inserido)</string>
+    <string name="mon">Seg</string>
     <string name="nenhum_alerta_selecionado">Nenhum alerta selecionado</string>
     <string name="network_alert_dialog">Verifique sua conexão.</string>
     <string name="network_alert_dialog_splash">Você precisa de uma conexão ativa para iniciar o aplicativo da primeira vez. Configure sua conexão.</string>
     <string name="network_alert_title">Sem conexão com a internet</string>
     <string name="network_settings">Configurações de rede</string>
     <string name="network_update_alert_dialog">Não foi possível atualizar. Verifique sua conexão.</string>
+    <string name="not_available">Não disponível</string>
     <string name="notifySolved">Clique se este problema já foi resolvido!</string>
     <string name="null_map">Não foi possível carregar o mapa</string>
+    <string name="numero_de_paraciclos">Nº de paraciclos: </string>
     <string name="obrigado_feedback">Obrigado pelo feedback!</string>
     <string name="obrigado_por_avisar">Obrigado por avisar!</string>
     <string name="ok">OK</string>
     <string name="on_bikelanes">por ciclovias</string>
-    <string name="open">ABERTA AGORA</string>
+    <string name="open_now">ABERTA AGORA</string>
+    <string name="opening_hours">Horário de funcionamento:</string>
     <string name="origem">Origem</string>
     <string name="outro">OUTRO</string>
     <string name="para">Para: </string>
     <string name="partida">Partida</string>
     <string name="pesquisar_no_mapa">Pesquisar no mapa</string>
+    <string name="phone">Telefone</string>
+    <string name="place_info_not_verified">- INFORMAÇÕES NÃO VERIFICADAS -</string>
     <string name="posicao">Posição:</string>
     <string name="possui_emprestimo_bicicleta">Possui empréstimo de bicicletas</string>
     <string name="possui_emprestimo_bicicleta_nao">Não possui empréstimo de bicicletas</string>
@@ -150,6 +182,7 @@
     <string name="route_origin_hint">Insira a origem</string>
     <string name="route_tab_explanation">No modo rota, a aba inferior mostra detalhes da rota selecionada, como o perfil de elevação.</string>
     <string name="runkeeper_login">Conectar com Runkeeper</string>
+    <string name="sat">Sab</string>
     <string name="saved_place">Local salvo</string>
     <string msgid="146198913615257606" name="search_menu_title">"Pesquisar"</string>
     <string name="sem_conexao">Não foi possível carregar as informações. Verifique sua conexão.</string>
@@ -158,32 +191,45 @@
     <string name="seu_nome">Nome</string>
     <string name="sinalizacao">SINALIZAÇÃO</string>
     <string name="splash">Carregando…</string>
+    <string name="splash_error_bs">Ops… Não foi possível carregar as estações Bike Sampa.</string>
+    <string name="splash_error_bscs">Ops… Não conseguimos carregar as estações de compartilhamento de bike.</string>
+    <string name="splash_error_cs">Ops… Não foi possível carregar as estações Ciclo Sampa.</string>
+    <string name="splash_error_places">Ops… Não foi possível carregar os Locais.</string>
+    <string name="splash_error_places_bs">Ops… Não foi possível carregar os Locais e estações Bike Sampa.</string>
+    <string name="splash_error_places_bscs">Ops… Não foi possível carregar os Locais e Estações de compartilhamento de bike.</string>
+    <string name="splash_error_places_cs">Ops… Não foi possível carregar os Locais e estações Ciclo Sampa.</string>
     <string name="splash_info">Carregando dados…</string>
+    <string name="splash_just_bs">Ops… Só foi possível carregar as estações Bike Sampa.</string>
+    <string name="splash_just_cs">Ops… Só foi possível carregar as estações Ciclo Sampa.</string>
+    <string name="splash_just_places">Ops… Só foi possível carregar os Locais.</string>
+    <string name="splash_just_places_bs">Ops… Só foi possível carregar os Locais e Estações Bike Sampa.</string>
+    <string name="splash_just_places_bscs">Ops… Só foi possível carregar os Locais e as Estações de Compartilhamento.</string>
+    <string name="splash_just_places_cs">Ops… Só foi possível carregar os Locais e Estações Ciclo Sampa.</string>
     <string name="splash_nenhuma_camada">Não foi possível carregar nenhuma camada de dados. Verifique sua rede.</string>
-    <string name="splash_nenhuma_estacao">Ops… Não conseguimos carregar as estações de compartilhamento de bike. Isso não é comum!</string>
-    <string name="splash_sem_bikesampa">Ops… Não foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
-    <string name="splash_sem_ciclosampa">Ops… Não foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
-    <string name="splash_somente_bikesampa">Ops… Só foi possível carregar as estações Bike Sampa. Isso não é comum!</string>
-    <string name="splash_somente_ciclosampa">Ops… Só foi possível carregar as estações Ciclo Sampa. Isso não é comum!</string>
-    <string name="splash_somente_estacao">Ops… Só foi possível carregar as estações de bike compartilhada. Isso não é comum!</string>
     <string name="start_network_ad">Não foi possível baixar dados atualizados. Foram exibidos as informações salvas de seu último acesso ao aplicativo.</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="sun">Dom</string>
     <string name="tem_wifi">Tem Wifi? Sim</string>
     <string name="tem_wifi_nao">Tem Wifi? Não</string>
     <string name="texto_do_email">Escreva sua mensagem</string>
+    <string name="this_place_has_deals">Ofertas</string>
+    <string name="thu">Qui</string>
     <string name="title_activity_drawer_exp_splash">Escolha o que visualizar</string>
     <string name="title_activity_report">Enviar alerta</string>
     <string name="title_activity_route_detail_splash">Entenda a rota</string>
     <string name="title_activity_rss">Novidades</string>
     <string name="title_activity_sugestao">Sugestão</string>
-    <string name="toast_error">Ocorreu algum erro...</string>
+    <string name="toast_error">Ocorreu um erro...</string>
+    <string name="toast_server_error">Erro de servidor: </string>
     <string name="toast_thanks">Obrigado!</string>
     <string name="too_distant_route">A distância máxima entre origem e destino é de 25 km</string>
     <string name="toomuchmarkers">Visualizar muitos itens em uma área grande do mapa pode deixar o app lento</string>
+    <string name="tue">Ter</string>
     <string name="type_of_alert">TIPO DE ALERTA</string>
     <string name="vagas">Vagas: </string>
     <string name="vagas_livres">Vagas livres:</string>
     <string name="via_esburacada">Via esburacada</string>
+    <string name="wed">Qua</string>
     <string name="which_address">Você está procurando:</string>
     <string name="which_destination">Confirme o endereço de destino:</string>
     <string name="which_origin">Confirme o endereço de origem:</string>

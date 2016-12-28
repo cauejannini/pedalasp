@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import jannini.android.ciclosp.Constant;
@@ -19,8 +20,7 @@ import jannini.android.ciclosp.R;
 public class MyListAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final String[] values, values2;
-    View drawListView;
-    final ViewHolder holder = new ViewHolder();
+    private final ViewHolder holder = new ViewHolder();
 
     public MyListAdapter(Context context, String[] values, String[] values2) {
         super(context, R.layout.drawer_list_item, values);
@@ -32,7 +32,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        drawListView = inflater.inflate(R.layout.drawer_list_item, parent, false);
+        View drawListView = inflater.inflate(R.layout.drawer_list_item, parent, false);
 
         drawListView.setPadding(18, 16, 18, 16);
 
@@ -41,6 +41,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
         holder.description = (TextView) drawListView.findViewById(R.id.descricao);
         holder.background = drawListView;
         holder.btSettings = (Button) drawListView.findViewById(R.id.bt_settings);
+        holder.progressBar = (ProgressBar) drawListView.findViewById(R.id.pb_loading_listitem);
         drawListView.setTag(holder);
 
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -52,7 +53,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
 
         switch (position) {
             case 0:
-                if (Constant.states[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                if (Constant.States[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_lanes);
                 holder.btSettings.setVisibility(View.VISIBLE);
@@ -66,7 +67,22 @@ public class MyListAdapter extends ArrayAdapter<String> {
                 });
                 break;
             case 1:
-                if (Constant.states[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                if (Constant.States[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+                } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
+                holder.image.setBackgroundResource(R.drawable.btic_add_estabelecimento);
+                holder.btSettings.setVisibility(View.VISIBLE);
+                if (MainActivity.placesIsLoading) { holder.progressBar.setVisibility(View.VISIBLE);} else {holder.progressBar.setVisibility(View.GONE);}
+                holder.btSettings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (context instanceof MainActivity) {
+                            ((MainActivity) context).selectPlacesCategories();
+                        }
+                    }
+                });
+                break;
+            case 2:
+                if (Constant.States[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
                 holder.btSettings.setVisibility(View.VISIBLE);
@@ -79,27 +95,27 @@ public class MyListAdapter extends ArrayAdapter<String> {
                     }
                 });
                 break;
-            case 2:
-                if (Constant.states[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+            case 3:
+                if (Constant.States[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_parking);
                 break;
-            case 3:
-                if (Constant.states[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+            case 4:
+                if (Constant.States[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_park);
                 break;
-            case 4:
-                if (Constant.states[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+            case 5:
+                if (Constant.States[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_wifi);
                 break;
-            case 5:
-                if (Constant.states[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+            case 6:
+                if (Constant.States[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_alert);
                 break;
-            case 6:
+            case 7:
                 drawListView.setPadding(18, 25, 18, 25);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     holder.text.setTextColor(context.getColor(R.color.water_blue));
@@ -112,11 +128,12 @@ public class MyListAdapter extends ArrayAdapter<String> {
         return drawListView;
     }
 
-    public class ViewHolder {
+    private class ViewHolder {
         public TextView text;
-        public TextView description;
-        public Button btSettings;
-        public ImageView image;
+        TextView description;
+        Button btSettings;
+        ImageView image;
+        ProgressBar progressBar;
         public View background;
     }
   

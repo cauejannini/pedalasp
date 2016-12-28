@@ -9,20 +9,17 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.ProgressBar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Calendar;
 
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.JSONParser;
+import jannini.android.ciclosp.NetworkRequests.Utils;
 
 public class SplashScreen extends Activity {
 
@@ -32,18 +29,20 @@ public class SplashScreen extends Activity {
     JSONParser jParser = new JSONParser();
 
     // String to store jSON Object on device storage
-    String jsonObjString;
-    String jsonObjBSString;
-    String jsonObjCSString;
+    String jsonObjString, jsonObjBSString, jsonObjCSString, jsonObjPlaces;
 
     ProgressBar progressBar;
 
-    static boolean[] result_code = {false, false, false};
+    boolean isThisFirstTime = false;
+
+    static boolean[] splashResultCodes = {false, false, false, false, false};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -51,12 +50,12 @@ public class SplashScreen extends Activity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
-        String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+        String deviceID = sharedPreferences.getString(Constant.SPKEY_DEVICE_ID, "");
         if (deviceID.equals("")) {
             Calls.createDevice(new CallHandler() {
                 @Override
                 public void onSuccess(int code, String response) {
-                    sharedPreferences.edit().putString(Constant.deviceID, response).apply();
+                    sharedPreferences.edit().putString(Constant.SPKEY_DEVICE_ID, response).apply();
                 }
             });
         }
@@ -64,90 +63,118 @@ public class SplashScreen extends Activity {
         jsonObjString = sharedPreferences.getString(Constant.spJobGeral, null);
         jsonObjBSString = sharedPreferences.getString(Constant.spJobBS, null);
         jsonObjCSString = sharedPreferences.getString(Constant.spJobCS, null);
+        jsonObjPlaces = sharedPreferences.getString(Constant.spJobPlaces, null);
 
-        if (jsonObjString == null && jsonObjBSString == null && jsonObjCSString == null) {
-            progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable, null));
-            } else {
-                progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
-            }
-            new CarregarDB().execute();
+        if (jsonObjString != null && jsonObjBSString != null && jsonObjCSString != null && jsonObjPlaces != null) {
+
+            Calls.getPlacesIconsAndCategories(this, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+                    splashResultCodes[4] = true;
+
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+                    Utils.showServerErrorToast(SplashScreen.this, responseCode+ " : "+response);
+
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-	}
 
-	 // Background Async Task to Load all estacoes by making HTTP Request
-	class CarregarDB extends AsyncTask<String, String, String> {
+            if (jsonObjString == null && jsonObjBSString == null && jsonObjCSString == null && jsonObjPlaces == null) {
+                isThisFirstTime = true;
+            }
 
-        // Checa conexão com a internet antes de começar as tarefas em background
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            if (!isNetworkAvailable()) {
-            	cancel(true);
-            	AlertDialog.Builder network_alert = new AlertDialog.Builder(SplashScreen.this);
-    	        network_alert.setTitle(R.string.network_alert_title)
-    	        		.setMessage(R.string.network_alert_dialog_splash)
-    	        		.setPositiveButton(R.string.fechar, new DialogInterface.OnClickListener() {
+            // If first time and no network, block access to the app.
+            if (isThisFirstTime && !isNetworkAvailable()) {
+                AlertDialog.Builder network_alert = new AlertDialog.Builder(SplashScreen.this);
+                network_alert.setTitle(R.string.network_alert_title)
+                        .setMessage(R.string.network_alert_dialog_splash)
+                        .setPositiveButton(R.string.fechar, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 finish();
                             }
                         })
-    	               	.setNegativeButton(R.string.network_settings, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.network_settings, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
                                 finish();
                             }
                         });
-    	        network_alert.show();
-            }
-        }
+                network_alert.show();
+            } else {
 
-        //Retorna todos os estacionamentos da URL e gaurda na ListEstacionamentos (Lista de objetos de classe "Estacionamento")
-        protected String doInBackground(String... args) {
+                progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
 
-            if (!isCancelled()) {
+                Calls.getPlacesIconsAndCategories(this, new CallHandler() {
+                    @Override
+                    public void onSuccess(int responseCode, String response) {
+                        Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+                        splashResultCodes[4] = true;
+                    }
+                    @Override
+                    public void onFailure(int responseCode, String response) {
+                        Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+                        Utils.showServerErrorToast(SplashScreen.this, responseCode+ " : "+response);
+                    }
+                });
 
-                // Building Parameters
+                final SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                JSONObject jObjGeral = jParser.makeHttpRequest(Constant.url_obter_dados);
-                JSONObject jObjBikeSampa = jParser.makeHttpRequest(Constant.url_obter_bikesampa);
-                JSONObject jObjCicloSampa = jParser.makeHttpRequest(Constant.url_obter_ciclosampa);
+                if (jsonObjString == null) {
+                    Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
+                        @Override
+                        public void onSuccess(int responseCode, String response) {
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(Constant.spJobGeral, response);
+                            editor.apply();
 
-                try {
-
-                    if (jObjGeral != null) {
-
-                        int successGeral = jObjGeral.getInt("success");
-
-                        if (successGeral == 1) {
-
-                            jsonObjString = jObjGeral.toString();
-
-                            editor.putString(Constant.spJobGeral, jsonObjString);
-
-                            result_code[0] = true;
+                            splashResultCodes[0] = true;
 
                         }
-                    }
 
-                    if (jObjBikeSampa != null) {
+                        @Override
+                        public void onFailure(int responseCode, String response) {
+                            super.onFailure(responseCode, response);
+                            Log.e("splash getDataHandler", "FAIL: " + responseCode + ": " + response);
+                        }
+                    });
+                }
 
-                        int successBikeSampa = jObjBikeSampa.getInt("success");
+                if (jsonObjPlaces == null) {
+                    Calls.jsonRequest(Constant.url_get_places, new CallHandler() {
+                        @Override
+                        public void onSuccess(int responseCode, String response) {
 
-                        if (successBikeSampa == 1) {
+                            editor.putString(Constant.spJobPlaces, response);
+                            editor.apply();
 
-                            jsonObjBSString = jObjBikeSampa.toString();
+                            splashResultCodes[1] = true;
 
-                            editor.putString(Constant.spJobBS, jsonObjBSString);
+                        }
+
+                        @Override
+                        public void onFailure(int responseCode, String response) {
+                            Log.e("splash getPlaces fail", response);
+                        }
+                    });
+                }
+
+                if (jsonObjBSString == null) {
+                    Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
+                        @Override
+                        public void onSuccess(int code, String response) {
+                            Log.e("splash getBSHandler", code + ": " + response);
 
                             Calendar now = Calendar.getInstance();
                             String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
@@ -157,22 +184,26 @@ public class SplashScreen extends Activity {
                             }
                             String updateTimeBS = hours + ":" + minutes;
 
+                            editor.putString(Constant.spJobBS, response);
                             editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
+                            editor.apply();
 
-                            result_code[1] = true;
-
+                            splashResultCodes[2] = true;
                         }
-                    }
 
-                    if (jObjCicloSampa != null) {
+                        @Override
+                        public void onFailure(int responseCode, String response) {
+                            super.onFailure(responseCode, response);
+                            Log.e("splash getBSHandler", "Fail: " + responseCode + ": " + response);
+                        }
+                    });
+                }
 
-                        int successCicloSampa = jObjCicloSampa.getInt("success");
-
-                        if (successCicloSampa == 1) {
-
-                            jsonObjCSString = jObjCicloSampa.toString();
-
-                            editor.putString(Constant.spJobCS, jsonObjCSString);
+                if (jsonObjCSString == null) {
+                    Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
+                        @Override
+                        public void onSuccess(int code, String response) {
+                            Log.e("splash getCSHandler", code + ": " + response);
 
                             Calendar now = Calendar.getInstance();
                             String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
@@ -182,36 +213,40 @@ public class SplashScreen extends Activity {
                             }
                             String updateTimeCS = hours + ":" + minutes;
 
+                            editor.putString(Constant.spJobCS, response);
                             editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
+                            editor.apply();
 
-                            result_code[2] = true;
+                            splashResultCodes[3] = true;
 
+                            if (isThisFirstTime) {
+                                Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
+                                startActivity(i);
+                            } else {
+                                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                                startActivity(i);
+                            }
+                            finish();
                         }
-                    }
 
-                    editor.apply();
+                        @Override
+                        public void onFailure(int responseCode, String response) {
+                            super.onFailure(responseCode, response);
+                            Log.e("splash getCSHandler", "Fail: " + responseCode + ": " + response);
 
-                } catch (JSONException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                            if (isThisFirstTime) {
+                                Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
+                                startActivity(i);
+                            } else {
+                                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                                startActivity(i);
+                            }
+                            finish();
+                        }
+                    });
                 }
-
             }
-
-            return null;
         }
-
-        // Adiciona marcadores no mapa para todos os objetos encontrados.
-		protected void onPostExecute(String file_url) {
-
-			Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
-            startActivity(i);
-			finish();
-		}
-
-		protected void onCancelled(String file_url) {
-
-		}
 	}
 
     private boolean isNetworkAvailable() {

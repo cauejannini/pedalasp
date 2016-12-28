@@ -1,5 +1,6 @@
 package jannini.android.ciclosp;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -36,10 +38,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,6 +47,7 @@ import java.util.List;
 import jannini.android.ciclosp.Adapters.InfoWindowActivity;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.Calls;
+import jannini.android.ciclosp.NetworkRequests.Utils;
 
 public class ReportActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 
@@ -56,10 +56,11 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 	ProgressBar pBar;
 	Button btClearAddress, btSearch;
 	EditText etReportAddress, etReportDetails;
+	ImageView locationIndicator;
 
 	List<Address> addressList = new ArrayList<>();
 	List<Address> addressListBase = new ArrayList<>();
-	Marker marker_address = null;
+	//Marker marker_address = null;
 
 	LatLng user_latlng;
 
@@ -75,15 +76,12 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 		btSearch = (Button) findViewById(R.id.bt_lupa);
 		etReportAddress = (EditText) findViewById(R.id.et_report_address);
         etReportDetails = (EditText) findViewById(R.id.et_report_details);
+		locationIndicator = (ImageView) findViewById(R.id.iv_location_indicator);
 
 		btClearAddress.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				etReportAddress.setText("");
-				if (marker_address != null) {
-					marker_address.remove();
-					marker_address = null;
-				}
 				btClearAddress.setVisibility(View.GONE);
 			}
 		});
@@ -122,12 +120,6 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 	}
 
 	public void geocodeLatLng(final LatLng latlng) {
-
-        if (marker_address != null) { marker_address.remove(); }
-
-        marker_address = googleMap.addMarker(new MarkerOptions()
-                .position(latlng)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location)));
 
 		// Create a geocoder object
 		final Geocoder geoCoder = new Geocoder(this);
@@ -207,11 +199,24 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 			e.printStackTrace();
 		}
 
+		googleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
+			@Override
+			public void onCameraMoveStarted(int i) {
+				ObjectAnimator liftLocationIndicator = ObjectAnimator.ofFloat(locationIndicator,"translationY", Utils.getPixelValue(ReportActivity.this, -10));
+				liftLocationIndicator.setDuration(150);
+				liftLocationIndicator.start();
+			}
+		});
 
-		googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-			public void onMapClick(LatLng point) {
+		googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+			@Override
+			public void onCameraIdle() {
 
-				geocodeLatLng(point);
+				ObjectAnimator lowerLocationIndicator = ObjectAnimator.ofFloat(locationIndicator,"translationY", 0);
+				lowerLocationIndicator.setDuration(150);
+				lowerLocationIndicator.start();
+
+				geocodeLatLng(googleMap.getCameraPosition().target);
 			}
 		});
 
@@ -233,12 +238,6 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
 			@Override
 			protected void onPreExecute() {
-
-				// Limpar marcadores antigos de outras buscas, antes de criar um novo.
-				if (marker_address != null) {
-					marker_address.remove();
-				}
-
 				btClearAddress.setVisibility(View.GONE);
 				pBar.setVisibility(View.VISIBLE);
 			}
@@ -302,13 +301,9 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
 							CameraUpdate center = CameraUpdateFactory.newLatLng(coordinate);
 							CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
-							googleMap.moveCamera(center);
+							googleMap.animateCamera(center);
 							googleMap.animateCamera(zoom);
-							marker_address = googleMap.addMarker(new MarkerOptions()
-									.position(new LatLng(lat, lng))
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location))
-									.title(address.getAddressLine(0)));
-                            geocodeLatLng(marker_address.getPosition());
+                            geocodeLatLng(coordinate);
 						}
 					} else {
 						AlertDialog.Builder alert_enderecos = new AlertDialog.Builder(ReportActivity.this);
@@ -325,11 +320,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 											CameraUpdate zoom = CameraUpdateFactory.zoomTo(15.6f);
 											googleMap.moveCamera(center);
 											googleMap.animateCamera(zoom);
-											marker_address = googleMap.addMarker(new MarkerOptions()
-													.position(new LatLng(lat, lng))
-                                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_location))
-													.title(address.getAddressLine(0)));
-                                            geocodeLatLng(marker_address.getPosition());
+                                            geocodeLatLng(coordinate);
 										}
 									}
 								});
@@ -362,58 +353,51 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
 		if (isNetworkAvailable()) {
 
-			if (marker_address == null) {
+			reportLatLng = googleMap.getCameraPosition().target;
 
-				Toast.makeText(this, R.string.loc_selecione_localizacao, Toast.LENGTH_SHORT).show();
+			String type = "";
+			RadioButton rb_bur = (RadioButton) findViewById(R.id.report_buraco);
+			RadioButton rb_sin = (RadioButton) findViewById(R.id.report_sinalização);
+			RadioButton rb_out = (RadioButton) findViewById(R.id.report_outro);
 
+			if (!rb_bur.isChecked() && !rb_sin.isChecked() && !rb_out.isChecked()) {
+				Toast.makeText(this, R.string.rbReportError, Toast.LENGTH_SHORT).show();
+			} else if (rb_out.isChecked() && etReportDetails.getText().toString().trim().equals("")){
+				etReportDetails.setError(getResources().getString(R.string.etReportDetailsError));
 			} else {
 
-				reportLatLng = marker_address.getPosition();
+				if (rb_bur.isChecked()) {
+					type = "bu";
+				} else if (rb_sin.isChecked()) {
+					type = "si";
+				} else if (rb_out.isChecked()) {
+					type = "ou";
+				}
 
-				String type = "";
-				RadioButton rb_bur = (RadioButton) findViewById(R.id.report_buraco);
-				RadioButton rb_sin = (RadioButton) findViewById(R.id.report_sinalização);
-                RadioButton rb_out = (RadioButton) findViewById(R.id.report_outro);
+				String messageString = etReportDetails.getText().toString();
 
-				if (!rb_bur.isChecked() && !rb_sin.isChecked() && !rb_out.isChecked()) {
-                    Toast.makeText(this, R.string.rbReportError, Toast.LENGTH_SHORT).show();
-                } else if (rb_out.isChecked() && etReportDetails.getText().toString().trim().equals("")){
-                    etReportDetails.setError(getResources().getString(R.string.etReportDetailsError));
-                } else {
-
-                    if (rb_bur.isChecked()) {
-                        type = "bu";
-                    } else if (rb_sin.isChecked()) {
-                        type = "si";
-                    } else if (rb_out.isChecked()) {
-                        type = "ou";
-                    }
-
-                    String messageString = etReportDetails.getText().toString();
-
-                    try {
-                        Calls.sendReport(address, String.valueOf(reportLatLng.latitude), String.valueOf(reportLatLng.longitude), type, messageString);
-                        Toast toast = Toast.makeText(ReportActivity.this, R.string.toast_thanks, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                        finish();
-                    } catch (Exception e) {
-                        Toast toast_s = Toast.makeText(ReportActivity.this, "Check == false", Toast.LENGTH_SHORT);
-                        toast_s.show();
-                        AlertDialog.Builder network_alert = new AlertDialog.Builder(ReportActivity.this);
-                        network_alert.setTitle(R.string.network_alert_title)
-                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                    }
-                                })
-                                .setNegativeButton(R.string.network_settings, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-                                    }
-                                });
-                        network_alert.show();
-                    }
-                }
+				try {
+					Calls.sendReport(address, String.valueOf(reportLatLng.latitude), String.valueOf(reportLatLng.longitude), type, messageString);
+					Toast toast = Toast.makeText(ReportActivity.this, R.string.toast_thanks, Toast.LENGTH_SHORT);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+					finish();
+				} catch (Exception e) {
+					Toast toast_s = Toast.makeText(ReportActivity.this, "Check == false", Toast.LENGTH_SHORT);
+					toast_s.show();
+					AlertDialog.Builder network_alert = new AlertDialog.Builder(ReportActivity.this);
+					network_alert.setTitle(R.string.network_alert_title)
+							.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+								}
+							})
+							.setNegativeButton(R.string.network_settings, new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+								}
+							});
+					network_alert.show();
+				}
 			}
 		} else {
 

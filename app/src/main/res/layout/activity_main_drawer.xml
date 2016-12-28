@@ -13,7 +13,8 @@
         	android:id="@+id/map"
         	class="com.google.android.gms.maps.SupportMapFragment"
     		android:layout_width="match_parent"
-    		android:layout_height="match_parent"/>
+    		android:layout_height="match_parent"
+			android:layout_alignParentTop="true"/>
 
 	    <LinearLayout
 			android:id="@+id/header"
@@ -28,163 +29,214 @@
 			android:layout_gravity="center_vertical"
 	        android:weightSum="1"/>
 
-			<RelativeLayout
-				android:id="@+id/rl_bottom_options"
-				android:layout_height="358dp"
+		<RelativeLayout
+			android:id="@+id/rl_bottom_panels_container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:translationY="267dp">
+
+			<include layout="@layout/view_place_details_v"
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:clickable="false"
+					 android:layout_alignParentTop="true"/>
+
+			<include layout="@layout/view_place_details_nv"
+					 android:layout_width="match_parent"
+					 android:clickable="false"
+					 android:layout_height="267dp"
+					 android:layout_alignParentTop="true"/>
+
+			<LinearLayout
+				android:id="@+id/ll_route_panel"
 				android:layout_width="match_parent"
-				android:translationY="123dp"
-				android:layout_alignParentBottom="true">
+				android:layout_height="123dp"
+				android:layout_alignParentTop="true"
+				android:orientation="vertical"
+				android:paddingTop="3dp"
+				android:background="@drawable/box_white_shadow_top"
+				android:visibility="invisible">
 
-				<ToggleButton
-					android:id="@+id/route_bt"
-					android:layout_alignParentEnd="true"
-					android:layout_alignParentBottom="true"
-					android:layout_marginEnd="11dp"
-					android:layout_marginBottom="272dp"
-					android:layout_width="65dp"
-					android:layout_height="65dp"
-					android:background="@drawable/bt_route"
-					android:textOff=""
-					android:textOn=""
-					android:onClick="onRouteButtonClick"
-					android:translationX="0dp"
-					/>
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="30dp"
+					android:layout_gravity="center_horizontal">
 
-				<Button
-					 android:id="@+id/bt_add_to_map"
-					 android:layout_alignParentEnd="true"
-					 android:layout_alignParentBottom="true"
-					 android:layout_marginEnd="11dp"
-					 android:layout_marginBottom="203dp"
-					 android:layout_width="65dp"
-					 android:layout_height="65dp"
-					 android:background="@drawable/bt_add_to_map"
-					 android:onClick="addFunction"
-					/>
-
-				<Button
-					android:id="@+id/bt_my_location"
-					android:layout_alignEnd="@id/bt_add_to_map"
-					android:layout_alignStart="@id/bt_add_to_map"
-					android:layout_alignParentBottom="true"
-					android:layout_marginBottom="134dp"
-					android:layout_width="65dp"
-					android:layout_height="65dp"
-					android:background="@drawable/bt_my_location"
-					android:onClick="goToMyLocation"
-					/>
-
-				<ToggleButton
-					android:id="@+id/tb_navigation_switch"
-					android:layout_alignEnd="@id/bt_add_to_map"
-					android:layout_alignStart="@id/bt_add_to_map"
-					android:layout_alignParentBottom="true"
-					android:layout_marginBottom="134dp"
-					android:layout_width="65dp"
-					android:layout_height="65dp"
-					android:visibility="gone"
-					android:textOff=""
-					android:textOn=""
-					android:background="@drawable/bt_navigation"
-					/>
-
-				<Button
-					android:id="@+id/notify_solved"
-					android:layout_alignParentBottom="true"
-					android:layout_centerHorizontal="true"
-					android:layout_marginBottom="144dp"
-					android:layout_width="200dp"
-					android:textSize="14sp"
-					android:layout_height="60dp"
-					android:textColor="#FFFFFF"
-					android:text="@string/notifySolved"
-					android:background="@drawable/bt_water_blue"
-					android:onClick="notifySolved"
-					android:translationY="600dp"
-					android:visibility="gone"
-					/>
-
-				<Button
-					android:id="@+id/bt_parked_here"
-					android:layout_alignParentBottom="true"
-					android:layout_centerHorizontal="true"
-					android:layout_marginBottom="144dp"
-					android:paddingStart="45dp"
-					android:layout_height="55dp"
-					android:layout_width="200dp"
-					android:textSize="14sp"
-					android:text="@string/i_parked_here"
-					android:background="@drawable/bt_parked_here"
-					android:translationY="600dp"
-					android:visibility="gone"
-					android:onClick="setParkedHere"
-					/>
-
-				<Button
-					android:id="@+id/bt_remove_parked_here"
-					android:layout_alignParentBottom="true"
-					android:layout_centerHorizontal="true"
-					android:layout_marginBottom="139dp"
-					android:layout_height="45dp"
-					android:layout_width="200dp"
-					android:textSize="14sp"
-					android:text="@string/remove"
-					android:background="@color/dark_text"
-					android:translationY="600dp"
-					android:visibility="gone"
-					android:onClick="removePlace"
-					/>
-
-				<LinearLayout
-					android:id="@+id/ll_route_panel"
-					android:layout_width="match_parent"
-					android:layout_height="123dp"
-					android:layout_alignParentBottom="true"
-					android:orientation="vertical"
-					android:paddingTop="3dp"
-					android:background="@drawable/viewpager_box_border"
-					android:visibility="gone">
-
-					<RelativeLayout
+					<Spinner
+						android:id="@+id/spinner_route_priority"
 						android:layout_width="wrap_content"
+						android:background="@color/white"
+						android:layout_height="30dp"/>
+
+					<ImageView
+						android:id="@+id/iv_spinner_arrow"
+						android:layout_width="30dp"
 						android:layout_height="30dp"
-						android:layout_gravity="center_horizontal">
+						android:layout_toEndOf="@id/spinner_route_priority"
+						android:layout_marginStart="8dp"
+						android:layout_centerVertical="true"
+						android:background="@drawable/bt_spinner_arrow"/>
 
-						<Spinner
-							android:id="@+id/spinner_route_priority"
-							android:layout_width="wrap_content"
-							android:background="@color/white"
-							android:layout_height="30dp"/>
+				</RelativeLayout>
 
-						<ImageView
-							android:id="@+id/iv_spinner_arrow"
-							android:layout_width="30dp"
-							android:layout_height="30dp"
-							android:layout_toEndOf="@id/spinner_route_priority"
-							android:layout_marginStart="8dp"
-							android:layout_centerVertical="true"
-							android:background="@drawable/bt_spinner_arrow"/>
+				<RelativeLayout
+					android:id="@+id/rl_route_details"
+					android:layout_width="match_parent"
+					android:layout_height="93dp">
 
-					</RelativeLayout>
+					<include layout="@layout/route_detail_fragment"/>
 
-					<RelativeLayout
-						android:id="@+id/rl_route_details"
-						android:layout_width="match_parent"
-						android:layout_height="93dp">
+					<ProgressBar
+						android:id="@+id/pb_loading_route"
+						android:layout_width="30dp"
+						android:layout_height="30dp"
+						android:layout_centerInParent="true"/>
 
-						<include layout="@layout/route_detail_fragment"/>
+				</RelativeLayout>
 
-						<ProgressBar
-							android:id="@+id/pb_loading_route"
-							android:layout_width="30dp"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"/>
+			</LinearLayout>
 
-					</RelativeLayout>
+		</RelativeLayout>
 
-				</LinearLayout>
+		<RelativeLayout
+			android:id="@+id/rl_bottom_options"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_alignParentBottom="true">
 
-			</RelativeLayout>
+			<ToggleButton
+				android:id="@+id/route_bt"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginEnd="11dp"
+				android:layout_marginBottom="149dp"
+				android:layout_width="65dp"
+				android:layout_height="65dp"
+				android:background="@drawable/bt_route"
+				android:textOff=""
+				android:textOn=""
+				android:onClick="onRouteButtonClick"
+				android:translationX="0dp"
+				/>
+
+			<Button
+				 android:id="@+id/bt_add_to_map"
+				 android:layout_alignParentEnd="true"
+				 android:layout_alignParentBottom="true"
+				 android:layout_marginEnd="11dp"
+				 android:layout_marginBottom="80dp"
+				 android:layout_width="65dp"
+				 android:layout_height="65dp"
+				 android:background="@drawable/bt_add_to_map"
+				 android:onClick="addFunction"
+				/>
+
+			<Button
+				android:id="@+id/bt_my_location"
+				android:layout_alignEnd="@id/bt_add_to_map"
+				android:layout_alignStart="@id/bt_add_to_map"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="11dp"
+				android:layout_width="65dp"
+				android:layout_height="65dp"
+				android:background="@drawable/bt_my_location"
+				android:onClick="goToMyLocation"
+				/>
+
+			<ToggleButton
+				android:id="@+id/tb_navigation_switch"
+				android:layout_alignEnd="@id/bt_add_to_map"
+				android:layout_alignStart="@id/bt_add_to_map"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="11dp"
+				android:layout_width="65dp"
+				android:layout_height="65dp"
+				android:visibility="gone"
+				android:textOff=""
+				android:textOn=""
+				android:background="@drawable/bt_navigation"
+				/>
+
+			<LinearLayout
+				android:id="@+id/ll_featured"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_alignParentStart="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="21dp"
+				android:layout_marginStart="20dp"
+				android:padding="10dp"
+				android:background="@drawable/bt_water_blue"
+				android:translationX="-300dp"
+				android:visibility="gone"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+
+				<ImageView
+					android:layout_width="15dp"
+					android:layout_height="15dp"
+					android:background="@color/yellow"/>
+
+				<TextView
+					android:id="@+id/tv_featured"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="10dp"
+					android:textColor="@color/white"
+					android:textStyle="bold"
+					android:textSize="12sp"/>
+
+			</LinearLayout>
+
+			<Button
+				android:id="@+id/notify_solved"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="21dp"
+				android:layout_width="200dp"
+				android:textSize="14sp"
+				android:layout_height="60dp"
+				android:textColor="#FFFFFF"
+				android:text="@string/notifySolved"
+				android:background="@drawable/bt_water_blue"
+				android:onClick="notifySolved"
+				android:translationY="600dp"
+				android:visibility="gone"
+				/>
+
+			<Button
+				android:id="@+id/bt_parked_here"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="21dp"
+				android:paddingStart="45dp"
+				android:layout_height="55dp"
+				android:layout_width="200dp"
+				android:textSize="14sp"
+				android:text="@string/i_parked_here"
+				android:background="@drawable/bt_parked_here"
+				android:translationY="600dp"
+				android:visibility="gone"
+				android:onClick="setParkedHere"
+				/>
+
+			<Button
+				android:id="@+id/bt_remove_parked_here"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="16dp"
+				android:layout_height="45dp"
+				android:layout_width="200dp"
+				android:textSize="14sp"
+				android:text="@string/remove"
+				android:background="@color/dark_text"
+				android:translationY="600dp"
+				android:visibility="gone"
+				android:onClick="removePlace"
+				/>
+
+		</RelativeLayout>
 	        
 	 </RelativeLayout>
 

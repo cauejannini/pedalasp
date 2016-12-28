@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/list_toggle_services"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:id="@+id/bt_select_places_ok"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bt_water_blue"
+        android:text="OK"/>
+
+</LinearLayout>
