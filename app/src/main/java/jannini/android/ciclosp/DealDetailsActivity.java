@@ -32,9 +32,9 @@ import jannini.android.ciclosp.NetworkRequests.Utils;
 
 import static jannini.android.ciclosp.Constant.PERMISSION_REQUEST_CODE_CALL_PHONE;
 import static jannini.android.ciclosp.Constant.mapCategoriesIcons;
-import static jannini.android.ciclosp.R.id.tv_featured_title;
+import static jannini.android.ciclosp.R.id.tv_deal_title;
 
-public class FeaturedDetailsActivity extends Activity {
+public class DealDetailsActivity extends Activity {
 
     TextView tvTitle, tvAddress,tvDescription, tvPlaceServices, tvPlaceName, tvPlacePhone, tvPlaceCurrentOpenStatus;
     ImageView ivPlaceServices;
@@ -43,15 +43,15 @@ public class FeaturedDetailsActivity extends Activity {
 
     String deviceId;
 
-    LatLng featuredLatLng;
+    LatLng dealLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_featured_details);
+        setContentView(R.layout.activity_deal_details);
 
-        llContainer = (LinearLayout) findViewById(R.id.ll_featured_container);
-        pbLoading = (ProgressBar) findViewById(R.id.pb_featured_details_loading);
+        llContainer = (LinearLayout) findViewById(R.id.ll_deal_container);
+        pbLoading = (ProgressBar) findViewById(R.id.pb_deal_details_loading);
         RelativeLayout rlBackButton = (RelativeLayout) findViewById(R.id.rl_back_button);
         rlBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,25 +59,25 @@ public class FeaturedDetailsActivity extends Activity {
                 finish();
             }
         });
-        tvTitle = (TextView) findViewById(tv_featured_title);
-        tvAddress = (TextView) findViewById(R.id.tv_featured_address);
-        tvDescription = (TextView) findViewById(R.id.tv_featured_description);
+        tvTitle = (TextView) findViewById(tv_deal_title);
+        tvAddress = (TextView) findViewById(R.id.tv_deal_address);
+        tvDescription = (TextView) findViewById(R.id.tv_deal_description);
 
-        ivPlaceServices = (ImageView) findViewById(R.id.iv_featured_place_services);
-        tvPlaceServices = (TextView) findViewById(R.id.tv_featured_place_services);
-        tvPlaceName = (TextView) findViewById(R.id.tv_featured_place_name);
-        tvPlacePhone = (TextView) findViewById(R.id.tv_featured_place_phone);
-        tvPlaceCurrentOpenStatus = (TextView) findViewById(R.id.tv_featured_place_current_open_status);
+        ivPlaceServices = (ImageView) findViewById(R.id.iv_deal_place_services);
+        tvPlaceServices = (TextView) findViewById(R.id.tv_deal_place_services);
+        tvPlaceName = (TextView) findViewById(R.id.tv_deal_place_name);
+        tvPlacePhone = (TextView) findViewById(R.id.tv_deal_place_phone);
+        tvPlaceCurrentOpenStatus = (TextView) findViewById(R.id.tv_deal_place_current_open_status);
 
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         deviceId = sharedPreferences.getString(Constant.SPKEY_DEVICE_ID, "");
 
         Intent intent = getIntent();
-        final String featId = String.valueOf(intent.getIntExtra("FEATURED_ID", 0));
+        final String dealId = String.valueOf(intent.getIntExtra("DEAL_ID", 0));
 
-        if (!featId.equals("0")) {
+        if (!dealId.equals("0")) {
 
-            Calls.getFeaturedForId(featId, new CallHandler() {
+            Calls.getDealForId(dealId, new CallHandler() {
                 @Override
                 public void onSuccess(int responseCode, String response) {
 
@@ -94,7 +94,7 @@ public class FeaturedDetailsActivity extends Activity {
                         String description = job.getString("description");
                         Double lat = job.getDouble("lat");
                         Double lng = job.getDouble("lng");
-                        featuredLatLng = new LatLng(lat, lng);
+                        dealLatLng = new LatLng(lat, lng);
 
                         String placeCategories = job.getString("place_categories");
                         String[] categoriesStringArray = placeCategories.split(",");
@@ -119,7 +119,7 @@ public class FeaturedDetailsActivity extends Activity {
                             for (int id: categoriesIntArray) {
                                 bitmapArray.add(mapCategoriesIcons.get(id));
                             }
-                            ivPlaceServices.setImageBitmap(Utils.combineImages(FeaturedDetailsActivity.this, bitmapArray));
+                            ivPlaceServices.setImageBitmap(Utils.combineImages(DealDetailsActivity.this, bitmapArray));
                             tvPlaceServices.setVisibility(View.GONE);
                             ivPlaceServices.setVisibility(View.VISIBLE);
 
@@ -158,7 +158,7 @@ public class FeaturedDetailsActivity extends Activity {
                     } catch (JSONException e) {
                         e.printStackTrace();
 
-                        Utils.showErrorToast(FeaturedDetailsActivity.this);
+                        Utils.showErrorToast(DealDetailsActivity.this);
                         finish();
                     }
                 }
@@ -166,23 +166,23 @@ public class FeaturedDetailsActivity extends Activity {
                 @Override
                 public void onFailure(int responseCode, String response) {
                     Log.e("failure", response);
-                    Utils.showErrorToast(FeaturedDetailsActivity.this);
+                    Utils.showErrorToast(DealDetailsActivity.this);
                     finish();
                 }
             });
         }
 
-        LinearLayout llFeaturedPlacePhone = (LinearLayout) findViewById(R.id.ll_featured_place_phone);
-        llFeaturedPlacePhone.setOnClickListener(new View.OnClickListener() {
+        LinearLayout llDealPlacePhone = (LinearLayout) findViewById(R.id.ll_deal_place_phone);
+        llDealPlacePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(FeaturedDetailsActivity.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(DealDetailsActivity.this);
                 alert.setMessage(getString(R.string.confirm_dial))
                         .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                if (ActivityCompat.checkSelfPermission(FeaturedDetailsActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                    ActivityCompat.requestPermissions(FeaturedDetailsActivity.this, new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSION_REQUEST_CODE_CALL_PHONE);
+                                if (ActivityCompat.checkSelfPermission(DealDetailsActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(DealDetailsActivity.this, new String[]{android.Manifest.permission.CALL_PHONE}, PERMISSION_REQUEST_CODE_CALL_PHONE);
                                 } else {
                                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvPlacePhone.getText().toString().trim()));
                                     startActivity(intent);
@@ -198,20 +198,20 @@ public class FeaturedDetailsActivity extends Activity {
             }
         });
 
-        LinearLayout llFeaturedAddress = (LinearLayout) findViewById(R.id.ll_featured_address);
-        llFeaturedAddress.setOnClickListener(new View.OnClickListener() {
+        LinearLayout llDealAddress = (LinearLayout) findViewById(R.id.ll_deal_address);
+        llDealAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (featuredLatLng != null) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(FeaturedDetailsActivity.this);
-                    alert.setMessage(getString(R.string.confirm_route_to_featured_creation))
+                if (dealLatLng != null) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(DealDetailsActivity.this);
+                    alert.setMessage(getString(R.string.confirm_route_to_deal_creation))
                             .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Intent i = new Intent();
-                                    i.putExtra(Constant.IEXTRA_FEATURED_LAT_DOUBLE, featuredLatLng.latitude);
-                                    i.putExtra(Constant.IEXTRA_FEATURED_LNG_DOUBLE, featuredLatLng.longitude);
-                                    i.putExtra(Constant.IEXTRA_FEATURED_ADDRESS, tvAddress.getText());
+                                    i.putExtra(Constant.IEXTRA_DEAL_LAT_DOUBLE, dealLatLng.latitude);
+                                    i.putExtra(Constant.IEXTRA_DEAL_LNG_DOUBLE, dealLatLng.longitude);
+                                    i.putExtra(Constant.IEXTRA_DEAL_ADDRESS, tvAddress.getText());
                                     setResult(RESULT_OK, i);
                                     finish();
                                 }
@@ -223,13 +223,13 @@ public class FeaturedDetailsActivity extends Activity {
                             });
                     alert.show();
                 } else {
-                    Utils.showErrorToast(FeaturedDetailsActivity.this);
+                    Utils.showErrorToast(DealDetailsActivity.this);
                 }
 
             }
         });
 
-        // Check if user already has voucher for this featured and if so, replace llGenerateVoucher for llShowVoucher. Maybe use localized progressbar to indicate this server activity.
+        // Check if user already has voucher for this deal and if so, replace llGenerateVoucher for llShowVoucher. Maybe use localized progressbar to indicate this server activity.
 
         LinearLayout llGetVoucher = (LinearLayout) findViewById(R.id.ll_get_voucher);
         llGetVoucher.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +237,7 @@ public class FeaturedDetailsActivity extends Activity {
             public void onClick(View view) {
                 if (!deviceId.equals("")) {
 
-                    Calls.getVoucherForDeviceId(deviceId, featId, generateVoucherHandler);
+                    Calls.getVoucherForDeviceId(deviceId, dealId, generateVoucherHandler);
 
                 } else {
 
@@ -246,13 +246,13 @@ public class FeaturedDetailsActivity extends Activity {
                         public void onSuccess(int responseCode, String response) {
                             super.onSuccess(responseCode, response);
                             sharedPreferences.edit().putString(Constant.SPKEY_DEVICE_ID, response).apply();
-                            Calls.getVoucherForDeviceId(response, featId, generateVoucherHandler);
+                            Calls.getVoucherForDeviceId(response, dealId, generateVoucherHandler);
                         }
 
                         @Override
                         public void onFailure(int responseCode, String response) {
                             super.onFailure(responseCode, response);
-                            Utils.showServerErrorToast(FeaturedDetailsActivity.this, response);
+                            Utils.showServerErrorToast(DealDetailsActivity.this, response);
                         }
                     });
                 }
@@ -268,7 +268,7 @@ public class FeaturedDetailsActivity extends Activity {
 
             Log.e("VOUCHER RESPONSE", response);
 
-            Intent intent = new Intent(FeaturedDetailsActivity.this, ShowVoucherActivity.class);
+            Intent intent = new Intent(DealDetailsActivity.this, ShowVoucherActivity.class);
             intent.putExtra(Constant.IEXTRA_VOUCHER_JSON, response);
             startActivity(intent);
 
@@ -278,7 +278,7 @@ public class FeaturedDetailsActivity extends Activity {
         public void onFailure(int responseCode, String response) {
             super.onFailure(responseCode, response);
 
-            Utils.showServerErrorToast(FeaturedDetailsActivity.this, response);
+            Utils.showServerErrorToast(DealDetailsActivity.this, response);
         }
     };
 

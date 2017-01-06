@@ -167,8 +167,8 @@ public class MainActivity extends FragmentActivity
 	// APP STORED PREFERENCES
 
 	// Boolean to check if this is the first time app is being opened
-	Boolean betaRouteWarningWasShown;
-	Boolean elevGraphExpWasShown;
+	Boolean betaRouteWarningWasShown = false;
+	Boolean elevGraphExpWasShown = false;
 
 	// Criando listas de itens de cada tabela da DB
 	public static ArrayList<Estacao> ListEstacoesITAU = new ArrayList<>();
@@ -293,12 +293,12 @@ public class MainActivity extends FragmentActivity
 
 	String placeTelToCall;
 
-	// FEATURED
+	// DEALS
 
-	LinearLayout llFeatured;
-	TextView tvFeatured;
-	ObjectAnimator showFeatured, hideFeatured;
-	boolean shouldGetFeatured = true;
+	LinearLayout llDeals;
+	TextView tvDeals;
+	ObjectAnimator showDeals, hideDeals;
+	boolean shouldGetDeals = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -533,12 +533,12 @@ public class MainActivity extends FragmentActivity
 		ivAddParaciclo = (ImageView) findViewById(R.id.iv_add_paraciclo);
 		ivAddEstabelecimento = (ImageView) findViewById(R.id.iv_add_estabelecimento);
 
-		llFeatured = (LinearLayout) findViewById(R.id.ll_featured);
-		showFeatured = ObjectAnimator.ofFloat(llFeatured, "TranslationX", 0);
-		showFeatured.addListener(new AnimatorListener() {
+		llDeals = (LinearLayout) findViewById(R.id.ll_deals);
+		showDeals = ObjectAnimator.ofFloat(llDeals, "TranslationX", 0);
+		showDeals.addListener(new AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animator) {
-				llFeatured.setVisibility(View.VISIBLE);
+				llDeals.setVisibility(View.VISIBLE);
 			}
 
 			@Override
@@ -557,15 +557,15 @@ public class MainActivity extends FragmentActivity
 			}
 		});
 
-		hideFeatured = ObjectAnimator.ofFloat(llFeatured, "TranslationX", Utils.getPixelValue(this, -300));
-		hideFeatured.addListener(new AnimatorListener() {
+		hideDeals = ObjectAnimator.ofFloat(llDeals, "TranslationX", Utils.getPixelValue(this, -300));
+		hideDeals.addListener(new AnimatorListener() {
 			@Override
 			public void onAnimationStart(Animator animator) {
 			}
 
 			@Override
 			public void onAnimationEnd(Animator animator) {
-				llFeatured.setVisibility(View.GONE);
+				llDeals.setVisibility(View.GONE);
 			}
 
 			@Override
@@ -578,7 +578,7 @@ public class MainActivity extends FragmentActivity
 
 			}
 		});
-		tvFeatured = (TextView) findViewById(R.id.tv_featured);
+		tvDeals = (TextView) findViewById(R.id.tv_deals);
 
 		mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
 
@@ -1465,6 +1465,9 @@ public class MainActivity extends FragmentActivity
 
 			@Override
 			public boolean onMarkerClick(Marker marker) {
+
+				Marker markernull = null;
+				markernull.setTitle("haha");
 
 				activeMarker = marker;
 
@@ -2731,16 +2734,13 @@ public class MainActivity extends FragmentActivity
 					String publicEmail = jobPlace.getString("public_email");
 					String currentOpenStatus = jobPlace.getString("current_open_status");
 					String shortDesc = jobPlace.getString("short_desc");
-					int verifiedCode = jobPlace.getInt("verified");
 					int iconId = jobPlace.getInt("icon_id");
 					String displayServices = jobPlace.getString("display_services");
-					boolean hasFeatured = false;
-					if (jobPlace.getInt("has_featured") == 1) {
-						hasFeatured = true;
-					}
 
 					LatLng latlng = new LatLng(lat, lng);
-					boolean isVerified = (verifiedCode == 1);
+					boolean isVerified = (jobPlace.getInt("verified") == 1);
+					boolean isFeatured = (jobPlace.getInt("featured") == 1);
+					boolean hasDeals = (jobPlace.getInt("has_deals") == 1);
 
 					String categories = jobPlace.getString("categories");
 					String[] categoriesStringArray = categories.split(",");
@@ -2749,7 +2749,7 @@ public class MainActivity extends FragmentActivity
 						categoriesIntArray.add(Integer.valueOf(categoryId));
 					}
 
-					Place place = new Place(this, placeId, name, latlng, address, phone, site, publicEmail, currentOpenStatus, shortDesc, displayServices, categoriesIntArray, isVerified, hasFeatured, iconId);
+					Place place = new Place(this, placeId, name, latlng, address, phone, site, publicEmail, currentOpenStatus, shortDesc, displayServices, categoriesIntArray, isVerified, isFeatured, hasDeals, iconId);
 					ListPlaces.add(place);
 				}
 
@@ -3166,8 +3166,9 @@ public class MainActivity extends FragmentActivity
 		btMyLocation.setVisibility(View.GONE);
 		tbSwitchNavigation.setVisibility(View.VISIBLE);
 		// Register listener for the Rotation Vector sensor
-		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
-
+		if (sensorManager != null) {
+			sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
+		}
 		// Change searchHeader for routeHeader
 		header.removeAllViews();
 		header.addView(routeHeader);
@@ -3871,6 +3872,12 @@ public class MainActivity extends FragmentActivity
 					final TextView tvPlaceAddressNV = (TextView) findViewById(R.id.tv_place_address_nv);
 					TextView tvPlacePhoneNV = (TextView) findViewById(R.id.tv_place_phone_nv);
 					LinearLayout btPlaceMenuNV = (LinearLayout) findViewById(R.id.bt_place_menu_nv);
+					TextView tvPlaceNotVerifiedNV = (TextView) findViewById(R.id.tv_place_not_verified_nv);
+					if (place.isVerified) {
+						tvPlaceNotVerifiedNV.setVisibility(View.GONE);
+					} else {
+						tvPlaceNotVerifiedNV.setVisibility(View.VISIBLE);
+					}
 
 					final LinearLayout llPlaceMenuNV = (LinearLayout) findViewById(R.id.ll_place_menu_nv);
 					llPlaceMenuNV.setVisibility(View.GONE);
@@ -3879,6 +3886,8 @@ public class MainActivity extends FragmentActivity
 					tvPlaceServicesNV.setText(place.displayServices);
 					tvPlaceAddressNV.setText(getString(R.string.address) + ": " + place.address);
 					tvPlacePhoneNV.setText(getString(R.string.phone) + ": " + place.phone);
+
+
 
 					btPlaceMenuNV.setOnClickListener(new View.OnClickListener() {
 						@Override
@@ -3903,22 +3912,28 @@ public class MainActivity extends FragmentActivity
 								});
 
 								TextView tvCorrectInfo = (TextView) findViewById(R.id.tv_correct_place_info);
-								tvCorrectInfo.setOnClickListener(new View.OnClickListener() {
-									@Override
-									public void onClick(View view) {
-										Intent i = new Intent(MainActivity.this, AddToMapActivity.class);
-										i.putExtra("SELECTED_FUNCTION", "EDIT_PLACE");
-										i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
-										i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
-										i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
-										i.putExtra(Constant.IEXTRA_PLACE_PUBLIC_EMAIL, place.publicEmail);
-										i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
-										i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
-										i.putExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
+								if (place.isVerified) {
+									tvCorrectInfo.setVisibility(View.GONE);
+								} else {
+									tvCorrectInfo.setVisibility(View.VISIBLE);
+									tvCorrectInfo.setOnClickListener(new View.OnClickListener() {
+										@Override
+										public void onClick(View view) {
+											Intent i = new Intent(MainActivity.this, AddToMapActivity.class);
+											i.putExtra("SELECTED_FUNCTION", "EDIT_PLACE");
+											i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
+											i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
+											i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
+											i.putExtra(Constant.IEXTRA_PLACE_PUBLIC_EMAIL, place.publicEmail);
+											i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
+											i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
+											i.putExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
 
-										startActivity(i);
-									}
-								});
+											startActivity(i);
+										}
+									});
+								}
+
 
 								TextView tvFlagInexistent = (TextView) findViewById(R.id.tv_flag_place_inexistent);
 								tvFlagInexistent.setOnClickListener(new View.OnClickListener() {
@@ -3966,7 +3981,7 @@ public class MainActivity extends FragmentActivity
 							i.putExtra(Constant.IEXTRA_PLACE_ADDRESS, place.address);
 							i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
 							i.putExtra(Constant.IEXTRA_PLACE_SHORT_DESC, place.short_desc);
-							i.putExtra(Constant.IEXTRA_PLACE_HAS_FEATURED, place.hasFeatured);
+							i.putExtra(Constant.IEXTRA_PLACE_HAS_DEALS, place.hasDeals);
 							i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
 							i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
 							i.putIntegerArrayListExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
@@ -4046,7 +4061,7 @@ public class MainActivity extends FragmentActivity
 							i.putExtra(Constant.IEXTRA_PLACE_ADDRESS, place.address);
 							i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
 							i.putExtra(Constant.IEXTRA_PLACE_SHORT_DESC, place.short_desc);
-							i.putExtra(Constant.IEXTRA_PLACE_HAS_FEATURED, place.hasFeatured);
+							i.putExtra(Constant.IEXTRA_PLACE_HAS_DEALS, place.hasDeals);
 							i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
 							i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
 							i.putIntegerArrayListExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
@@ -4065,20 +4080,20 @@ public class MainActivity extends FragmentActivity
 	}
 
 	/* END PLACES */
-	/* FEATURED */
+	/* DEALS */
 
-	public void showAllFeatured() {
-		Intent intent = new Intent(MainActivity.this, FeaturedListActivity.class);
-		intent.putExtra(Constant.ICODE_FEATURED_LIST, Constant.IEXTRA_ICODE_FEATURED_LIST_ALL);
-		intent.putExtra("FEATURED_WINDOW_TITLE", getString(R.string.deals));
+	public void showAllDeals() {
+		Intent intent = new Intent(MainActivity.this, DealListActivity.class);
+		intent.putExtra(Constant.ICODE_DEAL_LIST, Constant.IEXTRA_ICODE_DEAL_LIST_ALL);
+		intent.putExtra("DEAL_WINDOW_TITLE", getString(R.string.deals));
 		if (user_updated_latlng != null) {
 			intent.putExtra("USER_LAT", user_updated_latlng.latitude);
 			intent.putExtra("USER_LNG", user_updated_latlng.longitude);
 		}
-		startActivityForResult(intent, Constant.REQUEST_CODE_ROUTE_FOR_FEATURED);
+		startActivityForResult(intent, Constant.REQUEST_CODE_ROUTE_FOR_DEAL);
 	}
 
-	/* END FEATURED */
+	/* END DEALS */
     /* MISCELLANEOUS */
 
     public void showBottomButton (final View viewToAnimate) {
@@ -4264,9 +4279,9 @@ public class MainActivity extends FragmentActivity
 	public void onLocationChanged(Location location) {
 		user_updated_latlng = new LatLng(location.getLatitude(), location.getLongitude());
 
-		if (shouldGetFeatured) {
-			Calls.getFeaturedForLocation(user_updated_latlng, getFeaturedForLocationHandler);
-			shouldGetFeatured = false;
+		if (shouldGetDeals) {
+			Calls.getDealsForLocation(user_updated_latlng, getDealsForLocationHandler);
+			shouldGetDeals = false;
 		}
 		// If markerNavigation created, update position. If not created, create
 		if (markerNavigation != null) {
@@ -4380,9 +4395,9 @@ public class MainActivity extends FragmentActivity
 		super.onResume();
 
 		if (user_updated_latlng != null) {
-			Calls.getFeaturedForLocation(user_updated_latlng, getFeaturedForLocationHandler);
+			Calls.getDealsForLocation(user_updated_latlng, getDealsForLocationHandler);
 		} else {
-			shouldGetFeatured = true;
+			shouldGetDeals = true;
 		}
 		MyApplication.activityResumed();
 
@@ -4440,8 +4455,8 @@ public class MainActivity extends FragmentActivity
                 case R.id.action_refresh:
                     refreshData(item);
                     return true;
-				case R.id.action_all_featured:
-					showAllFeatured();
+				case R.id.action_all_deals:
+					showAllDeals();
 					return true;
             }
         }
@@ -4469,16 +4484,16 @@ public class MainActivity extends FragmentActivity
 					}
 
 					break;
-				case Constant.REQUEST_CODE_ROUTE_FOR_FEATURED:
+				case Constant.REQUEST_CODE_ROUTE_FOR_DEAL:
 
-					Double latFeatured = i.getDoubleExtra(Constant.IEXTRA_FEATURED_LAT_DOUBLE, 0);
-					Double lngFeatured = i.getDoubleExtra(Constant.IEXTRA_FEATURED_LNG_DOUBLE, 0);
-					String addressFeatured = i.getStringExtra(Constant.IEXTRA_FEATURED_ADDRESS);
-					if (latFeatured != 0 && lngFeatured != 0) {
-						etSearch.setText(addressFeatured);
+					Double latDeal = i.getDoubleExtra(Constant.IEXTRA_DEAL_LAT_DOUBLE, 0);
+					Double lngDeal = i.getDoubleExtra(Constant.IEXTRA_DEAL_LNG_DOUBLE, 0);
+					String addressDeal = i.getStringExtra(Constant.IEXTRA_DEAL_ADDRESS);
+					if (latDeal != 0 && lngDeal != 0) {
+						etSearch.setText(addressDeal);
 						markerSearch = googleMap.addMarker(new MarkerOptions()
-								.position(new LatLng(latFeatured, lngFeatured))
-								.title(addressFeatured));
+								.position(new LatLng(latDeal, lngDeal))
+								.title(addressDeal));
 						turnOnRouteMode();
 					}
 
@@ -4529,7 +4544,7 @@ public class MainActivity extends FragmentActivity
 		}
 	};
 
-	CallHandler getFeaturedForLocationHandler = new CallHandler() {
+	CallHandler getDealsForLocationHandler = new CallHandler() {
 		@Override
 		public void onSuccess (int responseCode, final String response) {
 			try {
@@ -4539,15 +4554,15 @@ public class MainActivity extends FragmentActivity
 					case 0:
 						break;
 					case 1:
-						tvFeatured.setText(jarray.length() + " OFERTA LEGAL PERTO DE VOCÊ");
-						if (llFeatured.getTranslationX() != 0) {
-							showFeatured.start();
+						tvDeals.setText(jarray.length() + " OFERTA LEGAL PERTO DE VOCÊ");
+						if (llDeals.getTranslationX() != 0) {
+							showDeals.start();
 						}
 						break;
 					default:
-						tvFeatured.setText(jarray.length() + " OFERTAS LEGAIS PERTO DE VOCÊ");
-						if (llFeatured.getTranslationX() != 0) {
-							showFeatured.start();
+						tvDeals.setText(jarray.length() + " OFERTAS LEGAIS PERTO DE VOCÊ");
+						if (llDeals.getTranslationX() != 0) {
+							showDeals.start();
 						}
 						break;
 				}
@@ -4557,7 +4572,7 @@ public class MainActivity extends FragmentActivity
 					public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
 						if (e1.getX() - e2.getX() > 0 ) {
-							hideFeatured.start();
+							hideDeals.start();
 						} else if (e2.getX() - e1.getX() > 0 && Math.abs(velocityX) > 0) {
 							// Swipe right
 						}
@@ -4566,17 +4581,17 @@ public class MainActivity extends FragmentActivity
 					}
 				});
 
-				llFeatured.setOnTouchListener(new View.OnTouchListener() {
+				llDeals.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {
 						return gestureDetector.onTouchEvent(motionEvent);
 					};
 				});
 
-				llFeatured.setOnClickListener(new View.OnClickListener() {
+				llDeals.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						showAllFeatured();
+						showAllDeals();
 					}
 				});
 

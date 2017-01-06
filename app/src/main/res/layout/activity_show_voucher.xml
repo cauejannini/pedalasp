@@ -99,7 +99,7 @@
         android:text="Você já atingiu o limite de cupons para essa oferta"/>
 
     <TextView
-        android:id="@+id/tv_voucher_featured_limit_reached"
+        android:id="@+id/tv_voucher_deal_limit_reached"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

@@ -2296,7 +2296,7 @@ containing a value of this type.
     public static final class id {
         public static final int aChart=0x7f0d0106;
         public static final int action0=0x7f0d00ee;
-        public static final int action_all_featured=0x7f0d0139;
+        public static final int action_all_deals=0x7f0d013a;
         public static final int action_bar=0x7f0d0050;
         public static final int action_bar_activity_content=0x7f0d0000;
         public static final int action_bar_container=0x7f0d004f;
@@ -2313,12 +2313,12 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0d004d;
         public static final int action_mode_bar_stub=0x7f0d004c;
         public static final int action_mode_close_button=0x7f0d0031;
-        public static final int action_refresh=0x7f0d013a;
+        public static final int action_refresh=0x7f0d013b;
         public static final int action_text=0x7f0d00ed;
         public static final int actions=0x7f0d00fb;
         public static final int activity_chooser_view_content=0x7f0d0032;
-        public static final int activity_featured_details=0x7f0d0062;
-        public static final int activity_featured_list=0x7f0d0071;
+        public static final int activity_featured_details=0x7f0d0061;
+        public static final int activity_featured_list=0x7f0d0070;
         public static final int activity_place_details=0x7f0d008d;
         public static final int activity_show_voucher=0x7f0d00b1;
         public static final int add=0x7f0d0013;
@@ -2397,13 +2397,13 @@ containing a value of this type.
         public static final int iv_add_alert=0x7f0d0115;
         public static final int iv_add_estabelecimento=0x7f0d011b;
         public static final int iv_add_paraciclo=0x7f0d0118;
-        public static final int iv_featured_place_services=0x7f0d0069;
+        public static final int iv_deal_place_services=0x7f0d0068;
         public static final int iv_location_indicator=0x7f0d00ad;
         public static final int iv_place_detail_image=0x7f0d0090;
         public static final int iv_place_detail_image_standard=0x7f0d008f;
         public static final int iv_place_detail_services=0x7f0d008b;
-        public static final int iv_place_logo_v=0x7f0d0131;
-        public static final int iv_place_services_v=0x7f0d0135;
+        public static final int iv_place_logo_v=0x7f0d0132;
+        public static final int iv_place_services_v=0x7f0d0136;
         public static final int iv_priority=0x7f0d0110;
         public static final int iv_service=0x7f0d00e4;
         public static final int iv_spinner_arrow=0x7f0d007c;
@@ -2414,32 +2414,32 @@ containing a value of this type.
         public static final int line3=0x7f0d00ff;
         public static final int linearlayout=0x7f0d00cc;
         public static final int listMode=0x7f0d0009;
-        public static final int list_drawer_exp=0x7f0d0061;
-        public static final int list_featured=0x7f0d0074;
+        public static final int list_deal=0x7f0d0073;
+        public static final int list_drawer_exp=0x7f0d0074;
         public static final int list_item=0x7f0d0036;
         public static final int list_services=0x7f0d00d7;
         public static final int list_toggle_services=0x7f0d00c0;
         public static final int ll_add_alert=0x7f0d0114;
         public static final int ll_add_estabelecimento=0x7f0d011a;
         public static final int ll_add_paraciclo=0x7f0d0117;
+        public static final int ll_deal_address=0x7f0d006e;
+        public static final int ll_deal_container=0x7f0d0064;
+        public static final int ll_deal_place_phone=0x7f0d006c;
+        public static final int ll_deals=0x7f0d0084;
         public static final int ll_edit_destination=0x7f0d010b;
         public static final int ll_edit_destination_back=0x7f0d0121;
         public static final int ll_edit_origin=0x7f0d0109;
         public static final int ll_edit_origin_back=0x7f0d011e;
         public static final int ll_edit_route=0x7f0d011d;
-        public static final int ll_featured=0x7f0d0084;
-        public static final int ll_featured_address=0x7f0d006f;
-        public static final int ll_featured_container=0x7f0d0065;
-        public static final int ll_featured_place_phone=0x7f0d006d;
-        public static final int ll_get_voucher=0x7f0d006c;
+        public static final int ll_get_voucher=0x7f0d006b;
         public static final int ll_ophours_container=0x7f0d009b;
         public static final int ll_place_detail_address=0x7f0d0094;
-        public static final int ll_place_detail_featured=0x7f0d0092;
+        public static final int ll_place_detail_deals=0x7f0d0092;
         public static final int ll_place_detail_ophours=0x7f0d0098;
         public static final int ll_place_detail_phone=0x7f0d0096;
         public static final int ll_place_details_nv=0x7f0d0125;
-        public static final int ll_place_details_v=0x7f0d0130;
-        public static final int ll_place_menu_nv=0x7f0d012b;
+        public static final int ll_place_details_v=0x7f0d0131;
+        public static final int ll_place_menu_nv=0x7f0d012c;
         public static final int ll_route_details=0x7f0d0102;
         public static final int ll_route_panel=0x7f0d007a;
         public static final int ll_voucher_details=0x7f0d00b3;
@@ -2458,10 +2458,10 @@ containing a value of this type.
         public static final int notification_main_column_container=0x7f0d00f3;
         public static final int notify_solved=0x7f0d0086;
         public static final int parentPanel=0x7f0d003b;
+        public static final int pb_deal_details_loading=0x7f0d0063;
+        public static final int pb_deal_list_loading=0x7f0d0072;
         public static final int pb_edit_destination=0x7f0d0123;
         public static final int pb_edit_origin=0x7f0d0120;
-        public static final int pb_featured_details_loading=0x7f0d0064;
-        public static final int pb_featured_list_loading=0x7f0d0073;
         public static final int pb_loading_listitem=0x7f0d00cf;
         public static final int pb_loading_ophours=0x7f0d0099;
         public static final int pb_loading_route=0x7f0d007e;
@@ -2482,13 +2482,13 @@ containing a value of this type.
         public static final int right_icon=0x7f0d00fa;
         public static final int right_side=0x7f0d00f5;
         public static final int rl_add_to_map=0x7f0d0112;
-        public static final int rl_back_button=0x7f0d0063;
+        public static final int rl_back_button=0x7f0d0062;
         public static final int rl_bottom_options=0x7f0d007f;
         public static final int rl_bottom_panels_container=0x7f0d0079;
-        public static final int rl_place_open_details=0x7f0d0133;
-        public static final int rl_place_panel_close=0x7f0d0132;
+        public static final int rl_place_open_details=0x7f0d0134;
+        public static final int rl_place_panel_close=0x7f0d0133;
         public static final int rl_place_panel_nv=0x7f0d0124;
-        public static final int rl_place_panel_v=0x7f0d012f;
+        public static final int rl_place_panel_v=0x7f0d0130;
         public static final int rl_route_details=0x7f0d007d;
         public static final int route_bt=0x7f0d0080;
         public static final int route_header=0x7f0d0108;
@@ -2551,23 +2551,23 @@ containing a value of this type.
         public static final int tv_add_paraciclo=0x7f0d0119;
         public static final int tv_add_place_category_title=0x7f0d00d6;
         public static final int tv_add_place_info_title=0x7f0d00da;
-        public static final int tv_correct_place_info=0x7f0d012d;
+        public static final int tv_correct_place_info=0x7f0d012e;
+        public static final int tv_deal_address=0x7f0d006f;
+        public static final int tv_deal_description=0x7f0d0066;
+        public static final int tv_deal_list_window_title=0x7f0d0071;
+        public static final int tv_deal_place_current_open_status=0x7f0d006a;
+        public static final int tv_deal_place_name=0x7f0d0067;
+        public static final int tv_deal_place_phone=0x7f0d006d;
+        public static final int tv_deal_place_services=0x7f0d0069;
+        public static final int tv_deal_title=0x7f0d0065;
+        public static final int tv_deals=0x7f0d0085;
         public static final int tv_destination=0x7f0d010c;
         public static final int tv_elevation_unavailable=0x7f0d0107;
-        public static final int tv_featured=0x7f0d0085;
-        public static final int tv_featured_address=0x7f0d0070;
-        public static final int tv_featured_description=0x7f0d0067;
         public static final int tv_featured_list_blue_line=0x7f0d00e3;
         public static final int tv_featured_list_second_line=0x7f0d00e1;
         public static final int tv_featured_list_third_line=0x7f0d00e2;
         public static final int tv_featured_list_title=0x7f0d00e0;
-        public static final int tv_featured_list_window_title=0x7f0d0072;
-        public static final int tv_featured_place_current_open_status=0x7f0d006b;
-        public static final int tv_featured_place_name=0x7f0d0068;
-        public static final int tv_featured_place_phone=0x7f0d006e;
-        public static final int tv_featured_place_services=0x7f0d006a;
-        public static final int tv_featured_title=0x7f0d0066;
-        public static final int tv_flag_place_inexistent=0x7f0d012e;
+        public static final int tv_flag_place_inexistent=0x7f0d012f;
         public static final int tv_ophours_fri=0x7f0d00a1;
         public static final int tv_ophours_mon=0x7f0d009d;
         public static final int tv_ophours_not_available=0x7f0d009a;
@@ -2580,19 +2580,20 @@ containing a value of this type.
         public static final int tv_other_service=0x7f0d00e5;
         public static final int tv_place_address_nv=0x7f0d0129;
         public static final int tv_place_detail_address=0x7f0d0095;
-        public static final int tv_place_detail_has_featured=0x7f0d0093;
+        public static final int tv_place_detail_has_deals=0x7f0d0093;
         public static final int tv_place_detail_name=0x7f0d008a;
         public static final int tv_place_detail_phone=0x7f0d0097;
         public static final int tv_place_detail_services=0x7f0d008c;
         public static final int tv_place_detail_short_desc=0x7f0d0091;
-        public static final int tv_place_isopen_v=0x7f0d0138;
+        public static final int tv_place_isopen_v=0x7f0d0139;
         public static final int tv_place_name_nv=0x7f0d0126;
-        public static final int tv_place_name_v=0x7f0d0134;
-        public static final int tv_place_owner=0x7f0d012c;
+        public static final int tv_place_name_v=0x7f0d0135;
+        public static final int tv_place_not_verified_nv=0x7f0d012b;
+        public static final int tv_place_owner=0x7f0d012d;
         public static final int tv_place_phone_nv=0x7f0d012a;
         public static final int tv_place_services_nv=0x7f0d0128;
-        public static final int tv_place_services_v=0x7f0d0136;
-        public static final int tv_place_short_desc_v=0x7f0d0137;
+        public static final int tv_place_services_v=0x7f0d0137;
+        public static final int tv_place_short_desc_v=0x7f0d0138;
         public static final int tv_priority=0x7f0d0111;
         public static final int tv_route_distance=0x7f0d0103;
         public static final int tv_route_duration=0x7f0d0104;
@@ -2600,8 +2601,8 @@ containing a value of this type.
         public static final int tv_service=0x7f0d00e6;
         public static final int tv_toggle_service=0x7f0d00e9;
         public static final int tv_voucher_code=0x7f0d00b5;
+        public static final int tv_voucher_deal_limit_reached=0x7f0d00b8;
         public static final int tv_voucher_explanation=0x7f0d00b4;
-        public static final int tv_voucher_featured_limit_reached=0x7f0d00b8;
         public static final int tv_voucher_limit_reached=0x7f0d00b7;
         public static final int tv_voucher_validity=0x7f0d00b6;
         public static final int up=0x7f0d0008;
@@ -2646,9 +2647,9 @@ containing a value of this type.
         public static final int abc_select_dialog_material=0x7f030019;
         public static final int action_refresh=0x7f03001a;
         public static final int activity_add_estabelecimento=0x7f03001b;
-        public static final int activity_drawer_exp_splash=0x7f03001c;
-        public static final int activity_featured_details=0x7f03001d;
-        public static final int activity_featured_list=0x7f03001e;
+        public static final int activity_deal_details=0x7f03001c;
+        public static final int activity_deal_list=0x7f03001d;
+        public static final int activity_drawer_exp_splash=0x7f03001e;
         public static final int activity_main_drawer=0x7f03001f;
         public static final int activity_place_details=0x7f030020;
         public static final int activity_report=0x7f030021;
@@ -2780,7 +2781,7 @@ containing a value of this type.
         public static final int common_signin_button_text=0x7f070022;
         public static final int common_signin_button_text_long=0x7f070023;
         public static final int confirm_dial=0x7f07003c;
-        public static final int confirm_route_to_featured_creation=0x7f07003d;
+        public static final int confirm_route_to_deal_creation=0x7f07003d;
         public static final int confirm_route_to_place_creation=0x7f07003e;
         public static final int create_route=0x7f07003f;
         public static final int current_place_for_origin=0x7f070040;
@@ -2957,8 +2958,15 @@ containing a value of this type.
         public static final int Animation_AppCompat_DropDownUp=0x7f09009d;
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f09000b;
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
+         */
         public static final int AppTheme=0x7f09009e;
         public static final int Base_AlertDialog_AppCompat=0x7f09009f;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0900a0;

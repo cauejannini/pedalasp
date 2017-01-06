@@ -37,15 +37,14 @@ public class Constant {
     public static String url_get_places = "http://pedalaspapp.com.br/dbaccess/get_places.php";
     public static String url_add_paraciclo = "http://pedalaspapp.com.br/dbaccess/add_paraciclo.php";
     public static String urlGetImageForPlaceId = "http://pedalaspapp.com.br/dbaccess/get_image_for_place_id.php";
-    public static String url_get_featured_list_for_location = "http://pedalaspapp.com.br/dbaccess/get_featured_list_for_location.php";
-    public static String url_get_featured_for_id = "http://pedalaspapp.com.br/dbaccess/get_featured_for_id.php";
-    public static String url_get_featured_list_for_place_id = "http://pedalaspapp.com.br/dbaccess/get_featured_list_for_place_id.php";
-    public static String url_get_all_featured= "http://pedalaspapp.com.br/dbaccess/get_all_featured.php";
+    public static String url_get_deal_list_for_location = "http://pedalaspapp.com.br/dbaccess/get_deal_list_for_location.php";
+    public static String url_get_deal_for_id = "http://pedalaspapp.com.br/dbaccess/get_deal_for_id.php";
+    public static String url_get_deal_list_for_place_id = "http://pedalaspapp.com.br/dbaccess/get_deal_list_for_place_id.php";
+    public static String url_get_all_deals = "http://pedalaspapp.com.br/dbaccess/get_all_deals.php";
     public static String url_get_op_hours_for_place_id = "http://pedalaspapp.com.br/dbaccess/get_place_ophours.php";
     public static String url_update_place_information = "http://pedalaspapp.com.br/dbaccess/update_place_information.php";
     public static String url_flag_place_inexistent = "http://pedalaspapp.com.br/dbaccess/flag_place_inexistent.php";
     public static String url_get_voucher_for_user_id = "http://pedalaspapp.com.br/dbaccess/voucher_get_for_user_id.php";
-
 
     public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
     public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
@@ -86,17 +85,6 @@ public class Constant {
     public static String SPKEY_PLACE_CATEGORIES_IDS = "jannini.android.ciclosp.PLACE_CATEGORIES_IDS";
     public static String SPKEY_PLACE_CATEGORIES_STATES = "jannini.android.ciclosp.PLACE_CATEGORIES_STATES";
 
-    //public static boolean[] PlaceCategoriesStates = {true, true, true, true, true, true, true, true, true};
-    public static String SPKEY_PlaceCategoriesStates0 = "jannini.android.ciclosp.PlaceCategoriesStates0";
-    public static String SPKEY_PlaceCategoriesStates1 = "jannini.android.ciclosp.PlaceCategoriesStates1";
-    public static String SPKEY_PlaceCategoriesStates2 = "jannini.android.ciclosp.PlaceCategoriesStates2";
-    public static String SPKEY_PlaceCategoriesStates3 = "jannini.android.ciclosp.PlaceCategoriesStates3";
-    public static String SPKEY_PlaceCategoriesStates4 = "jannini.android.ciclosp.PlaceCategoriesStates4";
-    public static String SPKEY_PlaceCategoriesStates5 = "jannini.android.ciclosp.PlaceCategoriesStates5";
-    public static String SPKEY_PlaceCategoriesStates6 = "jannini.android.ciclosp.PlaceCategoriesStates6";
-    public static String SPKEY_PlaceCategoriesStates7 = "jannini.android.ciclosp.PlaceCategoriesStates7";
-    public static String SPKEY_PlaceCategoriesStates8 = "jannini.android.ciclosp.PlaceCategoriesStates8";
-
     public static int distanceBetweenElevationSamples = 50;
     public static int routeIntersectionTolerance = 45;
     public static float bikeLaneWidth = 1.5f;
@@ -112,29 +100,29 @@ public class Constant {
     public static String IEXTRA_PLACE_SERVICES = "PLACE_SERVICES";
     public static String IEXTRA_PLACE_PHONE = "PLACE_PHONE";
     public static String IEXTRA_PLACE_PUBLIC_EMAIL = "PLACE_PUBLIC_EMAIL";
-    public static String IEXTRA_PLACE_HAS_FEATURED = "PLACE_HAS_FEATURED";
+    public static String IEXTRA_PLACE_HAS_DEALS = "PLACE_HAS_DEAL";
     public static String IEXTRA_PLACE_CATEGORY_ID_LIST = "PLACE_CATEGORY_ID_LIST";
     public static String IEXTRA_PLACE_ADDRESS = "PLACE_ADDRESS";
     public static String IEXTRA_PLACE_SHORT_DESC = "PLACE_SHORT_DESC";
     public static String IEXTRA_PLACE_LAT_DOUBLE = "PLACE_LAT";
     public static String IEXTRA_PLACE_LNG_DOUBLE = "PLACE_LNG";
-    public static String IEXTRA_FEATURED_ADDRESS = "FEATURED_ADDRESS";
-    public static String IEXTRA_FEATURED_LAT_DOUBLE = "FEATURED_LAT";
-    public static String IEXTRA_FEATURED_LNG_DOUBLE = "FEATURED_LNG";
+    public static String IEXTRA_DEAL_ADDRESS = "DEAL_ADDRESS";
+    public static String IEXTRA_DEAL_LAT_DOUBLE = "DEAL_LAT";
+    public static String IEXTRA_DEAL_LNG_DOUBLE = "DEAL_LNG";
     public static String IEXTRA_VOUCHER_JSON = "VOUCHER_JSON";
 
-    public final static String ICODE_FEATURED_LIST = "ICODE_FEATURED_LIST";
-    public final static String IEXTRA_ICODE_FEATURED_LIST_FROM_PLACE = "FEATURED_LIST_FROM_PLACE";
-    public final static String IEXTRA_ICODE_FEATURED_LIST_FROM_USER_LOCATION = "FEATURED_LIST_FROM_USER_LOCATION";
-    public final static String IEXTRA_ICODE_FEATURED_LIST_ALL = "FEATURED_LIST_ALL";
+    public final static String ICODE_DEAL_LIST = "ICODE_DEAL_LIST";
+    public final static String IEXTRA_ICODE_DEAL_LIST_FROM_PLACE = "DEAL_LIST_FROM_PLACE";
+    public final static String IEXTRA_ICODE_DEAL_LIST_FROM_USER_LOCATION = "DEAL_LIST_FROM_USER_LOCATION";
+    public final static String IEXTRA_ICODE_DEAL_LIST_ALL = "DEAL_LIST_ALL";
 
     public static final int REQUEST_CODE_ROUTE_FOR_PLACE = 0;
-    public static final int REQUEST_CODE_ROUTE_FOR_FEATURED = 1;
+    public static final int REQUEST_CODE_ROUTE_FOR_DEAL = 1;
 
     public static final int PERMISSION_REQUEST_CODE_CALL_PHONE = 4;
 
     public static final String API_RESPONSE_CODE_VOUCHER_OK = "VOUCHER_OK";
-    public static final String API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_FEATURED = "VOUCHER_LIMIT_REACHED_FOR_FEATURED";
+    public static final String API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_DEAL = "VOUCHER_LIMIT_REACHED_FOR_DEAL";
     public static final String API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_USER = "VOUCHER_LIMIT_REACHED_FOR_USER";
 
     public static int DURATION_BOTTOM_PANEL_ANIMATION = 250;

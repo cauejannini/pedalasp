@@ -218,7 +218,7 @@
     <string name="place_info_not_verified">- THIS INFORMATION IS NOT VERIFIED -</string>
 
     <string name="confirm_route_to_place_creation">Create route for this place?</string>
-    <string name="confirm_route_to_featured_creation">Create route for this deal?</string>
+    <string name="confirm_route_to_deal_creation">Create route for this deal?</string>
     <string name="confirm_dial">Call this place?</string>
 
     <string name="opening_hours">Opening hours:</string>

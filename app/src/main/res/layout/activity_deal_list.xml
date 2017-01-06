@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:gravity="top"
-    tools:context="jannini.android.ciclosp.FeaturedListActivity">
+    tools:context="jannini.android.ciclosp.DealListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_featured_list_window_title"
+            android:id="@+id/tv_deal_list_window_title"
             android:layout_width="wrap_content"
             android:textSize="18sp"
             android:layout_height="wrap_content"
@@ -41,14 +41,14 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/pb_featured_list_loading"
+        android:id="@+id/pb_deal_list_loading"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"/>
 
     <ListView
-        android:id="@+id/list_featured"
+        android:id="@+id/list_deal"
         android:layout_marginTop="20dp"
         android:visibility="gone"
         android:divider="@color/app_blue"

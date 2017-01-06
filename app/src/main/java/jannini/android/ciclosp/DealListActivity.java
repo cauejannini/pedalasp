@@ -21,27 +21,27 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import jannini.android.ciclosp.Adapters.FeaturedListAdapter;
+import jannini.android.ciclosp.Adapters.DealListAdapter;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.Utils;
 
-public class FeaturedListActivity extends Activity implements ListView.OnItemClickListener {
+public class DealListActivity extends Activity implements ListView.OnItemClickListener {
 
-    ProgressBar pbLoadingFeaturedInfo;
+    ProgressBar pbLoadingDealInfo;
 
     Location userLocation;
 
-    ListView listFeatured;
+    ListView listDeals;
 
-    ArrayList<Integer> listFeaturedIds = new ArrayList<>();
+    ArrayList<Integer> listDealsIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_featured_list);
+        setContentView(R.layout.activity_deal_list);
 
-        TextView tvWindowTitle = (TextView) findViewById(R.id.tv_featured_list_window_title);
+        TextView tvWindowTitle = (TextView) findViewById(R.id.tv_deal_list_window_title);
         RelativeLayout rlBackButton = (RelativeLayout) findViewById(R.id.rl_back_button);
         rlBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +50,12 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
             }
         });
 
-        pbLoadingFeaturedInfo = (ProgressBar) findViewById(R.id.pb_featured_list_loading);
-        listFeatured = (ListView) findViewById(R.id.list_featured);
-        listFeatured.setOnItemClickListener(this);
+        pbLoadingDealInfo = (ProgressBar) findViewById(R.id.pb_deal_list_loading);
+        listDeals = (ListView) findViewById(R.id.list_deal);
+        listDeals.setOnItemClickListener(this);
 
         Intent intent = getIntent();
-        String windownTitle = intent.getStringExtra("FEATURED_WINDOW_TITLE");
+        String windownTitle = intent.getStringExtra("DEAL_WINDOW_TITLE");
         tvWindowTitle.setText(windownTitle);
         Double lat = intent.getDoubleExtra("USER_LAT",0);
         Double lng = intent.getDoubleExtra("USER_LNG",0);
@@ -65,26 +65,26 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
             userLocation.setLongitude(lng);
         }
 
-        String intentCode = intent.getStringExtra(Constant.ICODE_FEATURED_LIST);
+        String intentCode = intent.getStringExtra(Constant.ICODE_DEAL_LIST);
         switch (intentCode) {
 
-            case Constant.IEXTRA_ICODE_FEATURED_LIST_FROM_PLACE:
+            case Constant.IEXTRA_ICODE_DEAL_LIST_FROM_PLACE:
 
-                String placeId = intent.getStringExtra("FEATURED_LIST_PLACE_ID");
+                String placeId = intent.getStringExtra("DEAL_LIST_PLACE_ID");
 
                 if (placeId != null && !placeId.equals("")) {
-                    Calls.getFeaturedListForPlaceId(String.valueOf(placeId), new CallHandler() {
+                    Calls.getDealListForPlaceId(String.valueOf(placeId), new CallHandler() {
                         @Override
                         public void onSuccess(int responseCode, String response) {
                             super.onSuccess(responseCode, response);
 
-                            parseFeaturedJson(response);
+                            parseDealsJson(response);
                         }
 
                         @Override
                         public void onFailure(int responseCode, String response) {
                             super.onFailure(responseCode, response);
-                            Utils.showServerErrorToast(FeaturedListActivity.this, response);
+                            Utils.showServerErrorToast(DealListActivity.this, response);
                         }
                     });
                 } else {
@@ -92,27 +92,27 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
                     finish();
                 }
                 break;
-            case Constant.IEXTRA_ICODE_FEATURED_LIST_FROM_USER_LOCATION:
+            case Constant.IEXTRA_ICODE_DEAL_LIST_FROM_USER_LOCATION:
 
-                String stringJarray = intent.getStringExtra("FEATURED_JARRAY");
-                parseFeaturedJson(stringJarray);
+                String stringJarray = intent.getStringExtra("DEAL_JARRAY");
+                parseDealsJson(stringJarray);
 
                 break;
 
-            case Constant.IEXTRA_ICODE_FEATURED_LIST_ALL:
+            case Constant.IEXTRA_ICODE_DEAL_LIST_ALL:
 
-                Calls.getAllFeatured(new CallHandler() {
+                Calls.getAllDeals(new CallHandler() {
                     @Override
                     public void onSuccess(int responseCode, String response) {
                         super.onSuccess(responseCode, response);
 
-                        parseFeaturedJson(response);
+                        parseDealsJson(response);
                     }
 
                     @Override
                     public void onFailure(int responseCode, String response) {
                         super.onFailure(responseCode, response);
-                        Utils.showServerErrorToast(FeaturedListActivity.this, response);
+                        Utils.showServerErrorToast(DealListActivity.this, response);
                     }
                 });
 
@@ -120,12 +120,12 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
         }
     }
 
-    void parseFeaturedJson(String stringJarray) {
+    void parseDealsJson(String stringJarray) {
 
-        ArrayList<String> listFeaturedTitles = new ArrayList<>();
-        ArrayList<String> listFeaturedAddresses = new ArrayList<>();
-        ArrayList<String> listFeaturedPlaces = new ArrayList<>();
-        ArrayList<String> listFeaturedDistances = new ArrayList<>();
+        ArrayList<String> listDealsTitles = new ArrayList<>();
+        ArrayList<String> listDealsAddresses = new ArrayList<>();
+        ArrayList<String> listDealsPlaces = new ArrayList<>();
+        ArrayList<String> listDealsDistances = new ArrayList<>();
 
         try {
             JSONArray jarray = new JSONArray(stringJarray);
@@ -146,16 +146,16 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
                 mapIdAddresses.put(job.getInt("id"),job.getString("address"));
 
                 if (userLocation != null && job.getDouble("lat") != 0 && job.getDouble("lng") != 0) {
-                    Location featuredLocation = new Location("featuredLocation");
-                    featuredLocation.setLatitude(job.getDouble("lat"));
-                    featuredLocation.setLongitude(job.getDouble("lng"));
+                    Location dealLocation = new Location("dealLocation");
+                    dealLocation.setLatitude(job.getDouble("lat"));
+                    dealLocation.setLongitude(job.getDouble("lng"));
 
-                    int distance = (int) featuredLocation.distanceTo(userLocation);
+                    int distance = (int) dealLocation.distanceTo(userLocation);
                     sortedIdList.add(job.getInt("id"));
                     mapIdToDistance.put(job.getInt("id"), distance);
                 } else {
                     nullDistanceIds.add(job.getInt("id"));
-                    listFeaturedDistances.add("");
+                    listDealsDistances.add("");
                 }
             }
 
@@ -168,37 +168,37 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
             for (int y = 0; y < sortedIdList.size(); y++) {
 
                 int currentId = sortedIdList.get(y);
-                listFeaturedIds.add(currentId);
+                listDealsIds.add(currentId);
                 String distanceOutput = String.valueOf(mapIdToDistance.get(currentId)) + " metros";
                 if (mapIdToDistance.get(currentId) >= 1000) {
                     distanceOutput = String.valueOf(mapIdToDistance.get(currentId)/ 1000)+ " km";
                 }
-                listFeaturedDistances.add("Distância: " + distanceOutput);
-                listFeaturedTitles.add(mapIdTitles.get(currentId));
-                listFeaturedPlaces.add(mapIdPlaces.get(currentId));
-                listFeaturedAddresses.add(mapIdAddresses.get(currentId));
+                listDealsDistances.add("Distância: " + distanceOutput);
+                listDealsTitles.add(mapIdTitles.get(currentId));
+                listDealsPlaces.add(mapIdPlaces.get(currentId));
+                listDealsAddresses.add(mapIdAddresses.get(currentId));
             }
 
             for (int id: nullDistanceIds) {
-                listFeaturedIds.add(id);
-                listFeaturedDistances.add("");
-                listFeaturedTitles.add(mapIdTitles.get(id));
-                listFeaturedPlaces.add(mapIdPlaces.get(id));
-                listFeaturedAddresses.add(mapIdAddresses.get(id));
+                listDealsIds.add(id);
+                listDealsDistances.add("");
+                listDealsTitles.add(mapIdTitles.get(id));
+                listDealsPlaces.add(mapIdPlaces.get(id));
+                listDealsAddresses.add(mapIdAddresses.get(id));
             }
 
-            String[] featuredTitles = new String[listFeaturedTitles.size()];
-            featuredTitles = listFeaturedTitles.toArray(featuredTitles);
-            String[] featuredAddresses = new String[listFeaturedAddresses.size()];
-            featuredAddresses = listFeaturedAddresses.toArray(featuredAddresses);
-            String[] featuredPlaces = new String[listFeaturedPlaces.size()];
-            featuredPlaces = listFeaturedPlaces.toArray(featuredPlaces);
-            String[] featuredDistances = new String[listFeaturedDistances.size()];
-            featuredDistances = listFeaturedDistances.toArray(featuredDistances);
+            String[] dealsTitles = new String[listDealsTitles.size()];
+            dealsTitles = listDealsTitles.toArray(dealsTitles);
+            String[] dealsAddresses = new String[listDealsAddresses.size()];
+            dealsAddresses = listDealsAddresses.toArray(dealsAddresses);
+            String[] dealsPlaces = new String[listDealsPlaces.size()];
+            dealsPlaces = listDealsPlaces.toArray(dealsPlaces);
+            String[] dealsDistances = new String[listDealsDistances.size()];
+            dealsDistances = listDealsDistances.toArray(dealsDistances);
 
-            listFeatured.setAdapter(new FeaturedListAdapter(this, featuredTitles, featuredPlaces, featuredAddresses, featuredDistances));
-            pbLoadingFeaturedInfo.setVisibility(View.GONE);
-            listFeatured.setVisibility(View.VISIBLE);
+            listDeals.setAdapter(new DealListAdapter(this, dealsTitles, dealsPlaces, dealsAddresses, dealsDistances));
+            pbLoadingDealInfo.setVisibility(View.GONE);
+            listDeals.setVisibility(View.VISIBLE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -210,10 +210,10 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-        // Open featured details activity and load data from feature ID
-        Intent intent = new Intent(FeaturedListActivity.this, FeaturedDetailsActivity.class);
-        intent.putExtra("FEATURED_ID", listFeaturedIds.get(position));
-        startActivityForResult(intent, Constant.REQUEST_CODE_ROUTE_FOR_FEATURED);
+        // Open deal details activity and load data from feature ID
+        Intent intent = new Intent(DealListActivity.this, DealDetailsActivity.class);
+        intent.putExtra("DEAL_ID", listDealsIds.get(position));
+        startActivityForResult(intent, Constant.REQUEST_CODE_ROUTE_FOR_DEAL);
     }
 
     @Override
@@ -226,16 +226,16 @@ public class FeaturedListActivity extends Activity implements ListView.OnItemCli
         super.onActivityResult(requestCode, resultCode, i);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == Constant.REQUEST_CODE_ROUTE_FOR_FEATURED) {
+            if (requestCode == Constant.REQUEST_CODE_ROUTE_FOR_DEAL) {
 
-                Double lat = i.getDoubleExtra(Constant.IEXTRA_FEATURED_LAT_DOUBLE, 0);
-                Double lng = i.getDoubleExtra(Constant.IEXTRA_FEATURED_LNG_DOUBLE, 0);
-                String address = i.getStringExtra(Constant.IEXTRA_FEATURED_ADDRESS);
+                Double lat = i.getDoubleExtra(Constant.IEXTRA_DEAL_LAT_DOUBLE, 0);
+                Double lng = i.getDoubleExtra(Constant.IEXTRA_DEAL_LNG_DOUBLE, 0);
+                String address = i.getStringExtra(Constant.IEXTRA_DEAL_ADDRESS);
 
                 Intent intent = new Intent();
-                intent.putExtra(Constant.IEXTRA_FEATURED_LAT_DOUBLE, lat);
-                intent.putExtra(Constant.IEXTRA_FEATURED_LNG_DOUBLE, lng);
-                intent.putExtra(Constant.IEXTRA_FEATURED_ADDRESS, address);
+                intent.putExtra(Constant.IEXTRA_DEAL_LAT_DOUBLE, lat);
+                intent.putExtra(Constant.IEXTRA_DEAL_LNG_DOUBLE, lng);
+                intent.putExtra(Constant.IEXTRA_DEAL_ADDRESS, address);
                 setResult(RESULT_OK, intent);
                 finish();
 

@@ -1028,7 +1028,7 @@ public class Calls {
 		}.execute();
 	}
 
-	public static void getFeaturedForLocation (LatLng userLatLng, CallHandler handler) {
+	public static void getDealsForLocation(LatLng userLatLng, CallHandler handler) {
 
 		String userLat = String.valueOf(userLatLng.latitude);
 		String userLng = String.valueOf(userLatLng.longitude);
@@ -1037,30 +1037,30 @@ public class Calls {
 		map.put("user_lat", userLat);
 		map.put("user_lng", userLng);
 
-		postRequest(Constant.url_get_featured_list_for_location, map, handler);
+		postRequest(Constant.url_get_deal_list_for_location, map, handler);
 	}
 
-	public static void getFeaturedForId (String featuredId, CallHandler handler) {
+	public static void getDealForId(String featuredId, CallHandler handler) {
 
 		HashMap<String, String> map = new HashMap<>();
-		map.put("featured_id", featuredId);
+		map.put("deal_id", featuredId);
 
-		postRequest(Constant.url_get_featured_for_id, map, handler);
+		postRequest(Constant.url_get_deal_for_id, map, handler);
 
 	}
 
-	public static void getFeaturedListForPlaceId (String placeId, CallHandler handler) {
+	public static void getDealListForPlaceId(String placeId, CallHandler handler) {
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("place_id", placeId);
 
-		postRequest(Constant.url_get_featured_list_for_place_id, map, handler);
+		postRequest(Constant.url_get_deal_list_for_place_id, map, handler);
 
 	}
 
-	public static void getAllFeatured(CallHandler handler) {
+	public static void getAllDeals(CallHandler handler) {
 
-		jsonRequest(Constant.url_get_all_featured, handler);
+		jsonRequest(Constant.url_get_all_deals, handler);
 	}
 
 	public static void getPlaceOpeningHours (String placeId, CallHandler handler) {
@@ -1107,11 +1107,11 @@ public class Calls {
 
 	}
 
-	public static void getVoucherForDeviceId(String deviceId, String featuredId, CallHandler handler) {
+	public static void getVoucherForDeviceId(String deviceId, String dealId, CallHandler handler) {
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("device_id", deviceId);
-		map.put("featured_id", featuredId);
+		map.put("deal_id", dealId);
 
 		Calls.postRequest(Constant.url_get_voucher_for_user_id, map, handler);
 	}

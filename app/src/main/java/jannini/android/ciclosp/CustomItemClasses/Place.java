@@ -20,14 +20,14 @@ public class Place {
 	Context context;
 	public String name, address, phone, site, publicEmail, currentOpenStatus, short_desc, displayServices = "";
 	public LatLng latLng;
-	public boolean isVerified, hasFeatured = false;
+	public boolean isVerified, isFeatured, hasDeals = false;
 	public ArrayList<Integer> categoryIdList;
 	public Bitmap icon;
 	public int id, iconId;
 	public Marker mapMarker;
 	public boolean isDrawn = false;
 
-	public Place(Context context, int id, String name, LatLng latLng, String address, String phone, String site, String publicEmail, String currentOpenStatus, String short_desc, String displayServices, ArrayList<Integer> categoryIdList, boolean isVerified, boolean hasFeatured, int iconId){
+	public Place(Context context, int id, String name, LatLng latLng, String address, String phone, String site, String publicEmail, String currentOpenStatus, String short_desc, String displayServices, ArrayList<Integer> categoryIdList, boolean isVerified, boolean isFeatured, boolean hasDeals, int iconId){
 		this.context = context;
 		this.id = id;
 		this.name = name;
@@ -39,7 +39,8 @@ public class Place {
 		this.currentOpenStatus = currentOpenStatus;
 		this.short_desc = short_desc;
 		this.isVerified = isVerified;
-		this.hasFeatured = hasFeatured;
+		this.isFeatured = isFeatured;
+		this.hasDeals = hasDeals;
 		this.displayServices = displayServices;
 		this.categoryIdList = categoryIdList;
 		this.iconId = iconId;

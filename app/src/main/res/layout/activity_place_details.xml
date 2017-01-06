@@ -119,7 +119,7 @@
                 android:background="@color/water_blue"/>
 
             <LinearLayout
-                android:id="@+id/ll_place_detail_featured"
+                android:id="@+id/ll_place_detail_deals"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal"
@@ -135,7 +135,7 @@
                     android:background="@color/yellow"/>
 
                 <TextView
-                    android:id="@+id/tv_place_detail_has_featured"
+                    android:id="@+id/tv_place_detail_has_deals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"

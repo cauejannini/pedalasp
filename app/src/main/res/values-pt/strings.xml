@@ -206,7 +206,7 @@
         <string name="place_info_not_verified">- INFORMAÇÕES NÃO VERIFICADAS -</string>
 
         <string name="confirm_route_to_place_creation">Criar rota até este local?</string>
-        <string name="confirm_route_to_featured_creation">Criar rota até essa oferta?</string>
+        <string name="confirm_route_to_deal_creation">Criar rota até essa oferta?</string>
         <string name="confirm_dial">Ligar para este local?</string>
 
         <string name="opening_hours">Horário de funcionamento:</string>

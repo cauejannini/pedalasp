@@ -43,9 +43,9 @@ public class DrawerExpActivity extends Activity {
         sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         String[] mMenuTitles = getResources().getStringArray(R.array.menu_array);
-        String[] mMenuTitlesForDrawerExp = {mMenuTitles[0], mMenuTitles[1], mMenuTitles[2], mMenuTitles[3], mMenuTitles[4], mMenuTitles[5]};
+        String[] mMenuTitlesForDrawerExp = {mMenuTitles[0], mMenuTitles[1], mMenuTitles[2], mMenuTitles[3], mMenuTitles[4], mMenuTitles[5], mMenuTitles[6]};
         String[] mMenuDescriptions = getResources().getStringArray(R.array.menu_array_descriptions);
-        String[] mMenuDescriptionsForDrawerExp = {mMenuDescriptions[0], mMenuDescriptions[1], mMenuDescriptions[2], mMenuDescriptions[3], mMenuDescriptions[4], mMenuDescriptions[5]};
+        String[] mMenuDescriptionsForDrawerExp = {mMenuDescriptions[0], mMenuDescriptions[1], mMenuDescriptions[2], mMenuDescriptions[3], mMenuDescriptions[4], mMenuDescriptions[5], mMenuDescriptions[6]};
         // Set up the drawer's list view with items and click listener.
         myAdapter = new ListAdapterDrawerExp(this, mMenuTitlesForDrawerExp, mMenuDescriptionsForDrawerExp);
         mDrawerList = (ListView) findViewById(R.id.list_drawer_exp);
@@ -119,6 +119,7 @@ public class DrawerExpActivity extends Activity {
         editor.putBoolean("states3", states[3]);
         editor.putBoolean("states4", states[4]);
         editor.putBoolean("states5", states[5]);
+        editor.putBoolean("states6", states[6]);
         editor.apply();
 
         Intent i = new Intent(this, MainActivity.class);

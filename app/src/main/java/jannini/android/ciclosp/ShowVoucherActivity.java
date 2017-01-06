@@ -50,9 +50,9 @@ public class ShowVoucherActivity extends Activity {
                     TextView tvVoucherLimitReached = (TextView) findViewById(R.id.tv_voucher_limit_reached);
                     tvVoucherLimitReached.setVisibility(View.VISIBLE);
                     break;
-                case Constant.API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_FEATURED:
-                    TextView tvVoucherFeaturedLimitReached = (TextView) findViewById(R.id.tv_voucher_featured_limit_reached);
-                    tvVoucherFeaturedLimitReached.setVisibility(View.VISIBLE);
+                case Constant.API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_DEAL:
+                    TextView tvVoucherDealLimitReached = (TextView) findViewById(R.id.tv_voucher_deal_limit_reached);
+                    tvVoucherDealLimitReached.setVisibility(View.VISIBLE);
                     break;
                 case Constant.API_RESPONSE_CODE_VOUCHER_OK:
 

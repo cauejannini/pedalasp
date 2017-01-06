@@ -29,14 +29,14 @@ import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.Utils;
 
-import static jannini.android.ciclosp.Constant.REQUEST_CODE_ROUTE_FOR_FEATURED;
+import static jannini.android.ciclosp.Constant.REQUEST_CODE_ROUTE_FOR_DEAL;
 import static jannini.android.ciclosp.Constant.mapCategoriesIcons;
 
 public class PlaceDetailsActivity extends Activity {
 
-    LinearLayout llAddress, llPhone, llFeatured;
+    LinearLayout llAddress, llPhone, llDeals;
     ImageView ivPlaceImage, ivServices;
-    TextView tvName, tvServices, tvAddress, tvPhone, tvShortDesc, tvHasFeatured;
+    TextView tvName, tvServices, tvAddress, tvPhone, tvShortDesc, tvHasDeals;
 
     RelativeLayout rlBackButton;
 
@@ -52,7 +52,7 @@ public class PlaceDetailsActivity extends Activity {
 
         llAddress = (LinearLayout) findViewById(R.id.ll_place_detail_address);
         llPhone = (LinearLayout) findViewById(R.id.ll_place_detail_phone);
-        llFeatured = (LinearLayout) findViewById(R.id.ll_place_detail_featured);
+        llDeals = (LinearLayout) findViewById(R.id.ll_place_detail_deals);
         ivPlaceImage = (ImageView) findViewById(R.id.iv_place_detail_image);
         tvName = (TextView) findViewById(R.id.tv_place_detail_name);
         ivServices = (ImageView) findViewById(R.id.iv_place_detail_services);
@@ -60,7 +60,7 @@ public class PlaceDetailsActivity extends Activity {
         tvAddress = (TextView) findViewById(R.id.tv_place_detail_address);
         tvPhone = (TextView) findViewById(R.id.tv_place_detail_phone);
         tvShortDesc = (TextView) findViewById(R.id.tv_place_detail_short_desc);
-        tvHasFeatured = (TextView) findViewById(R.id.tv_place_detail_has_featured);
+        tvHasDeals = (TextView) findViewById(R.id.tv_place_detail_has_deals);
 
         rlBackButton = (RelativeLayout) findViewById(R.id.rl_back_button);
         rlBackButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class PlaceDetailsActivity extends Activity {
         displayServices = i.getStringExtra(Constant.IEXTRA_PLACE_SERVICES);
         address = i.getStringExtra(Constant.IEXTRA_PLACE_ADDRESS);
         phone = i.getStringExtra(Constant.IEXTRA_PLACE_PHONE);
-        boolean hasFeatured = i.getBooleanExtra(Constant.IEXTRA_PLACE_HAS_FEATURED, false);
+        boolean hasDeals = i.getBooleanExtra(Constant.IEXTRA_PLACE_HAS_DEALS, false);
         shortDesc = i.getStringExtra(Constant.IEXTRA_PLACE_SHORT_DESC);
         Double lat = i.getDoubleExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, 0);
         Double lng = i.getDoubleExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, 0);
@@ -206,22 +206,22 @@ public class PlaceDetailsActivity extends Activity {
             }
         });
 
-        if (hasFeatured) {
-            llFeatured.setVisibility(View.VISIBLE);
-            llFeatured.setOnClickListener(new View.OnClickListener() {
+        if (hasDeals) {
+            llDeals.setVisibility(View.VISIBLE);
+            llDeals.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(PlaceDetailsActivity.this, FeaturedListActivity.class);
-                    intent.putExtra(Constant.ICODE_FEATURED_LIST, Constant.IEXTRA_ICODE_FEATURED_LIST_FROM_PLACE);
-                    intent.putExtra("FEATURED_LIST_PLACE_ID", String.valueOf(placeId));
-                    intent.putExtra("FEATURED_WINDOW_TITLE", "Ofertas de " + name);
+                    Intent intent = new Intent(PlaceDetailsActivity.this, DealListActivity.class);
+                    intent.putExtra(Constant.ICODE_DEAL_LIST, Constant.IEXTRA_ICODE_DEAL_LIST_FROM_PLACE);
+                    intent.putExtra("DEAL_LIST_PLACE_ID", String.valueOf(placeId));
+                    intent.putExtra("DEAL_WINDOW_TITLE", "Ofertas de " + name);
                     intent.putExtra("USER_LAT", userLat);
                     intent.putExtra("USER_LNG", userLng);
-                    startActivityForResult(intent, REQUEST_CODE_ROUTE_FOR_FEATURED);
+                    startActivityForResult(intent, REQUEST_CODE_ROUTE_FOR_DEAL);
                 }
             });
         } else {
-            llFeatured.setVisibility(View.GONE);
+            llDeals.setVisibility(View.GONE);
         }
 
         llAddress.setOnClickListener(new View.OnClickListener() {

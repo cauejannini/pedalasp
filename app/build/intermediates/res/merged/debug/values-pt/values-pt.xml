@@ -78,7 +78,7 @@
     <string name="closed">FECHADO</string>
     <string name="closed_now">FECHADA AGORA</string>
     <string name="confirm_dial">Ligar para este local?</string>
-    <string name="confirm_route_to_featured_creation">Criar rota até essa oferta?</string>
+    <string name="confirm_route_to_deal_creation">Criar rota até essa oferta?</string>
     <string name="confirm_route_to_place_creation">Criar rota até este local?</string>
     <string name="create_route">Criar rota</string>
     <string name="current_place_for_origin">Calcular rota a partir de seu local atual?</string>

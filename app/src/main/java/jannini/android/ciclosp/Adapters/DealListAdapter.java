@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import jannini.android.ciclosp.R;
 
-public class FeaturedListAdapter extends ArrayAdapter<String> {
+public class DealListAdapter extends ArrayAdapter<String> {
     private final Context context;
     String[] featuredTitles, secondLines, thirdLines, blueLines;
     private final ViewHolder holder = new ViewHolder();
 
-    public FeaturedListAdapter(Context context, String[] featuredTitles, String[] secondLines, String[] thirdLines, String[] blueLines) {
+    public DealListAdapter(Context context, String[] featuredTitles, String[] secondLines, String[] thirdLines, String[] blueLines) {
         super(context, R.layout.list_item_services, featuredTitles);
         this.context = context;
         this.featuredTitles = featuredTitles;
