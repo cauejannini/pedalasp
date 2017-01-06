@@ -69,7 +69,7 @@
     <string name="network_alert_title">No network connection</string>
     <string name="network_settings">Network settings</string>
     <string name="network_update_alert_dialog">We couldn\'t refresh. Check you network.</string>
-    <string name="notifySolved">Click if this problem is solved</string>
+    <string name="notifySolved">Flag as inexistent</string>
     <string name="obrigado_feedback">Thanks for the feedback!</string>
     <string name="ok">OK</string>
     <string name="origem">Origin</string>

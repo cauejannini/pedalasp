@@ -75,15 +75,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/acra-4.9.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="302790b47ae09c227bdf7eedab768f0265e693b7">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/acra-4.9.0_abd577e0afce72ad4c242176ac69f01c3ae8f2e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/achartengine-1.1.0.jar"
         jumboMode="false"
         optimize="true"
@@ -147,6 +138,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/ch.acra/acra/4.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d03cbe00a6703cfa62ae868707af59d41aff2140">
+        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/ch.acra-acra-4.9.0_5f78048c437b342a5610e7bca500d26865efb3eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -162,15 +162,6 @@
         revision="25.0.0"
         sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
         <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.8.0_eed5dc1bf9df9c9b4e9820f550677840cde0e231.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/acra-4.9.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="302790b47ae09c227bdf7eedab768f0265e693b7">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/acra-4.9.0_abd577e0afce72ad4c242176ac69f01c3ae8f2e3.jar" />
     </item>
     <item
         is-multidex="false"

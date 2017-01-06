@@ -121,7 +121,7 @@
     <string name="network_alert_title">Sem conexão com a internet</string>
     <string name="network_settings">Configurações de rede</string>
     <string name="network_update_alert_dialog">Não foi possível atualizar. Verifique sua conexão.</string>
-    <string name="notifySolved">Clique se este problema já foi resolvido!</string>
+    <string name="notifySolved">Sinalizar como inexistente</string>
     <string name="null_map">Não foi possível carregar o mapa</string>
     <string name="obrigado_feedback">Obrigado pelo feedback!</string>
     <string name="obrigado_por_avisar">Obrigado por avisar!</string>

@@ -66,7 +66,7 @@
         <string name="report_description">Alertar problema no trajeto</string>
         <string name="detalhes">dê mais detalhes…</string>
         <string name="localizacao">localização (clique no mapa)</string>
-        <string name="notifySolved">Clique se este problema já foi resolvido!</string>
+        <string name="notifySolved">Sinalizar como inexistente</string>
         <string name="runkeeper_login">Conectar com Runkeeper</string>
         <string name="empty_address_dialog_title">Campo de endereço vazio</string>
         <string name="empty_address_dialog_message">Você deve digitar os endereços de origem e destino para buscar uma rota</string>
