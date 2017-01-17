@@ -28,7 +28,7 @@
             android:value="AIzaSyBJu-9BA9QD4YUZ1yt0TEby1A7-Ry9rA4M" />
         <!-- Release API key: AIzaSyBJu-9BA9QD4YUZ1yt0TEby1A7-Ry9rA4M -->
         <!-- Programming API key: AIzaSyANYWNKNo4VckhHFOaSQoRB9Ilcj32L8p0 -->
-
+ 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
