@@ -7,13 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -24,20 +22,17 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.Utils;
 
 import static jannini.android.ciclosp.Constant.PERMISSION_REQUEST_CODE_CALL_PHONE;
-import static jannini.android.ciclosp.Constant.mapCategoriesIcons;
 import static jannini.android.ciclosp.R.id.tv_deal_title;
 
 public class DealDetailsActivity extends Activity {
 
-    TextView tvTitle, tvAddress,tvDescription, tvPlaceServices, tvPlaceName, tvPlacePhone, tvPlaceCurrentOpenStatus;
-    ImageView ivPlaceServices;
+    TextView tvTitle, tvAddress,tvDescription, tvPlaceName, tvPlacePhone, tvPlaceCurrentOpenStatus;
+    int placeId;
     LinearLayout llContainer;
     ProgressBar pbLoading;
 
@@ -63,8 +58,6 @@ public class DealDetailsActivity extends Activity {
         tvAddress = (TextView) findViewById(R.id.tv_deal_address);
         tvDescription = (TextView) findViewById(R.id.tv_deal_description);
 
-        ivPlaceServices = (ImageView) findViewById(R.id.iv_deal_place_services);
-        tvPlaceServices = (TextView) findViewById(R.id.tv_deal_place_services);
         tvPlaceName = (TextView) findViewById(R.id.tv_deal_place_name);
         tvPlacePhone = (TextView) findViewById(R.id.tv_deal_place_phone);
         tvPlaceCurrentOpenStatus = (TextView) findViewById(R.id.tv_deal_place_current_open_status);
@@ -86,8 +79,8 @@ public class DealDetailsActivity extends Activity {
                         JSONObject job = new JSONObject(response);
 
                         String title = job.getString("title");
+                        placeId = job.getInt("place_id");
                         String placeName = job.getString("place_name");
-                        String placeDisplayServices = job.getString("place_display_services");
                         String placePhone = job.getString("place_phone");
                         String placeCurrentOpenStatus = job.getString("place_current_open_status");
                         String address = job.getString("address");
@@ -96,52 +89,11 @@ public class DealDetailsActivity extends Activity {
                         Double lng = job.getDouble("lng");
                         dealLatLng = new LatLng(lat, lng);
 
-                        String placeCategories = job.getString("place_categories");
-                        String[] categoriesStringArray = placeCategories.split(",");
-                        ArrayList<Integer> categoriesIntArray = new ArrayList<>();
-                        for (String categoryId : categoriesStringArray){
-                            categoriesIntArray.add(Integer.valueOf(categoryId));
-                        }
-
                         tvTitle.setText(title);
                         tvAddress.setText(address);
                         tvDescription.setText(description);
                         tvPlaceName.setText(placeName);
                         tvPlacePhone.setText(placePhone);
-                        if (!placeDisplayServices.equals("")) {
-                            tvPlaceServices.setText(placeDisplayServices);
-                        } else {
-                            tvPlaceServices.setVisibility(View.GONE);
-                        }
-
-                        if (!mapCategoriesIcons.isEmpty() && !categoriesIntArray.isEmpty()) {
-                            ArrayList<Bitmap> bitmapArray = new ArrayList<>();
-                            for (int id: categoriesIntArray) {
-                                bitmapArray.add(mapCategoriesIcons.get(id));
-                            }
-                            ivPlaceServices.setImageBitmap(Utils.combineImages(DealDetailsActivity.this, bitmapArray));
-                            tvPlaceServices.setVisibility(View.GONE);
-                            ivPlaceServices.setVisibility(View.VISIBLE);
-
-                            ivPlaceServices.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    ivPlaceServices.setVisibility(View.GONE);
-                                    tvPlaceServices.setVisibility(View.VISIBLE);
-                                }
-                            });
-
-                            tvPlaceServices.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    ivPlaceServices.setVisibility(View.VISIBLE);
-                                    tvPlaceServices.setVisibility(View.GONE);
-                                }
-                            });
-                        } else {
-                            ivPlaceServices.setVisibility(View.GONE);
-                            tvPlaceServices.setVisibility(View.VISIBLE);
-                        }
 
                         if (!placeCurrentOpenStatus.equals("")) {
                             tvPlaceCurrentOpenStatus.setText(placeCurrentOpenStatus);
@@ -171,6 +123,17 @@ public class DealDetailsActivity extends Activity {
                 }
             });
         }
+
+        LinearLayout llDealPlaceName = (LinearLayout) findViewById(R.id.ll_deal_place_name);
+        llDealPlaceName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DealDetailsActivity.this, PlaceDetailsActivity.class);
+                i.putExtra(Constant.IEXTRA_PLACE_ID_INT, placeId);
+                startActivity(i);
+                // START ACTIVITY FOR RESULT IF WANT TO BE ABLE TO MAKE ROUTE FROM PLACE DETAILS ACTIVITY
+            }
+        });
 
         LinearLayout llDealPlacePhone = (LinearLayout) findViewById(R.id.ll_deal_place_phone);
         llDealPlacePhone.setOnClickListener(new View.OnClickListener() {

@@ -51,8 +51,8 @@
         android:id="@+id/list_deal"
         android:layout_marginTop="20dp"
         android:visibility="gone"
-        android:divider="@color/app_blue"
-        android:dividerHeight="1dp"
+        android:divider="@color/transparent"
+        android:dividerHeight="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

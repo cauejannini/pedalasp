@@ -22,11 +22,9 @@
 
             <ImageView
                 android:id="@+id/iv_place_logo_v"
-                android:layout_width="35dp"
+                android:layout_width="105dp"
                 android:layout_height="35dp"
-                android:paddingTop="20dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/mapic_place_standart_v"/>
+                android:layout_centerInParent="true"/>
 
             <RelativeLayout
                 android:id="@+id/rl_place_panel_close"
@@ -37,10 +35,11 @@
                 android:layout_centerVertical="true">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_x"/>
+                    android:background="@drawable/ic_x"
+                    android:backgroundTint="@color/app_blue"/>
 
             </RelativeLayout>
 
@@ -56,7 +55,8 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_arrow"/>
+                    android:background="@drawable/ic_arrow"
+                    android:backgroundTint="@color/app_blue"/>
 
             </RelativeLayout>
 

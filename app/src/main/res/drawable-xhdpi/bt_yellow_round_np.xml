@@ -8,7 +8,7 @@
             android:radius="10dp"
             />
          <solid
-             android:color="@color/yellow_light"/>
+             android:color="@color/yellow"/>
       </shape>
    </item>
 </layer-list>

@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.TimeZone;
 
 import jannini.android.ciclosp.Constant;
@@ -771,7 +772,7 @@ public class Calls {
 
 	public static void getPlacesIconsAndCategories(final Context context, final CallHandler handler) {
 
-		jsonRequest(Constant.url_get_places_icons_paths, new CallHandler() {
+		jsonRequest(Constant.url_get_places_images_paths, new CallHandler() {
 
 			@Override
 			public void onSuccess(int responseCode, String response) {
@@ -779,6 +780,9 @@ public class Calls {
 				try {
 					JSONArray jarray = new JSONArray(response);
 					String densityString = Utils.getDeviceDensityString(context);
+
+					Constant.mapPlacesImages.clear();
+
 					for (int i = 0; i < jarray.length(); i++) {
 						JSONObject job = jarray.getJSONObject(i);
 						int id = job.getInt("id");
@@ -791,13 +795,14 @@ public class Calls {
 						}
 						final int finalId1 = finalId;
 
-						String url = Constant.baseurl_images + densityString + "/" + imagePath;
+						int randomInt = new Random().nextInt();
+						String url = Constant.baseurl_images + densityString + "/" + imagePath + "?="+randomInt;
 
 						getImageFromUrl(url, id, new BitmapCallHandler() {
 							@Override
 							public void onSuccess (Bitmap bitmap, int imageId) {
 
-								Constant.mapPlaceIcon.put(imageId, bitmap);
+								Constant.mapPlacesImages.put(imageId, bitmap);
 
 								// Call handler if this was the last image
 								if (finalId1 != 0 && finalId1 == imageId) {
@@ -893,6 +898,7 @@ public class Calls {
 				try {
 					JSONArray jarrayCategories = new JSONArray(response);
 					String densityString = Utils.getDeviceDensityString(context);
+					mapPlaceCategories.clear();
 
 					for (int i = 0; i < jarrayCategories.length(); i++) {
 						JSONObject jobCategory = jarrayCategories.getJSONObject(i);

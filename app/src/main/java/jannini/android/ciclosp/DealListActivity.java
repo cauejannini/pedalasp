@@ -63,6 +63,8 @@ public class DealListActivity extends Activity implements ListView.OnItemClickLi
             userLocation = new Location("userLocation");
             userLocation.setLatitude(lat);
             userLocation.setLongitude(lng);
+        } else {
+            // REQUEST USER LOCATION
         }
 
         String intentCode = intent.getStringExtra(Constant.ICODE_DEAL_LIST);

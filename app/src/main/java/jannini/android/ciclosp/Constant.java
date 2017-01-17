@@ -31,7 +31,7 @@ public class Constant {
     public static String urlGetElevationForUrls = "http://www.pedalaspapp.com.br/dbaccess/get_elevations.php";
     public static String urlGetDirections = "http://www.pedalaspapp.com.br/dbaccess/get_directions.php";
     public static String url_add_place = "http://pedalaspapp.com.br/dbaccess/add_place.php";
-    public static String url_get_places_icons_paths = "http://pedalaspapp.com.br/dbaccess/get_places_icons_paths.php";
+    public static String url_get_places_images_paths = "http://pedalaspapp.com.br/dbaccess/get_places_images_paths.php";
     public static String url_get_categories = "http://pedalaspapp.com.br/dbaccess/get_categories.php";
     public static String baseurl_images = "http://pedalaspapp.com.br/images/";
     public static String url_get_places = "http://pedalaspapp.com.br/dbaccess/get_places.php";
@@ -77,7 +77,7 @@ public class Constant {
     public static String SPKEY_SharingSystemsStates1 = "jannini.android.ciclosp.SharingSystemsStates1";
 
 
-    public static HashMap<Integer, Bitmap> mapPlaceIcon = new HashMap<>();
+    public static HashMap<Integer, Bitmap> mapPlacesImages = new HashMap<>();
     public static HashMap<Integer, String> mapPlaceCategories = new HashMap<>();
     public static HashMap<Integer, Boolean> PlaceCategoriesStates = new HashMap<>();
     public static HashMap<Integer, Bitmap> mapCategoriesIcons = new HashMap<>();
@@ -90,13 +90,14 @@ public class Constant {
     public static float bikeLaneWidth = 1.5f;
     public static float selectedPolylineWidth = 7f;
     public static float unSelectedPolylineWidth = 7f;
-    public static int ZOOM_FOR_UNVERIFIED_PLACES = 10;
+    public static int ZOOM_FOR_NOT_FEATURED_PLACES = 10;
 
     //public static final String[] PlaceServices = {"NEW_BIKES","USED_BIKES","WORKSHOP","PARTS","ACCESSORIES","SHOWER","COFFEE","RESTAURANT","BAR"};
     //public static final int[] PlaceServicesImages = {R.drawable.ic_store, R.drawable.ic_store, R.drawable.ic_workshop, R.drawable.ic_store,R.drawable.ic_store, R.drawable.ic_shower, R.drawable.ic_coffee,R.drawable.ic_store,R.drawable.ic_store};
 
     public static String IEXTRA_PLACE_ID_INT = "PLACE_ID_INT";
     public static String IEXTRA_PLACE_NAME = "PLACE_NAME";
+    public static String IEXTRA_PLACE_LOGO_ID = "PLACE_LOGO_ID";
     public static String IEXTRA_PLACE_SERVICES = "PLACE_SERVICES";
     public static String IEXTRA_PLACE_PHONE = "PLACE_PHONE";
     public static String IEXTRA_PLACE_PUBLIC_EMAIL = "PLACE_PUBLIC_EMAIL";

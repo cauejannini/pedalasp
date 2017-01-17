@@ -656,7 +656,7 @@ public class MainActivity extends FragmentActivity
 					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[1] = true;
 
-					if (!ListPlaces.isEmpty() && !Constant.mapPlaceIcon.isEmpty()) {
+					if (!ListPlaces.isEmpty() && !Constant.mapPlacesImages.isEmpty()) {
 
 						displayPlaces();
 
@@ -1106,7 +1106,7 @@ public class MainActivity extends FragmentActivity
 				for (Integer intKey : categoriesMapKeyList) {
 					if (Constant.PlaceCategoriesStates.get(intKey)) {
 						if (place.categoryIdList.contains(intKey)) {
-							if (googleMap.getCameraPosition().zoom > Constant.ZOOM_FOR_UNVERIFIED_PLACES || place.isVerified) {
+							if (googleMap.getCameraPosition().zoom > Constant.ZOOM_FOR_NOT_FEATURED_PLACES || place.isFeatured) {
 								if (place.isDrawn) {
 									place.setVisible(true);
 								} else {
@@ -1142,6 +1142,7 @@ public class MainActivity extends FragmentActivity
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_navigation_off))
 						.anchor(0.5f, 0.5f)
 				);
+				markerNavigation.setTag(new String[]{"markerNavigation"});
 			}
 			//Get Best Location Provider
 			bestAvailableProvider = locationManager.getBestProvider(criteria, false);
@@ -1466,9 +1467,6 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public boolean onMarkerClick(Marker marker) {
 
-				Marker markernull = null;
-				markernull.setTitle("haha");
-
 				activeMarker = marker;
 
 				String markerTitle = marker.getTitle();
@@ -1515,6 +1513,8 @@ public class MainActivity extends FragmentActivity
 						.position(marker.getPosition()));
 
 						handlePlaceClick(Integer.valueOf(tag[1]));
+					} else if (tag[0].equals("markerNavigation")) {
+						hideBottomPanel();
 					}
 				} else {
 					marker.showInfoWindow();
@@ -1625,14 +1625,14 @@ public class MainActivity extends FragmentActivity
 		rlBottomContainer.bringToFront();
 
 		switch (type) {
-			case "PLACE_VERIFIED":
+			case "PLACE_FEATURED":
 				yValueToAnimateButtons = -llPlaceDetailsV.getHeight();
 				rlPlacePanelV.setVisibility(View.VISIBLE);
 				rlPlacePanelNV.setVisibility(View.INVISIBLE);
 				llRoutePanel.setVisibility(View.INVISIBLE);
 				btRouteMode.animate().translationX(Utils.getPixelValue(this,200)).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 				break;
-			case "PLACE_UNVERIFIED":
+			case "PLACE_NOT_FEATURED":
 				yValueToAnimateContainer = rlBottomContainer.getHeight() - rlPlacePanelNV.getHeight();
 				yValueToAnimateButtons = -llRoutePanel.getHeight();
 				rlPlacePanelV.setVisibility(View.INVISIBLE);
@@ -2735,6 +2735,7 @@ public class MainActivity extends FragmentActivity
 					String currentOpenStatus = jobPlace.getString("current_open_status");
 					String shortDesc = jobPlace.getString("short_desc");
 					int iconId = jobPlace.getInt("icon_id");
+					int logoId = jobPlace.getInt("logo_id");
 					String displayServices = jobPlace.getString("display_services");
 
 					LatLng latlng = new LatLng(lat, lng);
@@ -2749,7 +2750,7 @@ public class MainActivity extends FragmentActivity
 						categoriesIntArray.add(Integer.valueOf(categoryId));
 					}
 
-					Place place = new Place(this, placeId, name, latlng, address, phone, site, publicEmail, currentOpenStatus, shortDesc, displayServices, categoriesIntArray, isVerified, isFeatured, hasDeals, iconId);
+					Place place = new Place(this, placeId, name, latlng, address, phone, site, publicEmail, currentOpenStatus, shortDesc, displayServices, categoriesIntArray, isVerified, isFeatured, hasDeals, iconId, logoId);
 					ListPlaces.add(place);
 				}
 
@@ -3865,7 +3866,7 @@ public class MainActivity extends FragmentActivity
 		for (final Place place: ListPlaces) {
 			if (place.id == placeId){
 
-				if (!place.isVerified) {
+				if (!place.isFeatured) {
 
 					TextView tvPlaceNameNV = (TextView) findViewById(R.id.tv_place_name_nv);
 					TextView tvPlaceServicesNV = (TextView) findViewById(R.id.tv_place_services_nv);
@@ -3875,8 +3876,10 @@ public class MainActivity extends FragmentActivity
 					TextView tvPlaceNotVerifiedNV = (TextView) findViewById(R.id.tv_place_not_verified_nv);
 					if (place.isVerified) {
 						tvPlaceNotVerifiedNV.setVisibility(View.GONE);
+						tvPlaceNameNV.setTextColor(getResources().getColor(R.color.dark_text));
 					} else {
 						tvPlaceNotVerifiedNV.setVisibility(View.VISIBLE);
+						tvPlaceNameNV.setTextColor(getResources().getColor(R.color.light_text));
 					}
 
 					final LinearLayout llPlaceMenuNV = (LinearLayout) findViewById(R.id.ll_place_menu_nv);
@@ -3886,8 +3889,6 @@ public class MainActivity extends FragmentActivity
 					tvPlaceServicesNV.setText(place.displayServices);
 					tvPlaceAddressNV.setText(getString(R.string.address) + ": " + place.address);
 					tvPlacePhoneNV.setText(getString(R.string.phone) + ": " + place.phone);
-
-
 
 					btPlaceMenuNV.setOnClickListener(new View.OnClickListener() {
 						@Override
@@ -3967,7 +3968,7 @@ public class MainActivity extends FragmentActivity
 						}
 					});
 
-					showBottomPanel("PLACE_UNVERIFIED");
+					showBottomPanel("PLACE_NOT_FEATURED");
 
 				} else {
 
@@ -3976,15 +3977,6 @@ public class MainActivity extends FragmentActivity
 						public void onClick(View view) {
 							Intent i = new Intent(MainActivity.this, PlaceDetailsActivity.class);
 							i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
-							i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
-							i.putExtra(Constant.IEXTRA_PLACE_SERVICES, place.displayServices);
-							i.putExtra(Constant.IEXTRA_PLACE_ADDRESS, place.address);
-							i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
-							i.putExtra(Constant.IEXTRA_PLACE_SHORT_DESC, place.short_desc);
-							i.putExtra(Constant.IEXTRA_PLACE_HAS_DEALS, place.hasDeals);
-							i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
-							i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
-							i.putIntegerArrayListExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
 							if (user_updated_latlng != null) {
 								i.putExtra("USER_LAT", user_updated_latlng.latitude);
 								i.putExtra("USER_LNG", user_updated_latlng.longitude);
@@ -3994,6 +3986,11 @@ public class MainActivity extends FragmentActivity
 					});
 
 					ImageView ivPlaceLogoV = (ImageView) findViewById(R.id.iv_place_logo_v);
+					if (Constant.mapPlacesImages.get(place.logoId) != null) {
+						ivPlaceLogoV.setImageBitmap(Constant.mapPlacesImages.get(place.logoId));
+					} else {
+						ivPlaceLogoV.setImageBitmap(Constant.mapPlacesImages.get(3));
+					}
 					TextView tvPlaceNameV = (TextView) findViewById(R.id.tv_place_name_v);
 					final TextView tvPlaceServicesV = (TextView) findViewById(R.id.tv_place_services_v);
 					TextView tvPlaceShortDescV = (TextView) findViewById(R.id.tv_place_short_desc_v);
@@ -4011,7 +4008,7 @@ public class MainActivity extends FragmentActivity
 						tvPlaceServicesV.setVisibility(View.GONE);
 						ivPlaceServicesV.setVisibility(View.VISIBLE);
 
-						ivPlaceServicesV.setOnClickListener(new View.OnClickListener() {
+						/*ivPlaceServicesV.setOnClickListener(new View.OnClickListener() {
 							@Override
 							public void onClick(View view) {
 								ivPlaceServicesV.setVisibility(View.GONE);
@@ -4025,7 +4022,7 @@ public class MainActivity extends FragmentActivity
 								ivPlaceServicesV.setVisibility(View.VISIBLE);
 								tvPlaceServicesV.setVisibility(View.GONE);
 							}
-						});
+						});*/
 					} else {
 						ivPlaceServicesV.setVisibility(View.GONE);
 						tvPlaceServicesV.setVisibility(View.VISIBLE);
@@ -4056,15 +4053,6 @@ public class MainActivity extends FragmentActivity
 
 							Intent i = new Intent(MainActivity.this, PlaceDetailsActivity.class);
 							i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
-							i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
-							i.putExtra(Constant.IEXTRA_PLACE_SERVICES, place.displayServices);
-							i.putExtra(Constant.IEXTRA_PLACE_ADDRESS, place.address);
-							i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
-							i.putExtra(Constant.IEXTRA_PLACE_SHORT_DESC, place.short_desc);
-							i.putExtra(Constant.IEXTRA_PLACE_HAS_DEALS, place.hasDeals);
-							i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
-							i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
-							i.putIntegerArrayListExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
 							if (user_updated_latlng != null) {
 								i.putExtra("USER_LAT", user_updated_latlng.latitude);
 								i.putExtra("USER_LNG", user_updated_latlng.longitude);
@@ -4073,7 +4061,7 @@ public class MainActivity extends FragmentActivity
 						}
 					});
 
-					showBottomPanel("PLACE_VERIFIED");
+					showBottomPanel("PLACE_FEATURED");
 				}
 			}
 		}
@@ -4295,6 +4283,7 @@ public class MainActivity extends FragmentActivity
 					.icon(BitmapDescriptorFactory.fromResource(R.drawable.btic_navigation))
 					.anchor(0.5f, 0.5f)
 			);
+			markerNavigation.setTag(new String[]{"markerNavigation"});
 		}
 
 		if (circleAccuracy != null) {
@@ -4477,6 +4466,7 @@ public class MainActivity extends FragmentActivity
 					String addressPlace = i.getStringExtra(Constant.IEXTRA_PLACE_ADDRESS);
 					if (latPlace != 0 && lngPlace != 0) {
 						etSearch.setText(addressPlace);
+						markerSearch.remove();
 						markerSearch = googleMap.addMarker(new MarkerOptions()
 								.position(new LatLng(latPlace, lngPlace))
 								.title(addressPlace));
@@ -4491,6 +4481,7 @@ public class MainActivity extends FragmentActivity
 					String addressDeal = i.getStringExtra(Constant.IEXTRA_DEAL_ADDRESS);
 					if (latDeal != 0 && lngDeal != 0) {
 						etSearch.setText(addressDeal);
+						markerSearch.remove();
 						markerSearch = googleMap.addMarker(new MarkerOptions()
 								.position(new LatLng(latDeal, lngDeal))
 								.title(addressDeal));

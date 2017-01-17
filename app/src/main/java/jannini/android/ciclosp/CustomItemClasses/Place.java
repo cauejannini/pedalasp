@@ -1,8 +1,6 @@
 package jannini.android.ciclosp.CustomItemClasses;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -22,12 +20,11 @@ public class Place {
 	public LatLng latLng;
 	public boolean isVerified, isFeatured, hasDeals = false;
 	public ArrayList<Integer> categoryIdList;
-	public Bitmap icon;
-	public int id, iconId;
+	public int id, iconId, logoId;
 	public Marker mapMarker;
 	public boolean isDrawn = false;
 
-	public Place(Context context, int id, String name, LatLng latLng, String address, String phone, String site, String publicEmail, String currentOpenStatus, String short_desc, String displayServices, ArrayList<Integer> categoryIdList, boolean isVerified, boolean isFeatured, boolean hasDeals, int iconId){
+	public Place(Context context, int id, String name, LatLng latLng, String address, String phone, String site, String publicEmail, String currentOpenStatus, String short_desc, String displayServices, ArrayList<Integer> categoryIdList, boolean isVerified, boolean isFeatured, boolean hasDeals, int iconId, int logoId){
 		this.context = context;
 		this.id = id;
 		this.name = name;
@@ -44,16 +41,15 @@ public class Place {
 		this.displayServices = displayServices;
 		this.categoryIdList = categoryIdList;
 		this.iconId = iconId;
-		this.icon = Constant.mapPlaceIcon.get(this.iconId);
+		this.logoId = logoId;
 
-		if (isVerified) Log.e("icon", String.valueOf(icon));
 	}
 
 	public void drawOnMap (GoogleMap googleMap) {
-		if (name != null && latLng != null && this.icon != null) {
+		if (name != null && latLng != null && Constant.mapPlacesImages.get(this.iconId) != null) {
 			mapMarker = googleMap.addMarker(new MarkerOptions()
 					.title(name)
-					.icon(BitmapDescriptorFactory.fromBitmap(this.icon))
+					.icon(BitmapDescriptorFactory.fromBitmap(Constant.mapPlacesImages.get(this.iconId)))
 					.position(latLng)
 					.anchor(0.5f, 1.0f)
 					.snippet(displayServices + Utils.newline
@@ -65,7 +61,7 @@ public class Place {
 			mapMarker.setTag(new String[]{"place", String.valueOf(id)});
 			isDrawn = true;
 
-			if (googleMap.getCameraPosition().zoom < Constant.ZOOM_FOR_UNVERIFIED_PLACES && !isVerified) {
+			if (googleMap.getCameraPosition().zoom < Constant.ZOOM_FOR_NOT_FEATURED_PLACES && !isVerified) {
 				setVisible(false);
 			}
 		}
