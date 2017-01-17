@@ -16,6 +16,8 @@ public class Utils {
     public Utils() {
     }
 
+    public static String newline = System.getProperty("line.separator");
+
     public static void showNetworkAlertDialog (final Context context) {
         AlertDialog.Builder network_alert = new AlertDialog.Builder(context);
         network_alert.setTitle(context.getString(R.string.network_alert_title))

@@ -39,8 +39,6 @@ public class SugestaoActivity extends Activity {
 	SharedPreferences sp;
 
 	Tracker t;
-	
-	public static String newline = System.getProperty("line.separator");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

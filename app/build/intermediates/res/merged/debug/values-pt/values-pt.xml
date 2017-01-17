@@ -104,7 +104,7 @@
     <string name="inclinacao">Inclinação:</string>
     <string name="inclinacao_maxima">Inclinação máxima</string>
     <string name="ir_para_mapa">Ir para o mapa</string>
-    <string name="loc_buscando_localizacao">Buscando sua localização…</string>
+    <string name="loc_buscando_localizacao">Aguardando sua localização…</string>
     <string name="loc_location_unavailable">Localização atual indisponível. Verifique seu GPS.</string>
     <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
     <string name="loc_no_location_permission">Sem permissão para acessar localização</string>

@@ -149,7 +149,7 @@
         <string name="seu_local">Seu local</string>
         <string name="ir_para_mapa">Ir para o mapa</string>
         <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
-        <string name="loc_buscando_localizacao">Buscando sua localização…</string>
+        <string name="loc_buscando_localizacao">Aguardando sua localização…</string>
         <string name="type_of_alert">TIPO DE ALERTA</string>
         <string name="etReportDetailsError">Campo obrigatório</string>
         <string name="rbReportError">Escolha o tipo de alerta</string>

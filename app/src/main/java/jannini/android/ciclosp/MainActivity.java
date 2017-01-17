@@ -92,9 +92,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import jannini.android.ciclosp.Adapters.InfoWindowActivity;
 import jannini.android.ciclosp.Adapters.MyListAdapter;
@@ -113,11 +111,6 @@ import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
 import jannini.android.ciclosp.NetworkRequests.Route;
 import jannini.android.ciclosp.NetworkRequests.Utils;
-
-import static com.google.android.gms.maps.CameraUpdateFactory.newCameraPosition;
-import static com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom;
-import static jannini.android.ciclosp.R.id.map;
-
 
 public class MainActivity extends FragmentActivity
 		implements
@@ -143,15 +136,12 @@ public class MainActivity extends FragmentActivity
 	public Calendar sundaySeven;
 	public Calendar sundaySixteen;
 
+	String newline = Utils.newline;
+
 	// Bike lanes Arrays
 	public ArrayList<Polyline> cicloviasLineList = new ArrayList<>();
-
 	public ArrayList<Polyline> ciclofaixasLineList = new ArrayList<>();
-
-	public static ArrayList<PolylineOptions> ciclorrotasOptionsList = new ArrayList<>();
 	public ArrayList<Polyline> ciclorrotasLineList = new ArrayList<>();
-
-	public static String newline = System.getProperty("line.separator");
 
 	// APP STORED PREFERENCES
 
@@ -160,15 +150,15 @@ public class MainActivity extends FragmentActivity
 	Boolean elevGraphExpWasShown;
 
 	// Criando listas de itens de cada tabela da DB
-	public static ArrayList<Estacao> ListEstacoesITAU = new ArrayList<>();
-	public static ArrayList<Estacao> ListEstacoesBRA = new ArrayList<>();
-	public static ArrayList<Parque> ListParques = new ArrayList<>();
-	public static ArrayList<Bicicletario> ListBicicletarios = new ArrayList<>();
-	public static ArrayList<Ciclovia> ListCiclovias = new ArrayList<>();
-	public static ArrayList<Ciclovia> ListCiclofaixas = new ArrayList<>();
-	public static ArrayList<MarkerOptions> ListWifi = new ArrayList<>();
-	public static ArrayList<Report> ListAlerts = new ArrayList<>();
-	public static ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
+	public ArrayList<Estacao> ListEstacoesITAU = new ArrayList<>();
+	public ArrayList<Estacao> ListEstacoesBRA = new ArrayList<>();
+	public ArrayList<Parque> ListParques = new ArrayList<>();
+	public ArrayList<Bicicletario> ListBicicletarios = new ArrayList<>();
+	public ArrayList<Ciclovia> ListCiclovias = new ArrayList<>();
+	public ArrayList<Ciclovia> ListCiclofaixas = new ArrayList<>();
+	public ArrayList<MarkerOptions> ListWifi = new ArrayList<>();
+	public ArrayList<Report> ListAlerts = new ArrayList<>();
+	public ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
 
 	//Criando listas dos marcadores de mapa para os itens de cada tabela da DB
 	ArrayList<Marker> ListMarkersITAU = new ArrayList<>();
@@ -179,7 +169,6 @@ public class MainActivity extends FragmentActivity
 	ArrayList<Marker> ListMarkersAlerts = new ArrayList<>();
 	ArrayList<Marker> ListMarkersAcessos = new ArrayList<>();
 
-	ArrayList<String> ListMarkersAlertsIds = new ArrayList<>();
 	List<Marker> listMarker = new ArrayList<>();
 
 	//Navigation Drawer
@@ -201,7 +190,6 @@ public class MainActivity extends FragmentActivity
 
 	// ROUTE
 	// RouteHeaderView
-	View routeHeaderView;
 
 	LinearLayout routeHeader;
 
@@ -209,19 +197,11 @@ public class MainActivity extends FragmentActivity
 
 	TextView tvOrigin;
 	TextView tvDestination;
-	Button btSwitchAddresses;
 
 	Boolean isRouteModeOn = false;
 
-	List<Address> addressList = new ArrayList<>();
-	List<Address> addressListBase = new ArrayList<>();
 	Marker markerDestination, markerOrigin, markerSearch;
 
-	LatLng latLngMarkerOrigin;
-	LatLng latLngMarkerDestination;
-
-	ImageView iv;
-	Menu mymenu;
 	MenuItem menu_item;
 
 	public SharedPreferences sharedPreferences;
@@ -236,21 +216,13 @@ public class MainActivity extends FragmentActivity
 	ArrayList<Marker> parkedHereMarkerList = new ArrayList<>();
 	//ArrayList<Marker> favoritePlacesMarkerList = new ArrayList<>();
 
-	Map<String, String> alertMap = new HashMap<>();
-
 	// ROUTE variables
-	public static ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
+	public ArrayList<CyclingPath> cyclingPathList = new ArrayList<>();
 	public int routeRequestId = 0;
-
-	// Auxiliar list that only stores the selected cyclingPath
-	ArrayList<CyclingPath> selectedCyclingPath = new ArrayList<>();
 
 	// Route panel, details and subViews
 	LinearLayout llRoutePanel;
 	LinearLayout llRouteDetailFragment;
-	RelativeLayout rlRouteDetails;
-	TextView tvRouteDistance, tvRouteDuration, tvRoutePercentageOnBikeLanes, tvElevationUnavailable;
-	LinearLayout llChart;
 
 	Spinner spinnerRoutePriority;
 
@@ -350,14 +322,13 @@ public class MainActivity extends FragmentActivity
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		// ROUTE HEADER VARIABLES
-		routeHeaderView = getLayoutInflater().inflate(R.layout.route_header, null);
+		View routeHeaderView = getLayoutInflater().inflate(R.layout.route_header, null);
 
 		routeHeader = (LinearLayout) routeHeaderView.findViewById(R.id.route_header);
 		routeHeader.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
 		tvDestination = (TextView) routeHeaderView.findViewById(R.id.tv_destination);
 		tvOrigin = (TextView) routeHeaderView.findViewById(R.id.tv_origin);
-		btSwitchAddresses = (Button) routeHeaderView.findViewById(R.id.switch_addresses);
 
 		llEditRoute = (LinearLayout) findViewById(R.id.ll_edit_route);
 		llEditOrigin = (LinearLayout) findViewById(R.id.ll_edit_origin);
@@ -374,7 +345,7 @@ public class MainActivity extends FragmentActivity
 		//btParkedHereSmall = (Button) findViewById(R.id.bt_parked_here_small);
 		//btPlaceFavorite = (Button) findViewById(R.id.bt_place_favorite);
 
-		iv = (ImageView) findViewById(R.id.iv_action_refresh);
+		ImageView iv = (ImageView) findViewById(R.id.iv_action_refresh);
 
 		// DRAWER VARIABLES
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -457,13 +428,7 @@ public class MainActivity extends FragmentActivity
 		});
 
 		// ROUTE DETAILS
-		rlRouteDetails = (RelativeLayout) findViewById(R.id.rl_route_details);
 		llRouteDetailFragment = (LinearLayout) findViewById(R.id.ll_route_details);
-		tvRouteDistance = (TextView) findViewById(R.id.tv_route_distance);
-		tvRouteDuration = (TextView) findViewById(R.id.tv_route_duration);
-		tvRoutePercentageOnBikeLanes = (TextView) findViewById(R.id.tv_route_percentage_on_lanes);
-		llChart = (LinearLayout) findViewById(R.id.aChart);
-		tvElevationUnavailable = (TextView) findViewById(R.id.tv_elevation_unavailable);
 
 		pbLoadingRoute = (ProgressBar) findViewById(R.id.pb_loading_route);
 
@@ -526,7 +491,7 @@ public class MainActivity extends FragmentActivity
 
 		// INITIALIZE MAP
 		try {
-			((SupportMapFragment) getSupportFragmentManager().findFragmentById(map)).getMapAsync(this);
+			((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -852,7 +817,7 @@ public class MainActivity extends FragmentActivity
 		if (Constant.bikeLanesStates[2]) {
 			if (ciclorrotasLineList.isEmpty()) {
 
-				drawPreferenciais(true);
+				//drawPreferenciais(true);
 
 			} else {
 				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
@@ -955,11 +920,18 @@ public class MainActivity extends FragmentActivity
 	@Override
 	public void onMapReady(GoogleMap gMap) {
 		googleMap = gMap;
+		googleMap.setBuildingsEnabled(false);
+		googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+		googleMap.getUiSettings().setZoomControlsEnabled(false);
+		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
+		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		googleMap.getUiSettings().setCompassEnabled(true);
+
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 		} else {
+
 			googleMap.setMyLocationEnabled(false);
-			googleMap.setBuildingsEnabled(false);
 
 			// GET LOCATION MANAGER
 			locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
@@ -985,11 +957,6 @@ public class MainActivity extends FragmentActivity
 				Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
 			}
 		}
-		googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-		googleMap.getUiSettings().setZoomControlsEnabled(false);
-		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
-		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-		googleMap.getUiSettings().setCompassEnabled(true);
 
 		setMapEvents();
 
@@ -1059,12 +1026,12 @@ public class MainActivity extends FragmentActivity
 			double lng = user_latlng.longitude;
 
 			if (lat > -23.778678 && lat < -23.400375 && lng > -46.773075 && lng < -46.355934) {
-				cameraUpdate = newLatLngZoom(user_latlng, 16);
+				cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
 			} else {
-				cameraUpdate = newLatLngZoom(latLng_sp, 12);
+				cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng_sp, 12);
 			}
 		} else {
-			cameraUpdate = newLatLngZoom(latLng_sp, 12);
+			cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng_sp, 12);
 		}
 		googleMap.moveCamera(cameraUpdate);
 
@@ -1073,7 +1040,6 @@ public class MainActivity extends FragmentActivity
 	public void setNavigationOn(boolean bool) {
 		if (bool) {
 
-			markerNavigation.setRotation(0);
 			// Orient map accordingly to sensor (updates in onSensorChanged) and turnNavigationOn at the end of animation
 			if (user_latlng != null) {
 				CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(user_latlng, 18, 50, azimuth));
@@ -1081,7 +1047,6 @@ public class MainActivity extends FragmentActivity
 					@Override
 					public void onFinish() {
 						navigationIsOn = true;
-						markerNavigation.setRotation(0);
 					}
 
 					@Override
@@ -1089,6 +1054,7 @@ public class MainActivity extends FragmentActivity
 				});
 			} else {
 				navigationIsOn = true;
+				Toast.makeText(this, getString(R.string.loc_buscando_localizacao), Toast.LENGTH_SHORT).show();
 			}
 
 			// Start listening to orientation changes (happening in turnOnRouteMode
@@ -1111,7 +1077,7 @@ public class MainActivity extends FragmentActivity
 
 		if (user_latlng != null) {
 
-			CameraUpdate cameraUpdate = newCameraPosition(new CameraPosition(user_latlng, 16, 0, 0));
+			CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(user_latlng, 16, 0, 0));
 			googleMap.animateCamera(cameraUpdate);
 
 		} else {
@@ -1134,7 +1100,7 @@ public class MainActivity extends FragmentActivity
 						public void onLocationChanged(Location location) {
 
 							user_latlng = new LatLng(location.getLatitude(), location.getLongitude());
-							CameraUpdate cameraUpdate = newLatLngZoom(user_latlng, 16);
+							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(user_latlng, 16);
 							googleMap.animateCamera(cameraUpdate);
 						}
 
@@ -1417,9 +1383,6 @@ public class MainActivity extends FragmentActivity
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
 
-		addressList.clear();
-		addressListBase.clear();
-
 		// Get the string from the EditText
 		final String s_address = etSearch.getText().toString();
 
@@ -1443,7 +1406,7 @@ public class MainActivity extends FragmentActivity
 
 					LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-					CameraUpdate cu = newLatLngZoom(latLng, 15f);
+					CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(latLng, 15f);
 					googleMap.animateCamera(cu);
 					activeMarker = markerSearch = googleMap.addMarker(new MarkerOptions()
 							.position(latLng)
@@ -1614,6 +1577,13 @@ public class MainActivity extends FragmentActivity
 					e.printStackTrace();
 				}
 			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+
+				Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
+			}
 		});
 
 		Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
@@ -1640,6 +1610,13 @@ public class MainActivity extends FragmentActivity
 					e.printStackTrace();
 				}
 			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+
+				Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
+			}
 		});
 
 		Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
@@ -1665,6 +1642,13 @@ public class MainActivity extends FragmentActivity
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+
+				Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -1897,12 +1881,10 @@ public class MainActivity extends FragmentActivity
 				e.printStackTrace();
 			}
 
+			ArrayList<PolylineOptions> ciclorrotasOptionsList = new ArrayList<>();
 			try {
 
 				JSONArray ciclorrotasJSArray = job.getJSONArray("CICLORROTAS");
-
-				// Clear list before adding updated elements
-				ciclorrotasOptionsList.clear();
 
 				for (int i = 0; i < ciclorrotasJSArray.length(); i++) {
 
@@ -1976,7 +1958,7 @@ public class MainActivity extends FragmentActivity
 
 			drawTemporarias((Constant.states[0] && Constant.bikeLanesStates[1]));
 
-			drawPreferenciais((Constant.states[0] && Constant.bikeLanesStates[2]));
+			drawPreferenciais((Constant.states[0] && Constant.bikeLanesStates[2]), ciclorrotasOptionsList);
 
 			if (Constant.states[2]) drawBicicletarios(true);
 
@@ -2414,7 +2396,7 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	public void drawPreferenciais(Boolean visibility) {
+	public void drawPreferenciais(Boolean visibility, ArrayList<PolylineOptions> ciclorrotasOptionsList) {
 
 		if (!ciclorrotasOptionsList.isEmpty()) {
 
@@ -2609,6 +2591,7 @@ public class MainActivity extends FragmentActivity
 					p.remove();
 				}
 			}
+			cyclingPathList.clear();
 		}
 		if (markerOrigin != null) {
 			markerOrigin.remove();
@@ -2930,12 +2913,13 @@ public class MainActivity extends FragmentActivity
 
 		// Check if origin and destination are more than 50 km from each other
 		if (originLocation.distanceTo(destinationLocation) > 25000) {
-
 			Utils.showSimpleAlertDialog(this, getString(R.string.error), getString(R.string.too_distant_route));
 			pbLoadingRoute.setVisibility(View.GONE);
 			hideRoutePanel.start();
 
 		} else {
+
+			Log.e("DISTANCEEEE", ""+originLocation.distanceTo(destinationLocation));
 
 			llRouteDetailFragment.setVisibility(View.GONE);
 			pbLoadingRoute.setVisibility(View.VISIBLE);
@@ -2963,9 +2947,10 @@ public class MainActivity extends FragmentActivity
 			int width = size.x;
 			int height = size.y;
 
-			CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, width/2, height / 3, 0);
-			googleMap.animateCamera(cUpd);
-
+			if (bounds != null) {
+				CameraUpdate cUpd = CameraUpdateFactory.newLatLngBounds(bounds, width / 2, height / 3, 0);
+				googleMap.animateCamera(cUpd);
+			}
 			// Clean polyline on map
 			if (!cyclingPathList.isEmpty()) {
 				for (CyclingPath cp : cyclingPathList) {
@@ -2994,52 +2979,59 @@ public class MainActivity extends FragmentActivity
 
 				routeRequestId ++;
 
-				Route.getRoute(this, routeRequestId, origin, destination, googleMap, new GetRouteInterface() {
+				Route.getRoute(this, routeRequestId, origin, destination, ListCiclovias, googleMap, new GetRouteInterface() {
 					@Override
-					public void onFinished(int requestId, ArrayList<CyclingPath> cyclingPaths) {
+					public void onFinished(int resultCode, int requestId, ArrayList<CyclingPath> cyclingPaths) {
 
 						if (requestId == routeRequestId && btRouteMode.isChecked()) {
 
-							if (cyclingPaths.size() > 0) {
+							if (resultCode == 1) {
 
-								cyclingPathList.clear();
-								cyclingPathList = cyclingPaths;
+								if (cyclingPaths.size() > 0) {
 
-								for (CyclingPath cp: cyclingPathList) {
-									cp.drawOnMap();
-								}
+									cyclingPathList.clear();
+									cyclingPathList = cyclingPaths;
 
-								CyclingPath cpMostBikeLanes = cyclingPathList.get(cyclingPathList.size() - 1);
+									for (CyclingPath cp : cyclingPathList) {
+										cp.drawOnMap();
+									}
 
-								// Send to db infos about cycling path with mostBikeLanes
-								String deviceID = sharedPreferences.getString(Constant.deviceID, "");
-								if (!deviceID.equals("")) {
-									Calls.sendOriginDestination(deviceID, cpMostBikeLanes.pathLatLng.get(0), cpMostBikeLanes.pathLatLng.get(cpMostBikeLanes.pathLatLng.size() - 1),
-											cpMostBikeLanes.totalDistanceInKm, cpMostBikeLanes.maxInclination, null);
-								}
+									CyclingPath cpMostBikeLanes = cyclingPathList.get(cyclingPathList.size() - 1);
 
-								// Select route according to spinner's selected priority
-								switch (spinnerRoutePriority.getSelectedItemPosition()) {
-									case 0:
-										for (CyclingPath cp : cyclingPathList) {
-											if (cp.mostBikeLanes) selectCyclingPath(cp, false);
-										}
-										break;
-									case 1:
-										for (CyclingPath cp : cyclingPathList) {
-											if (cp.fastest) selectCyclingPath(cp, false);
-										}
-										break;
-									case 2:
-										for (CyclingPath cp : cyclingPathList) {
-											if (cp.flattest) selectCyclingPath(cp, false);
-										}
-										break;
+									// Send to db infos about cycling path with mostBikeLanes
+									String deviceID = sharedPreferences.getString(Constant.deviceID, "");
+									if (!deviceID.equals("")) {
+										Calls.sendOriginDestination(deviceID, cpMostBikeLanes.pathLatLng.get(0), cpMostBikeLanes.pathLatLng.get(cpMostBikeLanes.pathLatLng.size() - 1),
+												cpMostBikeLanes.totalDistanceInKm, cpMostBikeLanes.maxInclination, null);
+									}
+
+									// Select route according to spinner's selected priority
+									switch (spinnerRoutePriority.getSelectedItemPosition()) {
+										case 0:
+											for (CyclingPath cp : cyclingPathList) {
+												if (cp.mostBikeLanes) selectCyclingPath(cp, false);
+											}
+											break;
+										case 1:
+											for (CyclingPath cp : cyclingPathList) {
+												if (cp.fastest) selectCyclingPath(cp, false);
+											}
+											break;
+										case 2:
+											for (CyclingPath cp : cyclingPathList) {
+												if (cp.flattest) selectCyclingPath(cp, false);
+											}
+											break;
+									}
+								} else {
+									pbLoadingRoute.setVisibility(View.GONE);
+									hideRoutePanel.start();
+									Toast.makeText(MainActivity.this, getString(R.string.route_nenhuma_rota_encontrada), Toast.LENGTH_SHORT).show();
 								}
 							} else {
 								pbLoadingRoute.setVisibility(View.GONE);
 								hideRoutePanel.start();
-								Toast.makeText(MainActivity.this, getString(R.string.route_nenhuma_rota_encontrada), Toast.LENGTH_SHORT).show();
+								Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
 							}
 						}
 					}
@@ -3071,18 +3063,15 @@ public class MainActivity extends FragmentActivity
         }
         cyclingPath.setSelected(true);
 
-        // Define the first "selectedCyclingPath"
-        if (!selectedCyclingPath.isEmpty()) {
-            selectedCyclingPath.clear();
-        }
-        selectedCyclingPath.add(cyclingPathList.get(cyclingPathList.size() - 1));
-
 		// Add Route details
 		pbLoadingRoute.setVisibility(View.GONE);
         llRouteDetailFragment.setVisibility(View.VISIBLE);
 
+		TextView tvRouteDistance = (TextView) findViewById(R.id.tv_route_distance);
         tvRouteDistance.setText(cyclingPath.totalDistanceInKm + " km");
-        tvRouteDuration.setText(cyclingPath.getReadableDuration());
+		TextView tvRouteDuration = (TextView) findViewById(R.id.tv_route_duration);
+		tvRouteDuration.setText(cyclingPath.getReadableDuration());
+		TextView tvRoutePercentageOnBikeLanes = (TextView) findViewById(R.id.tv_route_percentage_on_lanes);
         tvRoutePercentageOnBikeLanes.setText(cyclingPath.percentageOnBikeLanes + "%");
 
         if (!cyclingPath.pathElevation.isEmpty()) {
@@ -3129,9 +3118,10 @@ public class MainActivity extends FragmentActivity
             GraphicalView gView = ChartFactory.getLineChartView(this, mDataset, mRenderer);
             gView.setClickable(true);
             gView.setPadding(0, 0, 0, 0);
-
+			LinearLayout llChart = (LinearLayout) findViewById(R.id.aChart);
             llChart.addView(gView, 0);
         } else {
+			TextView tvElevationUnavailable = (TextView) findViewById(R.id.tv_elevation_unavailable);
             tvElevationUnavailable.setVisibility(View.VISIBLE);
         }
     }
@@ -3308,9 +3298,8 @@ public class MainActivity extends FragmentActivity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		getActionBar().setDisplayShowTitleEnabled(false);
-		mymenu = menu;
 
-		menu_item = mymenu.findItem(R.id.action_refresh);
+		menu_item = menu.findItem(R.id.action_refresh);
 
 		return true;
 	}
@@ -3333,8 +3322,11 @@ public class MainActivity extends FragmentActivity
 			azimuth = (float) (Math.toDegrees(SensorManager.getOrientation(rMat, orientation)[0]) + 360) % 360;
 
 			// If navigation is On, turn map
-			if (navigationIsOn) {
+			if (navigationIsOn && user_latlng != null) {
 				googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(user_latlng, 18, 50, azimuth)));
+				if (markerNavigation != null) {
+					markerNavigation.setRotation(0);
+				}
 			} else {
 				// If navigation is off, but markerNavigation is on, just turn marker navigation
 				if (markerNavigation != null) {
@@ -3378,7 +3370,7 @@ public class MainActivity extends FragmentActivity
 
 		if (navigationIsOn) {
 			if (googleMap != null) {
-				googleMap.animateCamera(newLatLngZoom(user_latlng, 18));
+				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(user_latlng, 18));
 			}
 		}
 	}
@@ -3398,21 +3390,33 @@ public class MainActivity extends FragmentActivity
 		switch (requestCode) {
 			case 1:
 				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                    // Initialize location manager
-                    locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
-                    //Get Best Location Provider
-                    bestAvailableProvider = locationManager.getBestProvider(criteria, false);
-                    if (bestAvailableProvider != null) {
-                        if (locationManager.isProviderEnabled(bestAvailableProvider)) {
-                            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+						googleMap.setMyLocationEnabled(false);
+						// Initialize location manager
+						locationManager = (LocationManager) getSystemService(MainActivity.LOCATION_SERVICE);
+						//Get Best Location Provider
+						bestAvailableProvider = locationManager.getBestProvider(criteria, false);
+						if (bestAvailableProvider != null) {
+							if (locationManager.isProviderEnabled(bestAvailableProvider)) {
 								locationManager.requestLocationUpdates(bestAvailableProvider, 0, 0, this);
-                                Location user_loc = locationManager.getLastKnownLocation(bestAvailableProvider);
-                                user_latlng = new LatLng(user_loc.getLatitude(), user_loc.getLongitude());
-                            }
-                        }  else {
-                            Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
-                        }
+								if (user_latlng != null) {
+									Location user_loc = locationManager.getLastKnownLocation(bestAvailableProvider);
+									if (user_loc != null) {
+										user_latlng = new LatLng(user_loc.getLatitude(), user_loc.getLongitude());
+										if (markerNavigation == null) {
+											markerNavigation = googleMap.addMarker(new MarkerOptions()
+													.position(user_latlng)
+													.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_navigation_off))
+													.anchor(0.5f, 0.5f)
+											);
+										}
+									}
+								}
+							}
+						}  else {
+							Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
+						}
                     } else {
                         Toast.makeText(this, getString(R.string.loc_verifique_gps), Toast.LENGTH_SHORT).show();
                     }
@@ -3431,7 +3435,7 @@ public class MainActivity extends FragmentActivity
                 break;
             case 2:
 				if (googleMap != null) {
-					googleMap.setMyLocationEnabled(true);
+					googleMap.setMyLocationEnabled(false);
 				}
 				break;
             case 3:
@@ -3456,11 +3460,8 @@ public class MainActivity extends FragmentActivity
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
 
 		// If permission is not granted, request it
-		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
-		} else {
 			//Request location update
             if (locationManager != null) {
                 if (locationManager.isProviderEnabled(bestAvailableProvider)) {
@@ -3483,9 +3484,7 @@ public class MainActivity extends FragmentActivity
 		sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR));
 
         Log.e("ONPAUSE", "SHOT");
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 3);
-        } else {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (locationManager != null) {
                 locationManager.removeUpdates(this);
             }

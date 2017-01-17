@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +18,8 @@ import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
 
+import static jannini.android.ciclosp.Constant.states;
+
 
 public class DrawerExpActivity extends Activity {
 
@@ -28,12 +29,17 @@ public class DrawerExpActivity extends Activity {
 
     SharedPreferences sharedPreferences;
 
-    public static boolean[] states = {false, false, false, false, false, false};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_exp_splash);
+
+        states[0] = false;
+        states[1] = false;
+        states[2] = false;
+        states[3] = false;
+        states[4] = false;
+        states[5] = false;
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -51,24 +57,24 @@ public class DrawerExpActivity extends Activity {
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        boolean[] check_result_code = SplashScreen.result_code;
+        boolean[] check_result_code = getIntent().getBooleanArrayExtra("RESULT_CODES");
 
-        Log.d("RESULT_CODE", String.valueOf(check_result_code[0]) + ", " + String.valueOf(check_result_code[1]) + ", " + String.valueOf(check_result_code[2]));
-
-        if (!check_result_code[0] && !check_result_code[1] && !check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_nenhuma_camada, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0] && !check_result_code[1]) {
-            Toast.makeText(this, R.string.splash_somente_ciclosampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[1] && !check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_nenhuma_estacao, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0] && !check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_somente_bikesampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[0]) {
-            Toast.makeText(this, R.string.splash_somente_estacao, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[1]) {
-            Toast.makeText(this, R.string.splash_sem_bikesampa, Toast.LENGTH_LONG).show();
-        } else if (!check_result_code[2]) {
-            Toast.makeText(this, R.string.splash_sem_ciclosampa, Toast.LENGTH_LONG).show();
+        if (check_result_code != null) {
+            if (!check_result_code[0] && !check_result_code[1] && !check_result_code[2]) {
+                Toast.makeText(this, R.string.splash_nenhuma_camada, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[0] && !check_result_code[1]) {
+                Toast.makeText(this, R.string.splash_somente_ciclosampa, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[1] && !check_result_code[2]) {
+                Toast.makeText(this, R.string.splash_nenhuma_estacao, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[0] && !check_result_code[2]) {
+                Toast.makeText(this, R.string.splash_somente_bikesampa, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[0]) {
+                Toast.makeText(this, R.string.splash_somente_estacao, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[1]) {
+                Toast.makeText(this, R.string.splash_sem_bikesampa, Toast.LENGTH_LONG).show();
+            } else if (!check_result_code[2]) {
+                Toast.makeText(this, R.string.splash_sem_ciclosampa, Toast.LENGTH_LONG).show();
+            }
         }
 
     }

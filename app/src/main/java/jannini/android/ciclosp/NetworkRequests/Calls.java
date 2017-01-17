@@ -61,13 +61,12 @@ public class Calls {
 
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
+					return new ResponseWrapper(400, e.toString());
 
 				} finally {
 					assert connection != null;
 					connection.disconnect();
 				}
-
-				return null;
 			}
 
 			@Override
@@ -201,9 +200,8 @@ public class Calls {
 
 				} catch (IOException e) {
 					e.printStackTrace();
+					return new ResponseWrapper(400, e.toString());
 				}
-
-				return null;
 			}
 
 			@Override
@@ -285,9 +283,8 @@ public class Calls {
 
 				} catch (IOException e) {
 					e.printStackTrace();
+					return new ResponseWrapper(400, e.toString());
 				}
-
-				return null;
 			}
 
 			@Override
@@ -354,9 +351,8 @@ public class Calls {
 
 				} catch (IOException e) {
 					e.printStackTrace();
+					return new ResponseWrapper(400, e.toString());
 				}
-
-				return null;
 			}
 
 			@Override
@@ -420,13 +416,12 @@ public class Calls {
 
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
+					return new ResponseWrapper(400, e.toString());
 
 				} finally {
 					assert connection != null;
 					connection.disconnect();
 				}
-
-				return null;
 			}
 
 			@Override
@@ -458,12 +453,18 @@ public class Calls {
 					// Criar variáveis strings para enviar no OutputStream
 					String encodedPathListString = "";
 					for (String encodedPath : encodedPathList) {
-						encodedPathListString = encodedPathListString + "," + encodedPath;
+						if (!encodedPathListString.equals("")) {
+							encodedPathListString += ",";
+						}
+						encodedPathListString += encodedPath;
 					}
 
 					String sampleNumbersString = "";
 					for (int sampleNumber : samplesNumbers) {
-						sampleNumbersString = sampleNumbersString + "," + String.valueOf(sampleNumber);
+						if (!sampleNumbersString.equals("")) {
+							sampleNumbersString += ",";
+						}
+						sampleNumbersString += String.valueOf(sampleNumber);
 					}
 
 					// Criar o OutputStream para carregar a mensagem
@@ -495,13 +496,12 @@ public class Calls {
 
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
+					return new ResponseWrapper(400, e.toString());
 
 				} finally {
 					assert connection != null;
 					connection.disconnect();
 				}
-
-				return null;
 			}
 
 			@Override

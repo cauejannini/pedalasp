@@ -18,15 +18,14 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.CustomItemClasses.Ciclovia;
 import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
-
-import static jannini.android.ciclosp.MainActivity.ListCiclovias;
 
 public class Route {
 
     public Route() {}
 
-    public static void getRoute (final Context context, final int requestId, final LatLng start, final LatLng end, final GoogleMap gMap, final GetRouteInterface handlerInterface) {
+    public static void getRoute (final Context context, final int requestId, final LatLng start, final LatLng end, final ArrayList<Ciclovia> ListCiclovias, final GoogleMap gMap, final GetRouteInterface handlerInterface) {
 
         final ArrayList<CyclingPath> cyclingPathReturnList = new ArrayList<>();
 
@@ -59,6 +58,8 @@ public class Route {
                             JSONObject overviewPolyline = routeObject.getJSONObject("overview_polyline");
                             String encodedPath = overviewPolyline.getString("points");
                             encodedPaths.add(encodedPath);
+
+                            Log.e("ENCODED" , encodedPath);
 
                             ArrayList<LatLng> latLngPath = decodePoly(encodedPath);
                             pathRoutes.add(latLngPath);
@@ -99,12 +100,18 @@ public class Route {
                     ArrayList<Integer> numbersOfSamplesList = new ArrayList<>();
 
                     for (int i = 0; i < encodedPaths.size(); i++) {
-                        int numberOfSamples = distances.get(i).intValue() / Constant.distanceBetweenElevationSamples;
+                        int numberOfSamples = 0;
+                        if (distances.get(i) < Constant.totalMaxDistanceForLower) {
+                            numberOfSamples = distances.get(i).intValue() / Constant.distanceBetweenElevationSamplesLower;
+                        } else {
+                            numberOfSamples = distances.get(i).intValue() / Constant.distanceBetweenElevationSamplesHigher;
+                        }
                         if (numberOfSamples < 2) {
                             numbersOfSamplesList.add(2);
                         } else {
                             numbersOfSamplesList.add(numberOfSamples);
                         }
+                        Log.e("SAMPLES", "- "+numberOfSamples);
                     }
 
                     Calls.getElevationLists(encodedPaths, numbersOfSamplesList, new CallHandler() {
@@ -113,9 +120,12 @@ public class Route {
                             try {
                                 JSONArray jarray = new JSONArray(response);
 
+                                Log.e("Number of elevation", String.valueOf(jarray.length()));
+
                                 for (int i = 0; i < jarray.length(); i++) {
                                     JSONObject elevationJob = jarray.getJSONObject(i);
                                     String status = elevationJob.getString("status");
+                                    Log.e("Status "+i, "igual: " + status);
                                     if (status.equals("OK")) {
                                         JSONArray elevationPointsArray = elevationJob.getJSONArray("results");
 
@@ -134,19 +144,17 @@ public class Route {
                                 // Create cyclingPathReturnList, select better routes for each priority and discard the rest.
 
 
-                                if (!pathRoutes.isEmpty()) {
+                                if (!pathRoutes.isEmpty() && elevationLists.size() == pathRoutes.size()) {
 
-                                    Log.e("getRoute", "create CyclingPaths");
                                     for (int i = 0; i < pathRoutes.size(); i++) {
                                         CyclingPath cp = new CyclingPath(context, pathRoutes.get(i),
                                                 distances.get(i),
                                                 durations.get(i),
                                                 elevationLists.get(i),
-                                                boundsList.get(i), ListCiclovias, gMap);
+                                                boundsList.get(i),
+                                                ListCiclovias, gMap);
                                         cyclingPathReturnList.add(cp);
                                     }
-
-                                    Log.e("getRoute", "reordering CyclingPaths");
 
                                     // Reorder cyclingPathReturnList so the max percentage of bike lanes is the last object
 
@@ -182,7 +190,9 @@ public class Route {
                                         }
                                     }
 
-                                    handlerInterface.onFinished(requestId, cyclingPathReturnList);
+                                    handlerInterface.onFinished(1, requestId, cyclingPathReturnList);
+                                } else {
+                                    handlerInterface.onFinished(0, requestId, null);
                                 }
 
                             } catch (JSONException e) {

@@ -524,7 +524,7 @@
     <string name="inclinacao">Inclination: </string>
     <string name="inclinacao_maxima">Max inclination</string>
     <string name="ir_para_mapa">Go to map</string>
-    <string name="loc_buscando_localizacao">Requesting your location…</string>
+    <string name="loc_buscando_localizacao">Waiting for your location…</string>
     <string name="loc_location_unavailable">Current location unavalable. Check you GPS.</string>
     <string name="loc_no_loc_permission_exp">Without this permission, some functions of the app, like routing, won\'t work.</string>
     <string name="loc_no_location_permission">No permission to access location</string>

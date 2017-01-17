@@ -6,13 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import org.json.JSONException;
@@ -38,16 +37,12 @@ public class SplashScreen extends Activity {
 
     ProgressBar progressBar;
 
-    static boolean[] result_code = {false, false, false};
+    boolean[] result_code = {false, false, false};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-        }
 
         sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -66,6 +61,7 @@ public class SplashScreen extends Activity {
         jsonObjCSString = sharedPreferences.getString(Constant.spJobCS, null);
 
         if (jsonObjString == null && jsonObjBSString == null && jsonObjCSString == null) {
+            Log.e("THERE WAS SP", "FALSE");
             progressBar = (ProgressBar) findViewById(R.id.progress_bar);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable, null));
@@ -74,6 +70,7 @@ public class SplashScreen extends Activity {
             }
             new CarregarDB().execute();
         } else {
+            Log.e("THERE WAS SP", "TRUE");
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -205,6 +202,8 @@ public class SplashScreen extends Activity {
 		protected void onPostExecute(String file_url) {
 
 			Intent i = new Intent(SplashScreen.this, DrawerExpActivity.class);
+            i.putExtra("RESULT_CODES", result_code);
+            Log.e("DRAWEREXP", "STARTED");
             startActivity(i);
 			finish();
 		}
