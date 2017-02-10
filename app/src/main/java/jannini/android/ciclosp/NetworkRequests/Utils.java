@@ -129,6 +129,10 @@ public class Utils {
         Toast.makeText(context, context.getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
     }
 
+    public static void showToastWithMessage(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
     public static void showServerErrorToast (Context context, String response) {
         Toast.makeText(context, context.getString(R.string.toast_server_error) + response, Toast.LENGTH_SHORT).show();
     }

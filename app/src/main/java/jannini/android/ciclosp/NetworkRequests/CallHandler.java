@@ -9,7 +9,7 @@ public class CallHandler {
     }
 
     public void onResponse (int responseCode, String response) {
-        if (responseCode == 200 || responseCode == 205) {
+        if (responseCode == 200 || responseCode == 201 || responseCode == 202 || responseCode == 205) {
             onSuccess(responseCode, response);
         } else {
             onFailure(responseCode, response);

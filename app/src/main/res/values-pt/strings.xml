@@ -6,6 +6,7 @@
         <string name="drawer_close">Closed</string>
 
         <string-array name="menu_array">
+                <item>Olá</item>
                 <item>Vias para bicicleta</item>
                 <item>Locais</item>
                 <item>Estações</item>
@@ -16,6 +17,7 @@
                 <item>Escreva para nós</item>
         </string-array>
         <string-array name="menu_array_descriptions">
+                <item>Minha conta</item>
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
                 <item>Oficinas, lojas, cafés…</item>
                 <item>de compartilhamento de bikes</item>
@@ -169,6 +171,7 @@
         <string name="remove">REMOVER</string>
         <string name="saved_place">Local salvo</string>
         <string name="mandatory_field">Campo obrigatório</string>
+        <string name="password_too_short">A senha deve conter no mínimo 8 caracteres</string>
         <string name="toast_error">Ocorreu um erro...</string>
         <string name="toast_server_error">Erro de servidor: </string>
         <string name="atencao">Atenção</string>
@@ -225,5 +228,11 @@
         <string name="get_deal">Pegar meu cupom!</string>
         <string name="this_place_has_deals">Ofertas</string>
 
+        <string name="email_already_registered">Este email já está cadastrado. Faça login.</string>
+        <string name="email_not_registered">Este email não está cadastrado.</string>
+        <string name="wrong_password">Senha incorreta.</string>
+        <string name="recovery_email_sent">Sua senha foi enviada para seu email.</string>
+        <string name="account_updated">Perfil atualizado com sucesso</string>
+        <string name="hello">Olá</string>
 
 </resources>

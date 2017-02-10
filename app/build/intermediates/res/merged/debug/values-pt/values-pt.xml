@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_array">
+                <item>Olá</item>
                 <item>Vias para bicicleta</item>
                 <item>Locais</item>
                 <item>Estações</item>
@@ -11,6 +12,7 @@
                 <item>Escreva para nós</item>
         </string-array>
     <string-array name="menu_array_descriptions">
+                <item>Minha conta</item>
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
                 <item>Oficinas, lojas, cafés…</item>
                 <item>de compartilhamento de bikes</item>
@@ -55,6 +57,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Compartilhar com"</string>
     <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Compartilhar com %s"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Recolher"</string>
+    <string name="account_updated">Perfil atualizado com sucesso</string>
     <string name="acesso_ciclovia_marginal">Acesso à ciclovia Marginal Pinheiros</string>
     <string name="action_settings">Configurações</string>
     <string name="add_bikepoint">Adicionar um Bike Point</string>
@@ -101,6 +104,8 @@
     <string name="em_manutencao_implantacao">EM MANUTENÇÃO / IMPLANTAÇÃO</string>
     <string name="em_operacao">EM OPERAÇÃO</string>
     <string name="email">Email</string>
+    <string name="email_already_registered">Este email já está cadastrado. Faça login.</string>
+    <string name="email_not_registered">Este email não está cadastrado.</string>
     <string name="empty_address_dialog_message">Você deve digitar os endereços de origem e destino para buscar uma rota</string>
     <string name="empty_address_dialog_title">Campo de endereço vazio</string>
     <string name="end_destino_nao_encontrado_titulo">Endereço de destino não encontrado</string>
@@ -126,6 +131,7 @@
     <string name="from_other_location">Escolher outro endereço</string>
     <string name="funcionamento">Funcionamento:</string>
     <string name="get_deal">Pegar meu cupom!</string>
+    <string name="hello">Olá</string>
     <string name="i_parked_here">ESTACIONEI AQUI</string>
     <string name="inclinacao">Inclinação:</string>
     <string name="inclinacao_maxima">Inclinação máxima</string>
@@ -162,6 +168,7 @@
     <string name="outro">OUTRO</string>
     <string name="para">Para: </string>
     <string name="partida">Partida</string>
+    <string name="password_too_short">A senha deve conter no mínimo 8 caracteres</string>
     <string name="pesquisar_no_mapa">Pesquisar no mapa</string>
     <string name="phone">Telefone</string>
     <string name="place_info_not_verified">- INFORMAÇÕES NÃO VERIFICADAS -</string>
@@ -171,6 +178,7 @@
     <string name="preencha_campos">Por favor, preencha todos os campos.</string>
     <string name="problema_sinalizacao">Problema de sinalização</string>
     <string name="rbReportError">Escolha o tipo de alerta</string>
+    <string name="recovery_email_sent">Sua senha foi enviada para seu email.</string>
     <string name="rede_nao_disponivel">Rede não disponível</string>
     <string name="refresh">Refresh</string>
     <string name="remove">REMOVER</string>
@@ -233,5 +241,6 @@
     <string name="which_address">Você está procurando:</string>
     <string name="which_destination">Confirme o endereço de destino:</string>
     <string name="which_origin">Confirme o endereço de origem:</string>
+    <string name="wrong_password">Senha incorreta.</string>
     <string name="your_bike_is_here">Sua bike está aqui</string>
 </resources>

@@ -3,57 +3,93 @@
 
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.8.0_5f9aeeaef6bd6afd1853d0ba91d5d2adeeebc561.jar" />
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_c3754c0a2b0c4b351a144b3c80ab4ec078e919b5.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/ch.acra/acra/4.9.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_89b3e63108554db31a6d2dac95ee4145104853de.jar" />
+        sha1="d03cbe00a6703cfa62ae868707af59d41aff2140">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/ch.acra-acra-4.9.0_fc8be4d77ff62b8393a0f8198b318de19b944643.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_c76d6bb2f6881a1dbdd935ab6a1b009769ae9e7e.jar" />
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_9a754d6c6dd715b11df10add44d0fae37fec5cd0.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.8.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="50e35ae101a679c4c8ef3dda075b1df9d5d947d9">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-impl-9.8.0_b7b6f5c634d4c707bf611e53516d054471a3bce1.jar" />
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_6252385235be18b80c00b1b25f7c449544794920.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_8c0613d8e9b7c57f3becfe3da05918655aaf387b.jar" />
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_014ec49265d0a53c3c4082fa335bba50d74bc59f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_7e15bcc0af1ac8c48ef9b7790bdd19d4a5bbe225.jar" />
+        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-9.8.0_ec5991e2b3ac68113b915d92cc05c126d436d1c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.8.0_d5117bc64ce885c565666777d83bf447108a54d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_29e984d3e65a9b17ca7982b0efa86eb08e0d59c1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_4352d6dafa4c7b90b5c9aa529e6192b20d9f6f46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.8.0_28477cf6fcbb80c9cd2d8339217b1dcb61d65b4d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -62,196 +98,151 @@
         optimize="true"
         revision="25.0.0"
         sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_35c14264aafd4aeb0599cf28e551f32454558c8f.jar" />
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_35c14264aafd4aeb0599cf28e551f32454558c8f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.8.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_5627855815a778f3addf8d6f76fecefea5c8619a.jar" />
+        sha1="50e35ae101a679c4c8ef3dda075b1df9d5d947d9">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-impl-9.8.0_454ed6b7040e5b69739340c7805dcdd995df8e1e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/achartengine-1.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/achartengine-1.1.0_43655d265179ed2be4ea6afd3c07a2e6e933fbec.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_3a0f4efd565010131f7ed56e225897e6e91a592a.jar" />
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_a828aa8c8d081e847ed5c1915ae8641fc8411e25.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_8bf251d93c5db0b735fdc5c8315a042a6cb1d5fa.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.8.0_328959e47f1f8c81679eff620b5474d6af293f82.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_acae6177b20bfa527b14b746bd7d82f50d50c348.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="16afe57c1d7f8165d107c7806ce7b0c71de87159">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-9.8.0_3afdb1d6432b94fa475643f5a2e171f435fb9212.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_195af22488b30cb6d623c18c7eb6c8ebdd067127.jar" />
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_dc5ca8392f5a1e2dda39d5a4f3b762aec1f60c06.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.8.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.8.0_47d7166270549e83f5d5f053cabfbd5a8a134e20.jar" />
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_a50bb3ace407e3a1a0ad96a041cc0e1a9fd82807.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/ch.acra/acra/4.9.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d03cbe00a6703cfa62ae868707af59d41aff2140">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/ch.acra-acra-4.9.0_5f78048c437b342a5610e7bca500d26865efb3eb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.8.0_eed5dc1bf9df9c9b4e9820f550677840cde0e231.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/achartengine-1.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/achartengine-1.1.0_43655d265179ed2be4ea6afd3c07a2e6e933fbec.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="190a642ba16d1421296a4d794606279b80039c59">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-9.8.0_34073faec2930aaa31086adbf474f4c5fb4e2ba4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_71a1af994c9427f00b532df0ac8d38c94833ef10.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_cfb68603577cc111caa3cedb983ffeff641c511d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7e92aadd0697922316d1395c1887a23aebec640a">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.8.0_0a6fb61fd9a03b1bffc085b2d08428d12402cd29.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9ff04cc3470178a44512624036751a803418c2ca">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-9.8.0_c7f6facf3e8eee2457d885c00f6d54dfdf0f01cb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_f70d1e6dca881b919c5e9f5271439622d6ba4145.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_21dd323b5d8fb458862ee830037aabc9fec6d2db.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-9.8.0_e86ef99f5bdcfae7471da3529ddd3f131f45d623.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="/Users/cauejannini/Dropbox/CaueDB/DocumentosDB/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_ec1e659c416a7c04426c8c956a1e7fb1eeb156f8.jar" />
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_117d563a6ceb9f292af6b2d47f96728299fb8a64.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e92aadd0697922316d1395c1887a23aebec640a">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.8.0_9ef22fbe01372d06d96cf259787e7ec984675df3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_c6e06b3ffc07edb7581b7af1551120578cf71d97.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_b6d18a1787d88df6e8a6cf734e469b4de362c1a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6b6f292b8b951dcf2ecf2b20853e3eabc7d65c48">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-9.8.0_7a216eec20f524a74218418e2dcd65d157ea8943.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="190a642ba16d1421296a4d794606279b80039c59">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-9.8.0_4ea8bf6f88762847eb2fe9ace65015561f56f978.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9ff04cc3470178a44512624036751a803418c2ca">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-9.8.0_62c0d5e37eb0b0774deba2ec9feadc40d802332f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/libs/achartengine-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/achartengine-1.1.0_cf2629182886e716f89c394b4e1474a0b84ca7eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="122ec9237acd8a57d974b9d529987f1ee6ca5aea">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-9.8.0_5db275d85e31f938b363b8bca15be55d809ec40f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.8.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.8.0_9c851e0a6b02f0efe1f7daf410b8ebce487ff376.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_59f491e9a0055ed01f4aae09983fc7b089660afd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/cauejannini/Google Drive/CaueDR/Aplicativos/PedalaSP/Android/PedalaSP/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_7e7dea4facb02f73110cfa9bc7d070464830ad70.jar" />
     </item>
 
 </items>

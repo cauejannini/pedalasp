@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jannini.android.ciclosp"
-    android:versionCode="38"
+    android:versionCode="39"
     android:versionName="3" >
 
     <uses-sdk
@@ -113,6 +113,14 @@
             android:name="jannini.android.ciclosp.ShowVoucherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name="jannini.android.ciclosp.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name="jannini.android.ciclosp.UserAccount"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarThemeDarkText" />
         <activity
             android:name="org.acra.dialog.CrashReportDialog"
             android:excludeFromRecents="true"

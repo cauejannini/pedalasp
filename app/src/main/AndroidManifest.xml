@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="jannini.android.ciclosp"
-          android:versionCode="38"
+          android:versionCode="39"
           android:versionName="3">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -97,6 +97,14 @@
             android:name=".ShowVoucherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"/>
+        <activity
+            android:name=".UserAccount"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarThemeDarkText"/>
     </application>
 
 </manifest>

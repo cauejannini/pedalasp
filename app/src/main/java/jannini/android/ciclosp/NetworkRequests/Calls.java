@@ -1122,4 +1122,47 @@ public class Calls {
 		Calls.postRequest(Constant.url_get_voucher_for_user_id, map, handler);
 	}
 
+	public static void login (String email, String password, CallHandler handler) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("password", password);
+
+		Calls.postRequest(Constant.url_user_login, map, handler);
+	}
+
+	public static void registerUser (String name, String lastName, String email, String password, CallHandler handler) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("last_name", lastName);
+		map.put("email", email);
+		map.put("password", password);
+
+		Calls.postRequest(Constant.url_user_register, map, handler);
+	}
+
+	public static void recoverPassword (String email, CallHandler handler) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+
+		Calls.postRequest(Constant.url_user_recover_password, map, handler);
+	}
+
+	public static void getUser (int userId, CallHandler handler) {
+		String userIdString = String.valueOf(userId);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("user_id", userIdString);
+
+		Calls.postRequest(Constant.url_user_get, map, handler);
+	}
+
+	public static void updateUserAccount (int userId, String name, String lastName, String password, CallHandler handler) {
+		String userIdString = String.valueOf(userId);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("user_id", userIdString);
+		map.put("name", name);
+		map.put("last_name", lastName);
+		map.put("password", password);
+
+		Calls.postRequest(Constant.url_user_update, map, handler);
+	}
 }

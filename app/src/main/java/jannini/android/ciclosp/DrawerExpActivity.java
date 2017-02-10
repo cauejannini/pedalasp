@@ -13,12 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
-
-import static jannini.android.ciclosp.SplashScreen.splashResultCodes;
 
 
 public class DrawerExpActivity extends Activity {
@@ -51,7 +48,7 @@ public class DrawerExpActivity extends Activity {
         mDrawerList = (ListView) findViewById(R.id.list_drawer_exp);
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
+        /*
         if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[2] && !splashResultCodes[3]) {
             Toast.makeText(this, R.string.splash_nenhuma_camada, Toast.LENGTH_LONG).show();
         } else if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[2]) {
@@ -82,7 +79,7 @@ public class DrawerExpActivity extends Activity {
             Toast.makeText(this, R.string.splash_error_bs, Toast.LENGTH_LONG).show();
         } else if (!splashResultCodes[3]) {
             Toast.makeText(this, R.string.splash_error_cs, Toast.LENGTH_LONG).show();
-        }
+        }*/
 
     }
 

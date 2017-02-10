@@ -384,6 +384,7 @@ public class MainActivity extends FragmentActivity
 		// Start Header with searchHeaderView
 		header.addView(searchHeaderView);
 
+		// Hide keyboard
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		// ROUTE HEADER VARIABLES
@@ -418,9 +419,8 @@ public class MainActivity extends FragmentActivity
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 		// Set up the drawer's list view with items and click listener.
-		myAdapter = new MyListAdapter(this,
-				getResources().getStringArray(R.array.menu_array),
-				getResources().getStringArray(R.array.menu_array_descriptions));
+		String userGreeting = getString(R.string.hello)+ " "+ Constant.USER_NAME+"!";
+		myAdapter = new MyListAdapter(this, getResources().getStringArray(R.array.menu_array), getResources().getStringArray(R.array.menu_array_descriptions), userGreeting);
 		mDrawerList.setAdapter(myAdapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -613,15 +613,15 @@ public class MainActivity extends FragmentActivity
 
 		switch (position) {
 			// Bike Lanes
-			case 0:
+			case Constant.LISTPOS_BIKE_LANE:
 				if (!Constant.States[0]) {
 
-					mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_BIKE_LANE - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[0] = true;
 					displayBikeLanes();
 
 				} else {
-					mDrawerList.getChildAt(0).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					mDrawerList.getChildAt(Constant.LISTPOS_BIKE_LANE - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 					Constant.States[0] = false;
 
 					// Set Ciclovias not visible
@@ -650,10 +650,10 @@ public class MainActivity extends FragmentActivity
 				break;
 
 			// Places
-			case 1:
+			case Constant.LISTPOS_PLACES:
 				if (!Constant.States[1]) {
 
-					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_PLACES - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[1] = true;
 
 					if (!ListPlaces.isEmpty() && !Constant.mapPlacesImages.isEmpty()) {
@@ -662,12 +662,12 @@ public class MainActivity extends FragmentActivity
 
 					} else {
 						// Get places icons and then places
-						setListItemLoading(1, true);
+						setListItemLoading(Constant.LISTPOS_PLACES, true);
 						Calls.getPlacesIconsAndCategories(this, getPlacesIconsCallHandler);
 					}
 
 				} else {
-					mDrawerList.getChildAt(1 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					mDrawerList.getChildAt(Constant.LISTPOS_PLACES - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 					Constant.States[1] = false;
 
 					hideBottomPanel();
@@ -683,15 +683,15 @@ public class MainActivity extends FragmentActivity
 				break;
 
 			// Sharing Systems
-			case 2:
+			case Constant.LISTPOS_SHARING_STATIONS:
 				if (!Constant.States[2]) {
 
-					mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_SHARING_STATIONS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[2] = true;
 					displaySharingSystems();
 
 				} else {
-					mDrawerList.getChildAt(2 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					mDrawerList.getChildAt(Constant.LISTPOS_SHARING_STATIONS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 					Constant.States[2] = false;
 
 					// Set BikeSampa not visible
@@ -710,11 +710,11 @@ public class MainActivity extends FragmentActivity
 				break;
 
 			// Parking
-			case 3:
+			case Constant.LISTPOS_PARKING:
 
 				if (!Constant.States[3]) {
 
-					mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_PARKING - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[3] = true;
 
                     if (!ListMarkersBicicletarios.isEmpty()) {
@@ -728,7 +728,7 @@ public class MainActivity extends FragmentActivity
                 } else {
 
                     Constant.States[3] = false;
-                    mDrawerList.getChildAt(3 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    mDrawerList.getChildAt(Constant.LISTPOS_PARKING - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                     for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
                         ListMarkersBicicletarios.get(i).setVisible(false);
                     }
@@ -741,12 +741,12 @@ public class MainActivity extends FragmentActivity
                 break;
 
             // Parks
-			case 4:
+			case Constant.LISTPOS_PARKS:
 
 				if (!Constant.States[4]) {
 
 					Constant.States[4] = true;
-					mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_PARKS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersParques.isEmpty()) {
 
@@ -761,7 +761,7 @@ public class MainActivity extends FragmentActivity
                 } else {
 
                     Constant.States[4] = false;
-                    mDrawerList.getChildAt(4 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    mDrawerList.getChildAt(Constant.LISTPOS_PARKS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                     for (int i = 0; i < ListMarkersParques.size(); i++) {
                         ListMarkersParques.get(i).setVisible(false);
                     }
@@ -772,12 +772,12 @@ public class MainActivity extends FragmentActivity
                 break;
 
 			// Wifi
-			case 5:
+			case Constant.LISTPOS_WIFI:
 
 				if (!Constant.States[5]) {
 
 					Constant.States[5] = true;
-					mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_WIFI - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersWifi.isEmpty()) {
 
@@ -791,7 +791,7 @@ public class MainActivity extends FragmentActivity
                 } else {
 
                     Constant.States[5] = false;
-                    mDrawerList.getChildAt(5 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    mDrawerList.getChildAt(Constant.LISTPOS_WIFI - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
                     for (int i = 0; i < ListMarkersWifi.size(); i++) {
                         ListMarkersWifi.get(i).setVisible(false);
                     }
@@ -802,12 +802,12 @@ public class MainActivity extends FragmentActivity
                 break;
 
             // Alerts
-			case 6:
+			case Constant.LISTPOS_ALERTS:
 
 				if (!Constant.States[6]) {
 
 					Constant.States[6] = true;
-					mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					mDrawerList.getChildAt(Constant.LISTPOS_ALERTS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
                     if (!ListMarkersAlerts.isEmpty()) {
                         for (int i = 0; i < ListMarkersAlerts.size(); i++) {
@@ -818,7 +818,7 @@ public class MainActivity extends FragmentActivity
                     }
                 } else {
                     Constant.States[6] = false;
-                    mDrawerList.getChildAt(6 - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+                    mDrawerList.getChildAt(Constant.LISTPOS_ALERTS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 
                     for (int i = 0; i < ListMarkersAlerts.size(); i++) {
                         ListMarkersAlerts.get(i).setVisible(false);
@@ -829,7 +829,11 @@ public class MainActivity extends FragmentActivity
                 sharedPreferences.edit().putBoolean("states6", Constant.States[6]).apply();
 
                 break;
-			case 7:
+			case Constant.LISTPOS_MY_ACCOUNT:
+				startActivity(new Intent(MainActivity.this, UserAccount.class));
+				break;
+
+			case Constant.LISTPOS_WRITE_FOR_US:
 				startActivity(new Intent(MainActivity.this, SugestaoActivity.class));
 				break;
 		}
@@ -1167,7 +1171,7 @@ public class MainActivity extends FragmentActivity
 		setUserLocation();
 
 		try {
-			if (SplashScreen.splashResultCodes[4]) {
+			if (SplashScreen.placesImagesAndCategoriesAreLoaded) {
 				createPlacesArray();
 			}
 			createBaseArrays();
@@ -1178,6 +1182,7 @@ public class MainActivity extends FragmentActivity
 		}
 
 		if (isNetworkAvailable()) {
+			synchronizePlaces();
 			getAllDataFromDB();
 		} else {
 			Utils.showNetworkAlertDialog(this);
@@ -1999,226 +2004,93 @@ public class MainActivity extends FragmentActivity
 
 		setUpdating();
 
-		Calls.getPlacesIconsAndCategories(this, new CallHandler() {
+		// Update other stuff just after places are being loaded (priority to places because other stuff is probably stored offline)
+		Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
 			@Override
 			public void onSuccess(int responseCode, String response) {
+				Log.e("getDataHandler", responseCode + ": " + response);
 
-				Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobGeral, response);
+				editor.apply();
 
-				// Get Places
-				Calls.jsonRequest(Constant.url_get_places, new CallHandler() {
-					@Override
-					public void onSuccess(int responseCode, String response) {
-
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobPlaces, response);
-						editor.apply();
-
-						setListItemLoading(1, false);
-
-						try {
-							createPlacesArray();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
-					@Override
-					public void onFailure(int responseCode, String response) {
-						Log.e("getPlaces fail", response);
-						Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
-						setListItemLoading(1, false);
-					}
-				});
-
-				// Update other stuff just after places are being loaded (priority to places because other stuff is probably stored offline)
-				Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
-					@Override
-					public void onSuccess(int responseCode, String response) {
-						Log.e("getDataHandler", responseCode + ": " + response);
-
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobGeral, response);
-						editor.apply();
-
-						try {
-							createBaseArrays();
-						} catch (JSONException 	e) {
-							e.printStackTrace();
-						}
-					}
-
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getDataHandler Failure", responseCode + ": " + response);
-					}
-				});
-
-				Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
-					@Override
-					public void onSuccess(int code, String response) {
-						Log.e("getBSHandler", code + ": " + response);
-
-						Calendar now = Calendar.getInstance();
-						String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-						String minutes = String.valueOf(now.get(Calendar.MINUTE));
-						if (minutes.length() == 1) {
-							minutes = "0" + minutes;
-						}
-						String updateTimeBS = hours + ":" + minutes;
-
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobBS, response);
-						editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
-						editor.apply();
-
-						try {
-							createBikeSampaArray();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
-
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getBSHandler Failure", responseCode + ": " + response);
-					}
-				});
-
-				Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
-					@Override
-					public void onSuccess(int code, String response) {
-						Log.e("getCicloSampaHandler", code + ": " + response);
-
-						Calendar now = Calendar.getInstance();
-						String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-						String minutes = String.valueOf(now.get(Calendar.MINUTE));
-						if (minutes.length() == 1) {
-							minutes = "0" + minutes;
-						}
-						String updateTimeCS = hours + ":" + minutes;
-
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobCS, response);
-						editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
-						editor.apply();
-
-						try {
-							createCicloSampaArray();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						resetUpdating();
-					}
-
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getCSHandler Failure", responseCode + ": " + response);
-						resetUpdating();
-					}
-				});
-
+				try {
+					createBaseArrays();
+				} catch (JSONException 	e) {
+					e.printStackTrace();
+				}
 			}
+
 			@Override
 			public void onFailure(int responseCode, String response) {
-				Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+				super.onFailure(responseCode, response);
+				Log.e("getDataHandler Failure", responseCode + ": " + response);
+			}
+		});
 
-				Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
-				setListItemLoading(1, false);
+		Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
+			@Override
+			public void onSuccess(int code, String response) {
+				Log.e("getBSHandler", code + ": " + response);
 
+				Calendar now = Calendar.getInstance();
+				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+				String minutes = String.valueOf(now.get(Calendar.MINUTE));
+				if (minutes.length() == 1) {
+					minutes = "0" + minutes;
+				}
+				String updateTimeBS = hours + ":" + minutes;
 
-				// Update other stuff just after places are being loaded (priority to places because other stuff is probably stored offline)
-				Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
-					@Override
-					public void onSuccess(int responseCode, String response) {
-						Log.e("getDataHandler", responseCode + ": " + response);
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobBS, response);
+				editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
+				editor.apply();
 
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobGeral, response);
-						editor.apply();
+				try {
+					createBikeSampaArray();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
 
-						try {
-							createBaseArrays();
-						} catch (JSONException 	e) {
-							e.printStackTrace();
-						}
-					}
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+				Log.e("getBSHandler Failure", responseCode + ": " + response);
+			}
+		});
 
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getDataHandler Failure", responseCode + ": " + response);
-					}
-				});
+		Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
+			@Override
+			public void onSuccess(int code, String response) {
+				Log.e("getCicloSampaHandler", code + ": " + response);
 
-				Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
-					@Override
-					public void onSuccess(int code, String response) {
-						Log.e("getBSHandler", code + ": " + response);
+				Calendar now = Calendar.getInstance();
+				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+				String minutes = String.valueOf(now.get(Calendar.MINUTE));
+				if (minutes.length() == 1) {
+					minutes = "0" + minutes;
+				}
+				String updateTimeCS = hours + ":" + minutes;
 
-						Calendar now = Calendar.getInstance();
-						String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-						String minutes = String.valueOf(now.get(Calendar.MINUTE));
-						if (minutes.length() == 1) {
-							minutes = "0" + minutes;
-						}
-						String updateTimeBS = hours + ":" + minutes;
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.spJobCS, response);
+				editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
+				editor.apply();
 
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobBS, response);
-						editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
-						editor.apply();
+				try {
+					createCicloSampaArray();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				resetUpdating();
+			}
 
-						try {
-							createBikeSampaArray();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
-
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getBSHandler Failure", responseCode + ": " + response);
-					}
-				});
-
-				Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
-					@Override
-					public void onSuccess(int code, String response) {
-						Log.e("getCicloSampaHandler", code + ": " + response);
-
-						Calendar now = Calendar.getInstance();
-						String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-						String minutes = String.valueOf(now.get(Calendar.MINUTE));
-						if (minutes.length() == 1) {
-							minutes = "0" + minutes;
-						}
-						String updateTimeCS = hours + ":" + minutes;
-
-						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobCS, response);
-						editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
-						editor.apply();
-
-						try {
-							createCicloSampaArray();
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						resetUpdating();
-					}
-
-					@Override
-					public void onFailure(int responseCode, String response) {
-						super.onFailure(responseCode, response);
-						Log.e("getCSHandler Failure", responseCode + ": " + response);
-						resetUpdating();
-					}
-				});
-
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+				Log.e("getCSHandler Failure", responseCode + ": " + response);
+				resetUpdating();
 			}
 		});
 
@@ -2226,7 +2098,7 @@ public class MainActivity extends FragmentActivity
 
 	public void synchronizePlaces() {
 		// Get places icons, then places and, just then, other data
-		setListItemLoading(1, true);
+		setListItemLoading(Constant.LISTPOS_PLACES, true);
 		placesIsLoading = true;
 		Calls.getPlacesIconsAndCategories(this, new CallHandler() {
 			@Override
@@ -2242,7 +2114,7 @@ public class MainActivity extends FragmentActivity
 						editor.putString(Constant.spJobPlaces, response);
 						editor.apply();
 
-						setListItemLoading(1, false);
+						setListItemLoading(Constant.LISTPOS_PLACES, false);
 						placesIsLoading = false;
 
 						try {
@@ -2257,7 +2129,7 @@ public class MainActivity extends FragmentActivity
 						Log.e("getPlaces fail", response);
 						Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
 						resetUpdating();
-						setListItemLoading(1, false);
+						setListItemLoading(Constant.LISTPOS_PLACES, false);
 					}
 				});
 			}
@@ -4507,7 +4379,7 @@ public class MainActivity extends FragmentActivity
 					editor.putString(Constant.spJobPlaces, response);
 					editor.apply();
 
-					setListItemLoading(1, false);
+					setListItemLoading(Constant.LISTPOS_PLACES, false);
 
 					try {
 						createPlacesArray();
@@ -4520,7 +4392,7 @@ public class MainActivity extends FragmentActivity
 					Log.e("getPlaces fail", response);
 					Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
 					resetUpdating();
-					setListItemLoading(1, false);
+					setListItemLoading(Constant.LISTPOS_PLACES, false);
 				}
 			});
 
@@ -4530,7 +4402,7 @@ public class MainActivity extends FragmentActivity
 			Log.e("getIcons", response);
 			Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
 			resetUpdating();
-			setListItemLoading(1, false);
+			setListItemLoading(Constant.LISTPOS_PLACES, false);
 			placesIsLoading = false;
 		}
 	};

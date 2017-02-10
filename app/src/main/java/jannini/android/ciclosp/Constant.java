@@ -45,6 +45,11 @@ public class Constant {
     public static String url_update_place_information = "http://pedalaspapp.com.br/dbaccess/update_place_information.php";
     public static String url_flag_place_inexistent = "http://pedalaspapp.com.br/dbaccess/flag_place_inexistent.php";
     public static String url_get_voucher_for_user_id = "http://pedalaspapp.com.br/dbaccess/voucher_get_for_user_id.php";
+    public static String url_user_login = "http://pedalaspapp.com.br/dbaccess/user_login.php";
+    public static String url_user_register = "http://pedalaspapp.com.br/dbaccess/user_register.php";
+    public static String url_user_recover_password = "http://pedalaspapp.com.br/dbaccess/user_recover_password.php";
+    public static String url_user_get = "http://pedalaspapp.com.br/dbaccess/user_get.php";
+    public static String url_user_update = "http://pedalaspapp.com.br/dbaccess/user_update.php";
 
     public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
     public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
@@ -75,7 +80,15 @@ public class Constant {
     public static boolean[] SharingSystemsStates = {true, true};
     public static String SPKEY_SharingSystemsStates0 = "jannini.android.ciclosp.SharingSystemsStates0";
     public static String SPKEY_SharingSystemsStates1 = "jannini.android.ciclosp.SharingSystemsStates1";
-
+    public static final int LISTPOS_MY_ACCOUNT = 0;
+    public static final int LISTPOS_BIKE_LANE = 1;
+    public static final int LISTPOS_PLACES = 2;
+    public static final int LISTPOS_SHARING_STATIONS = 3;
+    public static final int LISTPOS_PARKING = 4;
+    public static final int LISTPOS_PARKS = 5;
+    public static final int LISTPOS_WIFI = 6;
+    public static final int LISTPOS_ALERTS = 7;
+    public static final int LISTPOS_WRITE_FOR_US = 8;
 
     public static HashMap<Integer, Bitmap> mapPlacesImages = new HashMap<>();
     public static HashMap<Integer, String> mapPlaceCategories = new HashMap<>();
@@ -129,5 +142,12 @@ public class Constant {
     public static int DURATION_BOTTOM_PANEL_ANIMATION = 250;
 
     public static String elevationAuthKey = "AIzaSyCjD8Rpz0_cOWredDecWSx1DKPX2GN1mhU";
+
+    public static String SPKEY_USER_LOGGED_IN = "SPKEY_USER_LOGGED_IN";
+    public static String SPKEY_USER_ID = "SPKEY_USER_ID";
+    public static int USER_ID = 0;
+    public static String USER_NAME = "";
+    public static String USER_LAST_NAME = "";
+    public static String USER_EMAIL = "";
 
 }

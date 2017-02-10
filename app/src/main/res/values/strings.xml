@@ -9,6 +9,7 @@
     <string name="offline" translatable="false">OFFLINE</string>
 
     <string-array name="menu_array">
+        <item>Hello</item>
         <item>Bike lanes</item>
         <item>Places</item>
         <item>Bike sharing</item>
@@ -19,6 +20,7 @@
         <item>Write for us</item>
     </string-array>
     <string-array name="menu_array_descriptions">
+        <item>My Account</item>
         <item>Permanent, recreational and preferential</item>
         <item>Workshops, stores, coffees…</item>
         <item>stations</item>
@@ -181,6 +183,7 @@
     <string name="remove">REMOVE</string>
     <string name="saved_place">Saved place</string>
     <string name="mandatory_field">Mandatory field</string>
+    <string name="password_too_short">Password must contain at least 8 characters</string>
     <string name="toast_error">Oops, an error occurred...</string>
     <string name="toast_server_error">Oops, server error: </string>
     <string name="atencao">Warning</string>
@@ -236,5 +239,12 @@
     <string name="deals">Deals</string>
     <string name="get_deal">I want this deal!</string>
     <string name="this_place_has_deals">Deals</string>
+
+    <string name="email_already_registered">This email is already registered. Please login.</string>
+    <string name="email_not_registered">This email is not registered.</string>
+    <string name="wrong_password">Wrong password.</string>
+    <string name="recovery_email_sent">Your password was sent to your email.</string>
+    <string name="account_updated">Profile successfully updated</string>
+    <string name="hello">Hello</string>
 
 </resources>

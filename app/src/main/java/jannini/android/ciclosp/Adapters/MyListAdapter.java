@@ -20,13 +20,15 @@ import jannini.android.ciclosp.R;
 public class MyListAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final String[] values, values2;
+    private final String userGreeting;
     private final ViewHolder holder = new ViewHolder();
 
-    public MyListAdapter(Context context, String[] values, String[] values2) {
+    public MyListAdapter(Context context, String[] values, String[] values2, String userGreeting) {
         super(context, R.layout.drawer_list_item, values);
         this.context = context;
         this.values = values;
         this.values2 = values2;
+        this.userGreeting = userGreeting;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
         holder.btSettings.setVisibility(View.GONE);
 
         switch (position) {
-            case 0:
+            case Constant.LISTPOS_BIKE_LANE:
                 if (Constant.States[0]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_lanes);
@@ -66,7 +68,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
                     }
                 });
                 break;
-            case 1:
+            case Constant.LISTPOS_PLACES:
                 if (Constant.States[1]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.btic_add_estabelecimento);
@@ -81,7 +83,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
                     }
                 });
                 break;
-            case 2:
+            case Constant.LISTPOS_SHARING_STATIONS:
                 if (Constant.States[2]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_bikesampa);
@@ -95,27 +97,35 @@ public class MyListAdapter extends ArrayAdapter<String> {
                     }
                 });
                 break;
-            case 3:
+            case Constant.LISTPOS_PARKING:
                 if (Constant.States[3]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_parking);
                 break;
-            case 4:
+            case Constant.LISTPOS_PARKS:
                 if (Constant.States[4]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_park);
                 break;
-            case 5:
+            case Constant.LISTPOS_WIFI:
                 if (Constant.States[5]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_wifi);
                 break;
-            case 6:
+            case Constant.LISTPOS_ALERTS:
                 if (Constant.States[6]){holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_on);
                 } else {holder.background.setBackgroundResource(R.drawable.drawer_list_item_bg_off);}
                 holder.image.setBackgroundResource(R.drawable.ic_alert);
                 break;
-            case 7:
+            case Constant.LISTPOS_MY_ACCOUNT:
+                drawListView.setPadding(18, 25, 18, 25);
+                holder.text.setText(userGreeting);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    holder.description.setTextColor(context.getColor(R.color.water_blue));
+                }
+                holder.image.setVisibility(View.GONE);
+                break;
+            case Constant.LISTPOS_WRITE_FOR_US:
                 drawListView.setPadding(18, 25, 18, 25);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     holder.text.setTextColor(context.getColor(R.color.water_blue));
