@@ -9,13 +9,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
@@ -23,19 +25,12 @@ import jannini.android.ciclosp.NetworkRequests.Utils;
 
 public class LoginActivity extends Activity {
 
-    EditText etName, etLastName, etEmail, etPassword;
-
     RelativeLayout rlLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        etName = (EditText) findViewById(R.id.et_name);
-        etLastName = (EditText) findViewById(R.id.et_last_name);
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
         rlLoading = (RelativeLayout) findViewById(R.id.rl_loading);
 
         // Hide keyboard
@@ -48,13 +43,16 @@ public class LoginActivity extends Activity {
 
         hideKeyboard();
 
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        EditText etLoginEmail = (EditText) findViewById(R.id.et_login_email);
+        EditText etLoginPassword = (EditText) findViewById(R.id.et_login_password);
+
+        String email = etLoginEmail.getText().toString();
+        String password = etLoginPassword.getText().toString();
 
         if (email.trim().equals("")) {
-            etEmail.setError(getString(R.string.mandatory_field));
+            etLoginEmail.setError(getString(R.string.mandatory_field));
         } else if (password.trim().equals("")) {
-            etPassword.setError(getString(R.string.mandatory_field));
+            etLoginPassword.setError(getString(R.string.mandatory_field));
         } else {
 
             rlLoading.setVisibility(View.VISIBLE);
@@ -119,19 +117,24 @@ public class LoginActivity extends Activity {
 
         hideKeyboard();
 
-        String name = etName.getText().toString();
-        String lastName = etLastName.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        EditText etRegisterName = (EditText) findViewById(R.id.et_register_name);
+        EditText etRegisterLastName = (EditText) findViewById(R.id.et_register_last_name);
+        EditText etRegisterEmail = (EditText) findViewById(R.id.et_register_email);
+        EditText etRegisterPassword = (EditText) findViewById(R.id.et_register_password);
+
+        String name = etRegisterName.getText().toString();
+        String lastName = etRegisterLastName.getText().toString();
+        String email = etRegisterEmail.getText().toString();
+        String password = etRegisterPassword.getText().toString();
 
         if (name.trim().equals("")){
-            etName.setError(getString(R.string.mandatory_field));
+            etRegisterName.setError(getString(R.string.mandatory_field));
         } else if (lastName.trim().equals("")) {
-            etLastName.setError(getString(R.string.mandatory_field));
+            etRegisterLastName.setError(getString(R.string.mandatory_field));
         } else if (email.trim().equals("")) {
-            etEmail.setError(getString(R.string.mandatory_field));
+            etRegisterEmail.setError(getString(R.string.mandatory_field));
         } else if (password.length() < 8) {
-            etPassword.setError(getString(R.string.password_too_short));
+            etRegisterPassword.setError(getString(R.string.password_too_short));
         } else {
 
             rlLoading.setVisibility(View.VISIBLE);
@@ -193,10 +196,12 @@ public class LoginActivity extends Activity {
     public void recoverPassword (View view) {
         hideKeyboard();
 
-        String email = etEmail.getText().toString();
+        EditText etRecoverEmail = (EditText) findViewById(R.id.et_recover_email);
+
+        String email = etRecoverEmail.getText().toString();
 
         if (email.trim().equals("")) {
-            etEmail.setError(getString(R.string.mandatory_field));
+            etRecoverEmail.setError(getString(R.string.mandatory_field));
         } else {
 
             rlLoading.setVisibility(View.VISIBLE);
@@ -230,32 +235,16 @@ public class LoginActivity extends Activity {
     }
 
     public void switchToLogin (View view) {
-        etName.setVisibility(View.GONE);
-        etLastName.setVisibility(View.GONE);
-        etPassword.setVisibility(View.VISIBLE);
 
-        Button btRegister = (Button) findViewById(R.id.bt_register);
-        btRegister.setVisibility(View.GONE);
-        Button btLogin = (Button) findViewById(R.id.bt_login);
-        btLogin.setVisibility(View.VISIBLE);
-        Button btRecoverPassword = (Button) findViewById(R.id.bt_recover_password);
-        btRecoverPassword.setVisibility(View.GONE);
+        ScrollView svRegister = (ScrollView) findViewById(R.id.sv_register);
+        svRegister.setVisibility(View.GONE);
+        ScrollView svRecoverPassword = (ScrollView) findViewById(R.id.sv_recover_password);
+        svRecoverPassword.setVisibility(View.GONE);
+        ScrollView svLogin = (ScrollView) findViewById(R.id.sv_login);
+        svLogin.setVisibility(View.VISIBLE);
 
-        TextView tvLogin = (TextView) findViewById(R.id.tv_login);
-        tvLogin.setVisibility(View.VISIBLE);
-        TextView tvRegister = (TextView) findViewById(R.id.tv_register);
-        tvRegister.setVisibility(View.GONE);
-        TextView tvRecoverPassword = (TextView) findViewById(R.id.tv_recover_password);
-        tvRecoverPassword.setVisibility(View.GONE);
-
-        TextView tvSwitchToRegister = (TextView) findViewById(R.id.tv_switch_to_register);
-        tvSwitchToRegister.setVisibility(View.VISIBLE);
-        TextView tvSwitchToLogin = (TextView) findViewById(R.id.tv_switch_to_login);
-        tvSwitchToLogin.setVisibility(View.GONE);
-        TextView tvForgotPassword = (TextView) findViewById(R.id.tv_forgot_password);
-        tvForgotPassword.setVisibility(View.VISIBLE);
-
-        etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        EditText etLoginPassword = (EditText) findViewById(R.id.et_login_password);
+        etLoginPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
@@ -267,32 +256,15 @@ public class LoginActivity extends Activity {
     }
 
     public void switchToRegister (View view) {
-        etName.setVisibility(View.VISIBLE);
-        etLastName.setVisibility(View.VISIBLE);
-        etPassword.setVisibility(View.VISIBLE);
+        ScrollView svRegister = (ScrollView) findViewById(R.id.sv_register);
+        svRegister.setVisibility(View.VISIBLE);
+        ScrollView svRecoverPassword = (ScrollView) findViewById(R.id.sv_recover_password);
+        svRecoverPassword.setVisibility(View.GONE);
+        ScrollView svLogin = (ScrollView) findViewById(R.id.sv_login);
+        svLogin.setVisibility(View.GONE);
 
-        Button btRegister = (Button) findViewById(R.id.bt_register);
-        btRegister.setVisibility(View.VISIBLE);
-        Button btLogin = (Button) findViewById(R.id.bt_login);
-        btLogin.setVisibility(View.GONE);
-        Button btRecoverPassword = (Button) findViewById(R.id.bt_recover_password);
-        btRecoverPassword.setVisibility(View.GONE);
-
-        TextView tvLogin = (TextView) findViewById(R.id.tv_login);
-        tvLogin.setVisibility(View.GONE);
-        TextView tvRegister = (TextView) findViewById(R.id.tv_register);
-        tvRegister.setVisibility(View.VISIBLE);
-        TextView tvRecoverPassword = (TextView) findViewById(R.id.tv_recover_password);
-        tvRecoverPassword.setVisibility(View.GONE);
-
-        TextView tvSwitchToRegister = (TextView) findViewById(R.id.tv_switch_to_register);
-        tvSwitchToRegister.setVisibility(View.GONE);
-        TextView tvSwitchToLogin = (TextView) findViewById(R.id.tv_switch_to_login);
-        tvSwitchToLogin.setVisibility(View.VISIBLE);
-        TextView tvForgotPassword = (TextView) findViewById(R.id.tv_forgot_password);
-        tvForgotPassword.setVisibility(View.GONE);
-
-        etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        EditText etRegisterPassword = (EditText) findViewById(R.id.et_register_password);
+        etRegisterPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
@@ -304,36 +276,19 @@ public class LoginActivity extends Activity {
     }
 
     public void switchToRecoverPassword (View view) {
-        etName.setVisibility(View.GONE);
-        etLastName.setVisibility(View.GONE);
-        etPassword.setVisibility(View.GONE);
+        ScrollView svRegister = (ScrollView) findViewById(R.id.sv_register);
+        svRegister.setVisibility(View.GONE);
+        ScrollView svRecoverPassword = (ScrollView) findViewById(R.id.sv_recover_password);
+        svRecoverPassword.setVisibility(View.VISIBLE);
+        ScrollView svLogin = (ScrollView) findViewById(R.id.sv_login);
+        svLogin.setVisibility(View.GONE);
 
-        Button btRegister = (Button) findViewById(R.id.bt_register);
-        btRegister.setVisibility(View.GONE);
-        Button btLogin = (Button) findViewById(R.id.bt_login);
-        btLogin.setVisibility(View.GONE);
-        Button btRecoverPassword = (Button) findViewById(R.id.bt_recover_password);
-        btRecoverPassword.setVisibility(View.VISIBLE);
-
-        TextView tvLogin = (TextView) findViewById(R.id.tv_login);
-        tvLogin.setVisibility(View.GONE);
-        TextView tvRegister = (TextView) findViewById(R.id.tv_register);
-        tvRegister.setVisibility(View.GONE);
-        TextView tvRecoverPassword = (TextView) findViewById(R.id.tv_recover_password);
-        tvRecoverPassword.setVisibility(View.VISIBLE);
-
-        TextView tvSwitchToRegister = (TextView) findViewById(R.id.tv_switch_to_register);
-        tvSwitchToRegister.setVisibility(View.VISIBLE);
-        TextView tvSwitchToLogin = (TextView) findViewById(R.id.tv_switch_to_login);
-        tvSwitchToLogin.setVisibility(View.VISIBLE);
-        TextView tvForgotPassword = (TextView) findViewById(R.id.tv_forgot_password);
-        tvForgotPassword.setVisibility(View.GONE);
-
-        etPassword.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        EditText etRecoverEmail = (EditText) findViewById(R.id.et_recover_email);
+        etRecoverEmail.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-                    registerUser(null);
+                    recoverPassword(null);
                 }
                 return false;
             }
@@ -341,11 +296,20 @@ public class LoginActivity extends Activity {
     }
 
     public void hideKeyboard () {
+
+        ArrayList<EditText> etList = new ArrayList<>();
+        etList.add((EditText) findViewById(R.id.et_login_email));
+        etList.add((EditText) findViewById(R.id.et_login_password));
+        etList.add((EditText) findViewById(R.id.et_register_name));
+        etList.add((EditText) findViewById(R.id.et_register_last_name));
+        etList.add((EditText) findViewById(R.id.et_register_email));
+        etList.add((EditText) findViewById(R.id.et_register_password));
+        etList.add((EditText) findViewById(R.id.et_recover_email));
+
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(etName.getWindowToken(), 0);
-        imm.hideSoftInputFromWindow(etLastName.getWindowToken(), 0);
-        imm.hideSoftInputFromWindow(etEmail.getWindowToken(), 0);
-        imm.hideSoftInputFromWindow(etPassword.getWindowToken(), 0);
+        for (EditText et : etList) {
+            imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+        }
     }
 
 }
