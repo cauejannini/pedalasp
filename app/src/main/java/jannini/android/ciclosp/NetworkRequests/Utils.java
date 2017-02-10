@@ -24,6 +24,8 @@ public class Utils {
     public Utils() {
     }
 
+    public static String newline = System.getProperty("line.separator");
+
     public static void showNetworkAlertDialog (final Context context) {
         AlertDialog.Builder network_alert = new AlertDialog.Builder(context);
         network_alert.setTitle(context.getString(R.string.network_alert_title))
@@ -118,8 +120,6 @@ public class Utils {
                 return "hdpi"; // THIS IS NOT THE BEST SOLUTION, BUT I DON'T KNOW WHAT ELSE TO DO
         }
     }
-
-    public static String newline = System.getProperty("line.separator");
 
     public static void showThanksToast (Context context) {
         Toast.makeText(context, context.getString(R.string.toast_thanks), Toast.LENGTH_SHORT).show();

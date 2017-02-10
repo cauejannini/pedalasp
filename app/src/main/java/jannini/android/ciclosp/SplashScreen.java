@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -30,8 +31,6 @@ public class SplashScreen extends Activity {
     String jsonObjString, jsonObjBSString, jsonObjCSString, jsonObjPlaces;
 
     ProgressBar progressBar;
-
-    boolean isThisFirstTime = false;
 
     int startedCalls = 0;
     int finishedCalls = 0;
@@ -253,7 +252,6 @@ public class SplashScreen extends Activity {
 
                     startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     finish();
-
                 }
             });
 

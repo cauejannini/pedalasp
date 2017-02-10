@@ -70,7 +70,7 @@
         <string name="report_description">Alertar problema no trajeto</string>
         <string name="detalhes">dê mais detalhes…</string>
         <string name="localizacao">localização (clique no mapa)</string>
-        <string name="notifySolved">Clique se este problema já foi resolvido!</string>
+        <string name="notifySolved">Sinalizar como inexistente</string>
         <string name="runkeeper_login">Conectar com Runkeeper</string>
         <string name="empty_address_dialog_title">Campo de endereço vazio</string>
         <string name="empty_address_dialog_message">Você deve digitar os endereços de origem e destino para buscar uma rota</string>
@@ -162,7 +162,7 @@
         <string name="seu_local">Seu local</string>
         <string name="ir_para_mapa">Ir para o mapa</string>
         <string name="loc_no_loc_permission_exp">Sem essa permissão, algumas funções do app, como a de traçar rota, não funcionarão.</string>
-        <string name="loc_buscando_localizacao">Buscando sua localização…</string>
+        <string name="loc_buscando_localizacao">Aguardando sua localização…</string>
         <string name="type_of_alert">TIPO DE ALERTA</string>
         <string name="etReportDetailsError">Campo obrigatório</string>
         <string name="rbReportError">Escolha o tipo de alerta</string>

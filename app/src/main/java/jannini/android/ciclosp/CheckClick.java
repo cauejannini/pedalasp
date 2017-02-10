@@ -11,9 +11,9 @@ import java.util.List;
 
 public class CheckClick {
 	
-	LatLng result;
+	private LatLng result;
 	
-	public LatLng checkClick(LatLng point, List<LatLng> list, double maxDistance) {
+	LatLng checkClick(LatLng point, List<LatLng> list, double maxDistance) {
 
 		for (int i=0 ; i < list.size() - 1 ; i++ ){
 

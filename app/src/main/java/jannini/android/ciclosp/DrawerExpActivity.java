@@ -33,6 +33,13 @@ public class DrawerExpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_exp_splash);
 
+        states[0] = false;
+        states[1] = false;
+        states[2] = false;
+        states[3] = false;
+        states[4] = false;
+        states[5] = false;
+
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
@@ -48,6 +55,7 @@ public class DrawerExpActivity extends Activity {
         mDrawerList = (ListView) findViewById(R.id.list_drawer_exp);
         mDrawerList.setAdapter(myAdapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
         /*
         if (!splashResultCodes[0] && !splashResultCodes[1] && !splashResultCodes[2] && !splashResultCodes[3]) {
             Toast.makeText(this, R.string.splash_nenhuma_camada, Toast.LENGTH_LONG).show();

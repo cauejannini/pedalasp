@@ -66,7 +66,7 @@ public class RoutePrioritySpinnerAdapter extends BaseAdapter {
 
         return view;
     }
-    private static class ViewHolder{
+    private class ViewHolder{
         TextView tvPriority;
         ImageView ivPriority;
     }

@@ -9,7 +9,7 @@ import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
  */
 public interface GetRouteInterface {
 
-    void onFinished(int requestID, ArrayList<CyclingPath> cyclingPathReturnList);
+    void onFinished(int resultCode, int requestID, ArrayList<CyclingPath> cyclingPathReturnList);
 }
 
 

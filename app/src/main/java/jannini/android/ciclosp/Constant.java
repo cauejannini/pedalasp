@@ -28,7 +28,7 @@ public class Constant {
     public static String url_notify_solved = "http://pedalaspapp.com.br/dbaccess/notify_solved_report.php";
     public static String url_send_originDestination = "http://pedalaspapp.com.br/dbaccess/send_origin_destination.php";
     public static String url_create_device = "http://pedalaspapp.com.br/dbaccess/create_device.php";
-    public static String urlGetElevationForUrls = "http://www.pedalaspapp.com.br/dbaccess/get_elevations.php";
+    public static String urlGetElevationForUrls = "http://www.pedalaspapp.com.br/dbaccess/get_elevations_2.php";
     public static String urlGetDirections = "http://www.pedalaspapp.com.br/dbaccess/get_directions.php";
     public static String url_add_place = "http://pedalaspapp.com.br/dbaccess/add_place.php";
     public static String url_get_places_images_paths = "http://pedalaspapp.com.br/dbaccess/get_places_images_paths.php";
@@ -98,7 +98,9 @@ public class Constant {
     public static String SPKEY_PLACE_CATEGORIES_IDS = "jannini.android.ciclosp.PLACE_CATEGORIES_IDS";
     public static String SPKEY_PLACE_CATEGORIES_STATES = "jannini.android.ciclosp.PLACE_CATEGORIES_STATES";
 
-    public static int distanceBetweenElevationSamples = 50;
+    public static int totalMaxDistanceForLower = 25000;
+    public static int distanceBetweenElevationSamplesLower = 50;
+    public static int distanceBetweenElevationSamplesHigher = 75;
     public static int routeIntersectionTolerance = 45;
     public static float bikeLaneWidth = 1.5f;
     public static float selectedPolylineWidth = 7f;

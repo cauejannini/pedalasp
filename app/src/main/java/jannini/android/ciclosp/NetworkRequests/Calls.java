@@ -71,7 +71,6 @@ public class Calls {
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
 					return new ResponseWrapper(400, "Exception: " + e.toString());
-
 				} finally {
 					assert connection != null;
 					connection.disconnect();
@@ -442,7 +441,6 @@ public class Calls {
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
 					return new ResponseWrapper(400, "getDirections Exception: " + e.toString());
-
 				} finally {
 					assert connection != null;
 					connection.disconnect();
@@ -478,12 +476,18 @@ public class Calls {
 					// Criar variáveis strings para enviar no OutputStream
 					String encodedPathListString = "";
 					for (String encodedPath : encodedPathList) {
-						encodedPathListString = encodedPathListString + "," + encodedPath;
+						if (!encodedPathListString.equals("")) {
+							encodedPathListString += ",";
+						}
+						encodedPathListString += encodedPath;
 					}
 
 					String sampleNumbersString = "";
 					for (int sampleNumber : samplesNumbers) {
-						sampleNumbersString = sampleNumbersString + "," + String.valueOf(sampleNumber);
+						if (!sampleNumbersString.equals("")) {
+							sampleNumbersString += ",";
+						}
+						sampleNumbersString += String.valueOf(sampleNumber);
 					}
 
 					// Criar o OutputStream para carregar a mensagem
@@ -516,7 +520,6 @@ public class Calls {
 				} catch (Exception e) {
 					Log.e("Buffer Error", "Error converting result " + e.toString());
 					return new ResponseWrapper(400, "getElevationLists Exception: " + e.toString());
-
 				} finally {
 					assert connection != null;
 					connection.disconnect();

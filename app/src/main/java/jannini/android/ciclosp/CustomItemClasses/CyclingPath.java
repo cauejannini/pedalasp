@@ -28,7 +28,7 @@ public class CyclingPath implements Parcelable {
     public PolylineOptions routePolylineOptions;
 	public ArrayList<LatLng> pathLatLng = new ArrayList<>();
 	public ArrayList<Double> pathElevation = new ArrayList<>();
-	public double totalDistanceInKm;
+	public double totalDistanceInKm, totalDistanceInMeters;
 	public int totalDurationSecs;
 	public double maxInclination;
 	public LatLngBounds bounds;
@@ -46,7 +46,8 @@ public class CyclingPath implements Parcelable {
 
         this.pathLatLng = pathLatLng;
 		this.pathElevation = pathElevation;
-		String roundedDouble = String.format(Locale.US, "%.2f", totalDistance/1000);
+        this.totalDistanceInMeters = totalDistance;
+		String roundedDouble = String.format(Locale.US, "%.2f", totalDistanceInMeters/1000);
 		this.totalDistanceInKm = Double.valueOf(roundedDouble);
 		this.totalDurationSecs = totalDurationSecs;
 		this.bounds = bounds;
@@ -92,7 +93,11 @@ public class CyclingPath implements Parcelable {
 			double h1 = pathElevation.get(i+2);
 
 			// Calculate angle of this step in degrees
-			double seno = (h1 - h0) / Constant.distanceBetweenElevationSamples*2;
+            int distanceBetweenElevationSamples = Constant.distanceBetweenElevationSamplesLower;
+            if (totalDistanceInMeters > Constant.totalMaxDistanceForLower) {
+                distanceBetweenElevationSamples = Constant.distanceBetweenElevationSamplesHigher;
+            }
+			double seno = (h1 - h0) / distanceBetweenElevationSamples*2;
 			double radians = Math.asin(seno);
 			double degrees = Math.toDegrees(radians);
 			// Add the degrees for the inclination of this step to list of all inclinations
@@ -121,7 +126,6 @@ public class CyclingPath implements Parcelable {
             CheckClick cc = new CheckClick();
             CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bikeLanePath, bikeLaneBounds);
 
-            Log.e("ciclovia " + String.valueOf(i) , cicloviaList.get(i).Nome + "bounds: " + cicloviaList.get(i).bounds +" bool: " + String.valueOf(resultFromCheck.hasIntersection));
             // Check if route has intersection
             if (resultFromCheck.hasIntersection) {
 
@@ -161,7 +165,6 @@ public class CyclingPath implements Parcelable {
         if (routePolyline != null) {
 
             if (shouldSelect) {
-                Log.e("maxInclination", String.valueOf(this.maxInclination));
                 routePolyline.setWidth(Utils.getPixelValue(this.context, Constant.selectedPolylineWidth));
                 routePolyline.setColor(Color.BLUE);
                 routePolyline.setZIndex(10);
