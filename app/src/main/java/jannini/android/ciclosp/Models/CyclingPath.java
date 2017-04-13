@@ -1,11 +1,10 @@
-package jannini.android.ciclosp.CustomItemClasses;
+package jannini.android.ciclosp.Models;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -38,7 +37,7 @@ public class CyclingPath implements Parcelable {
     public boolean isSelected = false;
     public boolean mostBikeLanes, fastest, flattest;
 
-	public CyclingPath(Context context, ArrayList<LatLng> pathLatLng, double totalDistance, int totalDurationSecs, ArrayList<Double> pathElevation, LatLngBounds bounds, ArrayList<Ciclovia> cicloviaList, GoogleMap map){
+	public CyclingPath(Context context, ArrayList<LatLng> pathLatLng, double totalDistance, int totalDurationSecs, ArrayList<Double> pathElevation, LatLngBounds bounds, ArrayList<BikeLane> bikeLaneList, GoogleMap map){
 
         this.context = context;
         this.routePolylineOptions = new PolylineOptions().addAll(pathLatLng);
@@ -53,7 +52,7 @@ public class CyclingPath implements Parcelable {
 		this.bounds = bounds;
 
 		this.maxInclination = calculateMaxInclination();
-		this.percentageOnBikeLanes = calculatePercentageOnBikeLanes(cicloviaList);
+		this.percentageOnBikeLanes = calculatePercentageOnBikeLanes(bikeLaneList);
 
         this.mostBikeLanes = this.fastest = this.flattest = false;
 
@@ -111,26 +110,23 @@ public class CyclingPath implements Parcelable {
 		return maxInclinationDegrees;
 	}
 
-	private int calculatePercentageOnBikeLanes(ArrayList<Ciclovia> cicloviaList) {
+	private int calculatePercentageOnBikeLanes(ArrayList<BikeLane> bikeLaneList) {
 
-		for (int i = 0; i<cicloviaList.size(); i++) {
+		for (BikeLane bl : bikeLaneList) {
 
             // Antes de fazer o resultFrom check da ciclovia, checar se os quadrantes se interseccionam. Caso negativo, pular pra próxima.
-			if (!doesBoundsIntersect(this.bounds, cicloviaList.get(i).bounds)) {
-				continue;
-			}
+			for (int i = 0; i<bl.boundsList.size(); i++) {
+                if (!doesBoundsIntersect(this.bounds, bl.boundsList.get(i))) {
+                    continue;
+                }
 
-			ArrayList<LatLng> bikeLanePath = cicloviaList.get(i).latLngList;
-            LatLngBounds bikeLaneBounds = cicloviaList.get(i).bounds;
+                CheckClick cc = new CheckClick();
+                CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bl.paths.get(i), bl.boundsList.get(i));
 
-            CheckClick cc = new CheckClick();
-            CheckClick.GetIntersectionResult resultFromCheck = cc.getIntersectionBool(this.pathLatLng, bikeLanePath, bikeLaneBounds);
-
-            // Check if route has intersection
-            if (resultFromCheck.hasIntersection) {
-
-                intersectionPolylineOptions.addAll(resultFromCheck.pOptList);
-
+                // Check if route has intersection
+                if (resultFromCheck.hasIntersection) {
+                    intersectionPolylineOptions.addAll(resultFromCheck.pOptList);
+                }
             }
 		}
 

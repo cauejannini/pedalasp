@@ -18,7 +18,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -44,8 +43,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jannini.android.ciclosp.Adapters.InfoWindowActivity;
+import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
 import jannini.android.ciclosp.MyApplication.TrackerName;
+import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.Utils;
 
@@ -182,7 +182,7 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 		} else {
 			googleMap.setMyLocationEnabled(true);
 		}
-		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
+		googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getLayoutInflater()));
 		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
 		// check if map is created successfully or not
@@ -376,33 +376,24 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 
 				String messageString = etReportDetails.getText().toString();
 
-				try {
-					Calls.sendReport(address, String.valueOf(reportLatLng.latitude), String.valueOf(reportLatLng.longitude), type, messageString);
-					Toast toast = Toast.makeText(ReportActivity.this, R.string.toast_thanks, Toast.LENGTH_SHORT);
-					toast.setGravity(Gravity.CENTER, 0, 0);
-					toast.show();
-					finish();
-				} catch (Exception e) {
-					Toast toast_s = Toast.makeText(ReportActivity.this, "Check == false", Toast.LENGTH_SHORT);
-					toast_s.show();
-					AlertDialog.Builder network_alert = new AlertDialog.Builder(ReportActivity.this);
-					network_alert.setTitle(R.string.network_alert_title)
-							.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-								}
-							})
-							.setNegativeButton(R.string.network_settings, new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-								}
-							});
-					network_alert.show();
-				}
+				Calls.sendAlert(Constant.TOKEN, address, String.valueOf(reportLatLng.latitude), String.valueOf(reportLatLng.longitude), type, messageString, new CallHandler() {
+					@Override
+					public void onSuccess(int responseCode, String response) {
+						super.onSuccess(responseCode, response);
+						Utils.showThanksToast(ReportActivity.this);
+						finish();
+					}
+
+					@Override
+					public void onFailure(int responseCode, String response) {
+						super.onFailure(responseCode, response);
+
+						Utils.showErrorToast(ReportActivity.this);
+
+					}
+				});
 			}
 		} else {
-
-			Toast toast_s = Toast.makeText(ReportActivity.this, R.string.rede_nao_disponivel, Toast.LENGTH_SHORT);
-			toast_s.show();
 
 			AlertDialog.Builder network_alert = new AlertDialog.Builder(ReportActivity.this);
 			network_alert.setTitle(R.string.network_alert_title)

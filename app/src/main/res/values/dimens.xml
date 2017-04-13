@@ -4,4 +4,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="text_size_bottom_panel">14sp</dimen>
+    <dimen name="text_size_bottom_panel_title">18sp</dimen>
+    <dimen name="text_size_bottom_panel_small">12sp</dimen>
+
+    <dimen name="padding_bottom_panel_vertical">10dp</dimen>
+    <dimen name="padding_bottom_panel_horizontal">20dp</dimen>
+
+    <dimen name="height_bp_nv_constrained">110dp</dimen>
+    <dimen name="height_bp_nv">190dp</dimen>
+    <dimen name="height_bp_v">110dp</dimen>
+
 </resources>

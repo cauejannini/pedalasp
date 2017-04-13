@@ -84,7 +84,7 @@ public class AddToMapActivity extends Activity
 
             if (functionSelected.equals("PLACE")) {
 
-                Calls.addEstabelecimento(name, address, locality, String.valueOf(location.latitude), String.valueOf(location.longitude), phone, email, stringCategoriesIds, otherServices, new CallHandler() {
+                Calls.addPlace(Constant.TOKEN, name, address, String.valueOf(location.latitude), String.valueOf(location.longitude), phone, email, stringCategoriesIds, otherServices, new CallHandler() {
                     @Override
                     public void onSuccess(int responseCode, String response) {
                         Log.e("addPlaceHandler", "SUCCESS" + ": " + response);
@@ -103,7 +103,7 @@ public class AddToMapActivity extends Activity
 
                 if (placeId != 0) {
 
-                    Calls.updatePlaceInformation(String.valueOf(placeId), name, address, locality, String.valueOf(location.latitude), String.valueOf(location.longitude), phone, email, stringCategoriesIds, otherServices, new CallHandler() {
+                    Calls.updatePlaceInformation(Constant.TOKEN, String.valueOf(placeId), name, address, String.valueOf(location.latitude), String.valueOf(location.longitude), phone, email, stringCategoriesIds, otherServices, new CallHandler() {
                         @Override
                         public void onSuccess(int responseCode, String response) {
                             Log.e("updatePlaceHandler", "SUCCESS" + ": " + response);
@@ -130,7 +130,7 @@ public class AddToMapActivity extends Activity
     @Override
     public void onParacicloFragmentInteraction(int quantity, String strAddress, LatLng latLng) {
 
-        Calls.addParaciclo(strAddress, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude), quantity, new CallHandler(){
+        Calls.addParaciclo(Constant.TOKEN, strAddress, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude), String.valueOf(quantity), new CallHandler(){
 
             @Override
             public void onSuccess (int responseCode, String response) {

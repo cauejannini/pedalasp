@@ -7,6 +7,7 @@
 
         <string-array name="menu_array">
                 <item>Olá</item>
+                <item/>
                 <item>Vias para bicicleta</item>
                 <item>Locais</item>
                 <item>Estações</item>
@@ -18,6 +19,7 @@
         </string-array>
         <string-array name="menu_array_descriptions">
                 <item>Minha conta</item>
+                <item/>
                 <item>Ciclovias, ciclofaixas e ciclorrotas</item>
                 <item>Oficinas, lojas, cafés…</item>
                 <item>de compartilhamento de bikes</item>
@@ -119,7 +121,7 @@
         <string name="closed">FECHADO</string>
         <string name="obrigado_por_avisar">Obrigado por avisar!</string>
         <string name="nenhum_alerta_selecionado">Nenhum alerta selecionado</string>
-        <string name="extensao_ciclovia">Extensão da Ciclovia:</string>
+        <string name="bike_lane_info">Ciclovia:</string>
         <string name="tem_wifi">Tem Wifi? Sim</string>
         <string name="tem_wifi_nao">Tem Wifi? Não</string>
         <string name="estacao_ciclo_sampa">Estação Ciclo Sampa</string>
@@ -129,11 +131,11 @@
         <string name="atualizado_as">Atualizado às</string>
         <string name="em_manutencao_implantacao">EM MANUTENÇÃO / IMPLANTAÇÃO</string>
         <string name="estacao_bike_sampa">Estação Bike Sampa</string>
-        <string name="vagas">Vagas: </string>
+        <string name="parking_spaces">Vagas: </string>
         <string name="numero_de_paraciclos">Nº de paraciclos: </string>
         <string name="possui_emprestimo_bicicleta">Possui empréstimo de bicicletas</string>
         <string name="possui_emprestimo_bicicleta_nao">Não possui empréstimo de bicicletas</string>
-        <string name="funcionamento">Funcionamento:</string>
+        <string name="openingHours">Funcionamento:</string>
         <string name="details">Detalhes:</string>
         <string name="alerta_em">Alerta em:</string>
         <string name="via_esburacada">Via esburacada</string>
@@ -165,12 +167,13 @@
         <string name="loc_buscando_localizacao">Aguardando sua localização…</string>
         <string name="type_of_alert">TIPO DE ALERTA</string>
         <string name="etReportDetailsError">Campo obrigatório</string>
-        <string name="rbReportError">Escolha o tipo de alerta</string>
+        <string name="rbReportError">Escolha o type de alerta</string>
         <string name="your_bike_is_here">Sua bike está aqui</string>
         <string name="i_parked_here">ESTACIONEI AQUI</string>
         <string name="remove">REMOVER</string>
         <string name="saved_place">Local salvo</string>
         <string name="mandatory_field">Campo obrigatório</string>
+        <string name="password_do_not_match">A senha não confere</string>
         <string name="password_too_short">A senha deve conter no mínimo 8 caracteres</string>
         <string name="toast_error">Ocorreu um erro...</string>
         <string name="toast_server_error">Erro de servidor: </string>
@@ -206,7 +209,7 @@
         <string name="address">Endereço</string>
         <string name="email">Email</string>
         <string name="error_loading_places">Não foi possível carregar os Locais, verifique sua conexão</string>
-        <string name="place_info_not_verified">- INFORMAÇÕES NÃO VERIFICADAS -</string>
+        <string name="place_info_not_verified">INFORMAÇÕES NÃO VERIFICADAS</string>
 
         <string name="confirm_route_to_place_creation">Criar rota até este local?</string>
         <string name="confirm_route_to_deal_creation">Criar rota até essa oferta?</string>
@@ -234,5 +237,6 @@
         <string name="recovery_email_sent">Sua senha foi enviada para seu email.</string>
         <string name="account_updated">Perfil atualizado com sucesso</string>
         <string name="hello">Olá</string>
+        <string name="please_login">Ocorreu algum erro. Por favor, faça login novamente</string>
 
 </resources>

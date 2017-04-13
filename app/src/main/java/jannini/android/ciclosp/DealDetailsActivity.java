@@ -36,8 +36,6 @@ public class DealDetailsActivity extends Activity {
     LinearLayout llContainer;
     ProgressBar pbLoading;
 
-    String deviceId;
-
     LatLng dealLatLng;
 
     @Override
@@ -63,14 +61,13 @@ public class DealDetailsActivity extends Activity {
         tvPlaceCurrentOpenStatus = (TextView) findViewById(R.id.tv_deal_place_current_open_status);
 
         final SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        deviceId = sharedPreferences.getString(Constant.SPKEY_DEVICE_ID, "");
 
         Intent intent = getIntent();
         final String dealId = String.valueOf(intent.getIntExtra("DEAL_ID", 0));
 
         if (!dealId.equals("0")) {
 
-            Calls.getDealForId(dealId, new CallHandler() {
+            Calls.getDealForId(Constant.TOKEN, dealId, new CallHandler() {
                 @Override
                 public void onSuccess(int responseCode, String response) {
 
@@ -79,14 +76,16 @@ public class DealDetailsActivity extends Activity {
                         JSONObject job = new JSONObject(response);
 
                         String title = job.getString("title");
-                        placeId = job.getInt("place_id");
-                        String placeName = job.getString("place_name");
-                        String placePhone = job.getString("place_phone");
-                        String placeCurrentOpenStatus = job.getString("place_current_open_status");
-                        String address = job.getString("address");
                         String description = job.getString("description");
-                        Double lat = job.getDouble("lat");
-                        Double lng = job.getDouble("lng");
+                        JSONObject jobPlaceInfo = job.getJSONObject("place_info");
+                        placeId = jobPlaceInfo.getInt("place_id");
+                        String placeName = jobPlaceInfo.getString("place_name");
+                        String placePhone = jobPlaceInfo.getString("place_phone");
+                        String address = jobPlaceInfo.getString("place_address");
+                        String placeCurrentOpenStatus = jobPlaceInfo.getString("place_current_open_status");
+
+                        Double lat = jobPlaceInfo.getDouble("place_lat");
+                        Double lng = jobPlaceInfo.getDouble("place_lng");
                         dealLatLng = new LatLng(lat, lng);
 
                         tvTitle.setText(title);
@@ -194,30 +193,19 @@ public class DealDetailsActivity extends Activity {
 
         // Check if user already has voucher for this deal and if so, replace llGenerateVoucher for llShowVoucher. Maybe use localized progressbar to indicate this server activity.
 
+        Constant.TOKEN = sharedPreferences.getString(Constant.SPKEY_TOKEN, "");
         LinearLayout llGetVoucher = (LinearLayout) findViewById(R.id.ll_get_voucher);
         llGetVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!deviceId.equals("")) {
+                if (!Constant.TOKEN.trim().equals("")) {
 
-                    Calls.getVoucherForDeviceId(deviceId, dealId, generateVoucherHandler);
+                    Calls.getVoucher(Constant.TOKEN, dealId, generateVoucherHandler);
 
                 } else {
-
-                    Calls.createDevice(new CallHandler(){
-                        @Override
-                        public void onSuccess(int responseCode, String response) {
-                            super.onSuccess(responseCode, response);
-                            sharedPreferences.edit().putString(Constant.SPKEY_DEVICE_ID, response).apply();
-                            Calls.getVoucherForDeviceId(response, dealId, generateVoucherHandler);
-                        }
-
-                        @Override
-                        public void onFailure(int responseCode, String response) {
-                            super.onFailure(responseCode, response);
-                            Utils.showServerErrorToast(DealDetailsActivity.this, response);
-                        }
-                    });
+                    Utils.showToastWithMessage(DealDetailsActivity.this, getString(R.string.please_login));
+                    startActivity(new Intent(DealDetailsActivity.this, LoginActivity.class));
+                    finish();
                 }
             }
 

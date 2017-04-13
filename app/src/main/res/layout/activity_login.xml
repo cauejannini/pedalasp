@@ -7,25 +7,25 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="@color/white"
-    android:animateLayoutChanges="true"
     tools:context="jannini.android.ciclosp.LoginActivity">
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/ic_splash_logo"/>
 
     <ScrollView
         android:id="@+id/sv_register"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="140dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:padding="40dp">
@@ -33,9 +33,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textAllCaps="true"
+                android:textSize="18sp"
                 android:layout_marginBottom="20dp"
+                android:textColor="@color/app_blue"
                 android:text="Criar conta"/>
 
             <EditText
@@ -45,6 +45,7 @@
                 android:inputType="textCapWords"
                 android:layout_marginBottom="10dp"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Nome"/>
 
             <EditText
@@ -54,6 +55,7 @@
                 android:inputType="textCapWords"
                 android:layout_marginBottom="10dp"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Sobrenome"/>
 
             <EditText
@@ -63,30 +65,45 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Email"/>
+
+            <EditText
+                android:id="@+id/et_register_city"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
+                android:hint="Cidade"/>
 
             <EditText
                 android:id="@+id/et_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="textPassword"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Senha"/>
 
-            <Button
+            <EditText
+                android:id="@+id/et_register_confirm_password"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="10dp"
-                android:onClick="registerUser"
-                android:text="Criar"
-                android:background="@drawable/bt_water_blue"/>
+                android:inputType="textPassword"
+                android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
+                android:hint="Confirmar senha"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:onClick="switchToLogin"
+                android:textColor="@color/water_blue"
                 android:text="Já tenho conta. Fazer login"
                 android:background="@drawable/bt_transparent"/>
 
@@ -98,8 +115,7 @@
         android:id="@+id/sv_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:visibility="gone">
+        android:layout_marginTop="80dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,42 +127,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginBottom="20dp"
-                android:textAllCaps="true"
+                android:textColor="@color/app_blue"
                 android:text="Login"/>
 
             <EditText
                 android:id="@+id/et_login_email"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Email"/>
 
             <EditText
                 android:id="@+id/et_login_password"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="textPassword"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Senha"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="10dp"
-                android:onClick="login"
-                android:text="Login"
-                android:background="@drawable/bt_water_blue"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:textColor="@color/translucent_text"
+                android:textColor="@color/light_text"
                 android:onClick="switchToRecoverPassword"
                 android:text="Esqueci minha senha"
                 android:background="@drawable/bt_transparent"/>
@@ -156,6 +166,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:onClick="switchToRegister"
+                android:textColor="@color/water_blue"
                 android:text="Criar uma nova conta"
                 android:background="@drawable/bt_transparent"/>
 
@@ -180,28 +191,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textAllCaps="true"
+                android:textSize="18sp"
                 android:layout_marginBottom="20dp"
+                android:textColor="@color/app_blue"
                 android:text="Recuperar senha"/>
 
             <EditText
                 android:id="@+id/et_recover_email"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
+                android:textColor="@color/light_text"
                 android:hint="Email"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="10dp"
-                android:onClick="recoverPassword"
-                android:text="Recuperar senha"
-                android:background="@drawable/bt_water_blue"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,6 +212,7 @@
                 android:gravity="center"
                 android:onClick="switchToLogin"
                 android:text="Já tenho conta. Fazer login"
+                android:textColor="@color/light_text"
                 android:background="@drawable/bt_transparent"/>
 
             <TextView
@@ -217,11 +221,20 @@
                 android:gravity="center"
                 android:onClick="switchToRegister"
                 android:text="Criar uma nova conta"
+                android:textColor="@color/light_text"
                 android:background="@drawable/bt_transparent"/>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/bt_ok"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:text="Ok"
+        android:background="@drawable/bt_water_blue"/>
 
     <RelativeLayout
         android:id="@+id/rl_loading"

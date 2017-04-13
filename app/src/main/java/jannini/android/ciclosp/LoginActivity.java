@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -26,12 +27,21 @@ import jannini.android.ciclosp.NetworkRequests.Utils;
 public class LoginActivity extends Activity {
 
     RelativeLayout rlLoading;
+    Button btOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         rlLoading = (RelativeLayout) findViewById(R.id.rl_loading);
+        btOk = (Button) findViewById(R.id.bt_ok);
+
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
+            }
+        });
 
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -39,7 +49,7 @@ public class LoginActivity extends Activity {
 
     }
 
-    public void login (View view) {
+    public void login () {
 
         hideKeyboard();
 
@@ -65,20 +75,13 @@ public class LoginActivity extends Activity {
                     try {
                         JSONObject job = new JSONObject(response);
 
-                        int userId = job.getInt("USER_ID");
-                        String name = job.getString("NAME");
-                        String lastName = job.getString("LAST_NAME");
-                        String email = job.getString("EMAIL");
+                        String token = job.getString("token");
 
-                        Constant.USER_ID = userId;
-                        Constant.USER_NAME = name;
-                        Constant.USER_LAST_NAME = lastName;
-                        Constant.USER_EMAIL = email;
+                        Constant.TOKEN = token;
 
                         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt(Constant.SPKEY_USER_ID, userId);
-                        editor.putBoolean(Constant.SPKEY_USER_LOGGED_IN, true);
+                        editor.putString(Constant.SPKEY_TOKEN, token);
                         editor.apply();
 
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -98,11 +101,12 @@ public class LoginActivity extends Activity {
                     rlLoading.setVisibility(View.GONE);
 
                     switch (responseCode) {
-                        case 400:
-                            Utils.showToastWithMessage(LoginActivity.this, getString(R.string.email_not_registered));
-                            break;
+
                         case 401:
                             Utils.showToastWithMessage(LoginActivity.this, getString(R.string.wrong_password));
+                            break;
+                        case 404:
+                            Utils.showToastWithMessage(LoginActivity.this, getString(R.string.email_not_registered));
                             break;
                         default:
                             Utils.showServerErrorToast(LoginActivity.this, response);
@@ -113,19 +117,23 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void registerUser (View view) {
+    public void registerUser () {
 
         hideKeyboard();
 
         EditText etRegisterName = (EditText) findViewById(R.id.et_register_name);
         EditText etRegisterLastName = (EditText) findViewById(R.id.et_register_last_name);
         EditText etRegisterEmail = (EditText) findViewById(R.id.et_register_email);
+        EditText etRegisterCity = (EditText) findViewById(R.id.et_register_city);
         EditText etRegisterPassword = (EditText) findViewById(R.id.et_register_password);
+        EditText etRegisterConfirmPassword = (EditText) findViewById(R.id.et_register_confirm_password);
 
         String name = etRegisterName.getText().toString();
         String lastName = etRegisterLastName.getText().toString();
         String email = etRegisterEmail.getText().toString();
+        String city = etRegisterCity.getText().toString();
         String password = etRegisterPassword.getText().toString();
+        String confirmPassword = etRegisterConfirmPassword.getText().toString();
 
         if (name.trim().equals("")){
             etRegisterName.setError(getString(R.string.mandatory_field));
@@ -133,10 +141,13 @@ public class LoginActivity extends Activity {
             etRegisterLastName.setError(getString(R.string.mandatory_field));
         } else if (email.trim().equals("")) {
             etRegisterEmail.setError(getString(R.string.mandatory_field));
+        } else if (city.trim().equals("")) {
+            etRegisterCity.setError(getString(R.string.mandatory_field));
         } else if (password.length() < 8) {
             etRegisterPassword.setError(getString(R.string.password_too_short));
+        } else if (!password.equals(confirmPassword)) {
+            etRegisterConfirmPassword.setError(getString(R.string.password_do_not_match));
         } else {
-
             rlLoading.setVisibility(View.VISIBLE);
             Calls.registerUser(name, lastName, email, password, new CallHandler() {
                 @Override
@@ -146,20 +157,20 @@ public class LoginActivity extends Activity {
                     try {
                         JSONObject job = new JSONObject(response);
 
-                        int userId = job.getInt("USER_ID");
-                        String name = job.getString("NAME");
-                        String lastName = job.getString("LAST_NAME");
-                        String email = job.getString("EMAIL");
+                        int userId = job.getInt("id");
+                        String name = job.getString("name");
+                        String lastName = job.getString("last_name");
+                        String email = job.getString("email");
+                        String token = job.getString("token");
 
-                        Constant.USER_ID = userId;
                         Constant.USER_NAME = name;
                         Constant.USER_LAST_NAME = lastName;
                         Constant.USER_EMAIL = email;
+                        Constant.TOKEN = token;
 
                         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt(Constant.SPKEY_USER_ID, userId);
-                        editor.putBoolean(Constant.SPKEY_USER_LOGGED_IN, true);
+                        editor.putString(Constant.SPKEY_TOKEN, Constant.TOKEN);
                         editor.apply();
 
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
@@ -193,7 +204,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void recoverPassword (View view) {
+    public void recoverPassword () {
         hideKeyboard();
 
         EditText etRecoverEmail = (EditText) findViewById(R.id.et_recover_email);
@@ -248,9 +259,16 @@ public class LoginActivity extends Activity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-                    login(null);
+                    login();
                 }
                 return false;
+            }
+        });
+
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
             }
         });
     }
@@ -268,9 +286,16 @@ public class LoginActivity extends Activity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-                    registerUser(null);
+                    registerUser();
                 }
                 return false;
+            }
+        });
+
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser();
             }
         });
     }
@@ -288,9 +313,15 @@ public class LoginActivity extends Activity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-                    recoverPassword(null);
+                    recoverPassword();
                 }
                 return false;
+            }
+        });
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recoverPassword();
             }
         });
     }

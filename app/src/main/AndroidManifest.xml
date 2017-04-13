@@ -28,13 +28,7 @@
             android:value="AIzaSyANYWNKNo4VckhHFOaSQoRB9Ilcj32L8p0"/>
         <!-- Release API key: AIzaSyBJu-9BA9QD4YUZ1yt0TEby1A7-Ry9rA4M -->
         <!-- Programming API key: AIzaSyANYWNKNo4VckhHFOaSQoRB9Ilcj32L8p0 -->
- 
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/MainActionBarTheme">
-        </activity>
+
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
@@ -42,9 +36,14 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActionBarTheme">
         </activity>
         <activity
             android:name=".SugestaoActivity"

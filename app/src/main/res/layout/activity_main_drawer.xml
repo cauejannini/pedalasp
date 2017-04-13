@@ -34,18 +34,18 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentBottom="true"
-			android:translationY="267dp">
+			android:translationY="190dp">
 
 			<include layout="@layout/view_place_details_v"
 					 android:layout_width="match_parent"
-					 android:layout_height="wrap_content"
+					 android:layout_height="146dp"
 					 android:clickable="false"
 					 android:layout_alignParentTop="true"/>
 
 			<include layout="@layout/view_place_details_nv"
 					 android:layout_width="match_parent"
 					 android:clickable="false"
-					 android:layout_height="267dp"
+					 android:layout_height="190dp"
 					 android:layout_alignParentTop="true"/>
 
 			<LinearLayout
@@ -255,7 +255,7 @@
 		android:layout_gravity="start"
 		android:divider="#00000000"
 		android:dividerHeight="3dp"
-		android:background="@color/drawer_blue">
+		android:background="@color/drawer_bg">
 	</ListView>
 
 </android.support.v4.widget.DrawerLayout>

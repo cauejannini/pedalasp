@@ -2,7 +2,7 @@ package jannini.android.ciclosp.NetworkRequests;
 
 import java.util.ArrayList;
 
-import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
+import jannini.android.ciclosp.Models.CyclingPath;
 
 /**
  * Created by cauejannini on 04/07/16.

@@ -18,14 +18,14 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.CustomItemClasses.Ciclovia;
-import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
+import jannini.android.ciclosp.Models.BikeLane;
+import jannini.android.ciclosp.Models.CyclingPath;
 
 public class Route {
 
     public Route() {}
 
-    public static void getRoute (final Context context, final int requestId, final LatLng start, final LatLng end, final ArrayList<Ciclovia> ListCiclovias, final GoogleMap gMap, final GetRouteInterface handlerInterface) {
+    public static void getRoute (final Context context, final int requestId, final LatLng start, final LatLng end, final ArrayList<BikeLane> listBikeLanes, final GoogleMap gMap, final GetRouteInterface handlerInterface) {
 
         final ArrayList<CyclingPath> cyclingPathReturnList = new ArrayList<>();
 
@@ -152,7 +152,7 @@ public class Route {
                                                 durations.get(i),
                                                 elevationLists.get(i),
                                                 boundsList.get(i),
-                                                ListCiclovias, gMap);
+                                                listBikeLanes, gMap);
                                         cyclingPathReturnList.add(cp);
                                     }
 

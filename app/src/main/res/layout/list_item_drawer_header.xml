@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+	android:descendantFocusability="blocksDescendants"
+			  android:padding="40dp"
+			  android:gravity="center_vertical"
+    android:weightSum="1">
+	 
+	<ImageView
+		android:id="@+id/iv_user_pic"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:background="@color/light_text"/>
+	  
+	<LinearLayout
+	android:layout_weight="1"
+	android:layout_width="0dp"
+	android:layout_height="wrap_content"
+	android:gravity="start"
+	android:orientation="vertical"
+	android:layout_marginStart="20dp">
+	    
+	    <TextView
+	    android:id="@+id/tv_greeting"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_vertical"
+	    android:textSize="18sp"
+	    android:textColor="@color/white"
+		/>
+	    
+	    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_vertical"
+	    android:textSize="14sp"
+		android:text="Sua conta"
+	    android:textColor="@color/white"
+			/>
+		    
+	</LinearLayout>
+	
+</LinearLayout>

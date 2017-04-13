@@ -38,10 +38,10 @@ public class UserAccount extends Activity {
         tvName = (TextView) findViewById(R.id.tv_name);
         tvEmail = (TextView) findViewById(R.id.tv_email);
 
-        int userId = sharedPreferences.getInt(Constant.SPKEY_USER_ID, 0);
-        if (userId != 0) {
-            Constant.USER_ID = userId;
-            Calls.getUser(userId, getUserCallHandler);
+        String token = sharedPreferences.getString(Constant.SPKEY_TOKEN, "");
+        if (!token.trim().equals("")) {
+            Constant.TOKEN = token;
+            Calls.getUser(token, getUserCallHandler);
         } else {
             logOut(null);
         }
@@ -79,14 +79,14 @@ public class UserAccount extends Activity {
             etPassword.setError(getString(R.string.mandatory_field));
         } else {
 
-            Calls.updateUserAccount(Constant.USER_ID, name, lastName, password, new CallHandler(){
+            Calls.updateUserAccount(Constant.TOKEN, name, lastName, password, new CallHandler(){
                 @Override
                 public void onSuccess(int responseCode, String response) {
                     super.onSuccess(responseCode, response);
 
                     Utils.showToastWithMessage(UserAccount.this, getString(R.string.account_updated));
                     rlLoading.setVisibility(View.VISIBLE);
-                    Calls.getUser(Constant.USER_ID, getUserCallHandler);
+                    Calls.getUser(Constant.TOKEN, getUserCallHandler);
                 }
 
                 @Override
@@ -94,12 +94,13 @@ public class UserAccount extends Activity {
                     super.onFailure(responseCode, response);
 
                     switch (responseCode) {
-                        case 400:
-                            // USER ID INEXISTENT
-                            Utils.showServerErrorToast(UserAccount.this, response);
-                            break;
+
                         case 401:
                             Utils.showToastWithMessage(UserAccount.this, getString(R.string.wrong_password));
+                            break;
+                        case 404:
+                            // USER ID INEXISTENT
+                            Utils.showServerErrorToast(UserAccount.this, response);
                             break;
                         case 500:
                             Utils.showServerErrorToast(UserAccount.this, response);
@@ -118,9 +119,9 @@ public class UserAccount extends Activity {
 
             try {
                 JSONObject job = new JSONObject(response);
-                Constant.USER_NAME = job.getString("NAME");
-                Constant.USER_LAST_NAME = job.getString("LAST_NAME");
-                Constant.USER_EMAIL = job.getString("EMAIL");
+                Constant.USER_NAME = job.getString("name");
+                Constant.USER_LAST_NAME = job.getString("last_name");
+                Constant.USER_EMAIL = job.getString("email");
 
                 tvName.setText(Constant.USER_NAME+" "+Constant.USER_LAST_NAME);
                 tvEmail.setText(Constant.USER_EMAIL);
@@ -146,8 +147,7 @@ public class UserAccount extends Activity {
 
     public void logOut(View view) {
 
-        sharedPreferences.edit().putBoolean(Constant.SPKEY_USER_LOGGED_IN, false).apply();
-        sharedPreferences.edit().putInt(Constant.SPKEY_USER_ID, 0).apply();
+        sharedPreferences.edit().remove(Constant.SPKEY_TOKEN).apply();
 
         startActivity(new Intent(UserAccount.this, LoginActivity.class));
         finish();

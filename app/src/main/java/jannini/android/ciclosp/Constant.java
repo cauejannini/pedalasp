@@ -19,6 +19,7 @@ public class Constant {
     public static double urLat = -23.215394;
     public static double urLng = -46.164888;
 
+    public static String baseUrlApi = "http://pedalaspapp.com.br/api/0.0.1/";
     public static String url_obter_dados = "http://pedalaspapp.com.br/dbaccess/get_data.php";
     public static String url_obter_bikesampa = "http://pedalaspapp.com.br/dbaccess/obter_bikesampa.php";
     public static String url_obter_ciclosampa = "http://pedalaspapp.com.br/dbaccess/obter_ciclosampa.php";
@@ -51,15 +52,18 @@ public class Constant {
     public static String url_user_get = "http://pedalaspapp.com.br/dbaccess/user_get.php";
     public static String url_user_update = "http://pedalaspapp.com.br/dbaccess/user_update.php";
 
-    public static String spJobGeral = "jannini.android.ciclosp.jsonGeralString";
-    public static String spJobBS = "jannini.android.ciclosp.jsonBSString";
-    public static String spJobCS = "jannini.android.ciclosp.jsonCSString";
-    public static String spJobPlaces = "jannini.android.ciclosp.jsonPlacesString";
+    public static String SPKEY_JARRAY_BIKE_LANES = "jannini.android.ciclosp.JARRAY_BIKE_LANES";
+    public static String SPKEY_JARRAY_SHARING_STATIONS = "jannini.android.ciclosp.JARRAY_SHARING_STATIONS";
+    public static String SPKEY_JARRAY_PARKING_SPOTS = "jannini.android.ciclosp.JARRAY_PARKING_SPOTS";
+    public static String SPKEY_JARRAY_WIFI_SPOTS = "jannini.android.ciclosp.JARRAY_WIFI_SPOTS";
+    public static String SPKEY_JARRAY_PARKS = "jannini.android.ciclosp.JARRAY_PARKS";
+    public static String SPKEY_JARRAY_ALERTS = "jannini.android.ciclosp.JARRAY_ALERTS";
+    public static String SPKEY_JARRAY_PLACES = "jannini.android.ciclosp.JARRAY_PLACES";
     public static String spParkedHereListSize = "jannini.android.ciclosp.spParkedHereListSize";
     public static String spParkedHereLat = "jannini.android.ciclosp.parkedHereLat";
     public static String spParkedHereLng = "jannini.android.ciclosp.parkedHereLng";
 
-    public static String spUpdateTimeBS = "jannini.android.ciclosp.updateTimeBS";
+    public static String SPKEY_SHARING_STATIONS_UPDATE_TIME = "jannini.android.ciclosp.updateTimeBS";
     public static String spUpdateTimeCS = "jannini.android.ciclosp.updateTimeCS";
 
     public static String dontWarnAgainTooMuchMarkers = "jannini.android.ciclosp.dontWarnAgainTooMuchMarkers";
@@ -81,14 +85,15 @@ public class Constant {
     public static String SPKEY_SharingSystemsStates0 = "jannini.android.ciclosp.SharingSystemsStates0";
     public static String SPKEY_SharingSystemsStates1 = "jannini.android.ciclosp.SharingSystemsStates1";
     public static final int LISTPOS_MY_ACCOUNT = 0;
-    public static final int LISTPOS_BIKE_LANE = 1;
-    public static final int LISTPOS_PLACES = 2;
-    public static final int LISTPOS_SHARING_STATIONS = 3;
-    public static final int LISTPOS_PARKING = 4;
-    public static final int LISTPOS_PARKS = 5;
-    public static final int LISTPOS_WIFI = 6;
-    public static final int LISTPOS_ALERTS = 7;
-    public static final int LISTPOS_WRITE_FOR_US = 8;
+    public static final int LISTPOS_LAYERS_TITLE = 1;
+    public static final int LISTPOS_BIKE_LANE = 2;
+    public static final int LISTPOS_PLACES = 3;
+    public static final int LISTPOS_SHARING_STATIONS = 4;
+    public static final int LISTPOS_PARKING = 5;
+    public static final int LISTPOS_PARKS = 6;
+    public static final int LISTPOS_WIFI = 7;
+    public static final int LISTPOS_ALERTS = 8;
+    public static final int LISTPOS_WRITE_FOR_US = 9;
 
     public static HashMap<Integer, Bitmap> mapPlacesImages = new HashMap<>();
     public static HashMap<Integer, String> mapPlaceCategories = new HashMap<>();
@@ -141,15 +146,28 @@ public class Constant {
     public static final String API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_DEAL = "VOUCHER_LIMIT_REACHED_FOR_DEAL";
     public static final String API_RESPONSE_CODE_VOUCHER_LIMIT_REACHED_FOR_USER = "VOUCHER_LIMIT_REACHED_FOR_USER";
 
+    public static final String SHARING_STATIONS_SYSTEM_BIKE_SAMPA = "bike_sampa";
+    public static final String SHARING_STATIONS_SYSTEM_CICLO_SAMPA = "ciclo_sampa";
+
     public static int DURATION_BOTTOM_PANEL_ANIMATION = 250;
 
     public static String elevationAuthKey = "AIzaSyCjD8Rpz0_cOWredDecWSx1DKPX2GN1mhU";
 
-    public static String SPKEY_USER_LOGGED_IN = "SPKEY_USER_LOGGED_IN";
-    public static String SPKEY_USER_ID = "SPKEY_USER_ID";
-    public static int USER_ID = 0;
+    public static String SPKEY_TOKEN = "SPKEY_TOKEN";
     public static String USER_NAME = "";
     public static String USER_LAST_NAME = "";
     public static String USER_EMAIL = "";
+    public static String TOKEN = "";
+
+    public static String PATH_BG_SCREENSHOT = "";
+
+    public static final String MARKER_TAG_ALERT = "alert";
+    public static final String MARKER_TAG_PARK = "park";
+    public static final String MARKER_TAG_PARKING_SPOT = "parking_spot";
+    public static final String MARKER_TAG_PLACE = "place";
+    public static final String MARKER_TAG_SHARING_STATION = "sharing_station";
+    public static final String MARKER_TAG_NAVIGATION = "navigation";
+    public static final String MARKER_TAG_PARKED_HERE = "parked_here";
+
 
 }

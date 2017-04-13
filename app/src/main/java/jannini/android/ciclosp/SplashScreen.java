@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -18,17 +17,10 @@ import java.util.Calendar;
 
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.JSONParser;
 
 public class SplashScreen extends Activity {
 
     SharedPreferences sharedPreferences;
-
-	// Creating JSON Parser object
-    JSONParser jParser = new JSONParser();
-
-    // String to store jSON Object on device storage
-    String jsonObjString, jsonObjBSString, jsonObjCSString, jsonObjPlaces;
 
     ProgressBar progressBar;
 
@@ -46,55 +38,51 @@ public class SplashScreen extends Activity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
-        /*String deviceID = sharedPreferences.getString(Constant.SPKEY_DEVICE_ID, "");
-        if (deviceID.equals("")) {
-            Calls.createDevice(new CallHandler() {
-                @Override
-                public void onSuccess(int code, String response) {
-                    sharedPreferences.edit().putString(Constant.SPKEY_DEVICE_ID, response).apply();
-                }
-            });
-        }*/
-
-        if (isNetworkAvailable()) {
-            Calls.getPlacesIconsAndCategories(this, new CallHandler() {
-                @Override
-                public void onSuccess(int responseCode, String response) {
-                    Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
-                    placesImagesAndCategoriesAreLoaded = true;
-
-                    checkOtherMissingData();
-                }
-
-                @Override
-                public void onFailure(int responseCode, String response) {
-                    Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
-
-                    checkOtherMissingData();
-                }
-            });
+        String token = sharedPreferences.getString(Constant.SPKEY_TOKEN, "");
+        if (token.trim().equals("")) {
+            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+            finish();
         } else {
-            checkOtherMissingData();
+
+            Constant.TOKEN = token;
+
+            if (isNetworkAvailable()) {
+
+                Calls.getPlacesIconsAndCategories(this, new CallHandler() {
+                    @Override
+                    public void onSuccess(int responseCode, String response) {
+                        Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+                        placesImagesAndCategoriesAreLoaded = true;
+
+                        checkOtherMissingData();
+                    }
+
+                    @Override
+                    public void onFailure(int responseCode, String response) {
+                        Log.e("getIconsAndCategories", "CODE: " + responseCode + " | RESPONSE: " + response);
+
+                        checkOtherMissingData();
+                    }
+                });
+            } else {
+                checkOtherMissingData();
+            }
         }
 	}
 
     void checkOtherMissingData() {
-        String jsonObjString = sharedPreferences.getString(Constant.spJobGeral, null);
-        String jsonObjBSString = sharedPreferences.getString(Constant.spJobBS, null);
-        String jsonObjCSString = sharedPreferences.getString(Constant.spJobCS, null);
-        String jsonObjPlaces = sharedPreferences.getString(Constant.spJobPlaces, null);
 
-        if (jsonObjString == null) {
-
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_BIKE_LANES, null) == null) {
             startedCalls++;
+            Log.e("SPLASH GET", "BIKE LANES");
 
-            Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
+            Calls.getBikeLanes(Constant.TOKEN, new CallHandler() {
                 @Override
                 public void onSuccess(int responseCode, String response) {
-                    Log.e("Splash AllData Success", responseCode + ": " + response);
+                    super.onSuccess(responseCode, response);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constant.spJobGeral, response);
+                    editor.putString(Constant.SPKEY_JARRAY_BIKE_LANES, response);
                     editor.apply();
 
                     finishedCalls++;
@@ -106,7 +94,7 @@ public class SplashScreen extends Activity {
                 @Override
                 public void onFailure(int responseCode, String response) {
                     super.onFailure(responseCode, response);
-                    Log.e("Splash AllData Fail", responseCode + ": " + response);
+
                     finishedCalls++;
                     if (finishedCalls == startedCalls) {
                         proceedFromSplash();
@@ -115,88 +103,26 @@ public class SplashScreen extends Activity {
             });
         }
 
-        if (jsonObjBSString == null) {
-
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_SHARING_STATIONS, null) == null) {
             startedCalls++;
-            Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
-                @Override
-                public void onSuccess(int code, String response) {
-                    Log.e("Splash BS Success", code + ": " + response);
+            Log.e("SPLASH GET", "SHARING STATIONS");
 
-                    Calendar now = Calendar.getInstance();
-                    String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-                    String minutes = String.valueOf(now.get(Calendar.MINUTE));
-                    if (minutes.length() == 1) {
-                        minutes = "0" + minutes;
-                    }
-                    String updateTimeBS = hours + ":" + minutes;
-
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constant.spJobBS, response);
-                    editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
-                    editor.apply();
-
-                    finishedCalls++;
-                    if (finishedCalls == startedCalls) {proceedFromSplash();}
-                }
-
-                @Override
-                public void onFailure(int responseCode, String response) {
-                    super.onFailure(responseCode, response);
-                    Log.e("Splash BS Failure", responseCode + ": " + response);
-
-                    finishedCalls++;
-                    if (finishedCalls == startedCalls) {proceedFromSplash();}
-                }
-            });
-        }
-
-        if (jsonObjCSString == null) {
-
-            startedCalls++;
-            Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
-                @Override
-                public void onSuccess(int code, String response) {
-                    Log.e("Splash BS Success", code + ": " + response);
-
-                    Calendar now = Calendar.getInstance();
-                    String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-                    String minutes = String.valueOf(now.get(Calendar.MINUTE));
-                    if (minutes.length() == 1) {
-                        minutes = "0" + minutes;
-                    }
-                    String updateTimeCS = hours + ":" + minutes;
-
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constant.spJobCS, response);
-                    editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
-                    editor.apply();
-
-                    finishedCalls++;
-                    if (finishedCalls == startedCalls) {proceedFromSplash();}
-                }
-
-                @Override
-                public void onFailure(int responseCode, String response) {
-                    super.onFailure(responseCode, response);
-                    Log.e("Splash CS Failure", responseCode + ": " + response);
-
-                    finishedCalls++;
-                    if (finishedCalls == startedCalls) {proceedFromSplash();}
-                }
-            });
-        }
-
-        if (jsonObjPlaces == null) {
-
-            startedCalls++;
-            Calls.jsonRequest(Constant.url_get_places, new CallHandler() {
+            Calls.getSharingStations(Constant.TOKEN, new CallHandler() {
                 @Override
                 public void onSuccess(int responseCode, String response) {
-                    Log.e("Splash Places Success", response);
+                    super.onSuccess(responseCode, response);
+
+                    Calendar now = Calendar.getInstance();
+                    String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
+                    String minutes = String.valueOf(now.get(Calendar.MINUTE));
+                    if (minutes.length() == 1) {
+                        minutes = "0" + minutes;
+                    }
+                    String updateTime = hours + ":" + minutes;
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constant.spJobPlaces, response);
+                    editor.putString(Constant.SPKEY_JARRAY_SHARING_STATIONS, response);
+                    editor.putString(Constant.SPKEY_SHARING_STATIONS_UPDATE_TIME, updateTime);
                     editor.apply();
 
                     finishedCalls++;
@@ -205,7 +131,142 @@ public class SplashScreen extends Activity {
 
                 @Override
                 public void onFailure(int responseCode, String response) {
-                    Log.e("Splash Places Failure", response);
+                    super.onFailure(responseCode, response);
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+            });
+        }
+
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_PARKING_SPOTS, null) == null) {
+            startedCalls++;
+            Log.e("SPLASH GET", "PARKING SPOTS");
+
+            Calls.getParkingSpots(Constant.TOKEN, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    super.onSuccess(responseCode, response);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constant.SPKEY_JARRAY_PARKING_SPOTS, response);
+                    editor.apply();
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    super.onFailure(responseCode, response);
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+            });
+        }
+
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_WIFI_SPOTS, null) == null) {
+            startedCalls++;
+            Log.e("SPLASH GET", "WIFI SPOTS");
+
+            Calls.getWifiSpots(Constant.TOKEN, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    super.onSuccess(responseCode, response);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constant.SPKEY_JARRAY_WIFI_SPOTS, response);
+                    editor.apply();
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    super.onFailure(responseCode, response);
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+            });
+        }
+
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_PARKS, null) == null) {
+            startedCalls++;
+            Log.e("SPLASH GET", "PARKS");
+
+            Calls.getParks(Constant.TOKEN, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    super.onSuccess(responseCode, response);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constant.SPKEY_JARRAY_PARKS, response);
+                    editor.apply();
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    super.onFailure(responseCode, response);
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+            });
+        }
+
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_ALERTS, null) == null) {
+            startedCalls++;
+            Log.e("SPLASH GET", "ALERTS");
+
+            Calls.getAlerts(Constant.TOKEN, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    super.onSuccess(responseCode, response);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constant.SPKEY_JARRAY_ALERTS, response);
+                    editor.apply();
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    super.onFailure(responseCode, response);
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+            });
+        }
+
+        if (sharedPreferences.getString(Constant.SPKEY_JARRAY_PLACES, null) == null) {
+            startedCalls++;
+            Log.e("SPLASH GET", "PLACES");
+
+            Calls.getPlaces(Constant.TOKEN, new CallHandler() {
+                @Override
+                public void onSuccess(int responseCode, String response) {
+                    super.onSuccess(responseCode, response);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Constant.SPKEY_JARRAY_PLACES, response);
+                    editor.apply();
+
+                    finishedCalls++;
+                    if (finishedCalls == startedCalls) {proceedFromSplash();}
+                }
+
+                @Override
+                public void onFailure(int responseCode, String response) {
+                    super.onFailure(responseCode, response);
 
                     finishedCalls++;
                     if (finishedCalls == startedCalls) {proceedFromSplash();}
@@ -218,47 +279,35 @@ public class SplashScreen extends Activity {
     }
 
     void proceedFromSplash() {
-        boolean isUserLogged = sharedPreferences.getBoolean(Constant.SPKEY_USER_LOGGED_IN, false);
-        int userId = sharedPreferences.getInt(Constant.SPKEY_USER_ID, 0);
-        if (isUserLogged && userId != 0) {
 
-            Constant.USER_ID = userId;
-            Calls.getUser(userId, new CallHandler() {
-                @Override
-                public void onSuccess(int responseCode, String response) {
-                    super.onSuccess(responseCode, response);
-                    Log.e("getUser", "SUCCESS: " + response);
+        Calls.getUser(Constant.TOKEN, new CallHandler() {
+            @Override
+            public void onSuccess(int responseCode, String response) {
+                super.onSuccess(responseCode, response);
 
+                try {
+                    JSONObject job = new JSONObject(response);
+                    Constant.USER_NAME = job.getString("name");
+                    Constant.USER_LAST_NAME = job.getString("last_name");
+                    Constant.USER_EMAIL = job.getString("email");
 
-                    try {
-                        JSONObject job = new JSONObject(response);
-                        Constant.USER_NAME = job.getString("NAME");
-                        Constant.USER_LAST_NAME = job.getString("LAST_NAME");
-                        Constant.USER_EMAIL = job.getString("EMAIL");
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                    finish();
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                @Override
-                public void onFailure(int responseCode, String response) {
-                    super.onFailure(responseCode, response);
-                    Log.e("getUser", "FAIL: " + response);
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
+            }
 
-                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                    finish();
-                }
-            });
+            @Override
+            public void onFailure(int responseCode, String response) {
+                super.onFailure(responseCode, response);
+                Log.e("getUser", "FAIL: " + response);
 
-        } else {
-            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-            finish();
-        }
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
+            }
+        });
     }
 
     private boolean isNetworkAvailable() {

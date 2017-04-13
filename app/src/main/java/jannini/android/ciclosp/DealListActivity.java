@@ -75,7 +75,7 @@ public class DealListActivity extends Activity implements ListView.OnItemClickLi
                 String placeId = intent.getStringExtra("DEAL_LIST_PLACE_ID");
 
                 if (placeId != null && !placeId.equals("")) {
-                    Calls.getDealListForPlaceId(String.valueOf(placeId), new CallHandler() {
+                    Calls.getDealsForPlace(Constant.TOKEN, String.valueOf(placeId), new CallHandler() {
                         @Override
                         public void onSuccess(int responseCode, String response) {
                             super.onSuccess(responseCode, response);
@@ -103,7 +103,7 @@ public class DealListActivity extends Activity implements ListView.OnItemClickLi
 
             case Constant.IEXTRA_ICODE_DEAL_LIST_ALL:
 
-                Calls.getAllDeals(new CallHandler() {
+                Calls.getAllDeals(Constant.TOKEN, new CallHandler() {
                     @Override
                     public void onSuccess(int responseCode, String response) {
                         super.onSuccess(responseCode, response);
@@ -141,16 +141,18 @@ public class DealListActivity extends Activity implements ListView.OnItemClickLi
             HashMap<Integer, String> mapIdAddresses = new HashMap<>();
 
             for (int i = 0; i<jarray.length(); i++) {
+
                 JSONObject job = jarray.getJSONObject(i);
+                JSONObject jobPlaceInfo = job.getJSONObject("place_info");
 
                 mapIdTitles.put(job.getInt("id"),job.getString("title"));
-                mapIdPlaces.put(job.getInt("id"),job.getString("place_name"));
-                mapIdAddresses.put(job.getInt("id"),job.getString("address"));
+                mapIdPlaces.put(job.getInt("id"),jobPlaceInfo.getString("place_name"));
+                mapIdAddresses.put(job.getInt("id"),jobPlaceInfo.getString("place_address"));
 
-                if (userLocation != null && job.getDouble("lat") != 0 && job.getDouble("lng") != 0) {
+                if (userLocation != null && jobPlaceInfo.getDouble("place_lat") != 0 && jobPlaceInfo.getDouble("place_lng") != 0) {
                     Location dealLocation = new Location("dealLocation");
-                    dealLocation.setLatitude(job.getDouble("lat"));
-                    dealLocation.setLongitude(job.getDouble("lng"));
+                    dealLocation.setLatitude(jobPlaceInfo.getDouble("place_lat"));
+                    dealLocation.setLongitude(jobPlaceInfo.getDouble("place_lng"));
 
                     int distance = (int) dealLocation.distanceTo(userLocation);
                     sortedIdList.add(job.getInt("id"));

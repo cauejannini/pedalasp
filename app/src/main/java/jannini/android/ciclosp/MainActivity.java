@@ -14,7 +14,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,6 +33,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -81,7 +84,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -94,24 +96,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
-import jannini.android.ciclosp.Adapters.InfoWindowActivity;
+import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
 import jannini.android.ciclosp.Adapters.MyListAdapter;
 import jannini.android.ciclosp.Adapters.RoutePrioritySpinnerAdapter;
 import jannini.android.ciclosp.Adapters.ToggleServicesListAdapter;
-import jannini.android.ciclosp.CustomItemClasses.Bicicletario;
-import jannini.android.ciclosp.CustomItemClasses.Ciclovia;
-import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
-import jannini.android.ciclosp.CustomItemClasses.Estacao;
-import jannini.android.ciclosp.CustomItemClasses.Parque;
-import jannini.android.ciclosp.CustomItemClasses.Place;
-import jannini.android.ciclosp.CustomItemClasses.Report;
+import jannini.android.ciclosp.Models.Alert;
+import jannini.android.ciclosp.Models.BikeLane;
+import jannini.android.ciclosp.Models.CyclingPath;
+import jannini.android.ciclosp.Models.Park;
+import jannini.android.ciclosp.Models.ParkingSpot;
+import jannini.android.ciclosp.Models.Place;
+import jannini.android.ciclosp.Models.SharingStation;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
@@ -123,8 +126,10 @@ import jannini.android.ciclosp.NetworkRequests.Utils;
 
 import static com.google.android.gms.maps.CameraUpdateFactory.newCameraPosition;
 import static com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom;
+import static jannini.android.ciclosp.Constant.BikeLanesStates;
 import static jannini.android.ciclosp.Constant.PERMISSION_REQUEST_CODE_CALL_PHONE;
-import static jannini.android.ciclosp.Constant.mapCategoriesIcons;
+import static jannini.android.ciclosp.Constant.SHARING_STATIONS_SYSTEM_BIKE_SAMPA;
+import static jannini.android.ciclosp.Constant.States;
 import static jannini.android.ciclosp.R.id.map;
 
 public class MainActivity extends FragmentActivity
@@ -154,11 +159,6 @@ public class MainActivity extends FragmentActivity
 
 	String newline = Utils.newline;
 
-	// Bike lanes Arrays
-	public ArrayList<Polyline> cicloviasLineList = new ArrayList<>();
-	public ArrayList<Polyline> ciclofaixasLineList = new ArrayList<>();
-	public ArrayList<Polyline> ciclorrotasLineList = new ArrayList<>();
-
 	// APP STORED PREFERENCES
 
 	// Boolean to check if this is the first time app is being opened
@@ -166,25 +166,19 @@ public class MainActivity extends FragmentActivity
 	Boolean elevGraphExpWasShown = false;
 
 	// Criando listas de itens de cada tabela da DB
-	public ArrayList<Estacao> ListEstacoesITAU = new ArrayList<>();
-	public ArrayList<Estacao> ListEstacoesBRA = new ArrayList<>();
-	public ArrayList<Parque> ListParques = new ArrayList<>();
-	public ArrayList<Bicicletario> ListBicicletarios = new ArrayList<>();
-	public ArrayList<Ciclovia> ListCiclovias = new ArrayList<>();
-	public ArrayList<Ciclovia> ListCiclofaixas = new ArrayList<>();
-	public ArrayList<MarkerOptions> ListWifi = new ArrayList<>();
-	public ArrayList<Report> ListAlerts = new ArrayList<>();
-	public ArrayList<MarkerOptions> ListAcesso = new ArrayList<>();
+	public ArrayList<SharingStation> ListSharingStationsBS = new ArrayList<>();
+	public ArrayList<SharingStation> ListSharingStationsCS = new ArrayList<>();
+	public ArrayList<Park> ListParks = new ArrayList<>();
+	public ArrayList<ParkingSpot> ListParkingSpots = new ArrayList<>();
+	public ArrayList<BikeLane> ListBikeLanesPermanent = new ArrayList<>();
+	public ArrayList<BikeLane> ListBikeLanesRecreational = new ArrayList<>();
+	public ArrayList<BikeLane> ListBikeLanesPreferential = new ArrayList<>();
+	public ArrayList<MarkerOptions> ListWifiSpots = new ArrayList<>();
+	public ArrayList<Alert> ListAlerts = new ArrayList<>();
 	public static ArrayList<Place> ListPlaces = new ArrayList<>();
 
 	//Criando listas dos marcadores de mapa para os itens de cada tabela da DB
-	ArrayList<Marker> ListMarkersITAU = new ArrayList<>();
-	ArrayList<Marker> ListMarkersBRA = new ArrayList<>();
-	ArrayList<Marker> ListMarkersParques = new ArrayList<>();
-	ArrayList<Marker> ListMarkersBicicletarios = new ArrayList<>();
-	ArrayList<Marker> ListMarkersWifi = new ArrayList<>();
-	ArrayList<Marker> ListMarkersAlerts = new ArrayList<>();
-	ArrayList<Marker> ListMarkersAcessos = new ArrayList<>();
+	ArrayList<Marker> ListMarkersWifiSpots = new ArrayList<>();
 
 	List<Marker> listMarker = new ArrayList<>();
 
@@ -589,35 +583,14 @@ public class MainActivity extends FragmentActivity
 			// Bike Lanes
 			case Constant.LISTPOS_BIKE_LANE:
 				if (!Constant.States[0]) {
-
 					mDrawerList.getChildAt(Constant.LISTPOS_BIKE_LANE - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[0] = true;
-					displayBikeLanes();
-
 				} else {
 					mDrawerList.getChildAt(Constant.LISTPOS_BIKE_LANE - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 					Constant.States[0] = false;
-
-					// Set Ciclovias not visible
-					for (int i = 0; i < cicloviasLineList.size(); i++) {
-						cicloviasLineList.get(i).setVisible(false);
-					}
-
-					for (Marker marker : ListMarkersAcessos) {
-						marker.setVisible(false);
-					}
-
-					// Set ciclofaixas not visible
-					for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-						ciclofaixasLineList.get(i).setVisible(false);
-					}
-
-					// Set Ciclorrotas not visible
-					for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-						ciclorrotasLineList.get(i).setVisible(false);
-					}
-
 				}
+
+				displayBikeLanes();
 
 				sharedPreferences.edit().putBoolean("states0", Constant.States[0]).apply();
 
@@ -637,7 +610,7 @@ public class MainActivity extends FragmentActivity
 					} else {
 						// Get places icons and then places
 						setListItemLoading(Constant.LISTPOS_PLACES, true);
-						Calls.getPlacesIconsAndCategories(this, getPlacesIconsCallHandler);
+						synchronizePlaces();
 					}
 
 				} else {
@@ -646,10 +619,7 @@ public class MainActivity extends FragmentActivity
 
 					hideBottomPanel();
 
-					// Set Estabelecimentos Markers not visible
-					for (Place place : ListPlaces) {
-						place.setVisible(false);
-					}
+					displayPlaces();
 				}
 
 				sharedPreferences.edit().putBoolean("states1", Constant.States[1]).apply();
@@ -659,25 +629,14 @@ public class MainActivity extends FragmentActivity
 			// Sharing Systems
 			case Constant.LISTPOS_SHARING_STATIONS:
 				if (!Constant.States[2]) {
-
 					mDrawerList.getChildAt(Constant.LISTPOS_SHARING_STATIONS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[2] = true;
-					displaySharingSystems();
-
 				} else {
 					mDrawerList.getChildAt(Constant.LISTPOS_SHARING_STATIONS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
 					Constant.States[2] = false;
-
-					// Set BikeSampa not visible
-					for (int i = 0; i < ListMarkersITAU.size(); i++) {
-						ListMarkersITAU.get(i).setVisible(false);
-					}
-
-					// Set CicloSampa not visible
-					for (int i = 0; i < ListMarkersBRA.size(); i++) {
-						ListMarkersBRA.get(i).setVisible(false);
-					}
 				}
+
+				displaySharingStations();
 
 				sharedPreferences.edit().putBoolean("states2", Constant.States[2]).apply();
 
@@ -687,28 +646,15 @@ public class MainActivity extends FragmentActivity
 			case Constant.LISTPOS_PARKING:
 
 				if (!Constant.States[3]) {
-
 					mDrawerList.getChildAt(Constant.LISTPOS_PARKING - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 					Constant.States[3] = true;
-
-                    if (!ListMarkersBicicletarios.isEmpty()) {
-                        for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
-                            ListMarkersBicicletarios.get(i).setVisible(true);
-                        }
-                    } else {
-                        drawBicicletarios(true);
-                    }
-
                 } else {
-
-                    Constant.States[3] = false;
                     mDrawerList.getChildAt(Constant.LISTPOS_PARKING - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    for (int i = 0; i < ListMarkersBicicletarios.size(); i++) {
-                        ListMarkersBicicletarios.get(i).setVisible(false);
-                    }
-
+					Constant.States[3] = false;
                     hideBottomButton(btParkedHere);
                 }
+
+                displayParkingSpots();
 
                 sharedPreferences.edit().putBoolean("states3", Constant.States[3]).apply();
 
@@ -718,32 +664,18 @@ public class MainActivity extends FragmentActivity
 			case Constant.LISTPOS_PARKS:
 
 				if (!Constant.States[4]) {
-
-					Constant.States[4] = true;
 					mDrawerList.getChildAt(Constant.LISTPOS_PARKS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.States[4] = true;
+				} else {
+					mDrawerList.getChildAt(Constant.LISTPOS_PARKS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					Constant.States[4] = false;
+				}
 
-                    if (!ListMarkersParques.isEmpty()) {
+				displayParks();
 
-                        for (int i = 0; i < ListMarkersParques.size(); i++) {
-                            ListMarkersParques.get(i).setVisible(true);
-                        }
+				sharedPreferences.edit().putBoolean("states4", Constant.States[4]).apply();
 
-                    } else {
-                        drawParques(true);
-                    }
-
-                } else {
-
-                    Constant.States[4] = false;
-                    mDrawerList.getChildAt(Constant.LISTPOS_PARKS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    for (int i = 0; i < ListMarkersParques.size(); i++) {
-                        ListMarkersParques.get(i).setVisible(false);
-                    }
-                }
-
-                sharedPreferences.edit().putBoolean("states4", Constant.States[4]).apply();
-
-                break;
+				break;
 
 			// Wifi
 			case Constant.LISTPOS_WIFI:
@@ -753,21 +685,21 @@ public class MainActivity extends FragmentActivity
 					Constant.States[5] = true;
 					mDrawerList.getChildAt(Constant.LISTPOS_WIFI - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
 
-                    if (!ListMarkersWifi.isEmpty()) {
+                    if (!ListMarkersWifiSpots.isEmpty()) {
 
-                        for (int i = 0; i < ListMarkersWifi.size(); i++) {
-                            ListMarkersWifi.get(i).setVisible(true);
+                        for (int i = 0; i < ListMarkersWifiSpots.size(); i++) {
+                            ListMarkersWifiSpots.get(i).setVisible(true);
                         }
 
                     } else {
-                        drawWifi(true);
+                        drawWifiSpots(true);
                     }
                 } else {
 
                     Constant.States[5] = false;
                     mDrawerList.getChildAt(Constant.LISTPOS_WIFI - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-                    for (int i = 0; i < ListMarkersWifi.size(); i++) {
-                        ListMarkersWifi.get(i).setVisible(false);
+                    for (int i = 0; i < ListMarkersWifiSpots.size(); i++) {
+                        ListMarkersWifiSpots.get(i).setVisible(false);
                     }
                 }
 
@@ -779,26 +711,14 @@ public class MainActivity extends FragmentActivity
 			case Constant.LISTPOS_ALERTS:
 
 				if (!Constant.States[6]) {
-
-					Constant.States[6] = true;
 					mDrawerList.getChildAt(Constant.LISTPOS_ALERTS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_on);
+					Constant.States[6] = true;
+				} else {
+					mDrawerList.getChildAt(Constant.LISTPOS_ALERTS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
+					Constant.States[6] = false;
+				}
 
-                    if (!ListMarkersAlerts.isEmpty()) {
-                        for (int i = 0; i < ListMarkersAlerts.size(); i++) {
-                            ListMarkersAlerts.get(i).setVisible(true);
-                        }
-                    } else {
-                        drawAlerts(true);
-                    }
-                } else {
-                    Constant.States[6] = false;
-                    mDrawerList.getChildAt(Constant.LISTPOS_ALERTS - n).setBackgroundResource(R.drawable.drawer_list_item_bg_off);
-
-                    for (int i = 0; i < ListMarkersAlerts.size(); i++) {
-                        ListMarkersAlerts.get(i).setVisible(false);
-                    }
-                    hideBottomButton(notifyButton);
-                }
+				displayAlerts();
 
                 sharedPreferences.edit().putBoolean("states6", Constant.States[6]).apply();
 
@@ -870,71 +790,69 @@ public class MainActivity extends FragmentActivity
 
 	public void displayBikeLanes() {
 
-		if (Constant.BikeLanesStates[0]) {
-
-			// Se não estiverem desenhadas, desenhar
-			if (cicloviasLineList.isEmpty()) {
-
-				drawPermanentes(true);
-				// Se já estiverem desenhadas, apenas tornar visível
-			} else {
-
-				// Set Polylines and Markers visible
-				for (int i = 0; i < cicloviasLineList.size(); i++) {
-					cicloviasLineList.get(i).setVisible(true);
-				}
-				for (Marker marker : ListMarkersAcessos) {
-					marker.setVisible(true);
-				}
+		if (!Constant.States[0]) {
+			for (BikeLane bl : ListBikeLanesPermanent) {
+				bl.setVisible(false);
 			}
-
+			for (BikeLane bl : ListBikeLanesRecreational) {
+				bl.setVisible(false);
+			}
+			for (BikeLane bl : ListBikeLanesPreferential) {
+				bl.setVisible(false);
+			}
 		} else {
-			// Set Ciclovias not visible
-			for (int i = 0; i < cicloviasLineList.size(); i++) {
-				cicloviasLineList.get(i).setVisible(false);
-			}
-			for (Marker marker : ListMarkersAcessos) {
-				marker.setVisible(false);
-			}
-		}
-		// Caso não estejam desenhadas, desenhar!
+			if (Constant.BikeLanesStates[0]) {
 
-		if (Constant.BikeLanesStates[1]) {
-			if (ciclofaixasLineList.isEmpty()) {
-
-				drawTemporarias(true);
+				for (BikeLane bl : ListBikeLanesPermanent) {
+					if (bl.isDrawn()) {
+						bl.setVisible(true);
+					} else {
+						bl.drawOnMap(googleMap);
+					}
+				}
 
 			} else {
-
-				for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-					ciclofaixasLineList.get(i).setVisible(true);
+				for (BikeLane bl : ListBikeLanesPermanent) {
+					if (bl.isDrawn()) {
+						bl.setVisible(false);
+					}
 				}
 			}
+			// Caso não estejam desenhadas, desenhar!
 
-		} else {
-			for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-				ciclofaixasLineList.get(i).setVisible(false);
-			}
-		}
-
-
-		if (Constant.BikeLanesStates[2]) {
-			if (ciclorrotasLineList.isEmpty()) {
-
-				//drawPreferenciais(true);
-
+			if (Constant.BikeLanesStates[1]) {
+				for (BikeLane bl : ListBikeLanesRecreational) {
+					if (bl.isDrawn()) {
+						bl.setVisible(true);
+					} else {
+						bl.drawOnMap(googleMap);
+					}
+				}
 			} else {
-				for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-					ciclorrotasLineList.get(i).setVisible(true);
+				for (BikeLane bl : ListBikeLanesRecreational) {
+					if (bl.isDrawn()) {
+						bl.setVisible(false);
+					}
 				}
 			}
 
-		} else {
-			for (int i = 0; i < ciclorrotasLineList.size(); i++) {
-				ciclorrotasLineList.get(i).setVisible(false);
+
+			if (Constant.BikeLanesStates[2]) {
+				for (BikeLane bl : ListBikeLanesPreferential) {
+					if (bl.isDrawn()) {
+						bl.setVisible(true);
+					} else {
+						bl.drawOnMap(googleMap);
+					}
+				}
+			} else {
+				for (BikeLane bl : ListBikeLanesPreferential) {
+					if (bl.isDrawn()) {
+						bl.setVisible(false);
+					}
+				}
 			}
 		}
-
 	}
 
 	public void selectSharingSystems() {
@@ -971,7 +889,7 @@ public class MainActivity extends FragmentActivity
 				editor.apply();
 
 				if (Constant.States[2]) {
-					displaySharingSystems();
+					displaySharingStations();
 				}
 			}
 		});
@@ -979,41 +897,45 @@ public class MainActivity extends FragmentActivity
 		alert.show();
 	}
 
-	public void displaySharingSystems() {
+	public void displaySharingStations() {
 
-		if (Constant.SharingSystemsStates[0]) {
-			if (ListMarkersITAU.isEmpty()) {
+		if (!Constant.States[2]) {
+			for (SharingStation ss : ListSharingStationsBS) {
+				ss.setVisible(false);
+			}
+			for (SharingStation ss : ListSharingStationsCS) {
+				ss.setVisible(false);
+			}
+		} else {
+			if (Constant.SharingSystemsStates[0]) {
 
-				drawBikeSampa(true);
+				for (SharingStation ss : ListSharingStationsBS) {
+					if (ss.isDrawn()) {
+						ss.setVisible(true);
+					} else {
+						ss.drawOnMap(googleMap);
+					}
+				}
 
 			} else {
-
-				for (int i = 0; i < ListMarkersITAU.size(); i++) {
-					ListMarkersITAU.get(i).setVisible(true);
+				for (SharingStation ss : ListSharingStationsBS) {
+					ss.setVisible(false);
 				}
 			}
 
-		} else {
-			for (int i = 0; i < ListMarkersITAU.size(); i++) {
-				ListMarkersITAU.get(i).setVisible(false);
-			}
-		}
-
-		if (Constant.SharingSystemsStates[1]) {
-			if (ListMarkersBRA.isEmpty()) {
-
-				drawCicloSampa(true);
-
-			} else {
-
-				for (int i = 0; i < ListMarkersBRA.size(); i++) {
-					ListMarkersBRA.get(i).setVisible(true);
+			if (Constant.SharingSystemsStates[1]) {
+				for (SharingStation ss : ListSharingStationsCS) {
+					if (ss.isDrawn()) {
+						ss.setVisible(true);
+					} else {
+						ss.drawOnMap(googleMap);
+					}
 				}
 
-			}
-		} else {
-			for (int i = 0; i < ListMarkersBRA.size(); i++) {
-				ListMarkersBRA.get(i).setVisible(false);
+			} else {
+				for (SharingStation ss : ListSharingStationsCS) {
+					ss.setVisible(false);
+				}
 			}
 		}
 	}
@@ -1085,7 +1007,7 @@ public class MainActivity extends FragmentActivity
 					if (Constant.PlaceCategoriesStates.get(intKey)) {
 						if (place.categoryIdList.contains(intKey)) {
 							if (googleMap.getCameraPosition().zoom > Constant.ZOOM_FOR_NOT_FEATURED_PLACES || place.isFeatured) {
-								if (place.isDrawn) {
+								if (place.isDrawn()) {
 									place.setVisible(true);
 								} else {
 									place.drawOnMap(googleMap);
@@ -1107,7 +1029,7 @@ public class MainActivity extends FragmentActivity
 		googleMap.setBuildingsEnabled(false);
 		googleMap.getUiSettings().setMyLocationButtonEnabled(false);
 		googleMap.getUiSettings().setZoomControlsEnabled(false);
-		googleMap.setInfoWindowAdapter(new InfoWindowActivity(getLayoutInflater()));
+		googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getLayoutInflater()));
 		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		googleMap.getUiSettings().setCompassEnabled(true);
 
@@ -1127,7 +1049,7 @@ public class MainActivity extends FragmentActivity
 						.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_navigation_off))
 						.anchor(0.5f, 0.5f)
 				);
-				markerNavigation.setTag(new String[]{"markerNavigation"});
+				markerNavigation.setTag(new String[]{Constant.MARKER_TAG_NAVIGATION});
 			}
 			//Get Best Location Provider
 			bestAvailableProvider = locationManager.getBestProvider(criteria, false);
@@ -1150,15 +1072,18 @@ public class MainActivity extends FragmentActivity
 			if (SplashScreen.placesImagesAndCategoriesAreLoaded) {
 				createPlacesArray();
 			}
-			createBaseArrays();
-			createBikeSampaArray();
-			createCicloSampaArray();
+			createBikeLanesArray();
+			createSharingStationsArray();
+			createParkingSpotsArray();
+			createParksArray();
+			createWifiSpotsArray();
+			createAlertsArray();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 		if (isNetworkAvailable()) {
-			synchronizePlaces();
+			//synchronizePlaces();
 			getAllDataFromDB();
 		} else {
 			Utils.showNetworkAlertDialog(this);
@@ -1380,64 +1305,92 @@ public class MainActivity extends FragmentActivity
 
 			hideBottomPanel();
 
-			if (!cicloviasLineList.isEmpty()) {
-				if (cicloviasLineList.get(0).isVisible()) {
+			if (!ListBikeLanesPermanent.isEmpty()) {
+				if (States[0] && BikeLanesStates[0]) {
 
-					for (int i = 0; i < cicloviasLineList.size(); i++) {
-						List<LatLng> list = cicloviasLineList.get(i).getPoints();
-						LatLng closestPoint = checking.checkClick(point, list, maxDistance);
-						if (closestPoint != null) {
-							listMarker.add(googleMap.addMarker(new MarkerOptions()
-									.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
-									.title(ListCiclovias.get(i).Nome)
-									.snippet(ListCiclovias.get(i).Info + newline + newline
-											+ getString(R.string.distancia_total) + " " + ListCiclovias.get(i).Dist + " km")
-									.anchor(0.5f, 0.0f)
-									.alpha(0)));
-							listMarker.get(0).showInfoWindow();
+					for (BikeLane bl: ListBikeLanesPermanent) {
+						for (ArrayList<LatLng> path: bl.paths) {
 
-							// Center map in clicked point
-							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(closestPoint);
-							googleMap.animateCamera(cameraUpdate);
-							return;
-						}
-					}
-				}
-			}
+							LatLng closestPoint = checking.checkClick(point, path, maxDistance);
+							if (closestPoint != null) {
+								listMarker.add(googleMap.addMarker(new MarkerOptions()
+										.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
+										.title(bl.name)
+										.snippet(bl.info + newline + newline
+												+ getString(R.string.distancia_total) + " " + bl.distanceKm + " km")
+										.anchor(0.5f, 0.0f)
+										.alpha(0)));
+								listMarker.get(0).showInfoWindow();
 
-			if (!ciclofaixasLineList.isEmpty()) {
-				if (ciclofaixasLineList.get(0).isVisible()) {
-
-					for (int i = 0; i < ciclofaixasLineList.size(); i++) {
-						List<LatLng> list = ciclofaixasLineList.get(i).getPoints();
-						LatLng closestPoint = checking.checkClick(point, list, maxDistance);
-						if (closestPoint != null) {
-							Marker marker = googleMap.addMarker(new MarkerOptions()
-									.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
-									.title(ListCiclofaixas.get(i).Nome)
-									.anchor(0.5f, 0.0f)
-									.alpha(0));
-							if (rightNow.after(sundaySeven) && rightNow.before(sundaySixteen)) {
-								marker.setSnippet(getString(R.string.open_now) + newline
-										+ ListCiclofaixas.get(i).Info + newline + newline
-										+ getString(R.string.distancia_total) + " " + ListCiclofaixas.get(i).Dist + " km");
-							} else {
-								marker.setSnippet(getString(R.string.closed_now) + newline
-										+ ListCiclofaixas.get(i).Info + newline + newline
-										+ getString(R.string.distancia_total) + " " + ListCiclofaixas.get(i).Dist + " km");
+								// Center map in clicked point
+								CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(closestPoint);
+								googleMap.animateCamera(cameraUpdate);
+								return;
 							}
-							listMarker.add(marker);
-							listMarker.get(0).showInfoWindow();
-
-							// Center map in clicked point
-							CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(closestPoint);
-							googleMap.animateCamera(cameraUpdate);
-							return;
 						}
 					}
 				}
 			}
 
+			if (!ListBikeLanesPreferential.isEmpty()) {
+				if (States[0] && BikeLanesStates[2]) {
+
+					for (BikeLane bl: ListBikeLanesPreferential) {
+						for (ArrayList<LatLng> path: bl.paths) {
+							LatLng closestPoint = checking.checkClick(point, path, maxDistance);
+							if (closestPoint != null) {
+								listMarker.add(googleMap.addMarker(new MarkerOptions()
+										.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
+										.title(bl.name)
+										.snippet(bl.info + newline + newline
+												+ getString(R.string.distancia_total) + " " + bl.distanceKm + " km")
+										.anchor(0.5f, 0.0f)
+										.alpha(0)));
+								listMarker.get(0).showInfoWindow();
+
+								// Center map in clicked point
+								CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(closestPoint);
+								googleMap.animateCamera(cameraUpdate);
+								return;
+							}
+						}
+					}
+				}
+			}
+
+			if (!ListBikeLanesRecreational.isEmpty()) {
+				if (States[0] && BikeLanesStates[1]) {
+
+					for (BikeLane bl: ListBikeLanesRecreational) {
+						for (ArrayList<LatLng> path: bl.paths) {
+							LatLng closestPoint = checking.checkClick(point, path, maxDistance);
+							if (closestPoint != null) {
+								Marker marker = googleMap.addMarker(new MarkerOptions()
+										.position(new LatLng(closestPoint.latitude, closestPoint.longitude))
+										.title(bl.name)
+										.anchor(0.5f, 0.0f)
+										.alpha(0));
+								if (rightNow.after(sundaySeven) && rightNow.before(sundaySixteen)) {
+									marker.setSnippet(getString(R.string.open_now) + newline
+											+ bl.info + newline + newline
+											+ getString(R.string.distancia_total) + " " + bl.distanceKm + " km");
+								} else {
+									marker.setSnippet(getString(R.string.closed_now) + newline
+											+ bl.info + newline + newline
+											+ getString(R.string.distancia_total) + " " + bl.distanceKm + " km");
+								}
+								listMarker.add(marker);
+								listMarker.get(0).showInfoWindow();
+
+								// Center map in clicked point
+								CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(closestPoint);
+								googleMap.animateCamera(cameraUpdate);
+								return;
+							}
+						}
+					}
+				}
+			}
 			}
 		});
 
@@ -1460,21 +1413,24 @@ public class MainActivity extends FragmentActivity
 					markerSearch = null;
 				}
 
-				if (ListMarkersAlerts.contains(marker)) {
-					showBottomButton(notifyButton);
-				} else {
-					hideBottomButton(notifyButton);
-				}
+				if (marker.getTag() != null) {
+					String[] tagArray = (String[]) marker.getTag();
+					String tagIdentifier = tagArray[0];
 
-				if (ListMarkersBicicletarios.contains(marker)) {
-					showBottomButton(btParkedHere);
-				} else {
-					hideBottomButton(btParkedHere);
-					//hideBottomButton(llPlaceOptions);
-				}
+					if (tagIdentifier.equals(Constant.MARKER_TAG_ALERT)) {
+						showBottomButton(notifyButton);
+					} else {
+						hideBottomButton(notifyButton);
+					}
 
-				if (marker.getTitle() != null) {
-					if (marker.getTitle().equals(getString(R.string.your_bike_is_here))
+					if (tagIdentifier.equals(Constant.MARKER_TAG_PARKING_SPOT)) {
+						showBottomButton(btParkedHere);
+					} else {
+						hideBottomButton(btParkedHere);
+						//hideBottomButton(llPlaceOptions);
+					}
+
+					if (tagIdentifier.equals(Constant.MARKER_TAG_PARKED_HERE)
 						//|| marker.getTitle().equals(getString(R.string.saved_place))
 							) {
 						showBottomButton(btRemovePlace);
@@ -1482,19 +1438,19 @@ public class MainActivity extends FragmentActivity
 						hideBottomButton(btRemovePlace);
 						//hideBottomButton(llPlaceOptions);
 					}
-				}
 
-				if (marker.getTag() != null) {
-					String[] tag = (String[]) marker.getTag();
-					if (tag[0].equals("place")) {
-
+					if (tagIdentifier.equals(Constant.MARKER_TAG_PLACE)) {
 						markerSearch = googleMap.addMarker(new MarkerOptions()
-						.position(marker.getPosition()));
+								.position(marker.getPosition()));
 
-						handlePlaceClick(Integer.valueOf(tag[1]));
-					} else if (tag[0].equals("markerNavigation")) {
+						handlePlaceClick(Integer.valueOf(tagArray[1]));
+					} else if (tagIdentifier.equals(Constant.MARKER_TAG_NAVIGATION)) {
+						hideBottomPanel();
+					} else {
+						marker.showInfoWindow();
 						hideBottomPanel();
 					}
+
 				} else {
 					marker.showInfoWindow();
 					hideBottomPanel();
@@ -1502,6 +1458,7 @@ public class MainActivity extends FragmentActivity
 
 				// Funcionalidades padrões para quando se clica em qualquer marcador
 				googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()), 200, null);
+
 				return true;
 			}
 		});
@@ -1603,21 +1560,34 @@ public class MainActivity extends FragmentActivity
 
 		rlBottomContainer.bringToFront();
 
+		LinearLayout llPlaceExpandNF = (LinearLayout) findViewById(R.id.ll_place_expand_nf);
+
 		switch (type) {
 			case "PLACE_FEATURED":
+				yValueToAnimateContainer = rlBottomContainer.getHeight() - llPlaceDetailsV.getHeight();
 				yValueToAnimateButtons = -llPlaceDetailsV.getHeight();
 				rlPlacePanelV.setVisibility(View.VISIBLE);
 				rlPlacePanelNV.setVisibility(View.INVISIBLE);
 				llRoutePanel.setVisibility(View.INVISIBLE);
-				btRouteMode.animate().translationX(Utils.getPixelValue(this,200)).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
+				//btRouteMode.animate().translationX(Utils.getPixelValue(this,200)).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 				break;
 			case "PLACE_NOT_FEATURED":
-				yValueToAnimateContainer = rlBottomContainer.getHeight() - rlPlacePanelNV.getHeight();
-				yValueToAnimateButtons = -llRoutePanel.getHeight();
+				yValueToAnimateContainer = rlBottomContainer.getHeight() - (int) getResources().getDimension(R.dimen.height_bp_nv_constrained);
+				yValueToAnimateButtons = - (int) getResources().getDimension(R.dimen.height_bp_nv_constrained);
 				rlPlacePanelV.setVisibility(View.INVISIBLE);
 				rlPlacePanelNV.setVisibility(View.VISIBLE);
 				llRoutePanel.setVisibility(View.INVISIBLE);
-				btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
+				llPlaceExpandNF.animate().rotation(0);
+				//btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
+				break;
+			case "PLACE_NOT_FEATURED_EXPANDED":
+				yValueToAnimateContainer = rlBottomContainer.getHeight() - rlPlacePanelNV.getHeight();
+				yValueToAnimateButtons = - rlPlacePanelNV.getHeight();
+				rlPlacePanelV.setVisibility(View.INVISIBLE);
+				rlPlacePanelNV.setVisibility(View.VISIBLE);
+				llRoutePanel.setVisibility(View.INVISIBLE);
+				llPlaceExpandNF.animate().rotation(180);
+				//btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 				break;
 			case "ROUTE":
 				yValueToAnimateContainer = rlBottomContainer.getHeight() - llRoutePanel.getHeight();
@@ -1625,7 +1595,7 @@ public class MainActivity extends FragmentActivity
 				rlPlacePanelV.setVisibility(View.INVISIBLE);
 				rlPlacePanelNV.setVisibility(View.INVISIBLE);
 				llRoutePanel.setVisibility(View.VISIBLE);
-				btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
+				//btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 				break;
 		}
 
@@ -1648,7 +1618,7 @@ public class MainActivity extends FragmentActivity
 
 	public void hideBottomPanel() {
 
-		btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
+		//btRouteMode.animate().translationX(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 		rlBottomButtons.animate().translationY(0).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION);
 		rlBottomContainer.animate().translationY(rlBottomContainer.getHeight()).setDuration(Constant.DURATION_BOTTOM_PANEL_ANIMATION).withEndAction(new Runnable() {
 			@Override
@@ -1884,11 +1854,10 @@ public class MainActivity extends FragmentActivity
 		boolean b = false;
 
 		if (isNetworkAvailable()) {
-			for (int i = 0; i < ListMarkersAlerts.size(); i++) {
+			for (int i = 0; i < ListAlerts.size(); i++) {
 
-				if (ListMarkersAlerts.get(i).isInfoWindowShown()) {
-					String snippet = ListMarkersAlerts.get(i).getSnippet();
-					String timestamp = snippet.substring(snippet.length()-19, snippet.length());
+				if (ListAlerts.get(i).isSelected()) {
+					String timestamp = ListAlerts.get(i).getTimestamp();
 					Log.e("timestamp", timestamp);
 
 					NotifySolvedReport notifyObj = new NotifySolvedReport();
@@ -1898,7 +1867,7 @@ public class MainActivity extends FragmentActivity
 						e.printStackTrace();
 					}
 
-					ListMarkersAlerts.get(i).hideInfoWindow();
+					ListAlerts.get(i).deselectMarker();
 					hideBottomButton(notifyButton);
 
 					b = true;
@@ -1975,18 +1944,17 @@ public class MainActivity extends FragmentActivity
 
 		setUpdating();
 
-		// Update other stuff just after places are being loaded (priority to places because other stuff is probably stored offline)
-		Calls.jsonRequest(Constant.url_obter_dados, new CallHandler() {
+		Calls.getBikeLanes(Constant.TOKEN, new CallHandler() {
 			@Override
 			public void onSuccess(int responseCode, String response) {
-				Log.e("getDataHandler", responseCode + ": " + response);
+				Log.e("MAIN GET", "BIKE LANES SUC: " + responseCode + ": " + response);
 
 				SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString(Constant.spJobGeral, response);
+				editor.putString(Constant.SPKEY_JARRAY_BIKE_LANES, response);
 				editor.apply();
 
 				try {
-					createBaseArrays();
+					createBikeLanesArray();
 				} catch (JSONException 	e) {
 					e.printStackTrace();
 				}
@@ -1995,15 +1963,14 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onFailure(int responseCode, String response) {
 				super.onFailure(responseCode, response);
-				Log.e("getDataHandler Failure", responseCode + ": " + response);
-				Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
+				Log.e("MAIN GET", "BIKE LANES FAIL: " + responseCode + ": " + response);
 			}
 		});
 
-		Calls.jsonRequest(Constant.url_obter_bikesampa, new CallHandler() {
+		Calls.getSharingStations(Constant.TOKEN, new CallHandler() {
 			@Override
-			public void onSuccess(int code, String response) {
-				Log.e("getBSHandler", code + ": " + response);
+			public void onSuccess(int responseCode, String response) {
+				Log.e("MAIN GET", "SHARING STATIONS SUC: " + responseCode + ": " + response);
 
 				Calendar now = Calendar.getInstance();
 				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
@@ -2011,15 +1978,15 @@ public class MainActivity extends FragmentActivity
 				if (minutes.length() == 1) {
 					minutes = "0" + minutes;
 				}
-				String updateTimeBS = hours + ":" + minutes;
+				String updateTime = hours + ":" + minutes;
 
 				SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString(Constant.spJobBS, response);
-				editor.putString(Constant.spUpdateTimeBS, updateTimeBS);
+				editor.putString(Constant.SPKEY_JARRAY_SHARING_STATIONS, response);
+				editor.putString(Constant.SPKEY_SHARING_STATIONS_UPDATE_TIME, updateTime);
 				editor.apply();
 
 				try {
-					createBikeSampaArray();
+					createSharingStationsArray();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -2028,41 +1995,105 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onFailure(int responseCode, String response) {
 				super.onFailure(responseCode, response);
-				Log.e("getBSHandler Failure", responseCode + ": " + response);
-				Toast.makeText(MainActivity.this, getString(R.string.toast_error), Toast.LENGTH_SHORT).show();
+				Log.e("MAIN GET", "SHARING STATIONS FAIL: " + responseCode + ": " + response);
 			}
 		});
 
-		Calls.jsonRequest(Constant.url_obter_ciclosampa, new CallHandler() {
+		Calls.getParkingSpots(Constant.TOKEN, new CallHandler(){
 			@Override
-			public void onSuccess(int code, String response) {
-				Log.e("getCicloSampaHandler", code + ": " + response);
-
-				Calendar now = Calendar.getInstance();
-				String hours = String.valueOf(now.get(Calendar.HOUR_OF_DAY));
-				String minutes = String.valueOf(now.get(Calendar.MINUTE));
-				if (minutes.length() == 1) {
-					minutes = "0" + minutes;
-				}
-				String updateTimeCS = hours + ":" + minutes;
+			public void onSuccess(int responseCode, String response) {
+				super.onSuccess(responseCode, response);
+				Log.e("MAIN GET", "PARKING SPOTS SUC: " + responseCode + ": " + response);
 
 				SharedPreferences.Editor editor = sharedPreferences.edit();
-				editor.putString(Constant.spJobCS, response);
-				editor.putString(Constant.spUpdateTimeCS, updateTimeCS);
+				editor.putString(Constant.SPKEY_JARRAY_PARKING_SPOTS, response);
 				editor.apply();
 
 				try {
-					createCicloSampaArray();
-				} catch (JSONException e) {
+					createParkingSpotsArray();
+				} catch (JSONException 	e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+				Log.e("MAIN GET", "PARKING SPOTS FAIL: " + responseCode + ": " + response);
+			}
+		});
+
+		Calls.getWifiSpots(Constant.TOKEN, new CallHandler(){
+			@Override
+			public void onSuccess(int responseCode, String response) {
+				super.onSuccess(responseCode, response);
+				Log.e("MAIN GET", "WIFI SPOTS SUC: " + responseCode + ": " + response);
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.SPKEY_JARRAY_WIFI_SPOTS, response);
+				editor.apply();
+
+				try {
+					createWifiSpotsArray();
+				} catch (JSONException 	e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+				Log.e("MAIN GET", "WIFI SPOTS FAIL: " + responseCode + ": " + response);
+			}
+		});
+
+		Calls.getParks(Constant.TOKEN, new CallHandler(){
+			@Override
+			public void onSuccess(int responseCode, String response) {
+				super.onSuccess(responseCode, response);
+				Log.e("MAIN GET", "PARKS SUC: " + responseCode + ": " + response);
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.SPKEY_JARRAY_PARKS, response);
+				editor.apply();
+
+				try {
+					createParksArray();
+				} catch (JSONException 	e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFailure(int responseCode, String response) {
+				super.onFailure(responseCode, response);
+				Log.e("MAIN GET", "PARKS FAIL: " + responseCode + ": " + response);
+			}
+		});
+
+		Calls.getAlerts(Constant.TOKEN, new CallHandler(){
+			@Override
+			public void onSuccess(int responseCode, String response) {
+				super.onSuccess(responseCode, response);
+				Log.e("MAIN GET", "ALERTS SUC: " + responseCode + ": " + response);
+
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putString(Constant.SPKEY_JARRAY_ALERTS, response);
+				editor.apply();
+
+				try {
+					createAlertsArray();
+				} catch (JSONException 	e) {
+					e.printStackTrace();
+				}
+
 				resetUpdating();
 			}
 
 			@Override
 			public void onFailure(int responseCode, String response) {
 				super.onFailure(responseCode, response);
-				Log.e("getCSHandler Failure", responseCode + ": " + response);
+				Log.e("MAIN GET", "ALERTS FAIL: " + responseCode + ": " + response);
 				resetUpdating();
 			}
 		});
@@ -2076,15 +2107,17 @@ public class MainActivity extends FragmentActivity
 		Calls.getPlacesIconsAndCategories(this, new CallHandler() {
 			@Override
 			public void onSuccess(int responseCode, String response) {
-				Log.e("getIcons", response);
+				Log.e("MAIN GET", "PLACES SUC: " + response);
 
 				// Get Places
-				Calls.jsonRequest(Constant.url_get_places, new CallHandler() {
+				Calls.getPlaces(Constant.TOKEN, new CallHandler() {
 					@Override
 					public void onSuccess(int responseCode, String response) {
 
+						Log.e("json places", response);
+
 						SharedPreferences.Editor editor = sharedPreferences.edit();
-						editor.putString(Constant.spJobPlaces, response);
+						editor.putString(Constant.SPKEY_JARRAY_PLACES, response);
 						editor.apply();
 
 						setListItemLoading(Constant.LISTPOS_PLACES, false);
@@ -2099,7 +2132,7 @@ public class MainActivity extends FragmentActivity
 
 					@Override
 					public void onFailure(int responseCode, String response) {
-						Log.e("getPlaces fail", response);
+						Log.e("MAIN GET", "PLACES FAIL: " + responseCode + ": " + response);
 						Toast.makeText(MainActivity.this, getString(R.string.error_loading_places), Toast.LENGTH_LONG).show();
 						resetUpdating();
 						setListItemLoading(Constant.LISTPOS_PLACES, false);
@@ -2133,430 +2166,285 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	public void createBaseArrays() throws JSONException {
+	public void createBikeLanesArray() throws JSONException {
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_BIKE_LANES, null);
 
-		// Dados gerais
+		if (strJarray != null) {
 
-		String strJobGeral = sharedPreferences.getString(Constant.spJobGeral, null);
+			JSONArray jarrayBikeLanes = new JSONArray(strJarray);
 
-		if (strJobGeral != null) {
+			// Clear list before adding updated items
+			for (BikeLane bl: ListBikeLanesPermanent) { bl.removeFromMap();}
+			ListBikeLanesPermanent.clear();
+			for (BikeLane bl: ListBikeLanesRecreational) { bl.removeFromMap();}
+			ListBikeLanesRecreational.clear();
+			for (BikeLane bl: ListBikeLanesPreferential) { bl.removeFromMap();}
+			ListBikeLanesPreferential.clear();
 
-			JSONObject job = new JSONObject(strJobGeral);
+			for (int i = 0; i < jarrayBikeLanes.length(); i++) {
 
-			try {
+				JSONObject jobBikeLane = jarrayBikeLanes.getJSONObject(i);
 
-				JSONArray ParquesJSArray = job.getJSONArray("PARQUES");
+				int id = jobBikeLane.getInt("id");
+				String name = jobBikeLane.getString("name");
+				String info = jobBikeLane.getString("info");
+				String distanceKm = jobBikeLane.getString("distance_km");
+				double doubleDistanceKm = Double.parseDouble(distanceKm);
+				int type = jobBikeLane.getInt("type");
 
-				//Clear list before adding updated items
-				ListParques.clear();
+				ArrayList<ArrayList<LatLng>> pathsInBikeLane = new ArrayList<>();
 
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < ParquesJSArray.length(); i++) {
-					JSONObject c = ParquesJSArray.getJSONObject(i);
+				JSONArray jarrayPaths = jobBikeLane.getJSONArray("paths");
 
-					// Storing each json item in variable
-					String nome = c.getString("nome");
-					String endereco = c.getString("endereco");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String descricao = c.getString("descricao");
-					String funcionamento = c.getString("funcionamento");
-					String ciclovia = c.getString("ciclovia");
-					String contato = c.getString("contato");
-					int wifi = c.getInt("wifi");
+				// looping por todos os pontos da Ciclovia
+				for (int y = 0; y < jarrayPaths.length(); y++) {
 
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
+					ArrayList<LatLng> path = new ArrayList<>();
+					JSONArray jarraySinglePath = jarrayPaths.getJSONArray(y);
+					for (int z = 0; z < jarraySinglePath.length(); z++) {
+						JSONObject point = jarraySinglePath.getJSONObject(z);
+						String lat = point.getString("lat");
+						String lng = point.getString("lng");
 
-					Parque item_parque = new Parque(nome, endereco, latitude, longitude, descricao, funcionamento, ciclovia, contato, wifi);
+						LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 
-					ListParques.add(item_parque);
-
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			try {
-
-				JSONArray BicicletariosJSArray = job.getJSONArray("BICICLETARIOS");
-
-				//Clear list before adding updated items
-				ListBicicletarios.clear();
-
-				// looping por todos os itens
-				for (int i = 0; i < BicicletariosJSArray.length(); i++) {
-					JSONObject c = BicicletariosJSArray.getJSONObject(i);
-
-					// Storing each json item in variable
-					String nome = c.getString("nome");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String address = c.getString("address");
-					String tipo = c.getString("tipo");
-					int vagas = c.getInt("vagas");
-					String emprestimo = c.getString("emprestimo");
-					String horario = c.getString("horario");
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					Bicicletario item_bicicletario = new Bicicletario(nome, latitude, longitude, address, tipo, vagas, emprestimo, horario);
-
-					ListBicicletarios.add(item_bicicletario);
-
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			try {
-
-				JSONArray WifiJSArray = job.getJSONArray("WIFI");
-
-				//Clear list before adding updated items
-				ListWifi.clear();
-
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < WifiJSArray.length(); i++) {
-					JSONObject c = WifiJSArray.getJSONObject(i);
-
-					// Storing each json item in variable
-					String nome = c.getString("nome");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String end = c.getString("endereco");
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					MarkerOptions item_wifi = new MarkerOptions()
-							.title(nome)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_wifi))
-							.snippet(end)
-							.position(new LatLng(latitude, longitude));
-
-					ListWifi.add(item_wifi);
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			try {
-
-				JSONArray ReportsJSArray = job.getJSONArray("REPORTS");
-
-				//Clear list before adding updated items
-				ListAlerts.clear();
-
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < ReportsJSArray.length(); i++) {
-					JSONObject c = ReportsJSArray.getJSONObject(i);
-
-					// Storing each json item in variable
-					String tipo = c.getString("tipo");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String desc = c.getString("descricao");
-					String timestamp = c.getString("timestamp");
-					String endereco = c.getString("endereco");
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					Report report = new Report(tipo, endereco, latitude, longitude, desc, timestamp);
-
-					ListAlerts.add(report);
-
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			try {
-
-				JSONArray cicloviasJSArray = job.getJSONArray("CICLOVIAS");
-
-				// Clear list before adding updated items
-				ListCiclovias.clear();
-
-				for (int i = 0; i < cicloviasJSArray.length(); i++) {
-
-					JSONObject cicloviaJSObject = cicloviasJSArray.getJSONObject(i);
-
-					JSONArray pontosJSArray = cicloviaJSObject.getJSONArray("ciclovia");
-
-					JSONObject first_object = pontosJSArray.getJSONObject(0);
-					String nome = first_object.getString("nome");
-					String info = first_object.getString("info");
-					String dist_string = first_object.getString("distancia");
-					double dist = Double.parseDouble(dist_string);
-					String tipoString = first_object.getString("tipo");
-					int tipo = Integer.valueOf(tipoString);
-					ArrayList<LatLng> list = new ArrayList<>();
-
-					// looping por todos os pontos da Ciclovia
-					for (int y = 0; y < pontosJSArray.length(); y++) {
-						JSONObject c = pontosJSArray.getJSONObject(y);
-
-						String lat = c.getString("lat");
-						String lng = c.getString("lng");
-
-						double latitude = Double.parseDouble(lat);
-						double longitude = Double.parseDouble(lng);
-						LatLng latLng = new LatLng(latitude, longitude);
-
-						list.add(latLng);
+						path.add(latLng);
 					}
-					Ciclovia ciclovia = new Ciclovia(nome, info, dist, list, tipo);
 
-					ListCiclovias.add(ciclovia);
-
+					pathsInBikeLane.add(path);
 				}
 
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+				BikeLane bikeLane = new BikeLane(this, id, name, info, doubleDistanceKm, pathsInBikeLane, type);
 
-			try {
+				JSONArray jarrayAccesses = jobBikeLane.getJSONArray("accesses");
+				if (jarrayAccesses.length() != 0) {
+					for (int y = 0; y<jarrayAccesses.length(); y++) {
+						JSONObject access = jarrayAccesses.getJSONObject(y);
+						String title = access.getString("title");
+						String accessInfo = access.getString("info");
+						String lat = access.getString("lat");
+						String lng = access.getString("lng");
 
-				JSONArray ciclofaixasJSArray = job.getJSONArray("CICLOFAIXAS");
-
-				// Clear list before adding updated items
-				ListCiclofaixas.clear();
-
-				for (int i = 0; i < ciclofaixasJSArray.length(); i++) {
-
-					JSONObject ciclofaixasJSObject = ciclofaixasJSArray.getJSONObject(i);
-
-					JSONArray pontosJSArray = ciclofaixasJSObject.getJSONArray("ciclofaixa");
-
-					JSONObject first_object = pontosJSArray.getJSONObject(0);
-					String nome = first_object.getString("nome");
-					String info = first_object.getString("info");
-					String dist_string = first_object.getString("distancia");
-					double dist = Double.parseDouble(dist_string);
-					ArrayList<LatLng> list = new ArrayList<>();
-
-					// looping por todos os pontos da Ciclovia
-					for (int y = 0; y < pontosJSArray.length(); y++) {
-						JSONObject c = pontosJSArray.getJSONObject(y);
-
-						String lat = c.getString("lat");
-						String lng = c.getString("lng");
-
-						double latitude = Double.parseDouble(lat);
-						double longitude = Double.parseDouble(lng);
-						LatLng latLng = new LatLng(latitude, longitude);
-
-						list.add(latLng);
+						bikeLane.addAccess(title, accessInfo, Double.parseDouble(lat), Double.parseDouble(lng));
 					}
-					Ciclovia ciclofaixa = new Ciclovia(nome, info, dist, list, 1);
-
-					ListCiclofaixas.add(ciclofaixa);
-
 				}
 
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-
-			ArrayList<PolylineOptions> ciclorrotasOptionsList = new ArrayList<>();
-			try {
-
-				JSONArray ciclorrotasJSArray = job.getJSONArray("CICLORROTAS");
-
-				for (int i = 0; i < ciclorrotasJSArray.length(); i++) {
-
-					JSONObject ciclorrotasJSObject = ciclorrotasJSArray.getJSONObject(i);
-
-					JSONArray pontosJSArray = ciclorrotasJSObject.getJSONArray("ciclorrota");
-
-					ArrayList<LatLng> list = new ArrayList<>();
-
-					// looping por todos os pontos da Ciclovia
-					for (int y = 0; y < pontosJSArray.length(); y++) {
-						JSONObject c = pontosJSArray.getJSONObject(y);
-
-						String lat = c.getString("lat");
-						String lng = c.getString("lng");
-
-						double latitude = Double.parseDouble(lat);
-						double longitude = Double.parseDouble(lng);
-						LatLng latLng = new LatLng(latitude, longitude);
-
-						list.add(latLng);
-					}
-					PolylineOptions polyline = new PolylineOptions();
-					polyline.addAll(list);
-
-					ciclorrotasOptionsList.add(polyline);
-
+				switch (type) {
+					case 0:
+						ListBikeLanesPermanent.add(bikeLane);
+						break;
+					case 1:
+						ListBikeLanesPermanent.add(bikeLane);
+						break;
+					case 2:
+						ListBikeLanesRecreational.add(bikeLane);
+						break;
+					case 3:
+						ListBikeLanesPreferential.add(bikeLane);
+						break;
 				}
 
-			} catch (JSONException e) {
-				e.printStackTrace();
 			}
 
-			try {
-
-				JSONArray AccessJSArray = job.getJSONArray("ACESSOS");
-
-				//Clear list before adding updated items
-				ListAcesso.clear();
-
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < AccessJSArray.length(); i++) {
-					JSONObject c = AccessJSArray.getJSONObject(i);
-
-					// Storing each json item in variable
-					String nome = c.getString("name");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String details = c.getString("details");
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					MarkerOptions item_acesso = new MarkerOptions()
-							.title(getResources().getString(R.string.acesso_ciclovia_marginal) + newline + nome)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_access))
-							.snippet(details)
-							.anchor(0.5f, 0.5f)
-							.position(new LatLng(latitude, longitude));
-
-					ListAcesso.add(item_acesso);
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
+			if (Constant.States[0]) {
+				displayBikeLanes();
 			}
-
-
-			myAdapter.notifyDataSetChanged();
-
-			drawPermanentes((Constant.States[0] && Constant.BikeLanesStates[0]));
-
-			drawTemporarias((Constant.States[0] && Constant.BikeLanesStates[1]));
-
-			drawPreferenciais((Constant.States[0] && Constant.BikeLanesStates[2]), ciclorrotasOptionsList);
-
-			if (Constant.States[3]) drawBicicletarios(true);
-
-			if (Constant.States[4]) drawParques(true);
-
-			if (Constant.States[5]) drawWifi(true);
-
-			if (Constant.States[6]) drawAlerts(true);
-
 		}
-
 	}
 
-	public void createBikeSampaArray() throws JSONException {
+	public void createSharingStationsArray() throws JSONException {
 
-		String strJobBS = sharedPreferences.getString(Constant.spJobBS, null);
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_SHARING_STATIONS, null);
 
-		if (strJobBS != null) {
+		if (strJarray != null) {
 
-			JSONObject jsonObjBS = new JSONObject(strJobBS);
+			JSONArray jarraySharingStations = new JSONArray(strJarray);
 
-			try {
+			//Clear list before adding updated items
+			for (SharingStation ss: ListSharingStationsBS) {ss.removeFromMap();}
+			ListSharingStationsBS.clear();
+			for (SharingStation ss: ListSharingStationsCS) {ss.removeFromMap();}
+			ListSharingStationsCS.clear();
 
-				JSONArray BSjSonArray = jsonObjBS.getJSONArray("ESTACOES_ITAU");
+			// looping por todos os Estacionamentos
+			for (int i = 0; i < jarraySharingStations.length() - 1; i++) {
+				JSONObject c = jarraySharingStations.getJSONObject(i);
 
-				//Clear list before adding updated items
-				ListEstacoesITAU.clear();
+				// Storing each json item in variable
+				String system = c.getString("system");
+				int number = c.getInt("number");
+				String name = c.getString("name");
+				String description = c.getString("description");
+				String lat = c.getString("lat");
+				String lng = c.getString("lng");
+				String status1 = c.getString("status1");
+				String status2 = c.getString("status2");
+				int bikes = c.getInt("bikes");
+				int size = c.getInt("size");
 
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < BSjSonArray.length() - 1; i++) {
-					JSONObject c = BSjSonArray.getJSONObject(i);
+				double latitude = Double.parseDouble(lat);
+				double longitude = Double.parseDouble(lng);
 
-					// Storing each json item in variable
-					int numero = c.getInt("numero");
-					String nome = c.getString("nome");
-					String descricao = c.getString("descricao");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String status1 = c.getString("status1");
-					String status2 = c.getString("status2");
-					int bikes = c.getInt("bikes");
-					int tamanho = c.getInt("tamanho");
+				SharingStation sharingStation = new SharingStation(this, system, number, name, description, latitude, longitude, status1, status2, bikes, size);
 
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					Estacao item_estacao = new Estacao(numero, nome, descricao, latitude, longitude, status1, status2, bikes, tamanho);
-
-					ListEstacoesITAU.add(item_estacao);
+				if (system == SHARING_STATIONS_SYSTEM_BIKE_SAMPA) {
+					ListSharingStationsBS.add(sharingStation);
+				} else {
+					ListSharingStationsCS.add(sharingStation);
 				}
+			}
 
-				if (!ListEstacoesITAU.isEmpty()) {
-
-					myAdapter.notifyDataSetChanged();
-
-					drawBikeSampa((Constant.States[2] && Constant.SharingSystemsStates[0]));
-				}
-
-			} catch (JSONException e) {
-				e.printStackTrace();
+			if (Constant.States[2]) {
+				displaySharingStations();
 			}
 		}
-
 	}
 
-	public void createCicloSampaArray() throws JSONException {
+	public void createParkingSpotsArray() throws JSONException {
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_PARKING_SPOTS, null);
 
-		String strJobCS = sharedPreferences.getString(Constant.spJobCS, null);
+		if (strJarray != null) {
 
-		if (strJobCS != null) {
+			JSONArray jarrayParkingSpots = new JSONArray(strJarray);
 
-			JSONObject jsonObjCS = new JSONObject(strJobCS);
+			//Clear list before adding updated items
+			ListParkingSpots.clear();
 
-			try {
+			// looping por todos os itens
+			for (int i = 0; i < jarrayParkingSpots.length(); i++) {
+				JSONObject c = jarrayParkingSpots.getJSONObject(i);
 
-				JSONArray CSjSonArray = jsonObjCS.getJSONArray("ESTACOES_BRADESCO");
+				// Storing each json item in variable
+				int id = c.getInt("id");
+				String name = c.getString("name");
+				String lat = c.getString("lat");
+				String lng = c.getString("lng");
+				String address = c.getString("address");
+				String type = c.getString("type");
+				int parkingSpaces = c.getInt("parking_spaces");
+				String opHours = c.getString("op_hours");
+				String info = c.getString("info");
 
-				//Clear list before adding updated items
-				ListEstacoesBRA.clear();
+				double latitude = Double.parseDouble(lat);
+				double longitude = Double.parseDouble(lng);
 
-				// looping por todos os Estacionamentos
-				for (int i = 0; i < CSjSonArray.length() - 1; i++) {
-					JSONObject c = CSjSonArray.getJSONObject(i);
+				ParkingSpot parkingSpot = new ParkingSpot(this, id, name, latitude, longitude, address, type, parkingSpaces, opHours, info);
 
-					// Storing each json item in variable
-					int numero = c.getInt("numero");
-					String nome = c.getString("nome");
-					String descricao = c.getString("descricao");
-					String lat = c.getString("lat");
-					String lng = c.getString("lng");
-					String status1 = c.getString("status1");
-					String status2 = c.getString("status2");
-					int bikes = c.getInt("bikes");
-					int tamanho = c.getInt("tamanho");
-
-
-					double latitude = Double.parseDouble(lat);
-					double longitude = Double.parseDouble(lng);
-
-					Estacao item_estacao = new Estacao(numero, nome, descricao, latitude, longitude, status1, status2, bikes, tamanho);
-
-					ListEstacoesBRA.add(item_estacao);
-				}
-
-				if (!ListEstacoesBRA.isEmpty()) {
-
-					myAdapter.notifyDataSetChanged();
-
-					drawCicloSampa((Constant.States[2] && Constant.SharingSystemsStates[1]));
-
-				}
-
-			} catch (JSONException e) {
-				e.printStackTrace();
+				ListParkingSpots.add(parkingSpot);
 			}
-		}
 
+			if (Constant.States[3]) displayParkingSpots();
+		}
+	}
+
+	public void createWifiSpotsArray() throws JSONException {
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_WIFI_SPOTS, null);
+
+		if (strJarray != null) {
+
+			JSONArray jarrayWifiSpots = new JSONArray(strJarray);
+
+			//Clear list before adding updated items
+			ListWifiSpots.clear();
+
+			// looping por todos os Estacionamentos
+			for (int i = 0; i < jarrayWifiSpots.length(); i++) {
+				JSONObject c = jarrayWifiSpots.getJSONObject(i);
+
+				// Storing each json item in variable
+				String name = c.getString("name");
+				String lat = c.getString("lat");
+				String lng = c.getString("lng");
+				String address = c.getString("address");
+
+				double latitude = Double.parseDouble(lat);
+				double longitude = Double.parseDouble(lng);
+
+				MarkerOptions markerWifi = new MarkerOptions()
+						.title(name)
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_wifi))
+						.snippet(address)
+						.position(new LatLng(latitude, longitude));
+
+				ListWifiSpots.add(markerWifi);
+			}
+
+			if (Constant.States[5]) drawWifiSpots(true);
+		}
+	}
+
+	public void createParksArray() throws JSONException {
+
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_PARKS, null);
+
+		if (strJarray != null) {
+
+			JSONArray jarrayParks = new JSONArray(strJarray);
+
+			//Clear list before adding updated items
+			ListParks.clear();
+
+			// looping por todos os Estacionamentos
+			for (int i = 0; i < jarrayParks.length(); i++) {
+				JSONObject c = jarrayParks.getJSONObject(i);
+
+				// Storing each json item in variable
+				String name = c.getString("name");
+				String address = c.getString("address");
+				String lat = c.getString("lat");
+				String lng = c.getString("lng");
+				String description = c.getString("description");
+				String opHours = c.getString("op_hours");
+				String bikeLaneInfo = c.getString("bike_lane_info");
+
+				double latitude = Double.parseDouble(lat);
+				double longitude = Double.parseDouble(lng);
+
+				Park item_park = new Park(this, name, address, latitude, longitude, description, opHours, bikeLaneInfo);
+
+				ListParks.add(item_park);
+			}
+
+			displayParks();
+		}
+	}
+
+	public void createAlertsArray() throws JSONException {
+
+		String strJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_ALERTS, null);
+
+		if (strJarray != null) {
+
+			JSONArray jarrayAlerts = new JSONArray(strJarray);
+
+			//Clear list before adding updated items
+			ListAlerts.clear();
+
+			// looping por todos os Estacionamentos
+			for (int i = 0; i < jarrayAlerts.length(); i++) {
+				JSONObject c = jarrayAlerts.getJSONObject(i);
+
+				// Storing each json item in variable
+				int id = c.getInt("id");
+				String lat = c.getString("lat");
+				String lng = c.getString("lng");
+				String address = c.getString("address");
+				String type = c.getString("type");
+				String details = c.getString("details");
+				String timestamp = c.getString("timestamp");
+				String userResponsible = c.getString("user_name");
+
+				double latitude = Double.parseDouble(lat);
+				double longitude = Double.parseDouble(lng);
+
+				Alert alert = new Alert(this, id, type, address, latitude, longitude, details, timestamp, userResponsible);
+
+				ListAlerts.add(alert);
+
+			}
+
+			if (Constant.States[6]) displayAlerts();
+		}
 	}
 
 	public void createPlacesArray() throws JSONException {
@@ -2566,12 +2454,12 @@ public class MainActivity extends FragmentActivity
 		}
 		ListPlaces.clear();
 
-		String stringPlacesJson = sharedPreferences.getString(Constant.spJobPlaces, null);
+		String stringPlacesJarray = sharedPreferences.getString(Constant.SPKEY_JARRAY_PLACES, null);
 
-		if (stringPlacesJson != null) {
+		if (stringPlacesJarray != null) {
 			try {
 
-				JSONArray jarrayPlaces = new JSONArray(stringPlacesJson);
+				JSONArray jarrayPlaces = new JSONArray(stringPlacesJarray);
 				for (int i = 0; i < jarrayPlaces.length(); i++) {
 					JSONObject jobPlace = jarrayPlaces.getJSONObject(i);
 					int placeId = jobPlace.getInt("id");
@@ -2582,16 +2470,16 @@ public class MainActivity extends FragmentActivity
 					String phone = jobPlace.getString("phone");
 					String site = jobPlace.getString("site");
 					String publicEmail = jobPlace.getString("public_email");
-					String currentOpenStatus = jobPlace.getString("current_open_status");
 					String shortDesc = jobPlace.getString("short_desc");
+					String currentOpenStatus = jobPlace.getString("current_open_status");
 					int iconId = jobPlace.getInt("icon_id");
 					int logoId = jobPlace.getInt("logo_id");
 					String displayServices = jobPlace.getString("display_services");
 
 					LatLng latlng = new LatLng(lat, lng);
-					boolean isVerified = (jobPlace.getInt("verified") == 1);
-					boolean isFeatured = (jobPlace.getInt("featured") == 1);
-					boolean hasDeals = (jobPlace.getInt("has_deals") == 1);
+					boolean isVerified = jobPlace.getBoolean("verified");
+					boolean isFeatured = jobPlace.getBoolean("featured");
+					boolean hasDeals = jobPlace.getBoolean("has_deals");
 
 					String categories = jobPlace.getString("categories");
 					String[] categoriesStringArray = categories.split(",");
@@ -2612,348 +2500,79 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	public void drawParques(Boolean visibility) {
+	public void displayParks() {
 
-		if (ListMarkersParques != null) {
-			for (Marker marker : ListMarkersParques) marker.remove();
-		}
-
-		for (int i = 0; i < ListParques.size(); i++) {
-			LatLng ll = ListParques.get(i).getLatLng();
-
-			Marker marker = googleMap.addMarker(new MarkerOptions()
-					.position(ll)
-					.title(ListParques.get(i).Nome)
-					.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_park))
-					.visible(visibility)
-					.anchor(0.5f, 0.5f));
-			if (ListParques.get(i).Wifi == 0) {
-				marker.setSnippet(ListParques.get(i).Endereco
-						+ newline + ListParques.get(i).Funcionamento
-						+ newline + newline + ListParques.get(i).Descricao
-						+ newline + getString(R.string.extensao_ciclovia) + " " + ListParques.get(i).Ciclovia
-						+ newline + ListParques.get(i).Contato
-						+ newline + newline + getString(R.string.tem_wifi_nao));
-			} else {
-				marker.setSnippet(ListParques.get(i).Endereco
-						+ newline + ListParques.get(i).Funcionamento
-						+ newline + newline + ListParques.get(i).Descricao
-						+ newline + getString(R.string.extensao_ciclovia) + " " + ListParques.get(i).Ciclovia
-						+ newline + ListParques.get(i).Contato
-						+ newline + newline + getString(R.string.tem_wifi));
+		if (!Constant.States[4]) {
+			for (Park park : ListParks) {
+				park.setVisible(false);
 			}
-			ListMarkersParques.add(marker);
-		}
-	}
-
-	public void drawCicloSampa(Boolean visibility) {
-
-		if (ListMarkersBRA != null) {
-			for (Marker marker : ListMarkersBRA) marker.remove();
-		}
-
-		String updateTimeCS = sharedPreferences.getString(Constant.spUpdateTimeCS, "out of date");
-
-		for (int i = 0; i < ListEstacoesBRA.size(); i++) {
-			Estacao estacao = ListEstacoesBRA.get(i);
-
-			LatLng ll = estacao.getLatLng();
-
-			MarkerOptions estacaoMOpt = new MarkerOptions()
-					.position(ll)
-					.title(getString(R.string.estacao_ciclo_sampa) + newline + estacao.Numero + " - " + estacao.Nome)
-					.anchor(0.5f, 0.5f)
-					.visible(visibility);
-
-			int vagasLivres = estacao.tamanho - estacao.bikes;
-
-			if (estacao.status1.equals("A") && estacao.status2.equals("EO")) {
-
-				if (estacao.bikes == 0) {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_vazia));
-				} else if (vagasLivres == 0) {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_cheia));
+		} else {
+			for (Park park : ListParks) {
+				if (park.isDrawn()) {
+					park.setVisible(true);
 				} else {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_operando));
+					park.drawOnMap(googleMap);
 				}
-
-			} else if (estacao.status1.equals("I") && estacao.status2.equals("EO")) {
-				estacaoMOpt.snippet(getString(R.string.offline)
-						+ newline + newline + estacao.Descricao
-						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_offline));
-			} else {
-				estacaoMOpt.snippet(getString(R.string.em_manutencao_implantacao)
-						+ newline + newline + estacao.Descricao
-						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeCS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_cs_manutencao));
 			}
-
-			ListMarkersBRA.add(googleMap.addMarker(estacaoMOpt));
 		}
 	}
 
-	public void drawBikeSampa(Boolean visibility) {
+	public void displayParkingSpots() {
 
-		if (ListMarkersITAU != null) {
-			for (Marker marker : ListMarkersITAU) marker.remove();
-		}
-
-		String updateTimeBS = sharedPreferences.getString(Constant.spUpdateTimeBS, "out of date");
-
-		for (int i = 0; i < ListEstacoesITAU.size(); i++) {
-
-			Estacao estacao = ListEstacoesITAU.get(i);
-
-			LatLng ll = estacao.getLatLng();
-
-			MarkerOptions estacaoMOpt = new MarkerOptions()
-					.position(ll)
-					.title(getString(R.string.estacao_bike_sampa) + newline + estacao.Numero + " - " + estacao.Nome)
-					.anchor(0.5f, 0.5f)
-					.visible(visibility);
-
-			int vagasLivres = estacao.tamanho - estacao.bikes;
-
-			if (estacao.status1.equals("A") && estacao.status2.equals("EO")) {
-
-				if (estacao.bikes == 0) {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_vazia));
-				} else if (vagasLivres == 0) {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_cheia));
+		if (!Constant.States[3]) {
+			for (ParkingSpot spot : ListParkingSpots) {
+				spot.setVisible(false);
+			}
+		} else {
+			for (ParkingSpot spot : ListParkingSpots) {
+				if (spot.isDrawn()) {
+					spot.setVisible(true);
 				} else {
-					estacaoMOpt.snippet(getString(R.string.em_operacao)
-							+ newline + newline + estacao.Descricao
-							+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-							+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-							+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_operando));
+					spot.drawOnMap(googleMap);
 				}
-
-			} else if (estacao.status1.equals("I") && estacao.status2.equals("EO")) {
-				estacaoMOpt.snippet(getString(R.string.offline)
-						+ newline + newline + estacao.Descricao
-						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_offline));
-			} else {
-				estacaoMOpt.snippet(getString(R.string.em_manutencao_implantacao)
-						+ newline + newline + estacao.Descricao
-						+ newline + getString(R.string.bikes_disponiveis) + " " + estacao.bikes
-						+ newline + getString(R.string.vagas_livres) + " " + vagasLivres
-						+ newline + newline + getString(R.string.atualizado_as) + " " + updateTimeBS)
-						.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_bs_manutencao));
 			}
-
-			ListMarkersITAU.add(googleMap.addMarker(estacaoMOpt));
-
 		}
 	}
 
-	public void drawBicicletarios(final Boolean visibility) {
+	public void drawWifiSpots(Boolean visibility) {
 
-		if (ListMarkersBicicletarios != null) {
-			for (Marker marker : ListMarkersBicicletarios) marker.remove();
+		if (ListMarkersWifiSpots != null) {
+			for (Marker marker : ListMarkersWifiSpots) {marker.remove();}
+			ListMarkersWifiSpots.clear();
 		}
 
-		for (int i = 0; i < ListBicicletarios.size(); i++) {
-			LatLng ll = ListBicicletarios.get(i).getLatLng();
 
-			MarkerOptions markerOpt = new MarkerOptions()
-					.position(ll)
-					.title(ListBicicletarios.get(i).Nome)
-					.visible(visibility);
-
-			if (ListBicicletarios.get(i).Tipo.equals("b")) {
-
-				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_b));
-				markerOpt.anchor(0.5f, 1.0f);
-				if (ListBicicletarios.get(i).hasEmprestimo()) {
-					markerOpt.snippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
-							+ newline + newline + getString(R.string.possui_emprestimo_bicicleta)
-							+ newline + newline + getString(R.string.funcionamento) + " " + ListBicicletarios.get(i).Horario);
-				} else {
-					markerOpt.snippet(getString(R.string.vagas) + " " + ListBicicletarios.get(i).Vagas
-							+ newline + newline + getString(R.string.possui_emprestimo_bicicleta_nao)
-							+ newline + newline + getString(R.string.funcionamento) + " " + ListBicicletarios.get(i).Horario);
-				}
-			} else {
-
-				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_parking_p));
-				markerOpt.anchor(0.5f, 0.5f);
-				markerOpt.snippet(getString(R.string.numero_de_paraciclos) + " " + (ListBicicletarios.get(i).Vagas / 2)
-						+ newline + getString(R.string.endereco_aproximado) + ": " + ListBicicletarios.get(i).address);
-			}
-
-			ListMarkersBicicletarios.add(googleMap.addMarker(markerOpt));
-		}
-	}
-
-	public void drawWifi(Boolean visibility) {
-
-		if (ListMarkersWifi != null) {
-			for (Marker marker : ListMarkersWifi) marker.remove();
-		}
-
-		for (int i = 0; i < ListWifi.size(); i++) {
+		for (int i = 0; i < ListWifiSpots.size(); i++
+				) {
 			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper. 
-			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
-			ListMarkersWifi.add
+			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifiSpots não deu erro, então deve ficar assim.
+			ListMarkersWifiSpots.add
 					(googleMap.addMarker(new MarkerOptions()
-							.position(ListWifi.get(i).getPosition())
+							.position(ListWifiSpots.get(i).getPosition())
 							.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_wifi))
-							.title(ListWifi.get(i).getTitle())
-							.snippet(ListWifi.get(i).getSnippet())
+							.title(ListWifiSpots.get(i).getTitle())
+							.snippet(ListWifiSpots.get(i).getSnippet())
 							.visible(visibility)
 							.anchor(0.5f, 0.5f)));
 		}
 	}
 
-	public void drawAlerts(final Boolean visibility) {
-
-		if (ListMarkersAlerts != null) {
-			for (Marker marker : ListMarkersAlerts) marker.remove();
-		}
+	public void displayAlerts() {
 
 		hideBottomButton(notifyButton);
 
-		for (int i = 0; i < ListAlerts.size(); i++) {
-
-			MarkerOptions markerOpt = new MarkerOptions()
-					.snippet(ListAlerts.get(i).Endereco + newline + getString(R.string.details) + " " + ListAlerts.get(i).Descricao + newline + getString(R.string.alerta_em) + " " + ListAlerts.get(i).timestamp)
-					.position(new LatLng(ListAlerts.get(i).Lat, ListAlerts.get(i).Lng))
-					.visible(visibility)
-					.anchor(0.5f, 1.0f);
-
-			if (ListAlerts.get(i).Tipo.equals("bu")) {
-				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_pothole));
-				markerOpt.title(getString(R.string.via_esburacada));
-			} else if (ListAlerts.get(i).Tipo.equals("si")) {
-				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert_signalling));
-				markerOpt.title(getString(R.string.problema_sinalizacao));
-			} else {
-				markerOpt.icon(BitmapDescriptorFactory.fromResource(R.drawable.mapic_alert));
-				markerOpt.title(getString(R.string.alerta));
+		if (!Constant.States[6]) {
+			for (Alert alert : ListAlerts) {
+				alert.setVisible(false);
 			}
-
-			ListMarkersAlerts.add(googleMap.addMarker(markerOpt));
-		}
-	}
-
-	public void drawPermanentes(Boolean visibility) {
-
-		if (!ListCiclovias.isEmpty()) {
-
-			drawAcessos(visibility);
-
-			if (!cicloviasLineList.isEmpty()) {
-				for (Polyline polyline : cicloviasLineList) polyline.remove();
-				cicloviasLineList.clear();
-			}
-
-			//if (!cicloviasOptionsList.isEmpty()) { cicloviasOptionsList.clear(); }
-
-			for (int i = 0; i < ListCiclovias.size(); i++) {
-
-				ArrayList<LatLng> LatLngList = ListCiclovias.get(i).latLngList;
-				PolylineOptions polylineOpt = new PolylineOptions();
-				for (int y = 0; y < LatLngList.size(); y++) {
-					polylineOpt.add(LatLngList.get(y));
-				}
-				if (ListCiclovias.get(i).tipo == 0) {
-					polylineOpt.color(this.getResources().getColor(R.color.ciclovia));
+		} else {
+			for (Alert alert : ListAlerts) {
+				if (alert.isDrawn()) {
+					alert.setVisible(true);
 				} else {
-					polylineOpt.color(this.getResources().getColor(R.color.ciclofaixa));
+					alert.drawOnMap(googleMap);
 				}
-
-				//cicloviasOptionsList.add(polylineOpt);
-				//cicloviasLineList.add(googleMap.addPolyline(cicloviasOptionsList.get(i).visible(visibility).zIndex(10).width(5.0f)));
-				cicloviasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(10).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
 			}
-		}
-	}
-
-	public void drawTemporarias(Boolean visibility) {
-
-		if (!ListCiclofaixas.isEmpty()) {
-
-			if (ciclofaixasLineList != null) {
-				for (Polyline polyline : ciclofaixasLineList) polyline.remove();
-				ciclofaixasLineList.clear();
-			}
-
-			for (int i = 0; i < ListCiclofaixas.size(); i++) {
-
-				ArrayList<LatLng> LatLngList = ListCiclofaixas.get(i).latLngList;
-				PolylineOptions polylineOpt = new PolylineOptions();
-				for (int y = 0; y < LatLngList.size(); y++) {
-					polylineOpt.add(LatLngList.get(y));
-				}
-				polylineOpt.color(this.getResources().getColor(R.color.ciclofaixaLazer));
-
-				ciclofaixasLineList.add(googleMap.addPolyline(polylineOpt.visible(visibility).zIndex(5).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
-
-				//ciclofaixasOptionsList.add(polylineOpt);
-				//ciclofaixasLineList.add(googleMap.addPolyline(ciclofaixasOptionsList.get(i).visible(visibility).zIndex(5).width(5.0f)));
-			}
-		}
-	}
-
-	public void drawPreferenciais(Boolean visibility, ArrayList<PolylineOptions> ciclorrotasOptionsList) {
-
-		if (!ciclorrotasOptionsList.isEmpty()) {
-
-			if (ciclorrotasLineList != null) {
-				for (Polyline polyline : ciclorrotasLineList) polyline.remove();
-			}
-
-			for (int i = 0; i < ciclorrotasOptionsList.size(); i++) {
-				ciclorrotasOptionsList.get(i).color(this.getResources().getColor(R.color.ciclorrota));
-				ciclorrotasLineList.add(googleMap.addPolyline(ciclorrotasOptionsList.get(i).visible(visibility).zIndex(1).width(Utils.getPixelValue(this, Constant.bikeLaneWidth))));
-			}
-		}
-	}
-
-	public void drawAcessos(Boolean visibility) {
-
-		if (ListMarkersAcessos != null) {
-			for (Marker marker : ListMarkersAcessos) marker.remove();
-		}
-
-		for (int i = 0; i < ListAcesso.size(); i++) {
-			// Aqui eu não adiciono o MarkerOptions inteiro de uma vez porque dava o erro esquisito do IObectjWrapper.
-			// Criando um MarkerOptions novo e puxando atributo por atributo da ListWifi não deu erro, então deve ficar assim.
-			ListMarkersAcessos.add(googleMap.addMarker(ListAcesso.get(i).visible(visibility)));
 		}
 	}
 
@@ -3511,7 +3130,7 @@ public class MainActivity extends FragmentActivity
 
 				routeRequestId ++;
 
-				Route.getRoute(this, routeRequestId, origin, destination, ListCiclovias, googleMap, new GetRouteInterface() {
+				Route.getRoute(this, routeRequestId, origin, destination, ListBikeLanesPermanent, googleMap, new GetRouteInterface() {
 					@Override
 					public void onFinished(int resultCode, int requestId, ArrayList<CyclingPath> cyclingPaths) {
 
@@ -3721,101 +3340,130 @@ public class MainActivity extends FragmentActivity
 
 					TextView tvPlaceNameNV = (TextView) findViewById(R.id.tv_place_name_nv);
 					TextView tvPlaceServicesNV = (TextView) findViewById(R.id.tv_place_services_nv);
-					final TextView tvPlaceAddressNV = (TextView) findViewById(R.id.tv_place_address_nv);
-					TextView tvPlacePhoneNV = (TextView) findViewById(R.id.tv_place_phone_nv);
-					LinearLayout btPlaceMenuNV = (LinearLayout) findViewById(R.id.bt_place_menu_nv);
-					TextView tvPlaceNotVerifiedNV = (TextView) findViewById(R.id.tv_place_not_verified_nv);
-					if (place.isVerified) {
-						tvPlaceNotVerifiedNV.setVisibility(View.GONE);
-						tvPlaceNameNV.setTextColor(getResources().getColor(R.color.dark_text));
-					} else {
-						tvPlaceNotVerifiedNV.setVisibility(View.VISIBLE);
-						tvPlaceNameNV.setTextColor(getResources().getColor(R.color.light_text));
-					}
 
-					final LinearLayout llPlaceMenuNV = (LinearLayout) findViewById(R.id.ll_place_menu_nv);
-					llPlaceMenuNV.setVisibility(View.GONE);
+					final LinearLayout llPlaceAddressNV = (LinearLayout) findViewById(R.id.ll_place_address_nv);
+					llPlaceAddressNV.setVisibility(View.GONE);
+					final TextView tvPlaceAddressNV = (TextView) findViewById(R.id.tv_place_address_nv);
+
+					final LinearLayout llPlacePhoneNV = (LinearLayout) findViewById(R.id.ll_place_phone_nv);
+					llPlacePhoneNV.setVisibility(View.GONE);
+					TextView tvPlacePhoneNV = (TextView) findViewById(R.id.tv_place_phone_nv);
+
+					LinearLayout btPlaceExpandNV = (LinearLayout) findViewById(R.id.ll_place_expand_nf);
+
+					final RelativeLayout rlPlaceNotVerifiedNF = (RelativeLayout) findViewById(R.id.rl_place_nf_not_verified);
+					final ImageView ivPlaceNFMenu = (ImageView) findViewById(R.id.iv_place_nf_not_verified_menu);
+					ivPlaceNFMenu.setVisibility(View.GONE);
+
+					TextView tvPlaceRatingNF = (TextView) findViewById(R.id.tv_place_nf_rating);
+					final LinearLayout llPlaceMenuNF = (LinearLayout) findViewById(R.id.ll_place_menu_nv);
+					llPlaceMenuNF.setVisibility(View.GONE);
+
+					if (place.isVerified) {
+						rlPlaceNotVerifiedNF.setVisibility(View.GONE);
+						tvPlaceRatingNF.setVisibility(View.VISIBLE);
+					} else {
+						rlPlaceNotVerifiedNF.setVisibility(View.VISIBLE);
+						tvPlaceRatingNF.setVisibility(View.GONE);
+					}
 
 					tvPlaceNameNV.setText(place.name);
 					tvPlaceServicesNV.setText(place.displayServices);
+					Log.e("displayServices", "display: "+place.displayServices);
 					tvPlaceAddressNV.setText(getString(R.string.address) + ": " + place.address);
 					tvPlacePhoneNV.setText(getString(R.string.phone) + ": " + place.phone);
-
-					btPlaceMenuNV.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View view) {
-
-							if (llPlaceMenuNV.getVisibility() == View.VISIBLE) {
-								Log.e("CLICKED", "VISIBLE");
-								llPlaceMenuNV.setVisibility(View.INVISIBLE);
-							} else {
-								Log.e("CLICKED", "GONE");
-								llPlaceMenuNV.setVisibility(View.VISIBLE);
-
-								TextView tvPlaceOwner = (TextView) findViewById(R.id.tv_place_owner);
-								tvPlaceOwner.setOnClickListener(new View.OnClickListener() {
-									@Override
-									public void onClick(View view) {
-										Intent i = new Intent(MainActivity.this, SugestaoActivity.class);
-										i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
-										i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
-										startActivity(i);
-									}
-								});
-
-								TextView tvCorrectInfo = (TextView) findViewById(R.id.tv_correct_place_info);
-								if (place.isVerified) {
-									tvCorrectInfo.setVisibility(View.GONE);
-								} else {
-									tvCorrectInfo.setVisibility(View.VISIBLE);
-									tvCorrectInfo.setOnClickListener(new View.OnClickListener() {
-										@Override
-										public void onClick(View view) {
-											Intent i = new Intent(MainActivity.this, AddToMapActivity.class);
-											i.putExtra("SELECTED_FUNCTION", "EDIT_PLACE");
-											i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
-											i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
-											i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
-											i.putExtra(Constant.IEXTRA_PLACE_PUBLIC_EMAIL, place.publicEmail);
-											i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
-											i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
-											i.putExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
-
-											startActivity(i);
-										}
-									});
-								}
-
-
-								TextView tvFlagInexistent = (TextView) findViewById(R.id.tv_flag_place_inexistent);
-								tvFlagInexistent.setOnClickListener(new View.OnClickListener() {
-									@Override
-									public void onClick(View view) {
-										llPlaceMenuNV.setVisibility(View.GONE);
-										Calls.flagInexistentPlace(String.valueOf(placeId), new CallHandler(){
-											@Override
-											public void onSuccess(int responseCode, String response) {
-												super.onSuccess(responseCode, response);
-												Utils.showThanksToast(MainActivity.this);
-											}
-
-											@Override
-											public void onFailure(int responseCode, String response) {
-												super.onFailure(responseCode, response);
-												Utils.showServerErrorToast(MainActivity.this, response);
-											}
-										});
-									}
-								});
-
-							}
-						}
-					});
 
 					llPlaceDetailsNV.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
-							llPlaceMenuNV.setVisibility(View.GONE);
+
+							// IF MENU IS VISIBLE, HIDE IT
+							if (llPlaceMenuNF.getVisibility() == View.VISIBLE) {
+
+								llPlaceMenuNF.setVisibility(View.GONE);
+
+							// ELSE, HANDLE EXPANDING OR CONSTRAINING BOTTOM VIEW
+							} else if (llPlaceAddressNV.getVisibility() == View.GONE) {
+								llPlaceAddressNV.setVisibility(View.VISIBLE);
+								llPlacePhoneNV.setVisibility(View.VISIBLE);
+								ivPlaceNFMenu.setVisibility(View.VISIBLE);
+								showBottomPanel("PLACE_NOT_FEATURED_EXPANDED");
+
+								// Add onClickListener for menu RelativeLayout
+								rlPlaceNotVerifiedNF.setOnClickListener(new View.OnClickListener() {
+									@Override
+									public void onClick(View view) {
+										if (llPlaceMenuNF.getVisibility() == View.VISIBLE) {
+											llPlaceMenuNF.setVisibility(View.INVISIBLE);
+										} else {
+											llPlaceMenuNF.setVisibility(View.VISIBLE);
+
+											TextView tvPlaceOwner = (TextView) findViewById(R.id.tv_place_owner);
+											tvPlaceOwner.setOnClickListener(new View.OnClickListener() {
+												@Override
+												public void onClick(View view) {
+													Intent i = new Intent(MainActivity.this, SugestaoActivity.class);
+													i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
+													i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
+													startActivity(i);
+												}
+											});
+
+											TextView tvCorrectInfo = (TextView) findViewById(R.id.tv_correct_place_info);
+											if (place.isVerified) {
+												tvCorrectInfo.setVisibility(View.GONE);
+											} else {
+												tvCorrectInfo.setVisibility(View.VISIBLE);
+												tvCorrectInfo.setOnClickListener(new View.OnClickListener() {
+													@Override
+													public void onClick(View view) {
+														Intent i = new Intent(MainActivity.this, AddToMapActivity.class);
+														i.putExtra("SELECTED_FUNCTION", "EDIT_PLACE");
+														i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
+														i.putExtra(Constant.IEXTRA_PLACE_NAME, place.name);
+														i.putExtra(Constant.IEXTRA_PLACE_PHONE, place.phone);
+														i.putExtra(Constant.IEXTRA_PLACE_PUBLIC_EMAIL, place.publicEmail);
+														i.putExtra(Constant.IEXTRA_PLACE_LAT_DOUBLE, place.latLng.latitude);
+														i.putExtra(Constant.IEXTRA_PLACE_LNG_DOUBLE, place.latLng.longitude);
+														i.putExtra(Constant.IEXTRA_PLACE_CATEGORY_ID_LIST, place.categoryIdList);
+
+														startActivity(i);
+													}
+												});
+											}
+
+
+											TextView tvFlagInexistent = (TextView) findViewById(R.id.tv_flag_place_inexistent);
+											tvFlagInexistent.setOnClickListener(new View.OnClickListener() {
+												@Override
+												public void onClick(View view) {
+													llPlaceMenuNF.setVisibility(View.GONE);
+													Calls.flagInexistentPlace(Constant.TOKEN, String.valueOf(placeId), new CallHandler(){
+														@Override
+														public void onSuccess(int responseCode, String response) {
+															super.onSuccess(responseCode, response);
+															Utils.showThanksToast(MainActivity.this);
+														}
+
+														@Override
+														public void onFailure(int responseCode, String response) {
+															super.onFailure(responseCode, response);
+															Utils.showServerErrorToast(MainActivity.this, response);
+														}
+													});
+												}
+											});
+
+										}
+									}
+								});
+
+							} else {
+								llPlaceAddressNV.setVisibility(View.GONE);
+								llPlacePhoneNV.setVisibility(View.GONE);
+								ivPlaceNFMenu.setVisibility(View.GONE);
+								showBottomPanel("PLACE_NOT_FEATURED");
+							}
 						}
 					});
 
@@ -3826,6 +3474,49 @@ public class MainActivity extends FragmentActivity
 					llPlaceDetailsV.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
+
+							View rootView = getWindow().getDecorView().findViewById(android.R.id.content);
+							final Bitmap screenshot = Utils.getScreenshot(rootView);
+							try {
+								File image = File.createTempFile(
+                                        "BG_SCREEN_SHOT",  /* prefix */
+                                        ".jpg",         /* suffix */
+                                        getExternalFilesDir(Environment.DIRECTORY_PICTURES)      /* directory */);
+
+								Constant.PATH_BG_SCREENSHOT = image.getAbsolutePath();
+
+								if (image.exists()) {image.delete();}
+
+								final FileOutputStream out = new FileOutputStream(image);
+								screenshot.compress(Bitmap.CompressFormat.JPEG, 100, out);
+								out.flush();
+								out.close();
+
+								googleMap.snapshot(new GoogleMap.SnapshotReadyCallback() {
+									@Override
+									public void onSnapshotReady(Bitmap snapshot) {
+										try {
+
+											Log.e("onSnapshotReady", "YES");
+											Bitmap bitmapOverlay = Bitmap.createBitmap(screenshot.getWidth(), screenshot.getHeight(), screenshot.getConfig());
+											Canvas canvas = new Canvas(bitmapOverlay);
+											canvas.drawBitmap(snapshot, new Matrix(), null);
+											canvas.drawBitmap(screenshot, 0, 0, null);
+											File file = new File(Constant.PATH_BG_SCREENSHOT);
+											FileOutputStream fos = new FileOutputStream(file);
+											bitmapOverlay.compress(Bitmap.CompressFormat.PNG, 100, fos);
+
+
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
+									}
+								});
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+
 							Intent i = new Intent(MainActivity.this, PlaceDetailsActivity.class);
 							i.putExtra(Constant.IEXTRA_PLACE_ID_INT, place.id);
 							if (user_updated_latlng != null) {
@@ -3845,11 +3536,15 @@ public class MainActivity extends FragmentActivity
 					TextView tvPlaceNameV = (TextView) findViewById(R.id.tv_place_name_v);
 					final TextView tvPlaceServicesV = (TextView) findViewById(R.id.tv_place_services_v);
 					TextView tvPlaceShortDescV = (TextView) findViewById(R.id.tv_place_short_desc_v);
-					TextView tvPlaceIsOpenV = (TextView) findViewById(R.id.tv_place_isopen_v);
+					//TextView tvPlaceIsOpenV = (TextView) findViewById(R.id.tv_place_isopen_v);
 					final ImageView ivPlaceServicesV = (ImageView) findViewById(R.id.iv_place_services_v);
 
 					tvPlaceServicesV.setText(place.displayServices);
 
+					ivPlaceServicesV.setVisibility(View.GONE);
+					tvPlaceServicesV.setVisibility(View.VISIBLE);
+
+					/*
 					if (!mapCategoriesIcons.isEmpty()) {
 						ArrayList<Bitmap> bitmapArray = new ArrayList<>();
 						for (int id: place.categoryIdList) {
@@ -3857,7 +3552,7 @@ public class MainActivity extends FragmentActivity
 						}
 						ivPlaceServicesV.setImageBitmap(Utils.combineImages(this, bitmapArray));
 						tvPlaceServicesV.setVisibility(View.GONE);
-						ivPlaceServicesV.setVisibility(View.VISIBLE);
+						ivPlaceServicesV.setVisibility(View.VISIBLE);*/
 
 						/*ivPlaceServicesV.setOnClickListener(new View.OnClickListener() {
 							@Override
@@ -3874,28 +3569,28 @@ public class MainActivity extends FragmentActivity
 								tvPlaceServicesV.setVisibility(View.GONE);
 							}
 						});*/
-					} else {
+					/*} else {
 						ivPlaceServicesV.setVisibility(View.GONE);
 						tvPlaceServicesV.setVisibility(View.VISIBLE);
-					}
+					}*/
 
 					tvPlaceNameV.setText(place.name);
 					tvPlaceShortDescV.setText(place.short_desc);
-					tvPlaceIsOpenV.setText(place.currentOpenStatus);
+					/*tvPlaceIsOpenV.setText(place.currentOpenStatus);
 					if (place.currentOpenStatus.contains("FECHADO")) {
 						tvPlaceIsOpenV.setTextColor(getResources().getColor(R.color.app_red));
 					} else {
 						tvPlaceIsOpenV.setTextColor(getResources().getColor(R.color.app_green));
-					}
+					}*/
 
-					RelativeLayout rlClosePlacePanel = (RelativeLayout) findViewById(R.id.rl_place_panel_close);
+					/*RelativeLayout rlClosePlacePanel = (RelativeLayout) findViewById(R.id.rl_place_panel_close);
 					rlClosePlacePanel.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
 							hideBottomPanel();
 							markerSearch.remove();
 						}
-					});
+					});*/
 
 					RelativeLayout rlPlaceOpenDetails = (RelativeLayout) findViewById(R.id.rl_place_open_details);
 					rlPlaceOpenDetails.setOnClickListener(new View.OnClickListener() {
@@ -4136,7 +3831,7 @@ public class MainActivity extends FragmentActivity
 					.icon(BitmapDescriptorFactory.fromResource(R.drawable.btic_navigation))
 					.anchor(0.5f, 0.5f)
 			);
-			markerNavigation.setTag(new String[]{"markerNavigation"});
+			markerNavigation.setTag(new String[]{Constant.MARKER_TAG_NAVIGATION});
 		}
 
 		if (circleAccuracy != null) {
@@ -4255,7 +3950,11 @@ public class MainActivity extends FragmentActivity
 		}
 		MyApplication.activityResumed();
 
-		synchronizePlaces();
+		if (isNetworkAvailable()) {
+			synchronizePlaces();
+		} else {
+			Utils.showNetworkAlertDialog(this);
+		}
 
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
 
@@ -4364,7 +4063,7 @@ public class MainActivity extends FragmentActivity
 				public void onSuccess(int responseCode, String response) {
 
 					SharedPreferences.Editor editor = sharedPreferences.edit();
-					editor.putString(Constant.spJobPlaces, response);
+					editor.putString(Constant.SPKEY_JARRAY_PLACES, response);
 					editor.apply();
 
 					setListItemLoading(Constant.LISTPOS_PLACES, false);

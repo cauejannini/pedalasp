@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25'
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         applicationId "jannini.android.ciclosp"
@@ -11,9 +11,14 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -21,10 +26,10 @@ android {
 dependencies {
     compile files('libs/achartengine-1.1.0.jar')
     compile 'ch.acra:acra:4.9.0'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.google.android.gms:play-services-maps:9.8.0'
-    compile 'com.google.android.gms:play-services-analytics:9.8.0'
-    compile 'com.android.support:support-v4:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
+    compile 'com.google.android.gms:play-services-analytics:10.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

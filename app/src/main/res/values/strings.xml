@@ -10,6 +10,7 @@
 
     <string-array name="menu_array">
         <item>Hello</item>
+        <item/>
         <item>Bike lanes</item>
         <item>Places</item>
         <item>Bike sharing</item>
@@ -21,6 +22,7 @@
     </string-array>
     <string-array name="menu_array_descriptions">
         <item>My Account</item>
+        <item/>
         <item>Permanent, recreational and preferential</item>
         <item>Workshops, stores, coffees…</item>
         <item>stations</item>
@@ -129,7 +131,7 @@
     <string name="closed">CLOSED</string>
     <string name="obrigado_por_avisar">Thanks for letting us know!</string>
     <string name="nenhum_alerta_selecionado">No alert selected</string>
-    <string name="extensao_ciclovia">Size of bike lane:</string>
+    <string name="bike_lane_info">Bike lane:</string>
     <string name="tem_wifi">Has Wifi? Yes</string>
     <string name="tem_wifi_nao">Has Wifi? No</string>
     <string name="estacao_ciclo_sampa">Ciclo Sampa Station</string>
@@ -139,11 +141,11 @@
     <string name="atualizado_as">Last update: </string>
     <string name="em_manutencao_implantacao">MAINTENANCE / IMPLEMENTATION</string>
     <string name="estacao_bike_sampa">Bike Sampa Station</string>
-    <string name="vagas">Parking spots: </string>
+    <string name="parking_spaces">Parking spaces: </string>
     <string name="numero_de_paraciclos">Nº of bike racks: </string>
     <string name="possui_emprestimo_bicicleta">Has bikes to lend</string>
     <string name="possui_emprestimo_bicicleta_nao">Doesn\'t have bikes to lend</string>
-    <string name="funcionamento">Opening hours: </string>
+    <string name="openingHours">Opening hours: </string>
     <string name="details">Details: </string>
     <string name="alerta_em">Alert on: </string>
     <string name="acesso_ciclovia_marginal">Access to Marginal Pinheiros bike lane</string>
@@ -183,6 +185,7 @@
     <string name="remove">REMOVE</string>
     <string name="saved_place">Saved place</string>
     <string name="mandatory_field">Mandatory field</string>
+    <string name="password_do_not_match">Passwords do not match</string>
     <string name="password_too_short">Password must contain at least 8 characters</string>
     <string name="toast_error">Oops, an error occurred...</string>
     <string name="toast_server_error">Oops, server error: </string>
@@ -218,7 +221,7 @@
     <string name="address">Address</string>
     <string name="email">Email</string>
     <string name="error_loading_places">Error loading Places, please verify your internet connection</string>
-    <string name="place_info_not_verified">- THIS INFORMATION IS NOT VERIFIED -</string>
+    <string name="place_info_not_verified">THIS INFORMATION IS NOT VERIFIED</string>
 
     <string name="confirm_route_to_place_creation">Create route for this place?</string>
     <string name="confirm_route_to_deal_creation">Create route for this deal?</string>
@@ -246,5 +249,6 @@
     <string name="recovery_email_sent">Your password was sent to your email.</string>
     <string name="account_updated">Profile successfully updated</string>
     <string name="hello">Hello</string>
+    <string name="please_login">An error occurred. Please, login</string>
 
 </resources>

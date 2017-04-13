@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -38,6 +37,7 @@ import java.util.TimeZone;
 import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
 
+import static jannini.android.ciclosp.Constant.baseUrlApi;
 import static jannini.android.ciclosp.Constant.mapPlaceCategories;
 
 public class Calls {
@@ -83,311 +83,6 @@ public class Calls {
 			}
 
 		}.execute();
-	}
-
-	public static void postRequest (final String stringUrl, final HashMap<String, String> mappedParams, final CallHandler handler) {
-
-		new AsyncTask<String, String, ResponseWrapper>() {
-
-			protected ResponseWrapper doInBackground(String... args) {
-				// Set up the URL
-				URL url;
-				HttpURLConnection connection = null;
-
-				String params = "";
-
-				for (HashMap.Entry<String, String> entry : mappedParams.entrySet()) {
-
-					if (params.length()>0) { params += "&"; }
-
-					params += entry.getKey() + "=" + entry.getValue();
-				}
-
-				try {
-					url = new URL(stringUrl);
-
-					// Obtain connection object
-					connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write(params);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = new BufferedInputStream(connection.getInputStream());
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					String response = sb.toString();
-					int code = connection.getResponseCode();
-					return new ResponseWrapper(code, response);
-
-				} catch (Exception e) {
-					Log.e("Buffer Error", "Error converting result " + e.toString());
-					return new ResponseWrapper(400, "Exception: " + e.toString());
-
-				} finally {
-					assert connection != null;
-					connection.disconnect();
-				}
-			}
-
-			@Override
-			protected void onPostExecute(ResponseWrapper wrapper) {
-				handler.onResponse(wrapper.responseCode, wrapper.response);
-			}
-
-		}.execute();
-	}
-
-	public static void sendReport (
-			final String address,
-			final String lat,
-			final String lng,
-			final String type,
-			final String message) {
-		
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
-		final String timestamp = date.format(currentLocalTime);
-		
-		new AsyncTask<String, String, String>() {
-			
-			protected String doInBackground(String... args) {
-
-				try {
-
-					URL url = new URL(Constant.url_report);
-
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write("name="+""+"&"+
-									"email="+""+"&"+
-									"address="+address+"&"+
-									"lat="+lat+"&"+
-									"lng="+lng+"&"+
-									"type="+type+"&"+
-									"message="+message+"&"+
-									"timestamp="+timestamp
-					);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = connection.getInputStream();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					String response = sb.toString();
-
-					Log.i("RR.sendReport response", response);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-		        return null;
-			}
-		
-		}.execute();
-		
-		
-	}
-
-	public static void sendParkedHere (
-			final String deviceID,
-			final String lat,
-			final String lng,
-			final CallHandler handler) {
-
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		final String timestamp = date.format(currentLocalTime);
-
-		new AsyncTask<String, String, ResponseWrapper>() {
-
-			protected ResponseWrapper doInBackground(String... args) {
-
-				try {
-
-					URL url = new URL(Constant.url_send_parkedHere);
-
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write(
-							"device_id="+deviceID+"&"+
-							"lat="+lat+"&"+
-							"lng="+lng+"&"+
-							"timestamp="+timestamp
-					);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = connection.getInputStream();
-					int responseCode = connection.getResponseCode();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					String response = sb.toString();
-
-					Log.i("sendParkedHere response", response);
-
-					return new ResponseWrapper(responseCode, response);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					return new ResponseWrapper(400, "sendParkedHere Exception: " + e.toString());
-				}
-			}
-
-			@Override
-			protected void onPostExecute(ResponseWrapper wrapper) {
-				if (handler != null) {
-					handler.onResponse(wrapper.responseCode, wrapper.response);
-				}
-			}
-		}.execute();
-	}
-
-	public static void sendOriginDestination (
-			final String deviceID,
-			LatLng originLatLng,
-			LatLng destinationLatLng,
-			Double distance,
-			Double maxInclination,
-			final CallHandler handler) {
-
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		final String timestamp = date.format(currentLocalTime);
-
-		final String originLat = String.valueOf(originLatLng.latitude);
-		final String originLng = String.valueOf(originLatLng.longitude);
-		final String destinationLat = String.valueOf(destinationLatLng.latitude);
-		final String destinationLng = String.valueOf(destinationLatLng.longitude);
-
-		final String strDistance = String.valueOf(distance);
-		final String strMaxInclination = String.valueOf(maxInclination);
-
-		new AsyncTask<String, String, ResponseWrapper>() {
-
-			protected ResponseWrapper doInBackground(String... args) {
-
-				try {
-
-					URL url = new URL(Constant.url_send_originDestination);
-
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write(
-							"device_id="+deviceID+"&"+
-									"origin_lat="+originLat+"&"+
-									"origin_lng="+originLng+"&"+
-									"destination_lat="+destinationLat+"&"+
-									"destination_lng="+destinationLng+"&"+
-									"distance="+strDistance+"&"+
-									"max_inclination="+strMaxInclination+"&"+
-									"timestamp="+timestamp
-					);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = connection.getInputStream();
-					int responseCode = connection.getResponseCode();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					String response = sb.toString();
-
-					Log.e("sendOriginDestination", response);
-
-					return new ResponseWrapper(responseCode, response);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					return new ResponseWrapper(400, "sendOriginDestination Exception: " + e.toString());
-				}
-			}
-
-			@Override
-			protected void onPostExecute(ResponseWrapper wrapper) {
-				if (handler != null) {
-					handler.onResponse(wrapper.responseCode, wrapper.response);
-				}
-			}
-		}.execute();
-
-
-	}
-
-	public static void createDevice (final CallHandler handler) {
-
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		final String timestamp = date.format(currentLocalTime);
-
-		final String model = Build.MODEL;
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("model", model);
-		map.put("timestamp", timestamp);
-
-		Calls.postRequest(Constant.url_create_device, map, handler);
-
 	}
 
 	public static void getDirections (final LatLng latLngOrigin, final LatLng latLngDestination, final CallHandler handler) {
@@ -628,152 +323,300 @@ public class Calls {
 		}.execute();
 	}
 
+
+	//API CALLS
+	// users
+
+	public static void login (String email, String password, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		String url = baseUrlApi + "token";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("password", password);
+
+		bc.getRequest(url, map, handler);
+	}
+
+	public static void registerUser (String name, String lastName, String email, String password, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		String url = baseUrlApi + "users";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("last_name", lastName);
+		map.put("email", email);
+		map.put("password", password);
+
+		bc.postRequest(url, map, handler);
+	}
+
+	public static void getUser (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi + "users";
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.getRequest(url, map, handler);
+	}
+
+	public static void updateUserAccount (String token, String name, String lastName, String password, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi + "users/";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("last_name", lastName);
+		map.put("password", password);
+
+		bc.putRequest(url, map, handler);
+	}
+
+	/*NOT_FORMATTED!*/public static void recoverPassword (String email, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+
+		bc.getRequest(Constant.url_user_recover_password, map, handler);
+	}
+
+	// map elements
+
+	public static void getBikeLanes (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"bike_lanes", new HashMap<String, String>(), handler);
+	}
+
+	public static void getParkingSpots (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"parking_spots", new HashMap<String, String>(), handler);
+	}
+
+	public static void getSharingStations (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"sharing_stations", new HashMap<String, String>(), handler);
+	}
+
+	public static void getAlerts (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"alerts", new HashMap<String, String>(), handler);
+	}
+
+	public static void getParks (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"parks", new HashMap<String, String>(), handler);
+	}
+
+	public static void getWifiSpots (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		bc.getRequest(baseUrlApi+"wifi_spots", new HashMap<String, String>(), handler);
+	}
+
+	public static void sendAlert(
+			String token,
+			String address,
+			String lat,
+			String lng,
+			String type,
+			String details,
+			CallHandler handler) {
+
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = Constant.baseUrlApi + "alerts";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("address", address);
+		map.put("lat", lat);
+		map.put("lng", lng);
+		map.put("type", type);
+		map.put("details", details);
+
+		bc.postRequest(url, map, handler);
+	}
+
 	public static void addParaciclo (
-			final String address,
-			final String lat,
-			final String lng,
-			final int vagas,
-			final CallHandler handler) {
+			String token,
+			String address,
+			String lat,
+			String lng,
+			String parking_spaces,
+			CallHandler handler) {
 
-		new AsyncTask<String, String, ResponseWrapper>() {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
 
-			protected ResponseWrapper doInBackground(String... args) {
+		String url = Constant.baseUrlApi + "parking_spots";
 
-				String response = "";
+		HashMap<String, String> map = new HashMap<>();
+		map.put("address", address);
+		map.put("lat", lat);
+		map.put("lng", lng);
+		map.put("parking_spaces", parking_spaces);
 
-				try {
-
-					URL url = new URL(Constant.url_add_paraciclo);
-
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write(
-									"lat="+lat+"&"+
-									"lng="+lng+"&"+
-									"address="+address+"&"+
-									"vagas="+String.valueOf(vagas)+"&"+
-									"added_by=user"
-
-					);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = connection.getInputStream();
-					int responseCode = connection.getResponseCode();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					response = sb.toString();
-
-					Log.e("addPlace rCode:", "" + responseCode);
-
-					return new ResponseWrapper(responseCode, response);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					return new ResponseWrapper(400, "addParaciclo Exception: " + e.toString() + "| Response: " + response);
-				}
-			}
-
-			@Override
-			protected void onPostExecute(ResponseWrapper wrapper) {
-				handler.onResponse(wrapper.responseCode, wrapper.response);
-			}
-		}.execute();
+		bc.postRequest(url, map, handler);
 	}
 
-	public static void addEstabelecimento (
-			final String name,
-			final String address,
-			final String locality,
-			final String lat,
-			final String lng,
-			final String phone,
-			final String email,
-			final String categories,
-			final String otherServices,
-			final CallHandler handler) {
+	// places
 
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		Date currentLocalTime = cal.getTime();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		final String timestamp = date.format(currentLocalTime);
+	public static void getPlaces (String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
 
-		new AsyncTask<String, String, ResponseWrapper>() {
-
-			protected ResponseWrapper doInBackground(String... args) {
-
-				String response = "";
-
-				try {
-
-					URL url = new URL(Constant.url_add_place);
-
-					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					connection.setDoOutput(true);
-					connection.setDoInput(true);
-					connection.setRequestMethod("POST");
-
-					// Criar o OutputStream para carregar a mensagem
-					OutputStream os = connection.getOutputStream();
-					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-					buffWriter.write("name="+name+"&"+
-							"address="+address+"&"+
-							"locality="+locality+"&"+
-							"lat="+lat+"&"+
-							"lng="+lng+"&"+
-							"phone="+phone+"&"+
-							"email="+email+"&"+
-							"categories="+categories+"&"+
-							"other_services="+otherServices+"&"+
-							"timestamp="+timestamp
-					);
-					buffWriter.flush();
-					buffWriter.close();
-					os.close();
-
-					connection.connect();
-
-					InputStream is = connection.getInputStream();
-					int responseCode = connection.getResponseCode();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = reader.readLine()) != null) {
-						sb.append(line).append("\n");
-					}
-					is.close();
-					response = sb.toString();
-
-					return new ResponseWrapper(responseCode, response);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					return new ResponseWrapper(400, "addPlace Exception: " + e.toString() + "| Response: " + response);
-				}
-			}
-
-			@Override
-			protected void onPostExecute(ResponseWrapper wrapper) {
-				handler.onResponse(wrapper.responseCode, wrapper.response);
-			}
-		}.execute();
+		bc.getRequest(baseUrlApi+"places", new HashMap<String, String>(), handler);
 	}
 
-	public static void getPlacesIconsAndCategories(final Context context, final CallHandler handler) {
+	public static void addPlace(
+			String token,
+			String name,
+			String address,
+			String lat,
+			String lng,
+			String phone,
+			String email,
+			String categories,
+			String otherServices,
+			CallHandler handler) {
+
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = Constant.baseUrlApi + "places";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("address", address);
+		map.put("lat", lat);
+		map.put("lng", lng);
+		map.put("email", email);
+		map.put("phone", phone);
+		map.put("categories", categories);
+		map.put("other_services", otherServices);
+
+		bc.postRequest(url, map, handler);
+
+	}
+
+	public static void getDealForId(String token, String dealId, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = Constant.baseUrlApi + "places/deals/"+dealId;
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.getRequest(url, map, handler);
+
+	}
+
+	public static void getDealsForPlace(String token, String placeId, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = Constant.baseUrlApi + "places/" + placeId + "/deals";
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.getRequest(url, map, handler);
+
+	}
+
+	public static void getAllDeals(String token, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi+"places/deals";
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.getRequest(url, map, handler);
+	}
+
+	public static void getPlaceOpHours(String token, String placeId, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi+"places/"+placeId;
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.getRequest(url, map, handler);
+	}
+
+	public static void updatePlaceInformation (
+			String token,
+			String placeId,
+			String name,
+			String address,
+			String lat,
+			String lng,
+			String phone,
+			String email,
+			String categories, String otherServices,
+			final CallHandler handler) {
+
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi+"places/"+placeId;
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("id", placeId);
+		map.put("name", name);
+		map.put("address", address);
+		map.put("lat", lat);
+		map.put("lng", lng);
+		map.put("email", email);
+		map.put("phone", phone);
+		map.put("categories", categories);
+		map.put("other_services", otherServices);
+
+		bc.putRequest(url, map, handler);
+
+	}
+
+	public static void flagInexistentPlace (String token, String placeId, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi+"places/"+placeId;
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.deleteRequest(url, map, handler);
+
+	}
+
+	public static void getVoucher(String token, String dealId, CallHandler handler) {
+		BasicCall bc = new BasicCall();
+		bc.addHeader("Authorization", token);
+
+		String url = baseUrlApi+"places/deals/"+dealId+"/vouchers";
+
+		HashMap<String, String> map = new HashMap<>();
+
+		bc.postRequest(url, map, handler);
+	}
+
+	/*NOT_FORMATTED!*/public static void getPlacesIconsAndCategories(final Context context, final CallHandler handler) {
 
 		jsonRequest(Constant.url_get_places_images_paths, new CallHandler() {
 
@@ -891,7 +734,7 @@ public class Calls {
 
 	}
 
-	public static void getPlacesCategories (final Context context, final CallHandler handler) {
+	/*NOT_FORMATTED!*/public static void getPlacesCategories (final Context context, final CallHandler handler) {
 
 		jsonRequest(Constant.url_get_categories, new CallHandler() {
 			@Override
@@ -963,7 +806,7 @@ public class Calls {
 		});
 	}
 
-	public static void getImageFromUrl (final String stringUrl, final int imageId, final BitmapCallHandler bitmapHandler) {
+	/*NOT_FORMATTED!*/public static void getImageFromUrl (final String stringUrl, final int imageId, final BitmapCallHandler bitmapHandler) {
 		new AsyncTask<String, Void, Bitmap>() {
 
 			@Override
@@ -991,7 +834,7 @@ public class Calls {
 		}.execute();
 	}
 
-	public static void getImageForPlaceId (final Context context, final int placeId, final BitmapCallHandler bitmapHandler) {
+	/*NOT_FORMATTED!*/public static void getImageForPlaceId (final Context context, final int placeId, final BitmapCallHandler bitmapHandler) {
 		new AsyncTask<String, Void, Bitmap>() {
 
 			@Override
@@ -1011,7 +854,7 @@ public class Calls {
 					OutputStream os = connection.getOutputStream();
 					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 					buffWriter.write("place_id="+placeId+"&"
-									+"device_density="+densityString);
+							+"device_density="+densityString);
 					buffWriter.flush();
 					buffWriter.close();
 					os.close();
@@ -1037,7 +880,7 @@ public class Calls {
 		}.execute();
 	}
 
-	public static void getDealsForLocation(LatLng userLatLng, CallHandler handler) {
+	/*NOT_FORMATTED!*/public static void getDealsForLocation(LatLng userLatLng, CallHandler handler) {
 
 		String userLat = String.valueOf(userLatLng.latitude);
 		String userLng = String.valueOf(userLatLng.longitude);
@@ -1046,126 +889,163 @@ public class Calls {
 		map.put("user_lat", userLat);
 		map.put("user_lng", userLng);
 
-		postRequest(Constant.url_get_deal_list_for_location, map, handler);
+		//bc.getRequest(Constant.url_get_deal_list_for_location, map, handler);
 	}
 
-	public static void getDealForId(String featuredId, CallHandler handler) {
+	// gathering data
 
-		HashMap<String, String> map = new HashMap<>();
-		map.put("deal_id", featuredId);
+	/*NOT_FORMATTED!*/public static void sendParkedHere (
+			final String deviceID,
+			final String lat,
+			final String lng,
+			final CallHandler handler) {
 
-		postRequest(Constant.url_get_deal_for_id, map, handler);
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		Date currentLocalTime = cal.getTime();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		final String timestamp = date.format(currentLocalTime);
+
+		new AsyncTask<String, String, ResponseWrapper>() {
+
+			protected ResponseWrapper doInBackground(String... args) {
+
+				try {
+
+					URL url = new URL(Constant.url_send_parkedHere);
+
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					connection.setDoOutput(true);
+					connection.setDoInput(true);
+					connection.setRequestMethod("POST");
+
+					// Criar o OutputStream para carregar a mensagem
+					OutputStream os = connection.getOutputStream();
+					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+					buffWriter.write(
+							"device_id="+deviceID+"&"+
+									"lat="+lat+"&"+
+									"lng="+lng+"&"+
+									"timestamp="+timestamp
+					);
+					buffWriter.flush();
+					buffWriter.close();
+					os.close();
+
+					connection.connect();
+
+					InputStream is = connection.getInputStream();
+					int responseCode = connection.getResponseCode();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
+					StringBuilder sb = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						sb.append(line).append("\n");
+					}
+					is.close();
+					String response = sb.toString();
+
+					Log.i("sendParkedHere response", response);
+
+					return new ResponseWrapper(responseCode, response);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					return new ResponseWrapper(400, "sendParkedHere Exception: " + e.toString());
+				}
+			}
+
+			@Override
+			protected void onPostExecute(ResponseWrapper wrapper) {
+				if (handler != null) {
+					handler.onResponse(wrapper.responseCode, wrapper.response);
+				}
+			}
+		}.execute();
+	}
+
+	/*NOT_FORMATTED!*/public static void sendOriginDestination (
+			final String deviceID,
+			LatLng originLatLng,
+			LatLng destinationLatLng,
+			Double distance,
+			Double maxInclination,
+			final CallHandler handler) {
+
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+		Date currentLocalTime = cal.getTime();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		final String timestamp = date.format(currentLocalTime);
+
+		final String originLat = String.valueOf(originLatLng.latitude);
+		final String originLng = String.valueOf(originLatLng.longitude);
+		final String destinationLat = String.valueOf(destinationLatLng.latitude);
+		final String destinationLng = String.valueOf(destinationLatLng.longitude);
+
+		final String strDistance = String.valueOf(distance);
+		final String strMaxInclination = String.valueOf(maxInclination);
+
+		new AsyncTask<String, String, ResponseWrapper>() {
+
+			protected ResponseWrapper doInBackground(String... args) {
+
+				try {
+
+					URL url = new URL(Constant.url_send_originDestination);
+
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					connection.setDoOutput(true);
+					connection.setDoInput(true);
+					connection.setRequestMethod("POST");
+
+					// Criar o OutputStream para carregar a mensagem
+					OutputStream os = connection.getOutputStream();
+					BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+					buffWriter.write(
+							"device_id="+deviceID+"&"+
+									"origin_lat="+originLat+"&"+
+									"origin_lng="+originLng+"&"+
+									"destination_lat="+destinationLat+"&"+
+									"destination_lng="+destinationLng+"&"+
+									"distance="+strDistance+"&"+
+									"max_inclination="+strMaxInclination+"&"+
+									"timestamp="+timestamp
+					);
+					buffWriter.flush();
+					buffWriter.close();
+					os.close();
+
+					connection.connect();
+
+					InputStream is = connection.getInputStream();
+					int responseCode = connection.getResponseCode();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"));
+					StringBuilder sb = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						sb.append(line).append("\n");
+					}
+					is.close();
+					String response = sb.toString();
+
+					Log.e("sendOriginDestination", response);
+
+					return new ResponseWrapper(responseCode, response);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					return new ResponseWrapper(400, "sendOriginDestination Exception: " + e.toString());
+				}
+			}
+
+			@Override
+			protected void onPostExecute(ResponseWrapper wrapper) {
+				if (handler != null) {
+					handler.onResponse(wrapper.responseCode, wrapper.response);
+				}
+			}
+		}.execute();
+
 
 	}
 
-	public static void getDealListForPlaceId(String placeId, CallHandler handler) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("place_id", placeId);
-
-		postRequest(Constant.url_get_deal_list_for_place_id, map, handler);
-
-	}
-
-	public static void getAllDeals(CallHandler handler) {
-
-		jsonRequest(Constant.url_get_all_deals, handler);
-	}
-
-	public static void getPlaceOpeningHours (String placeId, CallHandler handler) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("place_id", placeId);
-
-		postRequest(Constant.url_get_op_hours_for_place_id, map, handler);
-	}
-
-	public static void updatePlaceInformation (String placeId,
-									String name,
-									String address,
-									String locality,
-									String lat,
-									String lng,
-									String phone,
-									String email,
-									String categories, String otherServices,
-									final CallHandler handler) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("place_id", placeId);
-		map.put("name", name);
-		map.put("address", address);
-		map.put("locality", locality);
-		map.put("lat", lat);
-		map.put("lng", lng);
-		map.put("email", email);
-		map.put("phone", phone);
-		map.put("categories", categories);
-		map.put("otherServices", otherServices);
-
-		postRequest(Constant.url_update_place_information, map, handler);
-
-	}
-
-	public static void flagInexistentPlace (String placeId, CallHandler handler) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("place_id", placeId);
-
-		postRequest(Constant.url_flag_place_inexistent, map, handler);
-
-	}
-
-	public static void getVoucherForDeviceId(String deviceId, String dealId, CallHandler handler) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("device_id", deviceId);
-		map.put("deal_id", dealId);
-
-		Calls.postRequest(Constant.url_get_voucher_for_user_id, map, handler);
-	}
-
-	public static void login (String email, String password, CallHandler handler) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("email", email);
-		map.put("password", password);
-
-		Calls.postRequest(Constant.url_user_login, map, handler);
-	}
-
-	public static void registerUser (String name, String lastName, String email, String password, CallHandler handler) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("name", name);
-		map.put("last_name", lastName);
-		map.put("email", email);
-		map.put("password", password);
-
-		Calls.postRequest(Constant.url_user_register, map, handler);
-	}
-
-	public static void recoverPassword (String email, CallHandler handler) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("email", email);
-
-		Calls.postRequest(Constant.url_user_recover_password, map, handler);
-	}
-
-	public static void getUser (int userId, CallHandler handler) {
-		String userIdString = String.valueOf(userId);
-		HashMap<String, String> map = new HashMap<>();
-		map.put("user_id", userIdString);
-
-		Calls.postRequest(Constant.url_user_get, map, handler);
-	}
-
-	public static void updateUserAccount (int userId, String name, String lastName, String password, CallHandler handler) {
-		String userIdString = String.valueOf(userId);
-		HashMap<String, String> map = new HashMap<>();
-		map.put("user_id", userIdString);
-		map.put("name", name);
-		map.put("last_name", lastName);
-		map.put("password", password);
-
-		Calls.postRequest(Constant.url_user_update, map, handler);
-	}
 }

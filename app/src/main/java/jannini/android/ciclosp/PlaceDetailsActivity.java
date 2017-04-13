@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,16 +21,16 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
+import java.io.File;
 
-import jannini.android.ciclosp.CustomItemClasses.Place;
+import jannini.android.ciclosp.Models.Place;
 import jannini.android.ciclosp.NetworkRequests.BitmapCallHandler;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.Utils;
 
+import static jannini.android.ciclosp.Constant.PATH_BG_SCREENSHOT;
 import static jannini.android.ciclosp.Constant.REQUEST_CODE_ROUTE_FOR_DEAL;
-import static jannini.android.ciclosp.Constant.mapCategoriesIcons;
 import static jannini.android.ciclosp.MainActivity.ListPlaces;
 
 public class PlaceDetailsActivity extends Activity {
@@ -41,6 +42,11 @@ public class PlaceDetailsActivity extends Activity {
     TextView tvName, tvServices, tvAddress, tvPhone, tvShortDesc, tvHasDeals;
 
     RelativeLayout rlBackButton;
+    RelativeLayout rlTopView;
+
+    LinearLayout llContainerView;
+
+    File bg_screenshot;
 
     int placeId;
 
@@ -61,6 +67,11 @@ public class PlaceDetailsActivity extends Activity {
         tvPhone = (TextView) findViewById(R.id.tv_place_detail_phone);
         tvShortDesc = (TextView) findViewById(R.id.tv_place_detail_short_desc);
         tvHasDeals = (TextView) findViewById(R.id.tv_place_detail_has_deals);
+
+        llContainerView = (LinearLayout) findViewById(R.id.ll_place_page_container);
+
+        rlTopView = (RelativeLayout) findViewById(R.id.rl_top_view);
+        rlTopView.setOnTouchListener(otl);
 
         rlBackButton = (RelativeLayout) findViewById(R.id.rl_back_button);
         rlBackButton.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +94,13 @@ public class PlaceDetailsActivity extends Activity {
             finish();
         }
 
+        if (!Constant.PATH_BG_SCREENSHOT.trim().equals("")) {
+            File bg_file = new File(PATH_BG_SCREENSHOT);
+            ImageView ivBackgroundScreenshot = (ImageView) findViewById(R.id.iv_background_screenshot);
+            ivBackgroundScreenshot.setImageURI(Uri.fromFile(bg_file));
+            Log.e("background set", "true");
+        }
+
         final Double userLat = i.getDoubleExtra("USER_LAT", 0);
         final Double userLng = i.getDoubleExtra("USER_LNG", 0);
 
@@ -98,6 +116,7 @@ public class PlaceDetailsActivity extends Activity {
             ivPlaceLogo.setImageBitmap(Constant.mapPlacesImages.get(3));
         }
 
+        /*
         if (!mapCategoriesIcons.isEmpty() && !place.categoryIdList.isEmpty()) {
             ArrayList<Bitmap> bitmapArray = new ArrayList<>();
             for (int id: place.categoryIdList) {
@@ -125,7 +144,7 @@ public class PlaceDetailsActivity extends Activity {
         } else {
             ivServices.setVisibility(View.GONE);
             tvServices.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         final ProgressBar pbImageLoading = (ProgressBar) findViewById(R.id.pb_place_detail_image_loading);
         pbImageLoading.setVisibility(View.VISIBLE);
@@ -149,12 +168,11 @@ public class PlaceDetailsActivity extends Activity {
             }
         });
 
-        Calls.getPlaceOpeningHours(String.valueOf(place.id), new CallHandler(){
+        Calls.getPlaceOpHours(Constant.TOKEN, String.valueOf(place.id), new CallHandler(){
             @Override
             public void onSuccess(int responseCode, String response) {
                 super.onSuccess(responseCode, response);
 
-                Log.e("RESPONSE", response);
                 ProgressBar pbLoadingOpHours = (ProgressBar) findViewById(R.id.pb_loading_ophours);
 
                 try {
@@ -303,4 +321,59 @@ public class PlaceDetailsActivity extends Activity {
         setResult(RESULT_CANCELED, new Intent());
         finish();
     }
+
+    private int deltaY;
+
+    View.OnTouchListener otl = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            final int Y = (int) motionEvent.getRawY();
+
+            LinearLayout.LayoutParams lParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+
+            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    deltaY = Y - (int) view.getTranslationY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    android.graphics.Point p = new android.graphics.Point();
+                    getWindowManager().getDefaultDisplay().getSize(p);
+                    int height = p.y;
+
+                    if (view.getTranslationY() > height/5) {
+
+                        view.animate().translationY(height).start();
+                        llContainerView.animate().translationY(height).start();
+                        //llContainerView.animate().alpha(0f).start();
+                        finish();
+
+                    } else {
+                        view.animate().translationY(0).start();
+                        llContainerView.animate().translationY(0).start();
+                        //llContainerView.animate().alpha(1f).start();
+                    }
+                    break;
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    break;
+                case MotionEvent.ACTION_POINTER_UP:
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    int valueToMove = Y - deltaY;
+                    if (valueToMove > 0) {
+
+                        view.setTranslationY(valueToMove/2);
+                        llContainerView.setTranslationY(valueToMove/2);
+                        //llContainerView.setAlpha(0.5f);
+                    }
+                    llContainerView.invalidate();
+                    break;
+            }
+
+            Log.e("deltaY", ""+deltaY);
+            Log.e("translationY", ""+view.getTranslationY());
+
+            return true;
+        }
+    };
+
 }

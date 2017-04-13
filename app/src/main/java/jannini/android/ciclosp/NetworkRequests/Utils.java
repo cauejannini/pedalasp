@@ -182,6 +182,18 @@ public class Utils {
         return finalBitmap;
     }
 
+    public static Bitmap getScreenshot (final View view) {
+
+        View rootView = view.getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        Bitmap screenshot = rootView.getDrawingCache();
+        //rootView.setDrawingCacheEnabled(false);
+        //rootView.destroyDrawingCache();
+
+        return screenshot;
+
+    }
+
 }
 
 

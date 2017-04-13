@@ -4,10 +4,10 @@
     <color name="ciclovia_off">#CCC</color>
     <color name="ciclofaixa_off">#CCC</color>
     <color name="ciclorrota_off">#CCC</color>
-    <color name="ciclovia">#900</color>
-    <color name="ciclofaixa">#F00</color>
-    <color name="ciclofaixaLazer">#61bc10</color>
-    <color name="ciclorrota">#0093f7</color>
+    <color name="bikelane_permanent_0">#900</color>
+    <color name="bikelane_permanent_1">#F00</color>
+    <color name="bikelane_recreational">#61bc10</color>
+    <color name="bikelane_preferential">#0093f7</color>
     <color name="yellow">#f4aa33</color>
     <color name="yellow_light">#ffcc44</color>
     <color name="yellow_lightest">#ffdd66</color>
@@ -17,7 +17,8 @@
     <color name="translucent_custom">#55000000</color>
     <color name="alwhite">#f9f9f9</color>
     <color name="app_blue">#001f4c</color>
-    <color name="drawer_blue">#88000022</color>
+    <color name="drawer_bg">#001f4c</color>
+    <color name="drawer_header_bg">#000a2c</color><!--#88000022-->
     <color name="selected_dark">#66000000</color>
     <color name="route_blue">#FF0000FF</color>
     <color name="selected_route_blue">#AA0000FF</color>
