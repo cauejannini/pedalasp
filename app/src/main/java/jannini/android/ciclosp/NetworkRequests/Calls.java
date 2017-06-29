@@ -36,6 +36,7 @@ import java.util.TimeZone;
 
 import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
+import jannini.android.ciclosp.Utils;
 
 import static jannini.android.ciclosp.Constant.baseUrlApi;
 import static jannini.android.ciclosp.Constant.mapPlaceCategories;
@@ -150,7 +151,7 @@ public class Calls {
 		}.execute();
 	}
 
-	static void getElevationLists (
+	public static void getElevationLists (
 			final ArrayList<String> encodedPathList,
 			final ArrayList<Integer> samplesNumbers,
 			final CallHandler handler) {

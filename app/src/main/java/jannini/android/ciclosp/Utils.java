@@ -1,4 +1,4 @@
-package jannini.android.ciclosp.NetworkRequests;
+package jannini.android.ciclosp;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import jannini.android.ciclosp.R;
 
 /**
  * Created by cauejannini on 04/07/16.

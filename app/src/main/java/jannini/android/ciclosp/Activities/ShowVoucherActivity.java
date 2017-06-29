@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,9 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 public class ShowVoucherActivity extends Activity {
 

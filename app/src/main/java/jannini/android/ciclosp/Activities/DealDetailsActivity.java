@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,9 +22,11 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.PERMISSION_REQUEST_CODE_CALL_PHONE;
 import static jannini.android.ciclosp.R.id.tv_deal_title;

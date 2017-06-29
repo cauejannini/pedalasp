@@ -15,9 +15,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import jannini.android.ciclosp.CheckClick;
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
 
 public class CyclingPath implements Parcelable {
     Context context;

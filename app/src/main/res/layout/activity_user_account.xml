@@ -5,7 +5,7 @@
     android:id="@+id/activity_user_account"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="jannini.android.ciclosp.UserAccount">
+    tools:context="jannini.android.ciclosp.Activities.UserAccountActivity">
 
     <LinearLayout
         android:id="@+id/ll_your_account"

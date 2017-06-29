@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Models;
 
 import android.location.Location;
 
@@ -9,11 +9,13 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import jannini.android.ciclosp.Constant;
+
 public class CheckClick {
 	
 	private LatLng result;
 	
-	LatLng checkClick(LatLng point, List<LatLng> list, double maxDistance) {
+	public LatLng checkClick(LatLng point, List<LatLng> list, double maxDistance) {
 
 		for (int i=0 ; i < list.size() - 1 ; i++ ){
 

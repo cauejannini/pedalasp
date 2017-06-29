@@ -5,7 +5,7 @@
 	android:weightSum="1"
 	android:orientation="vertical"
     android:background="@color/app_blue"
-    tools:context="jannini.android.ciclosp.ReportActivity" >
+    tools:context="jannini.android.ciclosp.Activities.ReportActivity" >
 
     <LinearLayout
         android:layout_height="wrap_content"

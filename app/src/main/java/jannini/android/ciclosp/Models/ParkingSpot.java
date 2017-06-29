@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
 
-import static jannini.android.ciclosp.NetworkRequests.Utils.newline;
+import static jannini.android.ciclosp.Utils.newline;
 
 public class ParkingSpot extends MarkerMapElement{
 

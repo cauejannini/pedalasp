@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
 
 /**

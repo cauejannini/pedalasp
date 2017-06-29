@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.MARKER_TAG_PARK;
-import static jannini.android.ciclosp.NetworkRequests.Utils.newline;
+import static jannini.android.ciclosp.Utils.newline;
 
 public class Park extends MarkerMapElement {
 	private String name;

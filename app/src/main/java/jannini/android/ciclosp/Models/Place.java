@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.MARKER_TAG_PLACE;

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import jannini.android.ciclosp.Adapters.ServicesListAdapter;
-import jannini.android.ciclosp.AddToMapActivity;
+import jannini.android.ciclosp.Activities.AddToMapActivity;
 import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
 

@@ -30,7 +30,7 @@
         <!-- Programming API key: AIzaSyANYWNKNo4VckhHFOaSQoRB9Ilcj32L8p0 -->
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activities.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -40,58 +40,58 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/MainActionBarTheme">
         </activity>
         <activity
-            android:name=".SugestaoActivity"
+            android:name=".Activities.SugestaoActivity"
             android:label="@string/title_activity_sugestao"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme">
         </activity>
         <activity
-            android:name=".ReportActivity"
+            android:name=".Activities.ReportActivity"
             android:label="@string/title_activity_report"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".RouteDetailSplashScreen"
+            android:name=".Activities.RouteDetailSplashScreen"
             android:label="@string/title_activity_route_detail_splash"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeTransparent"/>
         <activity
-            android:name=".DrawerExpActivity"
+            android:name=".Activities.DrawerExpActivity"
             android:label="@string/title_activity_drawer_exp_splash"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".AddToMapActivity"
+            android:name=".Activities.AddToMapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".PlaceDetailsActivity"
+            android:name=".Activities.PlaceDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".DealListActivity"
+            android:name=".Activities.DealListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".DealDetailsActivity"
+            android:name=".Activities.DealDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".ShowVoucherActivity"
+            android:name=".Activities.ShowVoucherActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
-            android:name=".UserAccount"
+            android:name=".Activities.UserAccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarThemeDarkText"/>
     </application>

@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -9,12 +9,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.Fragments.ParacicloF;
 import jannini.android.ciclosp.Fragments.PlaceCategoryF;
 import jannini.android.ciclosp.Fragments.PlaceInfoF;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 public class AddToMapActivity extends Activity
         implements  PlaceInfoF.OnEIFragmentInteractionListener,

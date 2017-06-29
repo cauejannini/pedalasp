@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,8 +25,11 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.MyApplication;
 import jannini.android.ciclosp.MyApplication.TrackerName;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 public class SugestaoActivity extends Activity {
 	

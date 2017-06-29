@@ -38,9 +38,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jannini.android.ciclosp.AddToMapActivity;
+import jannini.android.ciclosp.Activities.AddToMapActivity;
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
 
 public class PlaceInfoF extends Fragment implements OnMapReadyCallback {

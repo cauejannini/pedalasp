@@ -8,7 +8,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="jannini.android.ciclosp.ShowVoucherActivity">
+    tools:context="jannini.android.ciclosp.Activities.ShowVoucherActivity">
 
     <RelativeLayout
         android:id="@+id/rl_back_button"

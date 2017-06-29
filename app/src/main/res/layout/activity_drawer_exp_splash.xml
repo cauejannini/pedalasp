@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     android:background="@color/app_blue"
-    tools:context=".DrawerExpActivity">
+    tools:context=".Activities.DrawerExpActivity">
 
     <ImageView
         android:layout_width="30dp"

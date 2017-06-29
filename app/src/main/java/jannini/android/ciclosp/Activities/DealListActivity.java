@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,9 +22,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import jannini.android.ciclosp.Adapters.DealListAdapter;
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 public class DealListActivity extends Activity implements ListView.OnItemClickListener {
 

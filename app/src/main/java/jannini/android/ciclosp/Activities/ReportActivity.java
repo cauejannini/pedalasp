@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
@@ -44,10 +44,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
+import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.MyApplication;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 public class ReportActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 

@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.MARKER_TAG_ALERT;
-import static jannini.android.ciclosp.NetworkRequests.Utils.newline;
+import static jannini.android.ciclosp.Utils.newline;
 
 public class Alert extends MarkerMapElement{
 

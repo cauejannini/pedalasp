@@ -1,4 +1,4 @@
-package jannini.android.ciclosp.NetworkRequests;
+package jannini.android.ciclosp.Models;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -18,8 +18,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.Models.BikeLane;
-import jannini.android.ciclosp.Models.CyclingPath;
+import jannini.android.ciclosp.NetworkRequests.CallHandler;
+import jannini.android.ciclosp.NetworkRequests.Calls;
+import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 
 public class Route {
 

@@ -10,7 +10,7 @@ import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.MARKER_TAG_SHARING_STATION;
-import static jannini.android.ciclosp.NetworkRequests.Utils.newline;
+import static jannini.android.ciclosp.Utils.newline;
 
 public class SharingStation extends MarkerMapElement {
 	private int number, bikes, size;

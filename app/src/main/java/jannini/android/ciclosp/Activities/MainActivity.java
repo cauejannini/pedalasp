@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 
 import android.Manifest;
@@ -108,6 +108,8 @@ import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
 import jannini.android.ciclosp.Adapters.MyListAdapter;
 import jannini.android.ciclosp.Adapters.RoutePrioritySpinnerAdapter;
 import jannini.android.ciclosp.Adapters.ToggleServicesListAdapter;
+import jannini.android.ciclosp.Models.CheckClick;
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.Models.Alert;
 import jannini.android.ciclosp.Models.BikeLane;
 import jannini.android.ciclosp.Models.CyclingPath;
@@ -115,14 +117,16 @@ import jannini.android.ciclosp.Models.Park;
 import jannini.android.ciclosp.Models.ParkingSpot;
 import jannini.android.ciclosp.Models.Place;
 import jannini.android.ciclosp.Models.SharingStation;
+import jannini.android.ciclosp.MyApplication;
 import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.GeocoderCallHandler;
 import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
-import jannini.android.ciclosp.NetworkRequests.Route;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Models.Route;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 import static com.google.android.gms.maps.CameraUpdateFactory.newCameraPosition;
 import static com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom;
@@ -724,7 +728,7 @@ public class MainActivity extends FragmentActivity
 
                 break;
 			case Constant.LISTPOS_MY_ACCOUNT:
-				startActivity(new Intent(MainActivity.this, UserAccount.class));
+				startActivity(new Intent(MainActivity.this, UserAccountActivity.class));
 				break;
 
 			case Constant.LISTPOS_WRITE_FOR_US:

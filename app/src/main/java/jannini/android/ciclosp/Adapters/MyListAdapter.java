@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.MainActivity;
+import jannini.android.ciclosp.Activities.MainActivity;
 import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.LISTPOS_LAYERS_TITLE;

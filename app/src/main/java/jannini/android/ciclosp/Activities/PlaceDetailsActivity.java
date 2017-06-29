@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,15 +23,16 @@ import org.json.JSONException;
 
 import java.io.File;
 
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.Models.Place;
 import jannini.android.ciclosp.NetworkRequests.BitmapCallHandler;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
 import static jannini.android.ciclosp.Constant.PATH_BG_SCREENSHOT;
 import static jannini.android.ciclosp.Constant.REQUEST_CODE_ROUTE_FOR_DEAL;
-import static jannini.android.ciclosp.MainActivity.ListPlaces;
 
 public class PlaceDetailsActivity extends Activity {
 
@@ -84,7 +85,7 @@ public class PlaceDetailsActivity extends Activity {
 
         Intent i = getIntent();
         placeId = i.getIntExtra(Constant.IEXTRA_PLACE_ID_INT, 0);
-        for (Place p : ListPlaces) {
+        for (Place p : MainActivity.ListPlaces) {
             if (p.id == placeId) {
                 place = p;
             }

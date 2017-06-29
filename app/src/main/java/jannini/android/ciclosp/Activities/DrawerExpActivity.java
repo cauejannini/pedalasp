@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.ToggleButton;
 
 import jannini.android.ciclosp.Adapters.ListAdapterDrawerExp;
+import jannini.android.ciclosp.Constant;
+import jannini.android.ciclosp.R;
 
 
 public class DrawerExpActivity extends Activity {

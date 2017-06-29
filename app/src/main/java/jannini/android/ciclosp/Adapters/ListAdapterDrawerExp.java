@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import jannini.android.ciclosp.R;
 
-import static jannini.android.ciclosp.DrawerExpActivity.states;
+import static jannini.android.ciclosp.Activities.DrawerExpActivity.states;
 
 public class ListAdapterDrawerExp extends ArrayAdapter<String> {
   private final Context context;

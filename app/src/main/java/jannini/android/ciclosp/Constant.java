@@ -1,7 +1,6 @@
 package jannini.android.ciclosp;
 
 import android.graphics.Bitmap;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.HashMap;

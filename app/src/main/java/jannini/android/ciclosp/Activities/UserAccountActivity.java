@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,11 +14,13 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
+import jannini.android.ciclosp.R;
 
-public class UserAccount extends Activity {
+public class UserAccountActivity extends Activity {
 
     SharedPreferences sharedPreferences;
     RelativeLayout rlLoading;
@@ -84,7 +86,7 @@ public class UserAccount extends Activity {
                 public void onSuccess(int responseCode, String response) {
                     super.onSuccess(responseCode, response);
 
-                    Utils.showToastWithMessage(UserAccount.this, getString(R.string.account_updated));
+                    Utils.showToastWithMessage(UserAccountActivity.this, getString(R.string.account_updated));
                     rlLoading.setVisibility(View.VISIBLE);
                     Calls.getUser(Constant.TOKEN, getUserCallHandler);
                 }
@@ -96,14 +98,14 @@ public class UserAccount extends Activity {
                     switch (responseCode) {
 
                         case 401:
-                            Utils.showToastWithMessage(UserAccount.this, getString(R.string.wrong_password));
+                            Utils.showToastWithMessage(UserAccountActivity.this, getString(R.string.wrong_password));
                             break;
                         case 404:
                             // USER ID INEXISTENT
-                            Utils.showServerErrorToast(UserAccount.this, response);
+                            Utils.showServerErrorToast(UserAccountActivity.this, response);
                             break;
                         case 500:
-                            Utils.showServerErrorToast(UserAccount.this, response);
+                            Utils.showServerErrorToast(UserAccountActivity.this, response);
                             break;
                     }
                 }
@@ -139,7 +141,7 @@ public class UserAccount extends Activity {
             super.onFailure(responseCode, response);
             Log.e("getUser", "FAIL: " + response);
 
-            Utils.showServerErrorToast(UserAccount.this, response);
+            Utils.showServerErrorToast(UserAccountActivity.this, response);
             finish();
 
         }
@@ -149,7 +151,7 @@ public class UserAccount extends Activity {
 
         sharedPreferences.edit().remove(Constant.SPKEY_TOKEN).apply();
 
-        startActivity(new Intent(UserAccount.this, LoginActivity.class));
+        startActivity(new Intent(UserAccountActivity.this, LoginActivity.class));
         finish();
     }
 }

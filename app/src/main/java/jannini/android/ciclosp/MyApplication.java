@@ -55,7 +55,7 @@ public class MyApplication extends Application {
 
 	HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 	  
-	synchronized Tracker getTracker(TrackerName trackerName) {
+	public synchronized Tracker getTracker(TrackerName trackerName) {
 			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
 		    Tracker t = analytics.newTracker("UA-54096754-1");
 		    mTrackers.put(trackerName, t);

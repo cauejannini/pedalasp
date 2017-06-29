@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.NetworkRequests.Utils;
+import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
 
 public class BikeLane extends MapElement{

@@ -1,4 +1,4 @@
-package jannini.android.ciclosp;
+package jannini.android.ciclosp.Activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,8 +15,10 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
+import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
+import jannini.android.ciclosp.R;
 
 public class SplashScreen extends Activity {
 
