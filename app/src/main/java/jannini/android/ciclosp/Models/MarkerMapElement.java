@@ -42,7 +42,7 @@ abstract class MarkerMapElement extends MapElement {
     public void drawOnMap(GoogleMap map) {
 
         String title = getTitle();
-        String description = getTitle();
+        String description = getDescription();
         BitmapDescriptor icon = getIcon();
 
         if (icon != null && title != null && description != null) {
