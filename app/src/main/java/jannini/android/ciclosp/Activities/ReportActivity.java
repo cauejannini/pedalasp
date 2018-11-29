@@ -29,8 +29,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,12 +43,10 @@ import java.util.List;
 
 import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
 import jannini.android.ciclosp.Constant;
-import jannini.android.ciclosp.MyApplication;
-import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
-import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
+import jannini.android.ciclosp.Utils;
 
 public class ReportActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 
@@ -88,15 +84,6 @@ public class ReportActivity extends FragmentActivity implements LocationListener
 				btClearAddress.setVisibility(View.GONE);
 			}
 		});
-
-
-		// Get tracker.
-		Tracker t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
-		// Set screen name.
-		// Where path is a String representing the screen name.
-		t.setScreenName("ReportActivity");
-		// Send a screen view.
-		t.send(new HitBuilders.AppViewBuilder().build());
 
 		Intent i = getIntent();
 		Double lat = i.getDoubleExtra("latitude", 0);

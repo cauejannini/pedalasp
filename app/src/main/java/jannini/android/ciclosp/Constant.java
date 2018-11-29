@@ -18,7 +18,7 @@ public class Constant {
     public static double urLat = -23.215394;
     public static double urLng = -46.164888;
 
-    public static String baseUrlApi = "http://pedalaspapp.com.br/api/0.0.1/";
+    public static String API_BASE_URL = "http://pedalaspapp.com.br/api/0.0.1/";
     public static String url_obter_dados = "http://pedalaspapp.com.br/dbaccess/get_data.php";
     public static String url_obter_bikesampa = "http://pedalaspapp.com.br/dbaccess/obter_bikesampa.php";
     public static String url_obter_ciclosampa = "http://pedalaspapp.com.br/dbaccess/obter_ciclosampa.php";

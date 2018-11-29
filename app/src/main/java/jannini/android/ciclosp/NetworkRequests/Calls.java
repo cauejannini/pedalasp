@@ -38,7 +38,7 @@ import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.R;
 import jannini.android.ciclosp.Utils;
 
-import static jannini.android.ciclosp.Constant.baseUrlApi;
+import static jannini.android.ciclosp.Constant.API_BASE_URL;
 import static jannini.android.ciclosp.Constant.mapPlaceCategories;
 
 public class Calls {
@@ -330,7 +330,7 @@ public class Calls {
 
 	public static void login (String email, String password, CallHandler handler) {
 		BasicCall bc = new BasicCall();
-		String url = baseUrlApi + "token";
+		String url = API_BASE_URL + "token";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("email", email);
@@ -341,7 +341,7 @@ public class Calls {
 
 	public static void registerUser (String name, String lastName, String email, String password, CallHandler handler) {
 		BasicCall bc = new BasicCall();
-		String url = baseUrlApi + "users";
+		String url = API_BASE_URL + "users";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", name);
@@ -356,7 +356,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi + "users";
+		String url = API_BASE_URL + "users";
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -367,7 +367,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi + "users/";
+		String url = API_BASE_URL + "users/";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", name);
@@ -392,42 +392,42 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"bike_lanes", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"bike_lanes", new HashMap<String, String>(), handler);
 	}
 
 	public static void getParkingSpots (String token, CallHandler handler) {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"parking_spots", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"parking_spots", new HashMap<String, String>(), handler);
 	}
 
 	public static void getSharingStations (String token, CallHandler handler) {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"sharing_stations", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"sharing_stations", new HashMap<String, String>(), handler);
 	}
 
 	public static void getAlerts (String token, CallHandler handler) {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"alerts", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"alerts", new HashMap<String, String>(), handler);
 	}
 
 	public static void getParks (String token, CallHandler handler) {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"parks", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"parks", new HashMap<String, String>(), handler);
 	}
 
 	public static void getWifiSpots (String token, CallHandler handler) {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"wifi_spots", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"wifi_spots", new HashMap<String, String>(), handler);
 	}
 
 	public static void sendAlert(
@@ -442,7 +442,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = Constant.baseUrlApi + "alerts";
+		String url = Constant.API_BASE_URL + "alerts";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("address", address);
@@ -465,7 +465,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = Constant.baseUrlApi + "parking_spots";
+		String url = Constant.API_BASE_URL + "parking_spots";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("address", address);
@@ -482,7 +482,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		bc.getRequest(baseUrlApi+"places", new HashMap<String, String>(), handler);
+		bc.getRequest(API_BASE_URL +"places", new HashMap<String, String>(), handler);
 	}
 
 	public static void addPlace(
@@ -500,7 +500,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = Constant.baseUrlApi + "places";
+		String url = Constant.API_BASE_URL + "places";
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("name", name);
@@ -520,7 +520,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = Constant.baseUrlApi + "places/deals/"+dealId;
+		String url = Constant.API_BASE_URL + "places/deals/"+dealId;
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -532,7 +532,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = Constant.baseUrlApi + "places/" + placeId + "/deals";
+		String url = Constant.API_BASE_URL + "places/" + placeId + "/deals";
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -544,7 +544,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi+"places/deals";
+		String url = API_BASE_URL +"places/deals";
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -555,7 +555,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi+"places/"+placeId;
+		String url = API_BASE_URL +"places/"+placeId;
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -577,7 +577,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi+"places/"+placeId;
+		String url = API_BASE_URL +"places/"+placeId;
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("id", placeId);
@@ -598,7 +598,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi+"places/"+placeId;
+		String url = API_BASE_URL +"places/"+placeId;
 
 		HashMap<String, String> map = new HashMap<>();
 
@@ -610,7 +610,7 @@ public class Calls {
 		BasicCall bc = new BasicCall();
 		bc.addHeader("Authorization", token);
 
-		String url = baseUrlApi+"places/deals/"+dealId+"/vouchers";
+		String url = API_BASE_URL +"places/deals/"+dealId+"/vouchers";
 
 		HashMap<String, String> map = new HashMap<>();
 

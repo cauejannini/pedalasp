@@ -21,7 +21,7 @@
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
-        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>\
+        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
         <item name="android:buttonStyleToggle">@style/RobotoToggleButtonStyle</item>
         <item name="android:windowContentOverlay">@null</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->

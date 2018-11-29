@@ -64,8 +64,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -108,25 +106,24 @@ import jannini.android.ciclosp.Adapters.CustomInfoWindowAdapter;
 import jannini.android.ciclosp.Adapters.MyListAdapter;
 import jannini.android.ciclosp.Adapters.RoutePrioritySpinnerAdapter;
 import jannini.android.ciclosp.Adapters.ToggleServicesListAdapter;
-import jannini.android.ciclosp.Models.CheckClick;
 import jannini.android.ciclosp.Constant;
 import jannini.android.ciclosp.Models.Alert;
 import jannini.android.ciclosp.Models.BikeLane;
+import jannini.android.ciclosp.Models.CheckClick;
 import jannini.android.ciclosp.Models.CyclingPath;
 import jannini.android.ciclosp.Models.Park;
 import jannini.android.ciclosp.Models.ParkingSpot;
 import jannini.android.ciclosp.Models.Place;
+import jannini.android.ciclosp.Models.Route;
 import jannini.android.ciclosp.Models.SharingStation;
 import jannini.android.ciclosp.MyApplication;
-import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.GeocoderCallHandler;
 import jannini.android.ciclosp.NetworkRequests.GetRouteInterface;
 import jannini.android.ciclosp.NetworkRequests.NotifySolvedReport;
-import jannini.android.ciclosp.Models.Route;
-import jannini.android.ciclosp.Utils;
 import jannini.android.ciclosp.R;
+import jannini.android.ciclosp.Utils;
 
 import static com.google.android.gms.maps.CameraUpdateFactory.newCameraPosition;
 import static com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom;
@@ -152,9 +149,6 @@ public class MainActivity extends FragmentActivity
 
 	// General Geocoder
 	public Geocoder geocoder;
-
-	// Analytics tracker
-	Tracker t;
 
 	// Calendars
 	public Calendar rightNow;
@@ -298,14 +292,6 @@ public class MainActivity extends FragmentActivity
 		sundaySixteen = Calendar.getInstance();
 		sundaySixteen.set(Calendar.HOUR_OF_DAY, 16);
 		sundaySixteen.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-
-		// Get tracker
-		t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
-		// Set screen name.
-		// Where path is a String representing the screen name.
-		t.setScreenName("MainActivity");
-		// Send a screen view.
-		t.send(new HitBuilders.AppViewBuilder().build());
 
 		sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -1406,10 +1392,6 @@ public class MainActivity extends FragmentActivity
 				activeMarker = marker;
 
 				String markerTitle = marker.getTitle();
-				t.send(new HitBuilders.EventBuilder()
-						.setCategory("markerClick")
-						.setAction(markerTitle)
-						.build());
 
 				// Remove markerSearch from old search
 				if (markerSearch != null) {
@@ -2291,7 +2273,7 @@ public class MainActivity extends FragmentActivity
 
 				SharingStation sharingStation = new SharingStation(this, system, number, name, description, latitude, longitude, status1, status2, bikes, size);
 
-				if (system == SHARING_STATIONS_SYSTEM_BIKE_SAMPA) {
+				if (system.equals(SHARING_STATIONS_SYSTEM_BIKE_SAMPA)) {
 					ListSharingStationsBS.add(sharingStation);
 				} else {
 					ListSharingStationsCS.add(sharingStation);
