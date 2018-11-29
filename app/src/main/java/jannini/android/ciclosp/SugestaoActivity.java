@@ -11,9 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -23,8 +20,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import jannini.android.ciclosp.MyApplication.TrackerName;
 
 public class SugestaoActivity extends Activity {
 	
@@ -38,8 +33,6 @@ public class SugestaoActivity extends Activity {
 
 	SharedPreferences sp;
 
-	Tracker t;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,14 +45,6 @@ public class SugestaoActivity extends Activity {
 		sp = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 		et_nome.setText(sp.getString(Constant.SPKEY_USER_NAME, ""));
 		et_email.setText(sp.getString(Constant.SPKEY_USER_EMAIL, ""));
-		
-		// Get tracker.
-        t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
-        // Set screen name.
-        // Where path is a String representing the screen name.
-        t.setScreenName("Sugestao");
-        // Send a screen view.
-        t.send(new HitBuilders.AppViewBuilder().build());
 		
 	}
 	

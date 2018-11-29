@@ -56,8 +56,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -77,6 +75,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -103,7 +102,6 @@ import jannini.android.ciclosp.CustomItemClasses.CyclingPath;
 import jannini.android.ciclosp.CustomItemClasses.Estacao;
 import jannini.android.ciclosp.CustomItemClasses.Parque;
 import jannini.android.ciclosp.CustomItemClasses.Report;
-import jannini.android.ciclosp.MyApplication.TrackerName;
 import jannini.android.ciclosp.NetworkRequests.CallHandler;
 import jannini.android.ciclosp.NetworkRequests.Calls;
 import jannini.android.ciclosp.NetworkRequests.GeocoderCallHandler;
@@ -127,9 +125,6 @@ public class MainActivity extends FragmentActivity
 
 	// General Geocoder
 	public Geocoder geocoder;
-
-	// Analytics tracker
-	Tracker t;
 
 	// Calendars
 	public Calendar rightNow;
@@ -262,14 +257,6 @@ public class MainActivity extends FragmentActivity
 		sundaySixteen = Calendar.getInstance();
 		sundaySixteen.set(Calendar.HOUR_OF_DAY, 16);
 		sundaySixteen.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-
-		// Get tracker
-		t = ((MyApplication) this.getApplication()).getTracker(TrackerName.APP_TRACKER);
-		// Set screen name.
-		// Where path is a String representing the screen name.
-		t.setScreenName("MainActivity");
-		// Send a screen view.
-		t.send(new HitBuilders.AppViewBuilder().build());
 
 		sharedPreferences = getApplicationContext().getSharedPreferences(Constant.SPKEY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -1251,10 +1238,11 @@ public class MainActivity extends FragmentActivity
 				activeMarker = marker;
 
 				String markerTitle = marker.getTitle();
-				t.send(new HitBuilders.EventBuilder()
-						.setCategory("markerClick")
-						.setAction(markerTitle)
-						.build());
+
+//				Bundle markerClickBundle = new Bundle();
+//				markerClickBundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "markerClick");
+//				markerClickBundle.putString(FirebaseAnalytics.Param.ITEM_NAME, markerTitle);
+//				firebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, markerClickBundle);
 
 				// Remove markerSearch from old search
 				if (markerSearch != null) {

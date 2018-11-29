@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25'
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "jannini.android.ciclosp"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 27
+        versionCode 38
+        versionName "2.2"
     }
 
     buildTypes {
@@ -19,12 +20,12 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile files('libs/achartengine-1.1.0.jar')
-    compile 'com.google.android.gms:play-services-maps:9.8.0'
-    compile 'com.google.android.gms:play-services-analytics:9.8.0'
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'ch.acra:acra:4.9.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation files('libs/achartengine-1.1.0.jar')
+    implementation 'ch.acra:acra:4.9.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

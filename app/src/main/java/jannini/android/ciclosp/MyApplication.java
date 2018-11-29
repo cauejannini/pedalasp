@@ -2,13 +2,8 @@ package jannini.android.ciclosp;
 
 import android.app.Application;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
-
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
-
-import java.util.HashMap;
 
 @ReportsCrashes(
 		httpMethod = org.acra.sender.HttpSender.Method.PUT,
@@ -40,21 +35,5 @@ public class MyApplication extends Application {
 	public static void activityPaused() {
 		activityVisible = false;
 	}
-	
-	public enum TrackerName {
-	    APP_TRACKER, // Tracker used only in this app.
-	  }
-
-	HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
-	  
-	synchronized Tracker getTracker(TrackerName trackerName) {
-			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-		    Tracker t = analytics.newTracker("UA-54096754-1");
-		    mTrackers.put(trackerName, t);
-		
-		return mTrackers.get(trackerName);
-	}
-	
-	
 	
 }
